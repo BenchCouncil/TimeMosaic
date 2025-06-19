@@ -1,6 +1,6 @@
+export CUDA_VISIBLE_DEVICES=2
 
-
-model_name=PatchTST
+model_name=AGPT
 
 seq_len=96
 pred_len=12

@@ -9,11 +9,19 @@ LOG_DIR="logs"
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-"/root/daye/ModularTS/scripts/ModularTS_proj/ETT/ModularTS_ETTh1.sh"
-"/root/daye/ModularTS/scripts/ModularTS_proj/ETT/ModularTS_ETTh2.sh"
-"/root/daye/ModularTS/scripts/ModularTS_proj/ETT/ModularTS_ETTm1.sh"
-"/root/daye/ModularTS/scripts/ModularTS_proj/ETT/ModularTS_ETTm2.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/PatchTST/PatchTST_ECL.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/PatchTST/PatchTST_ETTh1.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/PatchTST/PatchTST_ETTm1.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/PatchTST/PatchTST_ETTh2.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/PatchTST/PatchTST_Exchange.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/PatchTST/PatchTST_ETTm2.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/PatchTST/PatchTST_Traffic.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/PatchTST/PEMS.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/PatchTST/Solar.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/PatchTST/Weather.sh"
 )
+
+
 
 # ===================== 工具函数 =====================
 
@@ -39,8 +47,7 @@ run_with_retry() {
     local gpu_id=$2
     local attempt=0
 
-    # 将路径转换成无"/"的可识别log名（去掉/root/daye/）
-    local clean_path=${script_path#/root/daye/}
+    local clean_path=${script_path#/mnt/pfs/zitao_team/kuiyeding/AGPT/}
     local log_name="${clean_path//\//_}.log"
     local log_file="$LOG_DIR/$log_name"
 
@@ -77,6 +84,6 @@ done
 wait
 echo "[ALL DONE] 所有脚本执行完毕，日志存于 $LOG_DIR"
 
-git add .
-git commit -m "init"
-git push -u origin main
+# git add .
+# git commit -m "init"
+# git push -u origin main

@@ -1,5 +1,6 @@
+export CUDA_VISIBLE_DEVICES=1
 
-model_name=PatchTST
+model_name=AGPT
 
 python -u run.py \
   --task_name long_term_forecast \

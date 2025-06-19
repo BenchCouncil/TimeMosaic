@@ -1,12 +1,13 @@
 import os
 import torch
-from models import PatchTST
+from models import PatchTST, AGPT
 
 class Exp_Basic(object):
     def __init__(self, args):
         self.args = args
         self.model_dict = {
-            'PatchTST': PatchTST
+            'PatchTST': PatchTST,
+            'AGPT': AGPT
             }
 
         self.device = self._acquire_device()

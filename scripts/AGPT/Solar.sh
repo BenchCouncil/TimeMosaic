@@ -1,5 +1,6 @@
+#export CUDA_VISIBLE_DEVICES=0
 
-model_name=PatchTST
+model_name=AGPT
 seq_len=96
 learning_rate=0.001
 batch_size=32
