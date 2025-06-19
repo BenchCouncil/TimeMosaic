@@ -29,7 +29,7 @@ def print_args(args):
         print()
 
     print("\033[1m" + "Model Parameters" + "\033[0m")
-    print(f'  {"Top k:":<20}{args.top_k:<20}{"Num Kernels:":<20}{args.num_kernels:<20}')
+    print(f'  {"Num Kernels:":<20}{args.num_kernels:<20}')
     print(f'  {"Enc In:":<20}{args.enc_in:<20}{"Dec In:":<20}{args.dec_in:<20}')
     print(f'  {"C Out:":<20}{args.c_out:<20}{"d model:":<20}{args.d_model:<20}')
     print(f'  {"n heads:":<20}{args.n_heads:<20}{"e layers:":<20}{args.e_layers:<20}')
