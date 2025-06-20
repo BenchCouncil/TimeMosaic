@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # ===================== 配置参数 =====================
-MAX_JOBS=4
-TOTAL_GPUS=2
+MAX_JOBS=8
+TOTAL_GPUS=4
 MAX_RETRIES=1
 LOG_DIR="logs"
 
@@ -77,7 +77,7 @@ for script_path in "${SCRIPT_LIST[@]}"; do
     gpu_id=$(get_gpu_allocation $job_number)
     # run_with_retry "$script_path" "$gpu_id" &
     # ((job_number++))
-    run_with_retry "$script_path" "1" &
+    run_with_retry "$script_path" "$gpu_id" &
     ((job_number++))
 done
 
