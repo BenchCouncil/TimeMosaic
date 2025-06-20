@@ -96,6 +96,8 @@ if __name__ == '__main__':
     parser.add_argument('--adjust_lr', action='store_true', default=False, help='adjust learnring rate')
     parser.add_argument('--num_latent_token', type=int, default=4, help='')
     parser.add_argument('--scale_rate', type=float, default=0.5, help='emb init scale rate')
+    parser.add_argument('--patch_len_list', type=str, default='[8,16,32]',
+                    help='List of candidate patch lengths for adaptive splitting')
 
     args = parser.parse_args()
     if torch.cuda.is_available() and args.use_gpu:

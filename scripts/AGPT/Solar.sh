@@ -1,5 +1,3 @@
-#export CUDA_VISIBLE_DEVICES=0
-
 model_name=AGPT
 seq_len=96
 learning_rate=0.001
@@ -56,7 +54,6 @@ python -u run.py \
   --c_out 137 \
   --des 'Exp' \
   --itr 1 \
-  --use_norm 0 \
   --d_model 512 \
   --d_ff 2048 \
   --batch_size $batch_size \

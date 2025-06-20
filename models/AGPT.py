@@ -1,8 +1,99 @@
-import torch
-from torch import nn
 from layers.Transformer_EncDec import Encoder, EncoderLayer
 from layers.SelfAttention_Family import FullAttention, AttentionLayer
 from layers.Embed import PatchEmbedding
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import math
+
+class PositionalEmbedding(nn.Module):
+    def __init__(self, d_model, max_len=5000):
+        super().__init__()
+        pe = torch.zeros(max_len, d_model).float()
+        position = torch.arange(0, max_len).float().unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2).float() * -(math.log(10000.0) / d_model))
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        pe = pe.unsqueeze(0)
+        self.register_buffer('pe', pe)
+
+    def forward(self, x):  # x: [B*C, num_patch, d_model]
+        return self.pe[:, :x.size(1)]
+
+class AdaptivePatchEmbedding(nn.Module):
+    def __init__(self, d_model, patch_len_list, mode='fixed', dropout=0.0, seq_len=96, in_channels=1):
+        super().__init__()
+        self.patch_len_list = patch_len_list
+        self.mode = mode
+        self.max_patch_len = max(patch_len_list)
+        self.min_patch_len = min(patch_len_list)
+        self.region_num = seq_len // self.max_patch_len
+        self.d_model = d_model
+        self.in_channels = in_channels
+
+        self.region_cls = nn.Sequential(
+            nn.Linear(self.max_patch_len, 64),
+            nn.ReLU(),
+            nn.Linear(64, len(patch_len_list))
+        )
+
+        self.embeddings = nn.ModuleList([
+            nn.Linear(patch_len, d_model, bias=False) for patch_len in patch_len_list
+        ])
+
+        self.position_embedding = PositionalEmbedding(d_model)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x):  # x: [B, C, L]
+        B, C, L = x.shape
+        assert L == self.region_num * self.max_patch_len, \
+            f"Expected seq_len={self.region_num * self.max_patch_len}, but got {L}"
+
+        x = x.reshape(B*C, self.region_num, self.max_patch_len)  # [B*C, R, max_patch_len]
+
+        all_patches = []
+        for region_idx in range(self.region_num):
+            region = x[:, region_idx, :]  # [B*C, max_patch_len]
+            
+            # 分类：确定patch长度
+            cls_logits = self.region_cls(region)  # [B*C, num_classes]
+            cls_pred = torch.argmax(cls_logits, dim=-1)  # [B*C]
+
+            region_patches = []
+            for idx, patch_len in enumerate(self.patch_len_list):
+                selected_idx = (cls_pred == idx).nonzero(as_tuple=True)[0]
+                if selected_idx.numel() == 0:
+                    continue
+                selected_region = region[selected_idx]  # [N, max_patch_len]
+                patches = selected_region.unfold(-1, patch_len, patch_len)  # [N, num_patch, patch_len]
+
+                if self.mode == 'fixed':
+                    target_patch_num = self.max_patch_len // self.min_patch_len
+                    repeat = target_patch_num - patches.size(1)
+                    if repeat > 0:
+                        patches = patches.repeat_interleave(repeat+1, dim=1)[:, :target_patch_num, :]
+                        # patches = F.pad(patches, (0, 0, 0, repeat), mode='constant', value=0.0)
+                patches_emb = self.embeddings[idx](patches)  # [N, num_patch, d_model]
+
+                # 放回对应位置
+                tmp = torch.zeros(selected_idx.size(0), patches_emb.size(1), self.d_model, device=x.device)
+                tmp = patches_emb
+                region_patches.append((selected_idx, tmp))
+
+            # 合并所有选中
+            region_patches_sorted = torch.zeros(B*C, patches_emb.size(1), self.d_model, device=x.device)
+            for idx_group, emb_group in region_patches:
+                region_patches_sorted[idx_group] = emb_group
+
+            all_patches.append(region_patches_sorted)
+
+        # 拼接所有区域patch
+        x_patch = torch.cat(all_patches, dim=1)  # [B*C, total_num_patch, d_model]
+        x_patch += self.position_embedding(x_patch)
+        x_patch = self.dropout(x_patch)
+
+        return x_patch, C
+
 
 class Transpose(nn.Module):
     def __init__(self, *dims, contiguous=False): 
@@ -43,10 +134,21 @@ class Model(nn.Module):
         self.seq_len = configs.seq_len
         self.pred_len = configs.pred_len
         padding = stride
+        self.patch_len_list = eval(configs.patch_len_list)
 
         # patching and embedding
-        self.patch_embedding = PatchEmbedding(
-            configs.d_model, patch_len, stride, padding, configs.dropout)
+        # self.patch_embedding = PatchEmbedding(
+        #     configs.d_model, patch_len, stride, padding, configs.dropout)
+        
+        self.patch_embedding = AdaptivePatchEmbedding(
+            d_model=configs.d_model,
+            patch_len_list=self.patch_len_list,
+            mode='fixed',    # 'fixed' or 'adaptive'
+            dropout=configs.dropout,
+            seq_len=configs.seq_len,
+            in_channels=configs.enc_in,
+        )
+
 
         # Encoder
         self.encoder = Encoder(
@@ -83,7 +185,8 @@ class Model(nn.Module):
         x_enc = x_enc.permute(0, 2, 1)
         # u: [bs * nvars x patch_num x d_model]
         enc_out, n_vars = self.patch_embedding(x_enc)
-
+        # print('enc_out shape:', enc_out.shape)
+        # raise ValueError('enc_out shape:', enc_out.shape)
         # Encoder
         # z: [bs * nvars x patch_num x d_model]
         enc_out, attns = self.encoder(enc_out)

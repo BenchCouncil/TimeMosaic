@@ -55,7 +55,6 @@ python -u run.py \
   --c_out 137 \
   --des 'Exp' \
   --itr 1 \
-  --use_norm 0 \
   --d_model 512 \
   --d_ff 2048 \
   --batch_size $batch_size \

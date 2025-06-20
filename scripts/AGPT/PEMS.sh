@@ -1,5 +1,3 @@
-export CUDA_VISIBLE_DEVICES=2
-
 model_name=AGPT
 
 seq_len=96

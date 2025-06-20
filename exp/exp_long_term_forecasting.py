@@ -255,7 +255,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         print('mse:{}, mae:{}'.format(mse, mae))
         f = open("result_long_term_forecast.txt", 'a')
         f.write(setting + "  \n")
-        f.write('mse:{}, mae:{}'.format(mse, mae))
+        f.write('mse:{}, mae:{}, rmse:{}, mape:{}, mspe:{}'.format(mse, mae, rmse, mape, mspe))
         f.write('\n')
         f.write('\n')
         f.close()

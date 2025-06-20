@@ -1,5 +1,3 @@
-export CUDA_VISIBLE_DEVICES=1
-
 model_name=AGPT
 
 python -u run.py \
@@ -22,7 +20,6 @@ python -u run.py \
   --c_out 862 \
   --d_model 512 \
   --d_ff 512 \
-  --top_k 5 \
   --des 'Exp' \
   --batch_size 4 \
   --itr 1
@@ -47,7 +44,6 @@ python -u run.py \
   --c_out 862 \
   --d_model 512 \
   --d_ff 512 \
-  --top_k 5 \
   --des 'Exp' \
   --batch_size 4 \
   --itr 1
@@ -72,7 +68,6 @@ python -u run.py \
   --c_out 862 \
   --d_model 512 \
   --d_ff 512 \
-  --top_k 5 \
   --des 'Exp' \
   --batch_size 4 \
   --itr 1
@@ -97,7 +92,6 @@ python -u run.py \
   --c_out 862 \
   --d_model 512 \
   --d_ff 512 \
-  --top_k 5 \
   --des 'Exp' \
   --batch_size 4 \
   --itr 1
