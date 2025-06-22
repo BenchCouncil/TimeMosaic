@@ -1,0 +1,390 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           ETTh1_96_96         Model:              AGPTp               
+
+[1mData Loader[0m
+  Data:               ETTh1               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTh1.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            96                  Label Len:          48                  
+  Pred Len:           96                  Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            2                   e layers:           1                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_ETTh1_96_96_AGPTp_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 8449
+val 2785
+test 2785
+	iters: 100, epoch: 1 | loss: 0.4812257
+	speed: 0.0373s/iter; left time: 95.2142s
+	iters: 200, epoch: 1 | loss: 0.3548800
+	speed: 0.0356s/iter; left time: 87.2158s
+Epoch: 1 cost time: 9.624204635620117
+Epoch: 1, Steps: 265 | Train Loss: 0.4041222 Vali Loss: 0.7318369 Test Loss: 0.4041726
+Validation loss decreased (inf --> 0.731837).  Saving model ...
+	iters: 100, epoch: 2 | loss: 0.3086192
+	speed: 0.0946s/iter; left time: 216.2838s
+	iters: 200, epoch: 2 | loss: 0.3523242
+	speed: 0.0408s/iter; left time: 89.1292s
+Epoch: 2 cost time: 10.825666189193726
+Epoch: 2, Steps: 265 | Train Loss: 0.3675106 Vali Loss: 0.7123110 Test Loss: 0.3938695
+Validation loss decreased (0.731837 --> 0.712311).  Saving model ...
+	iters: 100, epoch: 3 | loss: 0.3175193
+	speed: 0.1862s/iter; left time: 376.2880s
+	iters: 200, epoch: 3 | loss: 0.3663159
+	speed: 0.0539s/iter; left time: 103.6266s
+Epoch: 3 cost time: 14.892991542816162
+Epoch: 3, Steps: 265 | Train Loss: 0.3642120 Vali Loss: 0.7005960 Test Loss: 0.3928244
+Validation loss decreased (0.712311 --> 0.700596).  Saving model ...
+	iters: 100, epoch: 4 | loss: 0.4027135
+	speed: 0.1913s/iter; left time: 335.9989s
+	iters: 200, epoch: 4 | loss: 0.3396047
+	speed: 0.0466s/iter; left time: 77.1182s
+Epoch: 4 cost time: 13.881659746170044
+Epoch: 4, Steps: 265 | Train Loss: 0.3556929 Vali Loss: 0.6857951 Test Loss: 0.3875051
+Validation loss decreased (0.700596 --> 0.685795).  Saving model ...
+	iters: 100, epoch: 5 | loss: 0.3713851
+	speed: 0.1633s/iter; left time: 243.5327s
+	iters: 200, epoch: 5 | loss: 0.3120174
+	speed: 0.0533s/iter; left time: 74.0978s
+Epoch: 5 cost time: 13.864186525344849
+Epoch: 5, Steps: 265 | Train Loss: 0.3529453 Vali Loss: 0.6997629 Test Loss: 0.3960459
+EarlyStopping counter: 1 out of 3
+	iters: 100, epoch: 6 | loss: 0.3016551
+	speed: 0.1548s/iter; left time: 189.7300s
+	iters: 200, epoch: 6 | loss: 0.3419202
+	speed: 0.0520s/iter; left time: 58.5067s
+Epoch: 6 cost time: 14.444123029708862
+Epoch: 6, Steps: 265 | Train Loss: 0.3499026 Vali Loss: 0.7052305 Test Loss: 0.3892507
+EarlyStopping counter: 2 out of 3
+	iters: 100, epoch: 7 | loss: 0.3595239
+	speed: 0.1902s/iter; left time: 182.7999s
+	iters: 200, epoch: 7 | loss: 0.3532824
+	speed: 0.0524s/iter; left time: 45.1571s
+Epoch: 7 cost time: 14.819574356079102
+Epoch: 7, Steps: 265 | Train Loss: 0.3463537 Vali Loss: 0.7358063 Test Loss: 0.3859666
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : long_term_forecast_ETTh1_96_96_AGPTp_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2785
+test shape: (2785, 96, 7) (2785, 96, 7)
+test shape: (2785, 96, 7) (2785, 96, 7)
+mse:0.38682106137275696, mae:0.4042738974094391
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           ETTh1_96_192        Model:              AGPTp               
+
+[1mData Loader[0m
+  Data:               ETTh1               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTh1.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            96                  Label Len:          48                  
+  Pred Len:           192                 Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            8                   e layers:           1                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_ETTh1_96_192_AGPTp_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 8353
+val 2689
+test 2689
+	iters: 100, epoch: 1 | loss: 0.3547190
+	speed: 0.0640s/iter; left time: 161.2605s
+	iters: 200, epoch: 1 | loss: 0.4819584
+	speed: 0.0561s/iter; left time: 135.7050s
+Epoch: 1 cost time: 15.866005897521973
+Epoch: 1, Steps: 262 | Train Loss: 0.4655761 Vali Loss: 1.0107024 Test Loss: 0.4433660
+Validation loss decreased (inf --> 1.010702).  Saving model ...
+	iters: 100, epoch: 2 | loss: 0.4191363
+	speed: 0.1904s/iter; left time: 430.0055s
+	iters: 200, epoch: 2 | loss: 0.4572792
+	speed: 0.0501s/iter; left time: 108.0662s
+Epoch: 2 cost time: 13.898079872131348
+Epoch: 2, Steps: 262 | Train Loss: 0.4269720 Vali Loss: 0.9911192 Test Loss: 0.4406660
+Validation loss decreased (1.010702 --> 0.991119).  Saving model ...
+	iters: 100, epoch: 3 | loss: 0.3513552
+	speed: 0.1966s/iter; left time: 392.5505s
+	iters: 200, epoch: 3 | loss: 0.4879419
+	speed: 0.0623s/iter; left time: 118.1073s
+Epoch: 3 cost time: 16.24714422225952
+Epoch: 3, Steps: 262 | Train Loss: 0.4194317 Vali Loss: 0.9979255 Test Loss: 0.4477516
+EarlyStopping counter: 1 out of 3
+	iters: 100, epoch: 4 | loss: 0.3884014
+	speed: 0.1946s/iter; left time: 337.6701s
+	iters: 200, epoch: 4 | loss: 0.4323382
+	speed: 0.0546s/iter; left time: 89.3062s
+Epoch: 4 cost time: 15.109376430511475
+Epoch: 4, Steps: 262 | Train Loss: 0.4139576 Vali Loss: 1.0022023 Test Loss: 0.4384719
+EarlyStopping counter: 2 out of 3
+	iters: 100, epoch: 5 | loss: 0.4859816
+	speed: 0.2112s/iter; left time: 311.0424s
+	iters: 200, epoch: 5 | loss: 0.4665672
+	speed: 0.0556s/iter; left time: 76.3845s
+Epoch: 5 cost time: 15.448075532913208
+Epoch: 5, Steps: 262 | Train Loss: 0.4088234 Vali Loss: 1.0179168 Test Loss: 0.4339490
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : long_term_forecast_ETTh1_96_192_AGPTp_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2689
+test shape: (2689, 192, 7) (2689, 192, 7)
+test shape: (2689, 192, 7) (2689, 192, 7)
+mse:0.4392754137516022, mae:0.4330717623233795
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           ETTh1_96_336        Model:              AGPTp               
+
+[1mData Loader[0m
+  Data:               ETTh1               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTh1.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            96                  Label Len:          48                  
+  Pred Len:           336                 Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            8                   e layers:           1                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_ETTh1_96_336_AGPTp_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 8209
+val 2545
+test 2545
+	iters: 100, epoch: 1 | loss: 0.5025970
+	speed: 0.0604s/iter; left time: 149.2828s
+	iters: 200, epoch: 1 | loss: 0.4552051
+	speed: 0.0569s/iter; left time: 134.8810s
+Epoch: 1 cost time: 15.251279354095459
+Epoch: 1, Steps: 257 | Train Loss: 0.5306143 Vali Loss: 1.2972524 Test Loss: 0.4879528
+Validation loss decreased (inf --> 1.297252).  Saving model ...
+	iters: 100, epoch: 2 | loss: 0.4733659
+	speed: 0.1997s/iter; left time: 442.1783s
+	iters: 200, epoch: 2 | loss: 0.5121442
+	speed: 0.0625s/iter; left time: 132.1511s
+Epoch: 2 cost time: 16.778900623321533
+Epoch: 2, Steps: 257 | Train Loss: 0.4902884 Vali Loss: 1.2867290 Test Loss: 0.4835903
+Validation loss decreased (1.297252 --> 1.286729).  Saving model ...
+	iters: 100, epoch: 3 | loss: 0.4739957
+	speed: 0.2050s/iter; left time: 401.1401s
+	iters: 200, epoch: 3 | loss: 0.4549832
+	speed: 0.0656s/iter; left time: 121.8278s
+Epoch: 3 cost time: 17.126003742218018
+Epoch: 3, Steps: 257 | Train Loss: 0.4820817 Vali Loss: 1.3005983 Test Loss: 0.4805501
+EarlyStopping counter: 1 out of 3
+	iters: 100, epoch: 4 | loss: 0.5171803
+	speed: 0.1907s/iter; left time: 324.1673s
+	iters: 200, epoch: 4 | loss: 0.5068635
+	speed: 0.0680s/iter; left time: 108.7815s
+Epoch: 4 cost time: 16.601835250854492
+Epoch: 4, Steps: 257 | Train Loss: 0.4741540 Vali Loss: 1.3073517 Test Loss: 0.4867535
+EarlyStopping counter: 2 out of 3
+	iters: 100, epoch: 5 | loss: 0.4045768
+	speed: 0.1873s/iter; left time: 270.2319s
+	iters: 200, epoch: 5 | loss: 0.4990117
+	speed: 0.0600s/iter; left time: 80.6243s
+Epoch: 5 cost time: 15.726890563964844
+Epoch: 5, Steps: 257 | Train Loss: 0.4681631 Vali Loss: 1.3015360 Test Loss: 0.4953274
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : long_term_forecast_ETTh1_96_336_AGPTp_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2545
+test shape: (2545, 336, 7) (2545, 336, 7)
+test shape: (2545, 336, 7) (2545, 336, 7)
+mse:0.4824678301811218, mae:0.45250439643859863
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           ETTh1_96_720        Model:              AGPTp               
+
+[1mData Loader[0m
+  Data:               ETTh1               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTh1.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            96                  Label Len:          48                  
+  Pred Len:           720                 Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            16                  e layers:           1                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_ETTh1_96_720_AGPTp_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 7825
+val 2161
+test 2161
+	iters: 100, epoch: 1 | loss: 0.6073047
+	speed: 0.0759s/iter; left time: 178.3698s
+	iters: 200, epoch: 1 | loss: 0.6094391
+	speed: 0.0727s/iter; left time: 163.5945s
+Epoch: 1 cost time: 18.06859064102173
+Epoch: 1, Steps: 245 | Train Loss: 0.6547613 Vali Loss: 1.6104766 Test Loss: 0.4908430
+Validation loss decreased (inf --> 1.610477).  Saving model ...
+	iters: 100, epoch: 2 | loss: 0.5465040
+	speed: 0.1860s/iter; left time: 391.7684s
+	iters: 200, epoch: 2 | loss: 0.6076535
+	speed: 0.0673s/iter; left time: 135.0737s
+Epoch: 2 cost time: 16.675492525100708
+Epoch: 2, Steps: 245 | Train Loss: 0.6081811 Vali Loss: 1.6049895 Test Loss: 0.4708778
+Validation loss decreased (1.610477 --> 1.604990).  Saving model ...
+	iters: 100, epoch: 3 | loss: 0.6338912
+	speed: 0.2000s/iter; left time: 372.1343s
+	iters: 200, epoch: 3 | loss: 0.6130717
+	speed: 0.0619s/iter; left time: 108.9678s
+Epoch: 3 cost time: 16.177571058273315
+Epoch: 3, Steps: 245 | Train Loss: 0.5911890 Vali Loss: 1.6089947 Test Loss: 0.5046391
+EarlyStopping counter: 1 out of 3
+	iters: 100, epoch: 4 | loss: 0.5184938
+	speed: 0.1871s/iter; left time: 302.3597s
+	iters: 200, epoch: 4 | loss: 0.5624622
+	speed: 0.0642s/iter; left time: 97.3289s
+Epoch: 4 cost time: 16.32806396484375
+Epoch: 4, Steps: 245 | Train Loss: 0.5776008 Vali Loss: 1.5898786 Test Loss: 0.5484843
+Validation loss decreased (1.604990 --> 1.589879).  Saving model ...
+	iters: 100, epoch: 5 | loss: 0.6639156
+	speed: 0.2110s/iter; left time: 289.2776s
+	iters: 200, epoch: 5 | loss: 0.5635325
+	speed: 0.0564s/iter; left time: 71.6631s
+Epoch: 5 cost time: 14.695613622665405
+Epoch: 5, Steps: 245 | Train Loss: 0.5669157 Vali Loss: 1.5879443 Test Loss: 0.5743978
+Validation loss decreased (1.589879 --> 1.587944).  Saving model ...
+	iters: 100, epoch: 6 | loss: 0.5790766
+	speed: 0.1602s/iter; left time: 180.3450s
+	iters: 200, epoch: 6 | loss: 0.5241336
+	speed: 0.0574s/iter; left time: 58.9094s
+Epoch: 6 cost time: 14.454310894012451
+Epoch: 6, Steps: 245 | Train Loss: 0.5593466 Vali Loss: 1.5865608 Test Loss: 0.5359411
+Validation loss decreased (1.587944 --> 1.586561).  Saving model ...
+	iters: 100, epoch: 7 | loss: 0.5402430
+	speed: 0.1642s/iter; left time: 144.6430s
+	iters: 200, epoch: 7 | loss: 0.5841714
+	speed: 0.0524s/iter; left time: 40.9473s
+Epoch: 7 cost time: 14.04511284828186
+Epoch: 7, Steps: 245 | Train Loss: 0.5517405 Vali Loss: 1.6142823 Test Loss: 0.5300796
+EarlyStopping counter: 1 out of 3
+	iters: 100, epoch: 8 | loss: 0.5095736
+	speed: 0.2357s/iter; left time: 149.9281s
+	iters: 200, epoch: 8 | loss: 0.5925212
+	speed: 0.0663s/iter; left time: 35.5461s
+Epoch: 8 cost time: 15.75733995437622
+Epoch: 8, Steps: 245 | Train Loss: 0.5458145 Vali Loss: 1.6111040 Test Loss: 0.5045493
+EarlyStopping counter: 2 out of 3
+	iters: 100, epoch: 9 | loss: 0.4503343
+	speed: 0.3493s/iter; left time: 136.5733s
+	iters: 200, epoch: 9 | loss: 0.5552402
+	speed: 0.0694s/iter; left time: 20.1954s
+Epoch: 9 cost time: 17.581836223602295
+Epoch: 9, Steps: 245 | Train Loss: 0.5391896 Vali Loss: 1.5933753 Test Loss: 0.5232120
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : long_term_forecast_ETTh1_96_720_AGPTp_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2161
+test shape: (2161, 720, 7) (2161, 720, 7)
+test shape: (2161, 720, 7) (2161, 720, 7)
+mse:0.5353253483772278, mae:0.5007718205451965

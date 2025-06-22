@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # ===================== 配置参数 =====================
-MAX_JOBS=8
-TOTAL_GPUS=4
+MAX_JOBS=10
+TOTAL_GPUS=2
 MAX_RETRIES=1
 LOG_DIR="logs"
 

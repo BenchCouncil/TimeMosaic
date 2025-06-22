@@ -1,7 +1,6 @@
 from layers.Transformer_EncDec import Encoder, EncoderLayer
 from layers.SelfAttention_Family import FullAttention, AttentionLayer
 from layers.Embed import PatchEmbedding
-from layers.Embed import DataEmbedding_inverted
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -31,6 +30,8 @@ class AdaptivePatchEmbedding(nn.Module):
         self.region_num = seq_len // self.max_patch_len
         self.d_model = d_model
         self.in_channels = in_channels
+        
+        self.register_buffer('target_ratio', torch.ones(len(patch_len_list)) / len(patch_len_list))
 
         self.region_cls = nn.Sequential(
             nn.Linear(self.max_patch_len, 64),
@@ -53,14 +54,16 @@ class AdaptivePatchEmbedding(nn.Module):
         x = x.reshape(B*C, self.region_num, self.max_patch_len)  # [B*C, R, max_patch_len]
 
         all_patches = []
+        cls_pred_list = []
         for region_idx in range(self.region_num):
             region = x[:, region_idx, :]  # [B*C, max_patch_len]
             
             # 分类：确定patch长度
             cls_logits = self.region_cls(region)  # [B*C, num_classes]
             cls_pred = torch.argmax(cls_logits, dim=-1)  # [B*C]
-
+            cls_pred_list.append(cls_pred)
             region_patches = []
+            
             for idx, patch_len in enumerate(self.patch_len_list):
                 selected_idx = (cls_pred == idx).nonzero(as_tuple=True)[0]
                 if selected_idx.numel() == 0:
@@ -93,7 +96,15 @@ class AdaptivePatchEmbedding(nn.Module):
         x_patch += self.position_embedding(x_patch)
         x_patch = self.dropout(x_patch)
 
-        return x_patch, C
+        if self.training:
+            all_cls_pred = torch.cat(cls_pred_list, dim=0)  # List of [B*C] → [B*C*R]
+            counts = torch.bincount(all_cls_pred, minlength=len(self.patch_len_list)).float()
+            current_ratio = counts / counts.sum()
+            budget_loss = F.mse_loss(current_ratio[:-1], self.target_ratio[:-1])  # Budget Loss
+        else:
+            budget_loss = None
+
+        return x_patch, C, budget_loss
 
 
 class Transpose(nn.Module):
@@ -121,95 +132,72 @@ class FlattenHead(nn.Module):
 
 
 class Model(nn.Module):
-    """
-    Paper link: https://arxiv.org/pdf/2211.14730.pdf
-    """
-
     def __init__(self, configs, patch_len=16, stride=8):
-        """
-        patch_len: int, patch len for patch_embedding
-        stride: int, stride for patch_embedding
-        """
         super().__init__()
         self.task_name = configs.task_name
         self.seq_len = configs.seq_len
         self.pred_len = configs.pred_len
-        padding = stride
+        self.d_model = configs.d_model
+        self.cell_size = 16
+        self.num_cells = self.pred_len // self.cell_size
+
         self.patch_len_list = eval(configs.patch_len_list)
 
-        # patching and embedding
-        # self.patch_embedding = PatchEmbedding(
-        #     configs.d_model, patch_len, stride, padding, configs.dropout)
-        
         self.patch_embedding = AdaptivePatchEmbedding(
             d_model=configs.d_model,
             patch_len_list=self.patch_len_list,
-            mode='fixed',    # 'fixed' or 'adaptive'
+            mode='fixed',
             dropout=configs.dropout,
             seq_len=configs.seq_len,
             in_channels=configs.enc_in,
         )
 
+        self.encoder = Encoder([
+            EncoderLayer(
+                AttentionLayer(
+                    FullAttention(False, configs.factor, attention_dropout=configs.dropout,
+                                  output_attention=False), configs.d_model, configs.n_heads),
+                configs.d_model,
+                configs.d_ff,
+                dropout=configs.dropout,
+                activation=configs.activation
+            ) for l in range(configs.e_layers)
+        ], norm_layer=nn.Sequential(Transpose(1,2), nn.BatchNorm1d(configs.d_model), Transpose(1,2)))
 
-        # Encoder
-        self.encoder = Encoder(
-            [
-                EncoderLayer(
-                    AttentionLayer(
-                        FullAttention(False, configs.factor, attention_dropout=configs.dropout,
-                                      output_attention=False), configs.d_model, configs.n_heads),
-                    configs.d_model,
-                    configs.d_ff,
-                    dropout=configs.dropout,
-                    activation=configs.activation
-                ) for l in range(configs.e_layers)
-            ],
-            norm_layer=nn.Sequential(Transpose(1,2), nn.BatchNorm1d(configs.d_model), Transpose(1,2))
-        )
-
-        # Prediction Head
-        self.head_nf = configs.d_model * \
-                       int((configs.seq_len - patch_len) / stride + 2)
-        if self.task_name == 'long_term_forecast' or self.task_name == 'short_term_forecast':
-            self.head = FlattenHead(configs.enc_in, self.head_nf, configs.pred_len,
-                                    head_dropout=configs.dropout)
+        self.proj_heads = nn.ModuleList([
+            nn.Linear(configs.d_model, self.cell_size) for _ in range(self.num_cells)
+        ])
 
     def forecast(self, x_enc, x_mark_enc, x_dec, x_mark_dec):
-        # Normalization from Non-stationary Transformer
         means = x_enc.mean(1, keepdim=True).detach()
         x_enc = x_enc - means
-        stdev = torch.sqrt(
-            torch.var(x_enc, dim=1, keepdim=True, unbiased=False) + 1e-5)
+        stdev = torch.sqrt(torch.var(x_enc, dim=1, keepdim=True, unbiased=False) + 1e-5)
         x_enc /= stdev
 
-        # do patching and embedding
         x_enc = x_enc.permute(0, 2, 1)
-        # u: [bs * nvars x patch_num x d_model]
-        enc_out, n_vars = self.patch_embedding(x_enc)
-        # print('enc_out shape:', enc_out.shape)
-        # raise ValueError('enc_out shape:', enc_out.shape)
-        # Encoder
-        # z: [bs * nvars x patch_num x d_model]
-        enc_out, attns = self.encoder(enc_out)
-        # z: [bs x nvars x patch_num x d_model]
-        enc_out = torch.reshape(
-            enc_out, (-1, n_vars, enc_out.shape[-2], enc_out.shape[-1]))
-        # z: [bs x nvars x d_model x patch_num]
-        enc_out = enc_out.permute(0, 1, 3, 2)
+        enc_out, n_vars, budget_loss = self.patch_embedding(x_enc)
+        enc_out, _ = self.encoder(enc_out)
 
-        # Decoder
-        dec_out = self.head(enc_out)  # z: [bs x nvars x target_window]
-        dec_out = dec_out.permute(0, 2, 1)
+        B_total, _, D = enc_out.shape
+        enc_out = enc_out.mean(dim=1)  # [B*C, D]
 
-        # De-Normalization from Non-stationary Transformer
-        dec_out = dec_out * \
-                  (stdev[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1))
-        dec_out = dec_out + \
-                  (means[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1))
-        return dec_out
+        cell_preds = []
+        for i in range(self.num_cells):
+            pred_i = self.proj_heads[i](enc_out)  # [B*C, cell_size]
+            cell_preds.append(pred_i)
+
+        pred = torch.cat(cell_preds, dim=1)  # [B*C, pred_len]
+        pred = pred.view(-1, n_vars, self.pred_len).permute(0, 2, 1)  # [B, pred_len, C]
+
+        pred = pred * (stdev[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1))
+        pred = pred + (means[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1))
+        return pred, budget_loss
 
     def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None):
-        if self.task_name == 'long_term_forecast' or self.task_name == 'short_term_forecast':
-            dec_out = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
-            return dec_out[:, -self.pred_len:, :]  # [B, L, D]
+        if self.task_name in ['long_term_forecast', 'agpt']:
+            dec_out, budget_loss = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
+            if self.task_name == 'long_term_forecast':
+                return dec_out[:, -self.pred_len:, :]
+            else:
+                return dec_out[:, -self.pred_len:, :], budget_loss
         return None
