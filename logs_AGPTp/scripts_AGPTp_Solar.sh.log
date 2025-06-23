@@ -793,3 +793,86 @@ Updating learning rate to 0.000125
 	iters: 1100, epoch: 5 | loss: 0.2469033
 	speed: 0.2404s/iter; left time: 1375.5824s
 Epoch: 5 cost time: 272.2759304046631
+Epoch: 5, Steps: 1137 | Train Loss: 0.2732778 Vali Loss: 0.1986945 Test Loss: 0.2837182
+Validation loss decreased (0.207041 --> 0.198695).  Saving model ...
+Traceback (most recent call last):
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/run.py", line 138, in <module>
+    exp.train(setting)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_long_term_forecasting.py", line 168, in train
+    early_stopping(vali_loss, self.model, path)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/utils/tools.py", line 52, in __call__
+    self.save_checkpoint(val_loss, model, path, task)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/utils/tools.py", line 63, in save_checkpoint
+    torch.save(model.state_dict(), path + '/' + 'checkpoint.pth')
+  File "/usr/local/lib/python3.12/dist-packages/torch/serialization.py", line 651, in save
+    with _open_zipfile_writer(f) as opened_zipfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/serialization.py", line 525, in _open_zipfile_writer
+    return container(name_or_buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/serialization.py", line 496, in __init__
+    super().__init__(torch._C.PyTorchFileWriter(self.name))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Parent directory ./checkpoints/long_term_forecast_solar_96_336_AGPTp_2048_fixedFalse_0.001_0.001 does not exist.
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           solar_96_720        Model:              AGPTp               
+
+[1mData Loader[0m
+  Data:               Solar               Root Path:          ./dataset/Solar/    
+  Data Path:          solar_AL.txt        Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            96                  Label Len:          0                   
+  Pred Len:           720                 Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             137                 Dec In:             137                 
+  C Out:              137                 d model:            512                 
+  n heads:            8                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.001               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_solar_96_720_AGPTp_2048_fixedFalse_0.001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 35977
+val 4537
+test 9793
+	iters: 100, epoch: 1 | loss: 0.3934237
+	speed: 0.2468s/iter; left time: 2752.1713s
+	iters: 200, epoch: 1 | loss: 0.3384630
+	speed: 0.2417s/iter; left time: 2670.9083s
+	iters: 300, epoch: 1 | loss: 0.4147219
+	speed: 0.2421s/iter; left time: 2650.7557s
+	iters: 400, epoch: 1 | loss: 0.3054907
+	speed: 0.2419s/iter; left time: 2624.9148s
+	iters: 500, epoch: 1 | loss: 0.2792444
+	speed: 0.2416s/iter; left time: 2597.8385s
+	iters: 600, epoch: 1 | loss: 0.2993322
+	speed: 0.2421s/iter; left time: 2578.3413s
+	iters: 700, epoch: 1 | loss: 0.3038833
+	speed: 0.2417s/iter; left time: 2549.7081s
+	iters: 800, epoch: 1 | loss: 0.4064947
+	speed: 0.2417s/iter; left time: 2526.1176s
