@@ -194,7 +194,7 @@ class Model(nn.Module):
         return pred, budget_loss
 
     def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None):
-        if self.task_name in ['long_term_forecast', 'agpt']:
+        if self.task_name in ['long_term_forecast', 'AGPTp_loss']:
             dec_out, budget_loss = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
             if self.task_name == 'long_term_forecast':
                 return dec_out[:, -self.pred_len:, :]

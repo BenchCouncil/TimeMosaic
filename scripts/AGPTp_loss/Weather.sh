@@ -1,7 +1,7 @@
-model_name=AGPTp
+model_name=AGPTp_loss
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name AGPTp_loss \
   --is_training 1 \
   --root_path ./dataset/weather/ \
   --data_path weather.csv \
@@ -24,7 +24,7 @@ python -u run.py \
   --train_epochs 10
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name AGPTp_loss \
   --is_training 1 \
   --root_path ./dataset/weather/ \
   --data_path weather.csv \
@@ -47,7 +47,7 @@ python -u run.py \
   --train_epochs 10
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name AGPTp_loss \
   --is_training 1 \
   --root_path ./dataset/weather/ \
   --data_path weather.csv \
@@ -71,7 +71,7 @@ python -u run.py \
   --train_epochs 10
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name AGPTp_loss \
   --is_training 1 \
   --root_path ./dataset/weather/ \
   --data_path weather.csv \

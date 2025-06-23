@@ -4,7 +4,7 @@
 MAX_JOBS=10
 TOTAL_GPUS=2
 MAX_RETRIES=1
-LOG_DIR="logs"
+LOG_DIR="logs_PatchTST"
 
 mkdir -p "$LOG_DIR"
 

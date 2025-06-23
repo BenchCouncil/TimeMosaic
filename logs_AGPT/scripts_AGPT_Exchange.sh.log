@@ -18,9 +18,9 @@ Args in experiment:
 [1mModel Parameters[0m
   Num Kernels:        6                   
   Enc In:             8                   Dec In:             8                   
-  C Out:              8                   d model:            256                 
+  C Out:              8                   d model:            512                 
   n heads:            8                   e layers:           2                   
-  d layers:           1                   d FF:               1024                
+  d layers:           1                   d FF:               2048                
   Moving Avg:         25                  Factor:             3                   
   Distil:             1                   Dropout:            0.1                 
   Embed:              timeF               Activation:         gelu                
@@ -40,41 +40,39 @@ Args in experiment:
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : long_term_forecast_Exchange_96_96_AGPT_1024_fixedFalse_0.0001_0.5>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>start training : long_term_forecast_Exchange_96_96_AGPT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
 train 5120
 val 665
 test 1422
-	iters: 100, epoch: 1 | loss: 0.1245228
-	speed: 0.0194s/iter; left time: 29.1621s
-Epoch: 1 cost time: 2.6244215965270996
-Epoch: 1, Steps: 160 | Train Loss: 0.1434564 Vali Loss: 0.1400963 Test Loss: 0.0894417
-Validation loss decreased (inf --> 0.140096).  Saving model ...
-	iters: 100, epoch: 2 | loss: 0.1123197
-	speed: 0.0447s/iter; left time: 59.9699s
-Epoch: 2 cost time: 4.899722576141357
-Epoch: 2, Steps: 160 | Train Loss: 0.1345719 Vali Loss: 0.1334612 Test Loss: 0.0904574
-Validation loss decreased (0.140096 --> 0.133461).  Saving model ...
-	iters: 100, epoch: 3 | loss: 0.1365498
-	speed: 0.0788s/iter; left time: 93.0890s
-Epoch: 3 cost time: 5.962382078170776
-Epoch: 3, Steps: 160 | Train Loss: 0.1317279 Vali Loss: 0.1414948 Test Loss: 0.0876186
+	iters: 100, epoch: 1 | loss: 0.1124740
+	speed: 0.0280s/iter; left time: 41.9851s
+Epoch: 1 cost time: 4.32246208190918
+Epoch: 1, Steps: 160 | Train Loss: 0.1411079 Vali Loss: 0.1361074 Test Loss: 0.0886844
+Validation loss decreased (inf --> 0.136107).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.1081519
+	speed: 0.1364s/iter; left time: 182.9215s
+Epoch: 2 cost time: 14.131597518920898
+Epoch: 2, Steps: 160 | Train Loss: 0.1331634 Vali Loss: 0.1398860 Test Loss: 0.0862038
 EarlyStopping counter: 1 out of 3
-	iters: 100, epoch: 4 | loss: 0.1204357
-	speed: 0.0828s/iter; left time: 84.5594s
-Epoch: 4 cost time: 5.729828834533691
-Epoch: 4, Steps: 160 | Train Loss: 0.1305146 Vali Loss: 0.1365722 Test Loss: 0.0868106
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.1314195
+	speed: 0.2343s/iter; left time: 276.6852s
+Epoch: 3 cost time: 18.857279539108276
+Epoch: 3, Steps: 160 | Train Loss: 0.1293117 Vali Loss: 0.1366960 Test Loss: 0.0873763
 EarlyStopping counter: 2 out of 3
-	iters: 100, epoch: 5 | loss: 0.1411850
-	speed: 0.0800s/iter; left time: 68.8655s
-Epoch: 5 cost time: 5.815459966659546
-Epoch: 5, Steps: 160 | Train Loss: 0.1291617 Vali Loss: 0.1404988 Test Loss: 0.0859748
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.1253996
+	speed: 0.2473s/iter; left time: 252.4597s
+Epoch: 4 cost time: 18.859833478927612
+Epoch: 4, Steps: 160 | Train Loss: 0.1271178 Vali Loss: 0.1408017 Test Loss: 0.0899977
 EarlyStopping counter: 3 out of 3
 Early stopping
->>>>>>>testing : long_term_forecast_Exchange_96_96_AGPT_1024_fixedFalse_0.0001_0.5<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>testing : long_term_forecast_Exchange_96_96_AGPT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 test 1422
 test shape: (1422, 96, 8) (1422, 96, 8)
 test shape: (1422, 96, 8) (1422, 96, 8)
-mse:0.08956565707921982, mae:0.20908454060554504
+mse:0.08786407113075256, mae:0.20776912569999695
 Using GPU
 Args in experiment:
 [1mBasic Config[0m
@@ -95,9 +93,9 @@ Args in experiment:
 [1mModel Parameters[0m
   Num Kernels:        6                   
   Enc In:             8                   Dec In:             8                   
-  C Out:              8                   d model:            256                 
+  C Out:              8                   d model:            512                 
   n heads:            8                   e layers:           2                   
-  d layers:           1                   d FF:               1024                
+  d layers:           1                   d FF:               2048                
   Moving Avg:         25                  Factor:             3                   
   Distil:             1                   Dropout:            0.1                 
   Embed:              timeF               Activation:         gelu                
@@ -117,41 +115,45 @@ Args in experiment:
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : long_term_forecast_Exchange_96_192_AGPT_1024_fixedFalse_0.0001_0.5>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>start training : long_term_forecast_Exchange_96_192_AGPT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
 train 5024
 val 569
 test 1326
-	iters: 100, epoch: 1 | loss: 0.3126505
-	speed: 0.0418s/iter; left time: 61.4379s
-Epoch: 1 cost time: 6.128238677978516
-Epoch: 1, Steps: 157 | Train Loss: 0.2681411 Vali Loss: 0.2363715 Test Loss: 0.1770331
-Validation loss decreased (inf --> 0.236372).  Saving model ...
-	iters: 100, epoch: 2 | loss: 0.3031328
-	speed: 0.0887s/iter; left time: 116.6165s
-Epoch: 2 cost time: 6.302206039428711
-Epoch: 2, Steps: 157 | Train Loss: 0.2581341 Vali Loss: 0.2325065 Test Loss: 0.1910051
-Validation loss decreased (0.236372 --> 0.232506).  Saving model ...
-	iters: 100, epoch: 3 | loss: 0.2622017
-	speed: 0.1228s/iter; left time: 142.1152s
-Epoch: 3 cost time: 6.574294567108154
-Epoch: 3, Steps: 157 | Train Loss: 0.2543649 Vali Loss: 0.2466625 Test Loss: 0.1822842
+	iters: 100, epoch: 1 | loss: 0.2009864
+	speed: 0.1195s/iter; left time: 175.8475s
+Epoch: 1 cost time: 18.51902461051941
+Epoch: 1, Steps: 157 | Train Loss: 0.2653006 Vali Loss: 0.2445512 Test Loss: 0.1861393
+Validation loss decreased (inf --> 0.244551).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.2271960
+	speed: 0.2366s/iter; left time: 310.8893s
+Epoch: 2 cost time: 17.94372010231018
+Epoch: 2, Steps: 157 | Train Loss: 0.2568624 Vali Loss: 0.2405013 Test Loss: 0.1791566
+Validation loss decreased (0.244551 --> 0.240501).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.2020623
+	speed: 0.2388s/iter; left time: 276.3243s
+Epoch: 3 cost time: 18.58661437034607
+Epoch: 3, Steps: 157 | Train Loss: 0.2501950 Vali Loss: 0.2441618 Test Loss: 0.1829750
 EarlyStopping counter: 1 out of 3
-	iters: 100, epoch: 4 | loss: 0.2160123
-	speed: 0.1361s/iter; left time: 136.0833s
-Epoch: 4 cost time: 7.515243053436279
-Epoch: 4, Steps: 157 | Train Loss: 0.2522990 Vali Loss: 0.2341695 Test Loss: 0.1844955
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.2339294
+	speed: 0.2467s/iter; left time: 246.7169s
+Epoch: 4 cost time: 18.61746835708618
+Epoch: 4, Steps: 157 | Train Loss: 0.2474272 Vali Loss: 0.2438572 Test Loss: 0.1831624
 EarlyStopping counter: 2 out of 3
-	iters: 100, epoch: 5 | loss: 0.2175451
-	speed: 0.1792s/iter; left time: 151.0803s
-Epoch: 5 cost time: 7.292322158813477
-Epoch: 5, Steps: 157 | Train Loss: 0.2496683 Vali Loss: 0.2383245 Test Loss: 0.1845837
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.2017355
+	speed: 0.2490s/iter; left time: 209.8772s
+Epoch: 5 cost time: 18.649340629577637
+Epoch: 5, Steps: 157 | Train Loss: 0.2446540 Vali Loss: 0.2488595 Test Loss: 0.1825914
 EarlyStopping counter: 3 out of 3
 Early stopping
->>>>>>>testing : long_term_forecast_Exchange_96_192_AGPT_1024_fixedFalse_0.0001_0.5<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>testing : long_term_forecast_Exchange_96_192_AGPT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 test 1326
 test shape: (1326, 192, 8) (1326, 192, 8)
 test shape: (1326, 192, 8) (1326, 192, 8)
-mse:0.1909506767988205, mae:0.310498982667923
+mse:0.1789933294057846, mae:0.30145806074142456
 Using GPU
 Args in experiment:
 [1mBasic Config[0m
@@ -172,9 +174,9 @@ Args in experiment:
 [1mModel Parameters[0m
   Num Kernels:        6                   
   Enc In:             8                   Dec In:             8                   
-  C Out:              8                   d model:            256                 
+  C Out:              8                   d model:            512                 
   n heads:            8                   e layers:           2                   
-  d layers:           1                   d FF:               1024                
+  d layers:           1                   d FF:               2048                
   Moving Avg:         25                  Factor:             3                   
   Distil:             1                   Dropout:            0.1                 
   Embed:              timeF               Activation:         gelu                
@@ -194,20 +196,21 @@ Args in experiment:
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : long_term_forecast_Exchange_96_336_AGPT_1024_fixedFalse_0.0001_0.5>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>start training : long_term_forecast_Exchange_96_336_AGPT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
 train 4880
 val 425
 test 1182
-	iters: 100, epoch: 1 | loss: 0.3927490
-	speed: 0.0658s/iter; left time: 3.5520s
-Epoch: 1 cost time: 9.633422374725342
-Epoch: 1, Steps: 153 | Train Loss: 0.4457834 Vali Loss: 0.4006645 Test Loss: 0.3289073
-Validation loss decreased (inf --> 0.400665).  Saving model ...
->>>>>>>testing : long_term_forecast_Exchange_96_336_AGPT_1024_fixedFalse_0.0001_0.5<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	iters: 100, epoch: 1 | loss: 0.4001259
+	speed: 0.1287s/iter; left time: 6.9521s
+Epoch: 1 cost time: 19.020681142807007
+Epoch: 1, Steps: 153 | Train Loss: 0.4430798 Vali Loss: 0.4181896 Test Loss: 0.3330183
+Validation loss decreased (inf --> 0.418190).  Saving model ...
+Updating learning rate to 0.0001
+>>>>>>>testing : long_term_forecast_Exchange_96_336_AGPT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 test 1182
 test shape: (1182, 336, 8) (1182, 336, 8)
 test shape: (1182, 336, 8) (1182, 336, 8)
-mse:0.32893845438957214, mae:0.4150658845901489
+mse:0.33300313353538513, mae:0.4183736741542816
 Using GPU
 Args in experiment:
 [1mBasic Config[0m
@@ -228,9 +231,9 @@ Args in experiment:
 [1mModel Parameters[0m
   Num Kernels:        6                   
   Enc In:             8                   Dec In:             8                   
-  C Out:              8                   d model:            256                 
+  C Out:              8                   d model:            512                 
   n heads:            8                   e layers:           2                   
-  d layers:           1                   d FF:               1024                
+  d layers:           1                   d FF:               2048                
   Moving Avg:         25                  Factor:             3                   
   Distil:             1                   Dropout:            0.1                 
   Embed:              timeF               Activation:         gelu                
@@ -250,33 +253,48 @@ Args in experiment:
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : long_term_forecast_Exchange_96_720_AGPT_1024_fixedFalse_0.0001_0.5>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>start training : long_term_forecast_Exchange_96_720_AGPT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
 train 4496
 val 41
 test 798
-	iters: 100, epoch: 1 | loss: 0.8629150
-	speed: 0.0647s/iter; left time: 84.8329s
-Epoch: 1 cost time: 8.618712425231934
-Epoch: 1, Steps: 141 | Train Loss: 0.8373290 Vali Loss: 1.1564045 Test Loss: 0.8535905
-Validation loss decreased (inf --> 1.156404).  Saving model ...
-	iters: 100, epoch: 2 | loss: 0.8312849
-	speed: 0.1280s/iter; left time: 149.7189s
-Epoch: 2 cost time: 9.20993447303772
-Epoch: 2, Steps: 141 | Train Loss: 0.8252352 Vali Loss: 1.2603979 Test Loss: 0.7925643
+	iters: 100, epoch: 1 | loss: 0.7273384
+	speed: 0.1256s/iter; left time: 164.6599s
+Epoch: 1 cost time: 17.356404304504395
+Epoch: 1, Steps: 141 | Train Loss: 0.8357612 Vali Loss: 1.1691334 Test Loss: 0.8488775
+Validation loss decreased (inf --> 1.169133).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.9410070
+	speed: 0.1994s/iter; left time: 233.3446s
+Epoch: 2 cost time: 17.134301900863647
+Epoch: 2, Steps: 141 | Train Loss: 0.8249654 Vali Loss: 1.2290394 Test Loss: 0.8061146
 EarlyStopping counter: 1 out of 3
-	iters: 100, epoch: 3 | loss: 0.8088039
-	speed: 0.1299s/iter; left time: 133.6273s
-Epoch: 3 cost time: 7.223349332809448
-Epoch: 3, Steps: 141 | Train Loss: 0.8169136 Vali Loss: 1.2320111 Test Loss: 0.8129577
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.6995079
+	speed: 0.2182s/iter; left time: 224.5420s
+Epoch: 3 cost time: 17.4992516040802
+Epoch: 3, Steps: 141 | Train Loss: 0.8071482 Vali Loss: 1.0819752 Test Loss: 0.8578661
+Validation loss decreased (1.169133 --> 1.081975).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.7477871
+	speed: 0.2292s/iter; left time: 203.5153s
+Epoch: 4 cost time: 18.890408754348755
+Epoch: 4, Steps: 141 | Train Loss: 0.7953584 Vali Loss: 1.1884593 Test Loss: 0.8217473
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.6683051
+	speed: 0.2112s/iter; left time: 157.7611s
+Epoch: 5 cost time: 17.59639263153076
+Epoch: 5, Steps: 141 | Train Loss: 0.7883362 Vali Loss: 1.1791835 Test Loss: 0.8283473
 EarlyStopping counter: 2 out of 3
-	iters: 100, epoch: 4 | loss: 0.7867045
-	speed: 0.1163s/iter; left time: 103.2873s
-Epoch: 4 cost time: 9.356698036193848
-Epoch: 4, Steps: 141 | Train Loss: 0.8087315 Vali Loss: 1.2806289 Test Loss: 0.8077419
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.7355576
+	speed: 0.2183s/iter; left time: 132.3038s
+Epoch: 6 cost time: 18.039889812469482
+Epoch: 6, Steps: 141 | Train Loss: 0.7818548 Vali Loss: 1.2565360 Test Loss: 0.8341892
 EarlyStopping counter: 3 out of 3
 Early stopping
->>>>>>>testing : long_term_forecast_Exchange_96_720_AGPT_1024_fixedFalse_0.0001_0.5<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>testing : long_term_forecast_Exchange_96_720_AGPT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 test 798
 test shape: (798, 720, 8) (798, 720, 8)
 test shape: (798, 720, 8) (798, 720, 8)
-mse:0.8544688820838928, mae:0.6961835026741028
+mse:0.8586907982826233, mae:0.6952462196350098

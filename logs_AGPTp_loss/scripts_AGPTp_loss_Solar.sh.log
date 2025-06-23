@@ -1,0 +1,57 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPTp_loss          Is Training:        1                   
+  Model ID:           solar_96_96         Model:              AGPTp_loss          
+
+[1mData Loader[0m
+  Data:               Solar               Root Path:          ./dataset/Solar/    
+  Data Path:          solar_AL.txt        Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             137                 Dec In:             137                 
+  C Out:              137                 d model:            512                 
+  n heads:            8                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.001               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPTp_loss_solar_96_96_AGPTp_loss_2048_fixedFalse_0.001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36601
+Traceback (most recent call last):
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/run.py", line 138, in <module>
+    exp.train(setting)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_AGPT.py", line 83, in train
+    vali_data, vali_loader = self._get_data(flag='val')
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_AGPT.py", line 32, in _get_data
+    data_set, data_loader = data_provider(self.args, flag)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/data_provider/data_factory.py", line 25, in data_provider
+    data_set = Data(
+               ^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/data_provider/data_loader.py", line 379, in __init__
+    self.__read_data__()
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/data_provider/data_loader.py", line 387, in __read_data__
+    data_line = np.stack([float(i) for i in line])
+                          ^^^^^^^^
+KeyboardInterrupt
