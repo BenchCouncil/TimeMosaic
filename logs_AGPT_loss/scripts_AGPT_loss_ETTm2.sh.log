@@ -1,0 +1,146 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           ETTm2_96_96         Model:              AGPT_loss           
+
+[1mData Loader[0m
+  Data:               ETTm2               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTm2.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            16                  e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_ETTm2_96_96_AGPT_loss_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 34369
+val 11425
+test 11425
+	iters: 100, epoch: 1 | loss: 0.2431855
+	speed: 0.0632s/iter; left time: 673.4392s
+	iters: 200, epoch: 1 | loss: 0.1758187
+	speed: 0.0699s/iter; left time: 737.2058s
+	iters: 300, epoch: 1 | loss: 0.1648085
+	speed: 0.0578s/iter; left time: 603.7705s
+	iters: 400, epoch: 1 | loss: 0.3194979
+	speed: 0.0592s/iter; left time: 612.8050s
+	iters: 500, epoch: 1 | loss: 0.1824469
+	speed: 0.0698s/iter; left time: 715.6111s
+	iters: 600, epoch: 1 | loss: 0.2201285
+	speed: 0.0673s/iter; left time: 682.8687s
+	iters: 700, epoch: 1 | loss: 0.1467678
+	speed: 0.0633s/iter; left time: 635.7792s
+	iters: 800, epoch: 1 | loss: 0.2236248
+	speed: 0.0605s/iter; left time: 602.5047s
+	iters: 900, epoch: 1 | loss: 0.2248904
+	speed: 0.0630s/iter; left time: 620.7830s
+	iters: 1000, epoch: 1 | loss: 0.3549127
+	speed: 0.0649s/iter; left time: 632.6574s
+Epoch: 1 cost time: 68.91592788696289
+Epoch: 1, Steps: 1075 | Train Loss: 0.2490016 Vali Loss: 0.1321207 Test Loss: 0.1837174
+Validation loss decreased (inf --> 0.132121).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.2712899
+	speed: 0.3806s/iter; left time: 3644.7606s
+	iters: 200, epoch: 2 | loss: 0.2086496
+	speed: 0.0658s/iter; left time: 623.9186s
+	iters: 300, epoch: 2 | loss: 0.1362717
+	speed: 0.0712s/iter; left time: 667.2408s
+	iters: 400, epoch: 2 | loss: 0.1721968
+	speed: 0.0657s/iter; left time: 609.7803s
+	iters: 500, epoch: 2 | loss: 0.1553700
+	speed: 0.0520s/iter; left time: 477.2595s
+	iters: 600, epoch: 2 | loss: 0.1302364
+	speed: 0.0520s/iter; left time: 472.0113s
+	iters: 700, epoch: 2 | loss: 0.1878408
+	speed: 0.0513s/iter; left time: 460.5365s
+	iters: 800, epoch: 2 | loss: 0.2474599
+	speed: 0.0409s/iter; left time: 363.0852s
+	iters: 900, epoch: 2 | loss: 0.2059121
+	speed: 0.0474s/iter; left time: 416.0960s
+	iters: 1000, epoch: 2 | loss: 0.2585208
+	speed: 0.0571s/iter; left time: 495.6085s
+Epoch: 2 cost time: 60.73227143287659
+Epoch: 2, Steps: 1075 | Train Loss: 0.2361399 Vali Loss: 0.1299015 Test Loss: 0.1796186
+Validation loss decreased (0.132121 --> 0.129901).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.1809723
+	speed: 0.2187s/iter; left time: 1859.4892s
+Traceback (most recent call last):
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/run.py", line 138, in <module>
+    exp.train(setting)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_AGPT.py", line 131, in train
+    outputs, aux_loss = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/models/AGPT_loss.py", line 209, in forward
+    dec_out, budget_loss = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/models/AGPT_loss.py", line 189, in forecast
+    enc_out, attns = self.encoder(enc_out)
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/Transformer_EncDec.py", line 74, in forward
+    x, attn = attn_layer(x, attn_mask=attn_mask, tau=tau, delta=delta)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/Transformer_EncDec.py", line 40, in forward
+    new_x, attn = self.attention(
+                  ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/SelfAttention_Family.py", line 203, in forward
+    out, attn = self.inner_attention(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/SelfAttention_Family.py", line 69, in forward
+    A = self.dropout(torch.softmax(scale * scores, dim=-1))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

@@ -1,0 +1,64 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           traffic_96_96       Model:              AGPT_loss           
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/traffic/  
+  Data Path:          traffic.csv         Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             862                 Dec In:             862                 
+  C Out:              862                 d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               512                 
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         4                   
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_traffic_96_96_AGPT_loss_512_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 12089
+val 1661
+test 3413
+	iters: 100, epoch: 1 | loss: 0.6590695
+	speed: 0.1869s/iter; left time: 5631.7210s
+	iters: 200, epoch: 1 | loss: 0.6023860
+	speed: 0.1906s/iter; left time: 5723.2766s
+	iters: 300, epoch: 1 | loss: 0.5409827
+	speed: 0.1899s/iter; left time: 5683.9001s
+	iters: 400, epoch: 1 | loss: 0.5719011
+	speed: 0.1678s/iter; left time: 5005.5165s
+	iters: 500, epoch: 1 | loss: 0.4694879
+	speed: 0.1693s/iter; left time: 5032.7837s
+	iters: 600, epoch: 1 | loss: 0.4330400
+	speed: 0.1848s/iter; left time: 5475.7968s
+	iters: 700, epoch: 1 | loss: 0.4966119
+	speed: 0.1853s/iter; left time: 5472.0280s
+	iters: 800, epoch: 1 | loss: 0.4055750
+	speed: 0.2131s/iter; left time: 6272.4516s
+Traceback (most recent call last):
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/run.py", line 138, in <module>
+    exp.train(setting)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_AGPT.py", line 110, in train
+    batch_x = batch_x.float().to(self.device)
+              ^^^^^^^^^^^^^^^
+KeyboardInterrupt

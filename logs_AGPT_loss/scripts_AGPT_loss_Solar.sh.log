@@ -1,0 +1,199 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           solar_96_96         Model:              AGPT_loss           
+
+[1mData Loader[0m
+  Data:               Solar               Root Path:          ./dataset/Solar/    
+  Data Path:          solar_AL.txt        Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             137                 Dec In:             137                 
+  C Out:              137                 d model:            512                 
+  n heads:            8                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.001               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_solar_96_96_AGPT_loss_2048_fixedFalse_0.001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36601
+val 5161
+test 10417
+Traceback (most recent call last):
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/run.py", line 138, in <module>
+    exp.train(setting)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_AGPT.py", line 116, in train
+    dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           solar_96_192        Model:              AGPT_loss           
+
+[1mData Loader[0m
+  Data:               Solar               Root Path:          ./dataset/Solar/    
+  Data Path:          solar_AL.txt        Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             137                 Dec In:             137                 
+  C Out:              137                 d model:            512                 
+  n heads:            8                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.001               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_solar_96_192_AGPT_loss_2048_fixedFalse_0.001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36505
+val 5065
+test 10321
+Traceback (most recent call last):
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/run.py", line 138, in <module>
+    exp.train(setting)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_AGPT.py", line 111, in train
+    batch_y = batch_y.float().to(self.device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 79.15 GiB of which 19.88 MiB is free. Process 1219305 has 62.97 GiB memory in use. Process 861463 has 6.00 GiB memory in use. Process 861428 has 1.60 GiB memory in use. Process 861413 has 6.15 GiB memory in use. Process 923382 has 1.91 GiB memory in use. Process 946963 has 468.00 MiB memory in use. Of the allocated memory 52.08 MiB is allocated by PyTorch, and 1.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           solar_96_336        Model:              AGPT_loss           
+
+[1mData Loader[0m
+  Data:               Solar               Root Path:          ./dataset/Solar/    
+  Data Path:          solar_AL.txt        Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             137                 Dec In:             137                 
+  C Out:              137                 d model:            512                 
+  n heads:            8                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.001               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_solar_96_336_AGPT_loss_2048_fixedFalse_0.001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36361
+val 4921
+test 10177
+	iters: 100, epoch: 1 | loss: 0.6481851
+	speed: 0.1960s/iter; left time: 2208.9263s
+	iters: 200, epoch: 1 | loss: 0.3914702
+	speed: 0.1894s/iter; left time: 2116.3409s
+	iters: 300, epoch: 1 | loss: 0.4342771
+	speed: 0.1884s/iter; left time: 2085.3530s
+	iters: 400, epoch: 1 | loss: 0.4384635
+	speed: 0.1956s/iter; left time: 2145.5917s
+	iters: 500, epoch: 1 | loss: 0.3752172
+	speed: 0.1906s/iter; left time: 2072.2439s
+	iters: 600, epoch: 1 | loss: 0.3835097
+	speed: 0.1902s/iter; left time: 2048.2080s
+	iters: 700, epoch: 1 | loss: 0.3725162
+	speed: 0.1902s/iter; left time: 2029.2690s
+	iters: 800, epoch: 1 | loss: 0.3806283
+	speed: 0.1905s/iter; left time: 2013.5069s
+	iters: 900, epoch: 1 | loss: 0.3780285
+	speed: 0.1918s/iter; left time: 2008.5722s
+	iters: 1000, epoch: 1 | loss: 0.3441764
+	speed: 0.1991s/iter; left time: 2065.2783s
+	iters: 1100, epoch: 1 | loss: 0.4410273
+	speed: 0.1933s/iter; left time: 1985.3181s
+Epoch: 1 cost time: 218.59843277931213
+Epoch: 1, Steps: 1137 | Train Loss: 0.4442897 Vali Loss: 0.3219435 Test Loss: 0.4662693
+Validation loss decreased (inf --> 0.321944).  Saving model ...
+Updating learning rate to 0.001
+	iters: 100, epoch: 2 | loss: 0.3803188
+	speed: 0.6841s/iter; left time: 6932.8103s
+	iters: 200, epoch: 2 | loss: 0.3182567
+	speed: 0.1901s/iter; left time: 1907.6031s
+	iters: 300, epoch: 2 | loss: 0.3791437
+	speed: 0.1892s/iter; left time: 1879.1199s
+	iters: 400, epoch: 2 | loss: 0.4081973
+	speed: 0.1894s/iter; left time: 1862.5976s
+	iters: 500, epoch: 2 | loss: 0.3512163
+	speed: 0.1927s/iter; left time: 1875.6195s
+	iters: 600, epoch: 2 | loss: 0.3921768
+	speed: 0.1941s/iter; left time: 1870.2160s
+	iters: 700, epoch: 2 | loss: 0.3227226
+	speed: 0.1913s/iter; left time: 1823.7160s
+	iters: 800, epoch: 2 | loss: 0.3376591
+	speed: 0.1892s/iter; left time: 1785.2885s
+	iters: 900, epoch: 2 | loss: 0.3332466
+	speed: 0.1893s/iter; left time: 1766.7945s
+	iters: 1000, epoch: 2 | loss: 0.3299190
+	speed: 0.1905s/iter; left time: 1758.7155s
+	iters: 1100, epoch: 2 | loss: 0.3412987
+	speed: 0.1978s/iter; left time: 1806.5476s
+Epoch: 2 cost time: 218.38602948188782
+Epoch: 2, Steps: 1137 | Train Loss: 0.3664424 Vali Loss: 0.2203206 Test Loss: 0.3006348
+Validation loss decreased (0.321944 --> 0.220321).  Saving model ...
+Updating learning rate to 0.0005
+	iters: 100, epoch: 3 | loss: 0.3313219
+	speed: 0.7427s/iter; left time: 6681.6623s
+	iters: 200, epoch: 3 | loss: 0.3619336
+	speed: 0.1932s/iter; left time: 1718.8258s
+	iters: 300, epoch: 3 | loss: 0.3572766
+	speed: 0.1874s/iter; left time: 1648.4993s

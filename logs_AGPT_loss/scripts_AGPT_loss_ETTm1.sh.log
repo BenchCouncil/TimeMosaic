@@ -1,0 +1,134 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           ETTm1_96_96         Model:              AGPT_loss           
+
+[1mData Loader[0m
+  Data:               ETTm1               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTm1.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            2                   e layers:           1                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_ETTm1_96_96_AGPT_loss_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 34369
+val 11425
+test 11425
+	iters: 100, epoch: 1 | loss: 0.3967458
+	speed: 0.0555s/iter; left time: 590.7404s
+	iters: 200, epoch: 1 | loss: 0.3390920
+	speed: 0.0669s/iter; left time: 705.3816s
+	iters: 300, epoch: 1 | loss: 0.3364774
+	speed: 0.0664s/iter; left time: 694.0214s
+	iters: 400, epoch: 1 | loss: 0.3284170
+	speed: 0.0691s/iter; left time: 715.2893s
+	iters: 500, epoch: 1 | loss: 0.3443726
+	speed: 0.0696s/iter; left time: 713.1941s
+	iters: 600, epoch: 1 | loss: 0.3761699
+	speed: 0.0622s/iter; left time: 631.3530s
+	iters: 700, epoch: 1 | loss: 0.3226935
+	speed: 0.0690s/iter; left time: 693.5215s
+	iters: 800, epoch: 1 | loss: 0.3263291
+	speed: 0.0635s/iter; left time: 631.9009s
+	iters: 900, epoch: 1 | loss: 0.3417779
+	speed: 0.0624s/iter; left time: 614.2911s
+	iters: 1000, epoch: 1 | loss: 0.4235163
+	speed: 0.0610s/iter; left time: 595.2052s
+Epoch: 1 cost time: 69.43619704246521
+Epoch: 1, Steps: 1075 | Train Loss: 0.3497028 Vali Loss: 0.4416648 Test Loss: 0.3560081
+Validation loss decreased (inf --> 0.441665).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.2519254
+	speed: 0.4441s/iter; left time: 4252.5313s
+	iters: 200, epoch: 2 | loss: 0.2780699
+	speed: 0.0694s/iter; left time: 657.9663s
+	iters: 300, epoch: 2 | loss: 0.3573989
+	speed: 0.0547s/iter; left time: 512.9568s
+	iters: 400, epoch: 2 | loss: 0.3709746
+	speed: 0.0559s/iter; left time: 518.5845s
+	iters: 500, epoch: 2 | loss: 0.3295210
+	speed: 0.0632s/iter; left time: 579.8278s
+	iters: 600, epoch: 2 | loss: 0.3119149
+	speed: 0.0537s/iter; left time: 487.0643s
+	iters: 700, epoch: 2 | loss: 0.3800613
+	speed: 0.0455s/iter; left time: 408.7185s
+	iters: 800, epoch: 2 | loss: 0.2870758
+	speed: 0.0469s/iter; left time: 416.1029s
+	iters: 900, epoch: 2 | loss: 0.3436232
+	speed: 0.0509s/iter; left time: 447.0305s
+	iters: 1000, epoch: 2 | loss: 0.2638544
+	speed: 0.0632s/iter; left time: 548.1436s
+Epoch: 2 cost time: 61.79919981956482
+Traceback (most recent call last):
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/run.py", line 138, in <module>
+    exp.train(setting)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_AGPT.py", line 163, in train
+    test_loss = self.vali(test_data, test_loader, criterion)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_AGPT.py", line 51, in vali
+    for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in enumerate(vali_loader):
+                                                             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/dataloader.py", line 630, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/dataloader.py", line 1327, in _next_data
+    idx, data = self._get_data()
+                ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/dataloader.py", line 1293, in _get_data
+    success, data = self._try_get_data()
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/data/dataloader.py", line 1131, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/queues.py", line 122, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/multiprocessing/reductions.py", line 496, in rebuild_storage_fd
+    fd = df.detach()
+         ^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/resource_sharer.py", line 57, in detach
+    with _resource_sharer.get_connection(self._id) as conn:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/resource_sharer.py", line 86, in get_connection
+    c = Client(address, authkey=process.current_process().authkey)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/connection.py", line 526, in Client
+    deliver_challenge(c, authkey)
+  File "/usr/lib/python3.12/multiprocessing/connection.py", line 939, in deliver_challenge
+    response = connection.recv_bytes(256)        # reject large message
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/connection.py", line 216, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/connection.py", line 430, in _recv_bytes
+    buf = self._recv(4)
+          ^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/connection.py", line 395, in _recv
+    chunk = read(handle, remaining)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
