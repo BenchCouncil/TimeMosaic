@@ -1,6 +1,6 @@
 from layers.Transformer_EncDec import Encoder, EncoderLayer
 from layers.SelfAttention_Family import FullAttention, AttentionLayer
-from layers.Embed import PatchEmbedding
+from layers.Embed import DataEmbedding_inverted
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -164,6 +164,8 @@ class Model(nn.Module):
             ) for l in range(configs.e_layers)
         ], norm_layer=nn.Sequential(Transpose(1,2), nn.BatchNorm1d(configs.d_model), Transpose(1,2)))
 
+        self.enc_embedding = DataEmbedding_inverted(configs.seq_len, configs.d_model, configs.embed, configs.freq,
+                                                    configs.dropout)
         # Prediction Head
         self.head_nf = configs.d_model * \
                        int((configs.seq_len - patch_len) / stride + 2)
@@ -182,6 +184,9 @@ class Model(nn.Module):
         x_enc = x_enc.permute(0, 2, 1)
         # u: [bs * nvars x patch_num x d_model]
         enc_out, n_vars, budget_loss = self.patch_embedding(x_enc)
+        # print('enc_out shape:', enc_out.shape)
+        # raise ValueError('enc_out shape:', enc_out.shape)
+        # enc_out = self.enc_embedding(x_enc)
         # print('enc_out shape:', enc_out.shape)
         # raise ValueError('enc_out shape:', enc_out.shape)
         # Encoder

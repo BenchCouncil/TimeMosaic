@@ -9,16 +9,16 @@ LOG_DIR="logs_AGPT_288"
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/ECL.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/ETTh1.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/ETTm1.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/ETTh2.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/Exchange.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/ETTm2.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/Traffic.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/PEMS.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/Solar.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/Weather.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_288/ECL.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_288/ETTh1.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_288/ETTm1.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_288/ETTh2.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_288/Exchange.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_288/ETTm2.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_288/Traffic.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_288/PEMS.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_288/Solar.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_288/Weather.sh"
 )
 
 

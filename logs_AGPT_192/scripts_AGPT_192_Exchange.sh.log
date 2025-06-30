@@ -1,0 +1,300 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           Exchange_96_96      Model:              AGPT                
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/exchange_rate/
+  Data Path:          exchange_rate.csv   Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            192                 Label Len:          48                  
+  Pred Len:           96                  Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             8                   Dec In:             8                   
+  C Out:              8                   d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_Exchange_96_96_AGPT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 5024
+val 665
+test 1422
+	iters: 100, epoch: 1 | loss: 0.1610895
+	speed: 0.0460s/iter; left time: 67.6695s
+Epoch: 1 cost time: 11.406578540802002
+Epoch: 1, Steps: 157 | Train Loss: 0.1553784 Vali Loss: 0.1562199 Test Loss: 0.1020155
+Validation loss decreased (inf --> 0.156220).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.1233372
+	speed: 0.3250s/iter; left time: 427.0030s
+Epoch: 2 cost time: 29.918347358703613
+Epoch: 2, Steps: 157 | Train Loss: 0.1411704 Vali Loss: 0.1516710 Test Loss: 0.0913850
+Validation loss decreased (0.156220 --> 0.151671).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.1496023
+	speed: 0.4150s/iter; left time: 480.1290s
+Epoch: 3 cost time: 31.07916569709778
+Epoch: 3, Steps: 157 | Train Loss: 0.1342612 Vali Loss: 0.1546071 Test Loss: 0.0905649
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.1215504
+	speed: 0.4135s/iter; left time: 413.4982s
+Epoch: 4 cost time: 31.042568683624268
+Epoch: 4, Steps: 157 | Train Loss: 0.1306084 Vali Loss: 0.1567487 Test Loss: 0.0925574
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.0887864
+	speed: 0.4091s/iter; left time: 344.9013s
+Epoch: 5 cost time: 30.31648588180542
+Epoch: 5, Steps: 157 | Train Loss: 0.1286192 Vali Loss: 0.1620690 Test Loss: 0.0915065
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : long_term_forecast_Exchange_96_96_AGPT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1422
+test shape: (1422, 96, 8) (1422, 96, 8)
+test shape: (1422, 96, 8) (1422, 96, 8)
+mse:0.09076887369155884, mae:0.21344782412052155
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           Exchange_96_192     Model:              AGPT                
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/exchange_rate/
+  Data Path:          exchange_rate.csv   Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            192                 Label Len:          48                  
+  Pred Len:           192                 Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             8                   Dec In:             8                   
+  C Out:              8                   d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_Exchange_96_192_AGPT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 4928
+val 569
+test 1326
+	iters: 100, epoch: 1 | loss: 0.2587457
+	speed: 0.1995s/iter; left time: 287.5497s
+Epoch: 1 cost time: 30.543356895446777
+Epoch: 1, Steps: 154 | Train Loss: 0.2826431 Vali Loss: 0.2496193 Test Loss: 0.2224947
+Validation loss decreased (inf --> 0.249619).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.2846138
+	speed: 0.4079s/iter; left time: 524.9615s
+Epoch: 2 cost time: 30.048255920410156
+Epoch: 2, Steps: 154 | Train Loss: 0.2642186 Vali Loss: 0.2354185 Test Loss: 0.2027455
+Validation loss decreased (0.249619 --> 0.235418).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.2418531
+	speed: 0.4122s/iter; left time: 466.9968s
+Epoch: 3 cost time: 30.704877853393555
+Epoch: 3, Steps: 154 | Train Loss: 0.2539312 Vali Loss: 0.2697249 Test Loss: 0.1930380
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.3060341
+	speed: 0.4021s/iter; left time: 393.6578s
+Epoch: 4 cost time: 30.429086685180664
+Epoch: 4, Steps: 154 | Train Loss: 0.2472438 Vali Loss: 0.2757564 Test Loss: 0.1950863
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.2241429
+	speed: 0.4032s/iter; left time: 332.6437s
+Epoch: 5 cost time: 30.65345549583435
+Epoch: 5, Steps: 154 | Train Loss: 0.2421442 Vali Loss: 0.2827865 Test Loss: 0.1901226
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : long_term_forecast_Exchange_96_192_AGPT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1326
+test shape: (1326, 192, 8) (1326, 192, 8)
+test shape: (1326, 192, 8) (1326, 192, 8)
+mse:0.20287835597991943, mae:0.3243027925491333
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           Exchange_96_336     Model:              AGPT                
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/exchange_rate/
+  Data Path:          exchange_rate.csv   Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            192                 Label Len:          48                  
+  Pred Len:           336                 Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             8                   Dec In:             8                   
+  C Out:              8                   d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       1                   Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_Exchange_96_336_AGPT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 4784
+val 425
+test 1182
+	iters: 100, epoch: 1 | loss: 0.4882576
+	speed: 0.2188s/iter; left time: 11.1608s
+Epoch: 1 cost time: 31.99207639694214
+Epoch: 1, Steps: 150 | Train Loss: 0.4608656 Vali Loss: 0.4541067 Test Loss: 0.3155775
+Validation loss decreased (inf --> 0.454107).  Saving model ...
+Updating learning rate to 0.0001
+>>>>>>>testing : long_term_forecast_Exchange_96_336_AGPT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1182
+test shape: (1182, 336, 8) (1182, 336, 8)
+test shape: (1182, 336, 8) (1182, 336, 8)
+mse:0.31542614102363586, mae:0.4102074205875397
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           Exchange_96_720     Model:              AGPT                
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/exchange_rate/
+  Data Path:          exchange_rate.csv   Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            192                 Label Len:          48                  
+  Pred Len:           720                 Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             8                   Dec In:             8                   
+  C Out:              8                   d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_Exchange_96_720_AGPT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 4400
+val 41
+test 798
+	iters: 100, epoch: 1 | loss: 0.8722590
+	speed: 0.2047s/iter; left time: 262.2369s
+Epoch: 1 cost time: 27.98901057243347
+Epoch: 1, Steps: 138 | Train Loss: 0.8502999 Vali Loss: 1.1456375 Test Loss: 0.8355696
+Validation loss decreased (inf --> 1.145638).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.7612123
+	speed: 0.3340s/iter; left time: 381.7921s
+Epoch: 2 cost time: 27.57180666923523
+Epoch: 2, Steps: 138 | Train Loss: 0.8126897 Vali Loss: 0.9479458 Test Loss: 0.8916644
+Validation loss decreased (1.145638 --> 0.947946).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.8142473
+	speed: 0.3589s/iter; left time: 360.7399s
+Epoch: 3 cost time: 29.134233951568604
+Epoch: 3, Steps: 138 | Train Loss: 0.7638939 Vali Loss: 0.9925944 Test Loss: 0.8180558
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.8420890
+	speed: 0.3291s/iter; left time: 285.3223s
+Epoch: 4 cost time: 28.346852779388428
+Epoch: 4, Steps: 138 | Train Loss: 0.7264988 Vali Loss: 1.0707362 Test Loss: 0.8236126
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.6793093
+	speed: 0.3504s/iter; left time: 255.4375s
+Epoch: 5 cost time: 29.46630334854126
+Epoch: 5, Steps: 138 | Train Loss: 0.7047665 Vali Loss: 1.0250796 Test Loss: 0.8394133
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : long_term_forecast_Exchange_96_720_AGPT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 798
+test shape: (798, 720, 8) (798, 720, 8)
+test shape: (798, 720, 8) (798, 720, 8)
+mse:0.8928174376487732, mae:0.7034881114959717

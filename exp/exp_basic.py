@@ -1,6 +1,6 @@
 import os
 import torch
-from models import PatchTST, AGPT, AGPTp, AGPTp_loss, AGPT_loss
+from models import PatchTST, AGPT, AGPTp, AGPTp_loss, AGPT_loss, AGPT_loss_G
 
 class Exp_Basic(object):
     def __init__(self, args):
@@ -11,6 +11,7 @@ class Exp_Basic(object):
             'AGPTp': AGPTp,
             'AGPTp_loss': AGPTp_loss,
             'AGPT_loss': AGPT_loss,
+            'AGPT_loss_G': AGPT_loss_G
             }
 
         self.device = self._acquire_device()

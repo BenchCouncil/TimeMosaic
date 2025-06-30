@@ -4,21 +4,21 @@
 MAX_JOBS=10
 TOTAL_GPUS=2
 MAX_RETRIES=1
-LOG_DIR="logs_AGPT_288"
+LOG_DIR="logs_AGPT_512"
 
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/ECL.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/ETTh1.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/ETTm1.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/ETTh2.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/Exchange.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/ETTm2.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/Traffic.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/PEMS.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/Solar.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT_288/scripts/AGPT/Weather.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_512/ECL.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_512/ETTh1.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_512/ETTm1.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_512/ETTh2.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_512/Exchange.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_512/ETTm2.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_512/Traffic.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_512/PEMS.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_512/Solar.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_512/Weather.sh"
 )
 
 
