@@ -126,7 +126,7 @@ class Exp_AGPT(Exp_Basic):
                         batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
                         lambda_cls = 0.001
                         loss = criterion(outputs, batch_y) + lambda_cls * aux_loss
-                        train_loss.append(loss.item())
+                        train_loss.append(loss.mean().item())
                 else:
                     outputs, aux_loss = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
 
@@ -138,10 +138,10 @@ class Exp_AGPT(Exp_Basic):
                     # print("loss: ", criterion(outputs, batch_y))
                     # print("reg_loss: ", reg_loss)
                     # raise ValueError
-                    train_loss.append(loss.item())
+                    train_loss.append(loss.mean().item())
 
                 if (i + 1) % 100 == 0:
-                    print("\titers: {0}, epoch: {1} | loss: {2:.7f}".format(i + 1, epoch + 1, loss.item()))
+                    print("\titers: {0}, epoch: {1} | loss: {2:.7f}".format(i + 1, epoch + 1, loss.mean().item()))
                     speed = (time.time() - time_now) / iter_count
                     left_time = speed * ((self.args.train_epochs - epoch) * train_steps - i)
                     print('\tspeed: {:.4f}s/iter; left time: {:.4f}s'.format(speed, left_time))
@@ -154,7 +154,8 @@ class Exp_AGPT(Exp_Basic):
                     scaler.step(model_optim)
                     scaler.update()
                 else:
-                    loss.backward()
+                    # loss.backward()
+                    loss.mean().backward()
                     model_optim.step()
 
             print("Epoch: {} cost time: {}".format(epoch + 1, time.time() - epoch_time))

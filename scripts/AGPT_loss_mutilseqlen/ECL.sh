@@ -16,6 +16,8 @@ for seq_len in "${seq_lens[@]}"; do
     python -u run.py \
       --task_name AGPT_loss \
       --is_training 1 \
+      --use_multi_gpu \
+      --devices 0,1,2,3 \
       --root_path ./dataset/electricity/ \
       --data_path electricity.csv \
       --model_id ECL_${seq_len}_${pred_len} \

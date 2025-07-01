@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ===================== 配置参数 =====================
-MAX_JOBS=9
+MAX_JOBS=1
 TOTAL_GPUS=2
 MAX_RETRIES=1
 LOG_DIR="logs_AGPT_loss_MS_G"
@@ -9,7 +9,7 @@ LOG_DIR="logs_AGPT_loss_MS_G"
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ECL.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ECL.sh"
 # "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ETTh1.sh"
 # "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ETTm1.sh"
 # "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ETTh2.sh"
@@ -53,7 +53,8 @@ run_with_retry() {
 
     while [ $attempt -le $MAX_RETRIES ]; do
         echo "[INFO] Running $script_path on GPU $gpu_id (Attempt $((attempt + 1)))"
-        CUDA_VISIBLE_DEVICES=$gpu_id bash "$script_path" > "$log_file" 2>&1
+        # CUDA_VISIBLE_DEVICES=$gpu_id bash "$script_path" > "$log_file" 2>&1
+        bash "$script_path" > "$log_file" 2>&1
         local status=$?
         if [ $status -eq 0 ]; then
             echo "[SUCCESS] $script_path succeeded. Log saved to $log_file"
