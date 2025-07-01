@@ -1,0 +1,59 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           ETTm1_96_96         Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               ETTm1               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTm1.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            2                   e layers:           1                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_ETTm1_96_96_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 34369
+val 11425
+test 11425
+	iters: 100, epoch: 1 | loss: 0.4137251
+	speed: 0.0382s/iter; left time: 406.8617s
+	iters: 200, epoch: 1 | loss: 0.4115053
+	speed: 0.1162s/iter; left time: 1226.4299s
+	iters: 300, epoch: 1 | loss: 0.3949969
+	speed: 0.1365s/iter; left time: 1426.1359s
+	iters: 400, epoch: 1 | loss: 0.3070329
+	speed: 0.1343s/iter; left time: 1389.9629s
+	iters: 500, epoch: 1 | loss: 0.3013275
+	speed: 0.1360s/iter; left time: 1393.8339s
+	iters: 600, epoch: 1 | loss: 0.2938636
+	speed: 0.1368s/iter; left time: 1388.5874s
+	iters: 700, epoch: 1 | loss: 0.3216852
+	speed: 0.1355s/iter; left time: 1362.3202s
+	iters: 800, epoch: 1 | loss: 0.3274186
+	speed: 0.1365s/iter; left time: 1358.2594s
+	iters: 900, epoch: 1 | loss: 0.3255163
+	speed: 0.1344s/iter; left time: 1323.6476s

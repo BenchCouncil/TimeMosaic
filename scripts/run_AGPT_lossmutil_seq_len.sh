@@ -9,16 +9,16 @@ LOG_DIR="logs_AGPT_loss_MS_G"
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ECL.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ETTh1.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ETTm1.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ETTh2.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/Exchange.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ETTm2.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/PEMS.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/Traffic.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ECL.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ETTh1.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ETTm1.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ETTh2.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/Exchange.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/ETTm2.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/PEMS.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/Traffic.sh"
 "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/Solar.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/Weather.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_loss_mutilseqlen/Weather.sh"
 )
 
 

@@ -1,0 +1,603 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           solar_96_96         Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               Solar               Root Path:          ./dataset/Solar/    
+  Data Path:          solar_AL.txt        Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             137                 Dec In:             137                 
+  C Out:              137                 d model:            512                 
+  n heads:            8                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.001               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_solar_96_96_AGPT_PT_2048_fixedFalse_0.001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36601
+val 5161
+test 10417
+	iters: 100, epoch: 1 | loss: 0.5172341
+	speed: 1.3913s/iter; left time: 15778.3553s
+	iters: 200, epoch: 1 | loss: 0.4018967
+	speed: 1.3964s/iter; left time: 15696.7943s
+	iters: 300, epoch: 1 | loss: 0.3794338
+	speed: 1.3962s/iter; left time: 15555.1088s
+	iters: 400, epoch: 1 | loss: 0.3598662
+	speed: 1.3964s/iter; left time: 15417.2718s
+	iters: 500, epoch: 1 | loss: 0.3181611
+	speed: 1.3965s/iter; left time: 15278.7430s
+	iters: 600, epoch: 1 | loss: 0.2958832
+	speed: 1.3965s/iter; left time: 15139.4704s
+	iters: 700, epoch: 1 | loss: 0.3971660
+	speed: 1.3966s/iter; left time: 15001.0969s
+	iters: 800, epoch: 1 | loss: 0.4245056
+	speed: 1.3973s/iter; left time: 14868.7936s
+	iters: 900, epoch: 1 | loss: 0.3351682
+	speed: 1.3982s/iter; left time: 14738.7630s
+	iters: 1000, epoch: 1 | loss: 0.3345064
+	speed: 1.3997s/iter; left time: 14614.3147s
+	iters: 1100, epoch: 1 | loss: 0.3261868
+	speed: 1.3996s/iter; left time: 14473.4581s
+Epoch: 1 cost time: 1598.3152873516083
+Epoch: 1, Steps: 1144 | Train Loss: 0.3800894 Vali Loss: 0.2109119 Test Loss: 0.2699561
+Validation loss decreased (inf --> 0.210912).  Saving model ...
+Updating learning rate to 0.001
+	iters: 100, epoch: 2 | loss: 0.3059378
+	speed: 3.5690s/iter; left time: 36392.9965s
+	iters: 200, epoch: 2 | loss: 0.3769469
+	speed: 1.3981s/iter; left time: 14116.7632s
+	iters: 300, epoch: 2 | loss: 0.2883499
+	speed: 1.3974s/iter; left time: 13969.3972s
+	iters: 400, epoch: 2 | loss: 0.2959388
+	speed: 1.3975s/iter; left time: 13831.5247s
+	iters: 500, epoch: 2 | loss: 0.3111170
+	speed: 1.3984s/iter; left time: 13700.3778s
+	iters: 600, epoch: 2 | loss: 0.3268784
+	speed: 1.3977s/iter; left time: 13553.0933s
+	iters: 700, epoch: 2 | loss: 0.4044341
+	speed: 1.3975s/iter; left time: 13412.1455s
+	iters: 800, epoch: 2 | loss: 0.2990963
+	speed: 1.3971s/iter; left time: 13268.4819s
+	iters: 900, epoch: 2 | loss: 0.3450978
+	speed: 1.3973s/iter; left time: 13130.7864s
+	iters: 1000, epoch: 2 | loss: 0.3965127
+	speed: 1.3980s/iter; left time: 12997.5369s
+	iters: 1100, epoch: 2 | loss: 0.3006560
+	speed: 1.3976s/iter; left time: 12853.4699s
+Epoch: 2 cost time: 1598.6273262500763
+Epoch: 2, Steps: 1144 | Train Loss: 0.3386316 Vali Loss: 0.1928744 Test Loss: 0.2469343
+Validation loss decreased (0.210912 --> 0.192874).  Saving model ...
+Updating learning rate to 0.0005
+	iters: 100, epoch: 3 | loss: 0.3611650
+	speed: 3.5843s/iter; left time: 32448.5891s
+	iters: 200, epoch: 3 | loss: 0.3474515
+	speed: 1.3977s/iter; left time: 12513.7511s
+	iters: 300, epoch: 3 | loss: 0.3388376
+	speed: 1.3988s/iter; left time: 12383.3227s
+	iters: 400, epoch: 3 | loss: 0.2574218
+	speed: 1.3989s/iter; left time: 12244.3579s
+	iters: 500, epoch: 3 | loss: 0.3356570
+	speed: 1.3990s/iter; left time: 12105.9097s
+	iters: 600, epoch: 3 | loss: 0.3214742
+	speed: 1.3984s/iter; left time: 11960.2885s
+	iters: 700, epoch: 3 | loss: 0.2742639
+	speed: 1.3988s/iter; left time: 11823.7280s
+	iters: 800, epoch: 3 | loss: 0.3008483
+	speed: 1.3988s/iter; left time: 11683.8148s
+	iters: 900, epoch: 3 | loss: 0.3330171
+	speed: 1.3999s/iter; left time: 11552.9983s
+	iters: 1000, epoch: 3 | loss: 0.4152062
+	speed: 1.3982s/iter; left time: 11399.2720s
+	iters: 1100, epoch: 3 | loss: 0.3861445
+	speed: 1.3977s/iter; left time: 11255.9403s
+Epoch: 3 cost time: 1599.8102915287018
+Epoch: 3, Steps: 1144 | Train Loss: 0.3224844 Vali Loss: 0.1868748 Test Loss: 0.2250089
+Validation loss decreased (0.192874 --> 0.186875).  Saving model ...
+Updating learning rate to 0.00025
+	iters: 100, epoch: 4 | loss: 0.2814067
+	speed: 3.5889s/iter; left time: 28384.4850s
+	iters: 200, epoch: 4 | loss: 0.3491213
+	speed: 1.3971s/iter; left time: 10910.2993s
+	iters: 300, epoch: 4 | loss: 0.2493931
+	speed: 1.3974s/iter; left time: 10772.6913s
+	iters: 400, epoch: 4 | loss: 0.3188936
+	speed: 1.3965s/iter; left time: 10625.8893s
+	iters: 500, epoch: 4 | loss: 0.3239073
+	speed: 1.3971s/iter; left time: 10491.1805s
+	iters: 600, epoch: 4 | loss: 0.2871103
+	speed: 1.3970s/iter; left time: 10350.6192s
+	iters: 700, epoch: 4 | loss: 0.3470550
+	speed: 1.3973s/iter; left time: 10213.1692s
+	iters: 800, epoch: 4 | loss: 0.3877697
+	speed: 1.3978s/iter; left time: 10076.4436s
+	iters: 900, epoch: 4 | loss: 0.3700852
+	speed: 1.3982s/iter; left time: 9939.8756s
+	iters: 1000, epoch: 4 | loss: 0.3533055
+	speed: 1.3971s/iter; left time: 9792.0677s
+	iters: 1100, epoch: 4 | loss: 0.3561154
+	speed: 1.3965s/iter; left time: 9648.1011s
+Epoch: 4 cost time: 1597.9676883220673
+Epoch: 4, Steps: 1144 | Train Loss: 0.3150184 Vali Loss: 0.1733317 Test Loss: 0.2163513
+Validation loss decreased (0.186875 --> 0.173332).  Saving model ...
+Updating learning rate to 0.000125
+	iters: 100, epoch: 5 | loss: 0.4177739
+	speed: 3.5822s/iter; left time: 24233.6763s
+	iters: 200, epoch: 5 | loss: 0.3517899
+	speed: 1.3977s/iter; left time: 9315.8473s
+	iters: 300, epoch: 5 | loss: 0.3127308
+	speed: 1.3983s/iter; left time: 9180.1024s
+	iters: 400, epoch: 5 | loss: 0.3679876
+	speed: 1.3982s/iter; left time: 9039.4296s
+	iters: 500, epoch: 5 | loss: 0.2791588
+	speed: 1.3976s/iter; left time: 8895.5465s
+	iters: 600, epoch: 5 | loss: 0.3532164
+	speed: 1.3976s/iter; left time: 8756.2431s
+	iters: 700, epoch: 5 | loss: 0.3829830
+	speed: 1.3979s/iter; left time: 8617.9159s
+	iters: 800, epoch: 5 | loss: 0.3035014
+	speed: 1.3975s/iter; left time: 8475.9398s
+	iters: 900, epoch: 5 | loss: 0.2891123
+	speed: 1.3978s/iter; left time: 8337.9628s
+	iters: 1000, epoch: 5 | loss: 0.2661093
+	speed: 1.3969s/iter; left time: 8192.8562s
+	iters: 1100, epoch: 5 | loss: 0.2901617
+	speed: 1.3976s/iter; left time: 8057.1028s
+Epoch: 5 cost time: 1598.7334430217743
+Epoch: 5, Steps: 1144 | Train Loss: 0.3108628 Vali Loss: 0.1760424 Test Loss: 0.2148250
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 6.25e-05
+	iters: 100, epoch: 6 | loss: 0.3175579
+	speed: 3.5902s/iter; left time: 20180.6988s
+	iters: 200, epoch: 6 | loss: 0.3186777
+	speed: 1.3988s/iter; left time: 7722.9404s
+	iters: 300, epoch: 6 | loss: 0.3164515
+	speed: 1.3982s/iter; left time: 7579.8881s
+	iters: 400, epoch: 6 | loss: 0.2843722
+	speed: 1.3977s/iter; left time: 7437.2120s
+	iters: 500, epoch: 6 | loss: 0.2696875
+	speed: 1.3976s/iter; left time: 7297.0909s
+	iters: 600, epoch: 6 | loss: 0.3394009
+	speed: 1.3983s/iter; left time: 7160.8233s
+	iters: 700, epoch: 6 | loss: 0.3265552
+	speed: 1.3989s/iter; left time: 7023.7394s
+	iters: 800, epoch: 6 | loss: 0.3383747
+	speed: 1.3992s/iter; left time: 6885.2766s
+	iters: 900, epoch: 6 | loss: 0.2600085
+	speed: 1.3987s/iter; left time: 6743.3706s
+	iters: 1000, epoch: 6 | loss: 0.3421271
+	speed: 1.3983s/iter; left time: 6601.5802s
+	iters: 1100, epoch: 6 | loss: 0.2608031
+	speed: 1.3989s/iter; left time: 6464.2225s
+Epoch: 6 cost time: 1599.4410920143127
+Epoch: 6, Steps: 1144 | Train Loss: 0.3079430 Vali Loss: 0.1725981 Test Loss: 0.2095896
+Validation loss decreased (0.173332 --> 0.172598).  Saving model ...
+Updating learning rate to 3.125e-05
+	iters: 100, epoch: 7 | loss: 0.3050796
+	speed: 3.5872s/iter; left time: 16059.8062s
+	iters: 200, epoch: 7 | loss: 0.2795130
+	speed: 1.3989s/iter; left time: 6122.8024s
+	iters: 300, epoch: 7 | loss: 0.2252047
+	speed: 1.3983s/iter; left time: 5980.6369s
+	iters: 400, epoch: 7 | loss: 0.3336369
+	speed: 1.3981s/iter; left time: 5839.8337s
+	iters: 500, epoch: 7 | loss: 0.3370617
+	speed: 1.3979s/iter; left time: 5699.2727s
+	iters: 600, epoch: 7 | loss: 0.2769280
+	speed: 1.3977s/iter; left time: 5558.5238s
+	iters: 700, epoch: 7 | loss: 0.3044608
+	speed: 1.3986s/iter; left time: 5422.5457s
+	iters: 800, epoch: 7 | loss: 0.3287063
+	speed: 1.3976s/iter; left time: 5278.7526s
+	iters: 900, epoch: 7 | loss: 0.2666091
+	speed: 1.3985s/iter; left time: 5142.3836s
+	iters: 1000, epoch: 7 | loss: 0.3036249
+	speed: 1.3979s/iter; left time: 5000.2168s
+	iters: 1100, epoch: 7 | loss: 0.2772367
+	speed: 1.3977s/iter; left time: 4859.9634s
+Epoch: 7 cost time: 1598.9413595199585
+Epoch: 7, Steps: 1144 | Train Loss: 0.3060607 Vali Loss: 0.1694869 Test Loss: 0.2105168
+Validation loss decreased (0.172598 --> 0.169487).  Saving model ...
+Updating learning rate to 1.5625e-05
+	iters: 100, epoch: 8 | loss: 0.2189339
+	speed: 3.5883s/iter; left time: 11959.7575s
+	iters: 200, epoch: 8 | loss: 0.2571503
+	speed: 1.3986s/iter; left time: 4521.6387s
+	iters: 300, epoch: 8 | loss: 0.3402002
+	speed: 1.3987s/iter; left time: 4382.2293s
+	iters: 400, epoch: 8 | loss: 0.2961498
+	speed: 1.3974s/iter; left time: 4238.3201s
+	iters: 500, epoch: 8 | loss: 0.3186971
+	speed: 1.3979s/iter; left time: 4100.1526s
+	iters: 600, epoch: 8 | loss: 0.3667948
+	speed: 1.3992s/iter; left time: 3964.0256s
+	iters: 700, epoch: 8 | loss: 0.3194612
+	speed: 1.3983s/iter; left time: 3821.6729s
+	iters: 800, epoch: 8 | loss: 0.3140264
+	speed: 1.3987s/iter; left time: 3682.6491s
+	iters: 900, epoch: 8 | loss: 0.2882200
+	speed: 1.3985s/iter; left time: 3542.3137s
+	iters: 1000, epoch: 8 | loss: 0.3672816
+	speed: 1.3983s/iter; left time: 3402.0456s
+	iters: 1100, epoch: 8 | loss: 0.3125650
+	speed: 1.3978s/iter; left time: 3260.9816s
+Epoch: 8 cost time: 1599.2854490280151
+Epoch: 8, Steps: 1144 | Train Loss: 0.3049680 Vali Loss: 0.1693565 Test Loss: 0.2085156
+Validation loss decreased (0.169487 --> 0.169356).  Saving model ...
+Updating learning rate to 7.8125e-06
+	iters: 100, epoch: 9 | loss: 0.2880095
+	speed: 3.5863s/iter; left time: 7850.4578s
+	iters: 200, epoch: 9 | loss: 0.2948419
+	speed: 1.3983s/iter; left time: 2921.1087s
+	iters: 300, epoch: 9 | loss: 0.3416218
+	speed: 1.3997s/iter; left time: 2784.0887s
+	iters: 400, epoch: 9 | loss: 0.3084988
+	speed: 1.3995s/iter; left time: 2643.6496s
+	iters: 500, epoch: 9 | loss: 0.2528617
+	speed: 1.3992s/iter; left time: 2503.0849s
+	iters: 600, epoch: 9 | loss: 0.2515587
+	speed: 1.3981s/iter; left time: 2361.4058s
+	iters: 700, epoch: 9 | loss: 0.3468893
+	speed: 1.3986s/iter; left time: 2222.2963s
+	iters: 800, epoch: 9 | loss: 0.2934457
+	speed: 1.3988s/iter; left time: 2082.8286s
+	iters: 900, epoch: 9 | loss: 0.3029304
+	speed: 1.3990s/iter; left time: 1943.1436s
+	iters: 1000, epoch: 9 | loss: 0.2824879
+	speed: 1.3988s/iter; left time: 1803.0133s
+	iters: 1100, epoch: 9 | loss: 0.2737955
+	speed: 1.3998s/iter; left time: 1664.3451s
+Epoch: 9 cost time: 1599.9531407356262
+Epoch: 9, Steps: 1144 | Train Loss: 0.3044486 Vali Loss: 0.1697095 Test Loss: 0.2087031
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 3.90625e-06
+	iters: 100, epoch: 10 | loss: 0.2816377
+	speed: 3.5813s/iter; left time: 3742.4528s
+	iters: 200, epoch: 10 | loss: 0.2549568
+	speed: 1.3978s/iter; left time: 1320.9472s
+	iters: 300, epoch: 10 | loss: 0.2874603
+	speed: 1.3976s/iter; left time: 1180.9626s
+	iters: 400, epoch: 10 | loss: 0.3242089
+	speed: 1.3976s/iter; left time: 1041.1951s
+	iters: 500, epoch: 10 | loss: 0.2850701
+	speed: 1.3978s/iter; left time: 901.5842s
+	iters: 600, epoch: 10 | loss: 0.3019652
+	speed: 1.3976s/iter; left time: 761.6734s
+	iters: 700, epoch: 10 | loss: 0.3493492
+	speed: 1.3975s/iter; left time: 621.8993s
+	iters: 800, epoch: 10 | loss: 0.2527753
+	speed: 1.3974s/iter; left time: 482.0889s
+	iters: 900, epoch: 10 | loss: 0.3113623
+	speed: 1.3976s/iter; left time: 342.4167s
+	iters: 1000, epoch: 10 | loss: 0.2874803
+	speed: 1.3966s/iter; left time: 202.5127s
+	iters: 1100, epoch: 10 | loss: 0.2932453
+	speed: 1.3979s/iter; left time: 62.9074s
+Epoch: 10 cost time: 1598.5561978816986
+Epoch: 10, Steps: 1144 | Train Loss: 0.3041041 Vali Loss: 0.1684803 Test Loss: 0.2089451
+Validation loss decreased (0.169356 --> 0.168480).  Saving model ...
+Updating learning rate to 1.953125e-06
+>>>>>>>testing : AGPT_loss_solar_96_96_AGPT_PT_2048_fixedFalse_0.001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 10417
+test shape: (10417, 96, 137) (10417, 96, 137)
+test shape: (10417, 96, 137) (10417, 96, 137)
+mse:0.2089764028787613, mae:0.2544041574001312
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           solar_96_192        Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               Solar               Root Path:          ./dataset/Solar/    
+  Data Path:          solar_AL.txt        Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             137                 Dec In:             137                 
+  C Out:              137                 d model:            512                 
+  n heads:            8                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.001               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_solar_96_192_AGPT_PT_2048_fixedFalse_0.001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36505
+val 5065
+test 10321
+Traceback (most recent call last):
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/run.py", line 138, in <module>
+    exp.train(setting)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_AGPT.py", line 131, in train
+    outputs, aux_loss = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/models/AGPT_PT.py", line 337, in forward
+    dec_out, budget_loss = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/models/AGPT_PT.py", line 268, in forecast
+    segment_out, _ = self.encoder(segment_input)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/Transformer_EncDec.py", line 74, in forward
+    x, attn = attn_layer(x, attn_mask=attn_mask, tau=tau, delta=delta)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/Transformer_EncDec.py", line 40, in forward
+    new_x, attn = self.attention(
+                  ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/SelfAttention_Family.py", line 203, in forward
+    out, attn = self.inner_attention(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/SelfAttention_Family.py", line 70, in forward
+    V = torch.einsum("bhls,bshd->blhd", A, values)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/functional.py", line 386, in einsum
+    return _VF.einsum(equation, operands)  # type: ignore[attr-defined]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 130.00 MiB. GPU 0 has a total capacity of 79.15 GiB of which 123.62 MiB is free. Process 4055445 has 79.02 GiB memory in use. Of the allocated memory 78.33 GiB is allocated by PyTorch, and 207.47 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           solar_96_336        Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               Solar               Root Path:          ./dataset/Solar/    
+  Data Path:          solar_AL.txt        Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             137                 Dec In:             137                 
+  C Out:              137                 d model:            512                 
+  n heads:            8                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.001               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_solar_96_336_AGPT_PT_2048_fixedFalse_0.001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36361
+val 4921
+test 10177
+Traceback (most recent call last):
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/run.py", line 138, in <module>
+    exp.train(setting)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_AGPT.py", line 131, in train
+    outputs, aux_loss = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/models/AGPT_PT.py", line 337, in forward
+    dec_out, budget_loss = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/models/AGPT_PT.py", line 268, in forecast
+    segment_out, _ = self.encoder(segment_input)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/Transformer_EncDec.py", line 74, in forward
+    x, attn = attn_layer(x, attn_mask=attn_mask, tau=tau, delta=delta)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/Transformer_EncDec.py", line 40, in forward
+    new_x, attn = self.attention(
+                  ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/SelfAttention_Family.py", line 203, in forward
+    out, attn = self.inner_attention(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/SelfAttention_Family.py", line 70, in forward
+    V = torch.einsum("bhls,bshd->blhd", A, values)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/functional.py", line 386, in einsum
+    return _VF.einsum(equation, operands)  # type: ignore[attr-defined]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 130.00 MiB. GPU 0 has a total capacity of 79.15 GiB of which 119.62 MiB is free. Process 4058307 has 79.03 GiB memory in use. Of the allocated memory 78.34 GiB is allocated by PyTorch, and 203.28 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           solar_96_720        Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               Solar               Root Path:          ./dataset/Solar/    
+  Data Path:          solar_AL.txt        Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             137                 Dec In:             137                 
+  C Out:              137                 d model:            512                 
+  n heads:            8                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.001               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_solar_96_720_AGPT_PT_2048_fixedFalse_0.001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 35977
+val 4537
+test 9793
+Traceback (most recent call last):
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/run.py", line 138, in <module>
+    exp.train(setting)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_AGPT.py", line 131, in train
+    outputs, aux_loss = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/models/AGPT_PT.py", line 337, in forward
+    dec_out, budget_loss = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/models/AGPT_PT.py", line 268, in forecast
+    segment_out, _ = self.encoder(segment_input)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/Transformer_EncDec.py", line 74, in forward
+    x, attn = attn_layer(x, attn_mask=attn_mask, tau=tau, delta=delta)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/Transformer_EncDec.py", line 40, in forward
+    new_x, attn = self.attention(
+                  ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/SelfAttention_Family.py", line 203, in forward
+    out, attn = self.inner_attention(
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/SelfAttention_Family.py", line 70, in forward
+    V = torch.einsum("bhls,bshd->blhd", A, values)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/functional.py", line 386, in einsum
+    return _VF.einsum(equation, operands)  # type: ignore[attr-defined]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 130.00 MiB. GPU 0 has a total capacity of 79.15 GiB of which 91.62 MiB is free. Process 4060855 has 79.05 GiB memory in use. Of the allocated memory 78.36 GiB is allocated by PyTorch, and 209.31 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

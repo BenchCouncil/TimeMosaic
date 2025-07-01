@@ -9,7 +9,7 @@ from utils.print_args import print_args
 import random
 import numpy as np
 
-os.environ['CUDA_VISIBLE_DEVICE']='0,1'
+os.environ['CUDA_VISIBLE_DEVICE']='2,3'
 
 if __name__ == '__main__':
     fix_seed = 2025
@@ -97,7 +97,7 @@ if __name__ == '__main__':
     parser.add_argument('--fc_dropout', type=float, default=0.1, help='fc_dropout')
     parser.add_argument('--fixed_weight', type=bool, default=False, help='fixed task emb weight')
     parser.add_argument('--adjust_lr', action='store_true', default=True, help='adjust learnring rate')
-    parser.add_argument('--num_latent_token', type=int, default=4, help='')
+    parser.add_argument('--num_latent_token', type=int, default=2, help='Number of prompt tokens')
     parser.add_argument('--scale_rate', type=float, default=0.001, help='emb init scale rate')
     parser.add_argument('--patch_len_list', type=str, default='[8,16,32]',
                     help='List of candidate patch lengths for adaptive splitting')
