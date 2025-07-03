@@ -184,10 +184,12 @@ class Model(nn.Module):
         self.patch_len_list = eval(configs.patch_len_list)
         
         # self.seg_len = configs.seg_len
-        if configs.pred_len >= 96:
+        if configs.pred_len >= 96 and configs.pred_len <= 336:
             self.seg_len = 16
-        else:
+        elif configs.pred_len == 12:
             self.seg_len = 6
+        else:
+            self.seg_len = 24
         self.num_segs = self.pred_len // self.seg_len
 
         self.patch_embedding = AdaptivePatchEmbedding(

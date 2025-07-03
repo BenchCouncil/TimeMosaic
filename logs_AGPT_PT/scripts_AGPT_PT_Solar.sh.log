@@ -2,7 +2,7 @@ Using GPU
 Args in experiment:
 [1mBasic Config[0m
   Task Name:          AGPT_loss           Is Training:        1                   
-  Model ID:           solar_96_96         Model:              AGPT_PT             
+  Model ID:           solar_96_720        Model:              AGPT_PT             
 
 [1mData Loader[0m
   Data:               Solar               Root Path:          ./dataset/Solar/    
@@ -29,11 +29,599 @@ Args in experiment:
 
 [1mGPU[0m
   Use GPU:            1                   GPU:                0                   
-  Use Multi GPU:      0                   Devices:            0,1,2,3             
+  Use Multi GPU:      1                   Devices:            0,1,2,3             
 
 [1mDe-stationary Projector Params[0m
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : AGPT_loss_solar_96_96_AGPT_PT_2048_fixedFalse_0.001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
-train 36601
+>>>>>>>start training : AGPT_loss_solar_96_720_AGPT_PT_2048_fixedFalse_0.001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 35977
+val 4537
+test 9793
+ts41-master-0:24:24 [0] NCCL INFO cudaDriverVersion 12020
+ts41-master-0:24:24 [0] NCCL INFO Bootstrap : Using eth0:10.211.70.23<0>
+ts41-master-0:24:24 [0] NCCL INFO NET/Plugin : dlerror=libnccl-net.so: cannot open shared object file: No such file or directory No plugin found (libnccl-net.so), using internal implementation
+NCCL version 2.20.5+cuda12.4
+ts41-master-0:24:999 [1] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ts41-master-0:24:999 [1] NCCL INFO NET/IB : No device found.
+ts41-master-0:24:999 [1] NCCL INFO NET/Socket : Using [0]eth0:10.211.70.23<0>
+ts41-master-0:24:999 [1] NCCL INFO Using non-device net plugin version 0
+ts41-master-0:24:999 [1] NCCL INFO Using network Socket
+ts41-master-0:24:1001 [3] NCCL INFO Using non-device net plugin version 0
+ts41-master-0:24:1000 [2] NCCL INFO Using non-device net plugin version 0
+ts41-master-0:24:1000 [2] NCCL INFO Using network Socket
+ts41-master-0:24:1001 [3] NCCL INFO Using network Socket
+ts41-master-0:24:998 [0] NCCL INFO Using non-device net plugin version 0
+ts41-master-0:24:998 [0] NCCL INFO Using network Socket
+ts41-master-0:24:1000 [2] NCCL INFO comm 0xbf42670 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId a5000 commId 0x3c6dbe54dfb86df5 - Init START
+ts41-master-0:24:1001 [3] NCCL INFO comm 0xbf47380 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId a7000 commId 0x3c6dbe54dfb86df5 - Init START
+ts41-master-0:24:998 [0] NCCL INFO comm 0xbf36ed0 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId a1000 commId 0x3c6dbe54dfb86df5 - Init START
+ts41-master-0:24:999 [1] NCCL INFO comm 0xbf3d960 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId a3000 commId 0x3c6dbe54dfb86df5 - Init START
+ts41-master-0:24:1000 [2] NCCL INFO Setting affinity for GPU 2 to 0fffff,ffffffff,fc000000,00000000
+ts41-master-0:24:1000 [2] NCCL INFO NVLS multicast support is not available on dev 2
+ts41-master-0:24:1001 [3] NCCL INFO Setting affinity for GPU 3 to 0fffff,ffffffff,fc000000,00000000
+ts41-master-0:24:1001 [3] NCCL INFO NVLS multicast support is not available on dev 3
+ts41-master-0:24:999 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff,ffffffff,fc000000,00000000
+ts41-master-0:24:999 [1] NCCL INFO NVLS multicast support is not available on dev 1
+ts41-master-0:24:998 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff,ffffffff,fc000000,00000000
+ts41-master-0:24:998 [0] NCCL INFO NVLS multicast support is not available on dev 0
+ts41-master-0:24:998 [0] NCCL INFO comm 0xbf36ed0 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+ts41-master-0:24:999 [1] NCCL INFO comm 0xbf3d960 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+ts41-master-0:24:1001 [3] NCCL INFO comm 0xbf47380 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+ts41-master-0:24:1000 [2] NCCL INFO comm 0xbf42670 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+ts41-master-0:24:998 [0] NCCL INFO Channel 00/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 01/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 02/24 :    0   1   2   3
+ts41-master-0:24:1001 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->2 [5] -1/-1/-1->3->2 [6] -1/-1/-1->3->2 [7] -1/-1/-1->3->2 [8] -1/-1/-1->3->2 [9] -1/-1/-1->3->2 [10] -1/-1/-1->3->2 [11] -1/-1/-1->3->2 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2 [16] -1/-1/-1->3->2 [17] -1/-1/-1->3->2 [18] -1/-1/-1->3->2 [19] -1/-1/-1->3->2 [20] -1/-1/-1->3->2 [21] -1/-1/-1->3->2 [22] -1/-1/-1->3->2 [23] -1/-1/-1->3->2
+ts41-master-0:24:1000 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 3/-1/-1->2->1 [5] 3/-1/-1->2->1 [6] 3/-1/-1->2->1 [7] 3/-1/-1->2->1 [8] 3/-1/-1->2->1 [9] 3/-1/-1->2->1 [10] 3/-1/-1->2->1 [11] 3/-1/-1->2->1 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1 [16] 3/-1/-1->2->1 [17] 3/-1/-1->2->1 [18] 3/-1/-1->2->1 [19] 3/-1/-1->2->1 [20] 3/-1/-1->2->1 [21] 3/-1/-1->2->1 [22] 3/-1/-1->2->1 [23] 3/-1/-1->2->1
+ts41-master-0:24:998 [0] NCCL INFO Channel 03/24 :    0   1   2   3
+ts41-master-0:24:1000 [2] NCCL INFO P2P Chunksize set to 524288
+ts41-master-0:24:1001 [3] NCCL INFO P2P Chunksize set to 524288
+ts41-master-0:24:999 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 2/-1/-1->1->0 [5] 2/-1/-1->1->0 [6] 2/-1/-1->1->0 [7] 2/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 2/-1/-1->1->0 [10] 2/-1/-1->1->0 [11] 2/-1/-1->1->0 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 2/-1/-1->1->0 [17] 2/-1/-1->1->0 [18] 2/-1/-1->1->0 [19] 2/-1/-1->1->0 [20] 2/-1/-1->1->0 [21] 2/-1/-1->1->0 [22] 2/-1/-1->1->0 [23] 2/-1/-1->1->0
+ts41-master-0:24:999 [1] NCCL INFO P2P Chunksize set to 524288
+ts41-master-0:24:998 [0] NCCL INFO Channel 04/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 05/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 06/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 07/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 08/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 09/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 10/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 11/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 12/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 13/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 14/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 15/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 16/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 17/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 18/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 19/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 20/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 21/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 22/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Channel 23/24 :    0   1   2   3
+ts41-master-0:24:998 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] 1/-1/-1->0->-1 [9] 1/-1/-1->0->-1 [10] 1/-1/-1->0->-1 [11] 1/-1/-1->0->-1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] 1/-1/-1->0->-1 [19] 1/-1/-1->0->-1 [20] 1/-1/-1->0->-1 [21] 1/-1/-1->0->-1 [22] 1/-1/-1->0->-1 [23] 1/-1/-1->0->-1
+ts41-master-0:24:998 [0] NCCL INFO P2P Chunksize set to 524288
+ts41-master-0:24:1001 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 01/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 02/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 04/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 05/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 07/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 10/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 08/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 09/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 13/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 11/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 14/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 04/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 16/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 05/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 17/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 18/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 07/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 19/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 17/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 20/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 21/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 19/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 22/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 20/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 21/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 23/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 23/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 16/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 17/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 18/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 19/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 21/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 22/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 23/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Connected all rings
+ts41-master-0:24:998 [0] NCCL INFO Connected all rings
+ts41-master-0:24:1000 [2] NCCL INFO Connected all rings
+ts41-master-0:24:1001 [3] NCCL INFO Connected all rings
+ts41-master-0:24:1001 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 02/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 04/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 06/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 08/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 09/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 10/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 12/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 14/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 15/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 16/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 17/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 18/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 19/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 20/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 21/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 22/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1001 [3] NCCL INFO Channel 23/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 04/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 08/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 18/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 10/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 12/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 14/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:999 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 16/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 18/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 19/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 20/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 21/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 22/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:1000 [2] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:998 [0] NCCL INFO Connected all trees
+ts41-master-0:24:998 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts41-master-0:24:998 [0] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts41-master-0:24:999 [1] NCCL INFO Connected all trees
+ts41-master-0:24:999 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts41-master-0:24:999 [1] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts41-master-0:24:1001 [3] NCCL INFO Connected all trees
+ts41-master-0:24:1001 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts41-master-0:24:1001 [3] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts41-master-0:24:1000 [2] NCCL INFO Connected all trees
+ts41-master-0:24:1000 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts41-master-0:24:1000 [2] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts41-master-0:24:1000 [2] NCCL INFO comm 0xbf42670 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId a5000 commId 0x3c6dbe54dfb86df5 - Init COMPLETE
+ts41-master-0:24:998 [0] NCCL INFO comm 0xbf36ed0 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId a1000 commId 0x3c6dbe54dfb86df5 - Init COMPLETE
+ts41-master-0:24:999 [1] NCCL INFO comm 0xbf3d960 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId a3000 commId 0x3c6dbe54dfb86df5 - Init COMPLETE
+ts41-master-0:24:1001 [3] NCCL INFO comm 0xbf47380 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId a7000 commId 0x3c6dbe54dfb86df5 - Init COMPLETE
+	iters: 100, epoch: 1 | loss: 0.4200073
+	speed: 2.0380s/iter; left time: 22725.8621s
+	iters: 200, epoch: 1 | loss: 0.4094689
+	speed: 1.9725s/iter; left time: 21798.4283s
+	iters: 300, epoch: 1 | loss: 0.3585489
+	speed: 1.9755s/iter; left time: 21633.9600s
+	iters: 400, epoch: 1 | loss: 0.4013676
+	speed: 1.9697s/iter; left time: 21373.4610s
+	iters: 500, epoch: 1 | loss: 0.3697951
+	speed: 1.9707s/iter; left time: 21186.6959s
+	iters: 600, epoch: 1 | loss: 0.3862055
+	speed: 1.9734s/iter; left time: 21018.6820s
+	iters: 700, epoch: 1 | loss: 0.3521692
+	speed: 1.9722s/iter; left time: 20808.8904s
+	iters: 800, epoch: 1 | loss: 0.3869455
+	speed: 1.9697s/iter; left time: 20584.8702s
+	iters: 900, epoch: 1 | loss: 0.4124091
+	speed: 1.9706s/iter; left time: 20397.2964s
+	iters: 1000, epoch: 1 | loss: 0.3585199
+	speed: 1.9731s/iter; left time: 20226.2173s
+	iters: 1100, epoch: 1 | loss: 0.3766849
+	speed: 1.9695s/iter; left time: 19992.2963s
+ts41-master-0:24:14306 [0] NCCL INFO Using non-device net plugin version 0
+ts41-master-0:24:14306 [0] NCCL INFO Using network Socket
+ts41-master-0:24:14308 [2] NCCL INFO Using non-device net plugin version 0
+ts41-master-0:24:14308 [2] NCCL INFO Using network Socket
+ts41-master-0:24:14307 [1] NCCL INFO Using non-device net plugin version 0
+ts41-master-0:24:14307 [1] NCCL INFO Using network Socket
+ts41-master-0:24:14308 [2] NCCL INFO comm 0xfdded00 rank 2 nranks 3 cudaDev 2 nvmlDev 2 busId a5000 commId 0xdce1f9b72ea7a338 - Init START
+ts41-master-0:24:14307 [1] NCCL INFO comm 0xfda5780 rank 1 nranks 3 cudaDev 1 nvmlDev 1 busId a3000 commId 0xdce1f9b72ea7a338 - Init START
+ts41-master-0:24:14306 [0] NCCL INFO comm 0xbfe15f0 rank 0 nranks 3 cudaDev 0 nvmlDev 0 busId a1000 commId 0xdce1f9b72ea7a338 - Init START
+ts41-master-0:24:14306 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff,ffffffff,fc000000,00000000
+ts41-master-0:24:14306 [0] NCCL INFO NVLS multicast support is not available on dev 0
+ts41-master-0:24:14308 [2] NCCL INFO Setting affinity for GPU 2 to 0fffff,ffffffff,fc000000,00000000
+ts41-master-0:24:14308 [2] NCCL INFO NVLS multicast support is not available on dev 2
+ts41-master-0:24:14307 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff,ffffffff,fc000000,00000000
+ts41-master-0:24:14307 [1] NCCL INFO NVLS multicast support is not available on dev 1
+ts41-master-0:24:14306 [0] NCCL INFO comm 0xbfe15f0 rank 0 nRanks 3 nNodes 1 localRanks 3 localRank 0 MNNVL 0
+ts41-master-0:24:14308 [2] NCCL INFO comm 0xfdded00 rank 2 nRanks 3 nNodes 1 localRanks 3 localRank 2 MNNVL 0
+ts41-master-0:24:14307 [1] NCCL INFO comm 0xfda5780 rank 1 nRanks 3 nNodes 1 localRanks 3 localRank 1 MNNVL 0
+ts41-master-0:24:14306 [0] NCCL INFO Channel 00/24 :    0   1   2
+ts41-master-0:24:14308 [2] NCCL INFO Trees [0] -1/-1/-1->2->1 [1] -1/-1/-1->2->1 [2] -1/-1/-1->2->1 [3] -1/-1/-1->2->1 [4] -1/-1/-1->2->1 [5] -1/-1/-1->2->1 [6] -1/-1/-1->2->1 [7] -1/-1/-1->2->1 [8] -1/-1/-1->2->1 [9] -1/-1/-1->2->1 [10] -1/-1/-1->2->1 [11] -1/-1/-1->2->1 [12] -1/-1/-1->2->1 [13] -1/-1/-1->2->1 [14] -1/-1/-1->2->1 [15] -1/-1/-1->2->1 [16] -1/-1/-1->2->1 [17] -1/-1/-1->2->1 [18] -1/-1/-1->2->1 [19] -1/-1/-1->2->1 [20] -1/-1/-1->2->1 [21] -1/-1/-1->2->1 [22] -1/-1/-1->2->1 [23] -1/-1/-1->2->1
+ts41-master-0:24:14306 [0] NCCL INFO Channel 01/24 :    0   1   2
+ts41-master-0:24:14308 [2] NCCL INFO P2P Chunksize set to 524288
+ts41-master-0:24:14307 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 2/-1/-1->1->0 [5] 2/-1/-1->1->0 [6] 2/-1/-1->1->0 [7] 2/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 2/-1/-1->1->0 [10] 2/-1/-1->1->0 [11] 2/-1/-1->1->0 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 2/-1/-1->1->0 [17] 2/-1/-1->1->0 [18] 2/-1/-1->1->0 [19] 2/-1/-1->1->0 [20] 2/-1/-1->1->0 [21] 2/-1/-1->1->0 [22] 2/-1/-1->1->0 [23] 2/-1/-1->1->0
+ts41-master-0:24:14307 [1] NCCL INFO P2P Chunksize set to 524288
+ts41-master-0:24:14306 [0] NCCL INFO Channel 02/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 03/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 04/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 05/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 06/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 07/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 08/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 09/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 10/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 11/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 12/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 13/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 14/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 15/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 16/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 17/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 18/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 19/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 20/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 21/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 22/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Channel 23/24 :    0   1   2
+ts41-master-0:24:14306 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] 1/-1/-1->0->-1 [9] 1/-1/-1->0->-1 [10] 1/-1/-1->0->-1 [11] 1/-1/-1->0->-1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] 1/-1/-1->0->-1 [19] 1/-1/-1->0->-1 [20] 1/-1/-1->0->-1 [21] 1/-1/-1->0->-1 [22] 1/-1/-1->0->-1 [23] 1/-1/-1->0->-1
+ts41-master-0:24:14306 [0] NCCL INFO P2P Chunksize set to 524288
+ts41-master-0:24:14308 [2] NCCL INFO Channel 00/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 01/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 02/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 03/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 04/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 05/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 06/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 07/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 08/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 08/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 09/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 09/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 10/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 11/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 11/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 12/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 13/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 14/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 15/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 16/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 17/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 17/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 18/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 19/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 19/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 20/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 20/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 21/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 21/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 22/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 23/0 : 2[2] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 23/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Connected all rings
+ts41-master-0:24:14308 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14306 [0] NCCL INFO Connected all rings
+ts41-master-0:24:14307 [1] NCCL INFO Connected all rings
+ts41-master-0:24:14308 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 04/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 08/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 10/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 12/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 14/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 16/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 18/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 19/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 20/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 21/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 22/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14308 [2] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 18/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts41-master-0:24:14307 [1] NCCL INFO Connected all trees
+ts41-master-0:24:14307 [1] NCCL INFO threadThresholds 8/8/64 | 24/8/64 | 512 | 512
+ts41-master-0:24:14307 [1] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts41-master-0:24:14306 [0] NCCL INFO Connected all trees
+ts41-master-0:24:14306 [0] NCCL INFO threadThresholds 8/8/64 | 24/8/64 | 512 | 512
+ts41-master-0:24:14306 [0] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts41-master-0:24:14308 [2] NCCL INFO Connected all trees
+ts41-master-0:24:14308 [2] NCCL INFO threadThresholds 8/8/64 | 24/8/64 | 512 | 512
+ts41-master-0:24:14308 [2] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts41-master-0:24:14306 [0] NCCL INFO comm 0xbfe15f0 rank 0 nranks 3 cudaDev 0 nvmlDev 0 busId a1000 commId 0xdce1f9b72ea7a338 - Init COMPLETE
+ts41-master-0:24:14308 [2] NCCL INFO comm 0xfdded00 rank 2 nranks 3 cudaDev 2 nvmlDev 2 busId a5000 commId 0xdce1f9b72ea7a338 - Init COMPLETE
+ts41-master-0:24:14307 [1] NCCL INFO comm 0xfda5780 rank 1 nranks 3 cudaDev 1 nvmlDev 1 busId a3000 commId 0xdce1f9b72ea7a338 - Init COMPLETE
+Epoch: 1 cost time: 2225.218299150467
+ts41-master-0:24:18443 [0] NCCL INFO Using non-device net plugin version 0
+ts41-master-0:24:18443 [0] NCCL INFO Using network Socket
+ts41-master-0:24:18443 [0] NCCL INFO comm 0xfd78ec0 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId a1000 commId 0x68cc712b10070c76 - Init START
+ts41-master-0:24:18443 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff,ffffffff,fc000000,00000000
+ts41-master-0:24:18443 [0] NCCL INFO comm 0xfd78ec0 rank 0 nRanks 1 nNodes 1 localRanks 1 localRank 0 MNNVL 0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 00/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 01/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 02/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 03/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 04/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 05/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 06/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 07/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 08/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 09/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 10/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 11/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 12/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 13/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 14/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 15/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 16/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 17/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 18/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 19/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 20/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 21/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 22/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 23/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 24/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 25/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 26/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 27/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 28/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 29/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 30/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Channel 31/32 :    0
+ts41-master-0:24:18443 [0] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+ts41-master-0:24:18443 [0] NCCL INFO P2P Chunksize set to 131072
+ts41-master-0:24:18443 [0] NCCL INFO Connected all rings
+ts41-master-0:24:18443 [0] NCCL INFO Connected all trees
+ts41-master-0:24:18443 [0] NCCL INFO 32 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts41-master-0:24:18443 [0] NCCL INFO comm 0xfd78ec0 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId a1000 commId 0x68cc712b10070c76 - Init COMPLETE
+Epoch: 1, Steps: 1125 | Train Loss: 0.3912802 Vali Loss: 0.2192081 Test Loss: 0.3192427
+Validation loss decreased (inf --> 0.219208).  Saving model ...
+Updating learning rate to 0.001
+	iters: 100, epoch: 2 | loss: 0.3620209
+	speed: 5.0332s/iter; left time: 50462.8438s
+	iters: 200, epoch: 2 | loss: 0.3473647
+	speed: 1.9722s/iter; left time: 19575.8154s
+	iters: 300, epoch: 2 | loss: 0.3647121
+	speed: 1.9752s/iter; left time: 19408.5995s
+	iters: 400, epoch: 2 | loss: 0.3492963
+	speed: 1.9759s/iter; left time: 19217.5275s
+	iters: 500, epoch: 2 | loss: 0.4114845
+	speed: 1.9735s/iter; left time: 18996.7727s
+	iters: 600, epoch: 2 | loss: 1.3990338
+	speed: 1.9731s/iter; left time: 18795.7334s
+	iters: 700, epoch: 2 | loss: 1.2887498
+	speed: 1.9748s/iter; left time: 18614.8415s
+	iters: 800, epoch: 2 | loss: 1.3149283
+	speed: 1.9746s/iter; left time: 18415.4240s
+	iters: 900, epoch: 2 | loss: 1.1805066
+	speed: 1.9723s/iter; left time: 18196.2072s
+	iters: 1000, epoch: 2 | loss: 1.1104136
+	speed: 1.9762s/iter; left time: 18034.8704s
+	iters: 1100, epoch: 2 | loss: 1.1498857
+	speed: 1.9759s/iter; left time: 17834.8691s
+Epoch: 2 cost time: 2221.3887000083923
+Epoch: 2, Steps: 1125 | Train Loss: 0.8955939 Vali Loss: 12.6180401 Test Loss: 8.8827381
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 0.0005
+	iters: 100, epoch: 3 | loss: 1.0893124
+	speed: 5.0802s/iter; left time: 45218.4763s
+	iters: 200, epoch: 3 | loss: 1.2396886
+	speed: 1.9728s/iter; left time: 17362.6068s
+	iters: 300, epoch: 3 | loss: 0.7531713
+	speed: 1.9751s/iter; left time: 17184.9685s
+	iters: 400, epoch: 3 | loss: 0.6424737
+	speed: 1.9771s/iter; left time: 17004.7642s
+	iters: 500, epoch: 3 | loss: 0.5444170
+	speed: 1.9728s/iter; left time: 16770.4588s
+	iters: 600, epoch: 3 | loss: 0.5278815
+	speed: 1.9746s/iter; left time: 16588.6437s
+	iters: 700, epoch: 3 | loss: 0.4795915
+	speed: 1.9744s/iter; left time: 16389.7748s
+	iters: 800, epoch: 3 | loss: 0.4713535
+	speed: 1.9751s/iter; left time: 16197.4593s
+	iters: 900, epoch: 3 | loss: 0.4915777
+	speed: 1.9725s/iter; left time: 15979.5781s
+	iters: 1000, epoch: 3 | loss: 0.4475740
+	speed: 1.9742s/iter; left time: 15795.3554s
+	iters: 1100, epoch: 3 | loss: 0.4277681
+	speed: 1.9771s/iter; left time: 15620.7449s
+Epoch: 3 cost time: 2221.2301592826843
+Epoch: 3, Steps: 1125 | Train Loss: 0.6676984 Vali Loss: 3.5618238 Test Loss: 2.6693418
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 0.00025
+	iters: 100, epoch: 4 | loss: 0.4304581
+	speed: 5.0947s/iter; left time: 39616.5718s
+	iters: 200, epoch: 4 | loss: 0.4392338
+	speed: 1.9731s/iter; left time: 15145.4427s
+	iters: 300, epoch: 4 | loss: 0.4690414
+	speed: 1.9755s/iter; left time: 14966.3017s
+	iters: 400, epoch: 4 | loss: 0.4311975
+	speed: 1.9750s/iter; left time: 14765.0715s
+	iters: 500, epoch: 4 | loss: 0.4066847
+	speed: 1.9737s/iter; left time: 14558.1601s
+	iters: 600, epoch: 4 | loss: 0.4033006
+	speed: 1.9739s/iter; left time: 14362.4299s
+	iters: 700, epoch: 4 | loss: 0.4330234
+	speed: 1.9752s/iter; left time: 14174.0588s
+	iters: 800, epoch: 4 | loss: 0.3993143
+	speed: 1.9747s/iter; left time: 13972.9461s
+	iters: 900, epoch: 4 | loss: 0.3784460
+	speed: 1.9738s/iter; left time: 13769.5294s
+	iters: 1000, epoch: 4 | loss: 0.4163323
+	speed: 1.9728s/iter; left time: 13564.6382s
+	iters: 1100, epoch: 4 | loss: 0.4314306
+	speed: 1.9750s/iter; left time: 13382.7554s
+Epoch: 4 cost time: 2221.203170776367
+Epoch: 4, Steps: 1125 | Train Loss: 0.4119255 Vali Loss: 1.2077078 Test Loss: 1.0275259
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_solar_96_720_AGPT_PT_2048_fixedFalse_0.001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 9793
+test shape: (9793, 720, 137) (9793, 720, 137)
+test shape: (9793, 720, 137) (9793, 720, 137)
+mse:0.31889551877975464, mae:0.3347165286540985

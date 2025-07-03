@@ -1,6 +1,7 @@
 import os
 import torch
-from models import PatchTST, AGPT, AGPTp, AGPTp_loss, AGPT_loss, AGPT_loss_G, AGPT_PT
+from models import PatchTST, AGPT, AGPTp, AGPTp_loss, AGPT_loss, AGPT_loss_G, AGPT_PT, SimpleTM, iTransformer, TimeMixer, \
+    FreTS, WPMixer, DLinear, TimesNet, Duet, PatchMLP
 
 class Exp_Basic(object):
     def __init__(self, args):
@@ -12,7 +13,16 @@ class Exp_Basic(object):
             'AGPTp_loss': AGPTp_loss,
             'AGPT_loss': AGPT_loss,
             'AGPT_loss_G': AGPT_loss_G,
-            'AGPT_PT': AGPT_PT
+            'AGPT_PT': AGPT_PT,
+            'SimpleTM': SimpleTM,
+            'iTransformer': iTransformer,
+            'TimeMixer': TimeMixer,
+            'FreTS': FreTS,
+            'WPMixer': WPMixer,
+            'DLinear': DLinear,
+            'TimesNet': TimesNet,
+            'Duet': Duet,
+            'PatchMLP': PatchMLP
             }
 
         self.device = self._acquire_device()

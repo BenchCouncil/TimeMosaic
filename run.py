@@ -4,12 +4,11 @@ import torch
 import torch.backends
 from exp.exp_long_term_forecasting import Exp_Long_Term_Forecast
 from exp.exp_AGPT import Exp_AGPT
-
 from utils.print_args import print_args
 import random
 import numpy as np
 
-os.environ['CUDA_VISIBLE_DEVICE']='2,3'
+os.environ['CUDA_VISIBLE_DEVICE']='0,1,2,3'
 
 if __name__ == '__main__':
     fix_seed = 2025
@@ -83,7 +82,7 @@ if __name__ == '__main__':
 
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
-    parser.add_argument('--gpu', type=int, default=2, help='gpu')
+    parser.add_argument('--gpu', type=int, default=0, help='gpu')
     parser.add_argument('--use_multi_gpu', action='store_true', help='use multiple gpus', default=False)
     parser.add_argument('--devices', type=str, default='0,1,2,3', help='device ids of multile gpus')
 
@@ -93,7 +92,6 @@ if __name__ == '__main__':
     parser.add_argument('--target_data_path', type=str, default='electricity.csv', help='data file')
 
     # other
-    parser.add_argument('--hidden_size', type=int, default=256, help="DUET hidden_size")
     parser.add_argument('--fc_dropout', type=float, default=0.1, help='fc_dropout')
     parser.add_argument('--fixed_weight', type=bool, default=False, help='fixed task emb weight')
     parser.add_argument('--adjust_lr', action='store_true', default=True, help='adjust learnring rate')
@@ -101,6 +99,50 @@ if __name__ == '__main__':
     parser.add_argument('--scale_rate', type=float, default=0.001, help='emb init scale rate')
     parser.add_argument('--patch_len_list', type=str, default='[8,16,32]',
                     help='List of candidate patch lengths for adaptive splitting')
+    
+    # SimpleTS
+    parser.add_argument('--kernel_size', default=None, help='Specify the length of randomly initialized wavelets (if not None)')
+    parser.add_argument('--alpha', type=float, default=1, help='Weight of the inner product score in geometric attention')
+    parser.add_argument('--geomattn_dropout', type=float, default=0.5, help='dropout rate of the projection layer in the geometric attention')
+    parser.add_argument('--requires_grad', type=bool, default=True, help='Set to True to enable learnable wavelets')
+    parser.add_argument('--wv', type=str, default='db1', help='Wavelet filter type. Supports all wavelets available in PyTorch Wavelets')
+    parser.add_argument('--m', type=int, default=3, help='Number of levels for the stationary wavelet transform')
+
+    # TimeMixer
+    parser.add_argument('--down_sampling_layers', type=int, default=3, help='num of down sampling layers')
+    parser.add_argument('--down_sampling_window', type=int, default=2, help='down sampling window size')
+    parser.add_argument('--down_sampling_method', type=str, default='avg',
+                        help='down sampling method, only support avg, max, conv')
+    parser.add_argument('--channel_independence', type=int, default=1,
+                        help='0: channel dependence 1: channel independence for FreTS model')
+    parser.add_argument('--decomp_method', type=str, default='moving_avg',
+                    help='method of series decompsition, only support moving_avg or dft_decomp')
+    parser.add_argument('--use_norm', type=int, default=1, help='whether to use normalize; True 1 False 0')
+
+    # WPMixer
+    parser.add_argument('--patch_len', type=int, default=16, help='patch length')
+    
+    # TimesNet
+    parser.add_argument('--top_k', type=int, default=3, help='for TimesBlock')
+    
+    # DUET
+    parser.add_argument('--num_experts', type=int, default=3, help="num_experts")
+    parser.add_argument('--k', type=int, default=1, help="DUET k")
+    parser.add_argument('--hidden_size', type=int, default=256, help="DUET hidden_size")
+    parser.add_argument('--CI', action='store_true', help='DUET CI', default=True)
+    parser.add_argument('--noisy_gating', action='store_true', help='DUET noisy_gating', default=True)
+
+    # PathFormer
+    parser.add_argument('--layer_nums', type=int, default=3)
+    parser.add_argument('--num_nodes', type=int, default=21)
+    parser.add_argument('--patch_size_list', nargs='+', type=int, default=[16,12,8,32,12,8,6,4,8,6,4,2])
+    parser.add_argument('--revin', type=int, default=1, help='whether to apply RevIN')
+    parser.add_argument('--num_experts_list', type=list, default=[4, 4, 4])
+    parser.add_argument('--residual_connection', type=int, default=0)
+    parser.add_argument('--batch_norm', type=int, default=0)
+    parser.add_argument('--pct_start', type=float, default=0.4, help='pct_start')
+
+
 
     args = parser.parse_args()
     if torch.cuda.is_available() and args.use_gpu:
