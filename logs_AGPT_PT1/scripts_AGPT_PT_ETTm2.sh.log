@@ -1,0 +1,660 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           ETTm2_96_96         Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               ETTm2               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTm2.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            16                  e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_ETTm2_96_96_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 34369
+val 11425
+test 11425
+	iters: 100, epoch: 1 | loss: 0.2297342
+	speed: 0.4372s/iter; left time: 4656.4250s
+	iters: 200, epoch: 1 | loss: 0.2457160
+	speed: 0.4139s/iter; left time: 4367.4635s
+	iters: 300, epoch: 1 | loss: 0.1905180
+	speed: 0.4257s/iter; left time: 4448.4955s
+	iters: 400, epoch: 1 | loss: 0.1656951
+	speed: 0.4037s/iter; left time: 4178.6240s
+	iters: 500, epoch: 1 | loss: 0.3005823
+	speed: 0.4348s/iter; left time: 4456.7421s
+	iters: 600, epoch: 1 | loss: 0.4769332
+	speed: 0.4081s/iter; left time: 4142.3320s
+	iters: 700, epoch: 1 | loss: 0.2275794
+	speed: 0.3957s/iter; left time: 3977.0642s
+	iters: 800, epoch: 1 | loss: 0.5030527
+	speed: 0.3795s/iter; left time: 3775.9093s
+	iters: 900, epoch: 1 | loss: 0.3164522
+	speed: 0.4322s/iter; left time: 4257.4181s
+	iters: 1000, epoch: 1 | loss: 0.2751556
+	speed: 0.4046s/iter; left time: 3945.3251s
+Epoch: 1 cost time: 445.35515809059143
+Epoch: 1, Steps: 1075 | Train Loss: 0.2443541 Vali Loss: 0.1296893 Test Loss: 0.1811561
+Validation loss decreased (inf --> 0.129689).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.4038410
+	speed: 2.0309s/iter; left time: 19447.4657s
+	iters: 200, epoch: 2 | loss: 0.2857282
+	speed: 0.3804s/iter; left time: 3604.9340s
+	iters: 300, epoch: 2 | loss: 0.3921243
+	speed: 0.4327s/iter; left time: 4057.1968s
+	iters: 400, epoch: 2 | loss: 0.2684211
+	speed: 0.3790s/iter; left time: 3515.2165s
+	iters: 500, epoch: 2 | loss: 0.2244859
+	speed: 0.4346s/iter; left time: 3987.5623s
+	iters: 600, epoch: 2 | loss: 0.2627290
+	speed: 0.4057s/iter; left time: 3682.5705s
+	iters: 700, epoch: 2 | loss: 0.1846995
+	speed: 0.4200s/iter; left time: 3769.6713s
+	iters: 800, epoch: 2 | loss: 0.2903999
+	speed: 0.4103s/iter; left time: 3641.4127s
+	iters: 900, epoch: 2 | loss: 0.1220093
+	speed: 0.4127s/iter; left time: 3621.6061s
+	iters: 1000, epoch: 2 | loss: 0.1296754
+	speed: 0.4039s/iter; left time: 3504.2522s
+Epoch: 2 cost time: 438.54915046691895
+Epoch: 2, Steps: 1075 | Train Loss: 0.2326958 Vali Loss: 0.1399672 Test Loss: 0.1905880
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.1902871
+	speed: 1.8080s/iter; left time: 15370.1414s
+	iters: 200, epoch: 3 | loss: 0.2063970
+	speed: 0.3376s/iter; left time: 2836.2341s
+	iters: 300, epoch: 3 | loss: 0.1233073
+	speed: 0.3360s/iter; left time: 2789.0891s
+	iters: 400, epoch: 3 | loss: 0.1767153
+	speed: 0.3186s/iter; left time: 2612.9278s
+	iters: 500, epoch: 3 | loss: 0.3012141
+	speed: 0.3537s/iter; left time: 2865.0736s
+	iters: 600, epoch: 3 | loss: 0.4145709
+	speed: 0.3515s/iter; left time: 2811.9822s
+	iters: 700, epoch: 3 | loss: 0.2654997
+	speed: 0.3423s/iter; left time: 2704.9022s
+	iters: 800, epoch: 3 | loss: 0.0931517
+	speed: 0.3455s/iter; left time: 2695.1273s
+	iters: 900, epoch: 3 | loss: 0.1562101
+	speed: 0.3522s/iter; left time: 2712.1906s
+	iters: 1000, epoch: 3 | loss: 0.2309021
+	speed: 0.3386s/iter; left time: 2573.3581s
+Epoch: 3 cost time: 363.93714570999146
+Epoch: 3, Steps: 1075 | Train Loss: 0.2234043 Vali Loss: 0.1282773 Test Loss: 0.1779548
+Validation loss decreased (0.129689 --> 0.128277).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.2144282
+	speed: 1.6208s/iter; left time: 12036.2900s
+	iters: 200, epoch: 4 | loss: 0.2691181
+	speed: 0.3588s/iter; left time: 2628.5395s
+	iters: 300, epoch: 4 | loss: 0.3636611
+	speed: 0.3479s/iter; left time: 2514.0719s
+	iters: 400, epoch: 4 | loss: 0.1434103
+	speed: 0.3283s/iter; left time: 2339.4048s
+	iters: 500, epoch: 4 | loss: 0.3592721
+	speed: 0.3283s/iter; left time: 2306.4090s
+	iters: 600, epoch: 4 | loss: 0.1434194
+	speed: 0.3366s/iter; left time: 2331.0523s
+	iters: 700, epoch: 4 | loss: 0.1600530
+	speed: 0.3004s/iter; left time: 2050.5452s
+	iters: 800, epoch: 4 | loss: 0.1902897
+	speed: 0.4039s/iter; left time: 2716.8433s
+	iters: 900, epoch: 4 | loss: 0.1814176
+	speed: 0.3928s/iter; left time: 2602.8983s
+	iters: 1000, epoch: 4 | loss: 0.1962427
+	speed: 0.3872s/iter; left time: 2527.0809s
+Epoch: 4 cost time: 379.2377061843872
+Epoch: 4, Steps: 1075 | Train Loss: 0.2158115 Vali Loss: 0.1303102 Test Loss: 0.1807222
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.2917584
+	speed: 1.9111s/iter; left time: 12137.5136s
+	iters: 200, epoch: 5 | loss: 0.1313859
+	speed: 0.3868s/iter; left time: 2417.8563s
+	iters: 300, epoch: 5 | loss: 0.1745504
+	speed: 0.3589s/iter; left time: 2207.6840s
+	iters: 400, epoch: 5 | loss: 0.1235948
+	speed: 0.3759s/iter; left time: 2274.4940s
+	iters: 500, epoch: 5 | loss: 0.1440208
+	speed: 0.3796s/iter; left time: 2258.7246s
+	iters: 600, epoch: 5 | loss: 0.1302748
+	speed: 0.3585s/iter; left time: 2097.5057s
+	iters: 700, epoch: 5 | loss: 0.1683764
+	speed: 0.3117s/iter; left time: 1792.6745s
+	iters: 800, epoch: 5 | loss: 0.1449208
+	speed: 0.3227s/iter; left time: 1823.6896s
+	iters: 900, epoch: 5 | loss: 0.2363264
+	speed: 0.3171s/iter; left time: 1760.1153s
+	iters: 1000, epoch: 5 | loss: 0.1668525
+	speed: 0.3237s/iter; left time: 1764.6649s
+Epoch: 5 cost time: 376.1200170516968
+Epoch: 5, Steps: 1075 | Train Loss: 0.2113851 Vali Loss: 0.1295140 Test Loss: 0.1811486
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.2321680
+	speed: 1.4807s/iter; left time: 7811.9490s
+	iters: 200, epoch: 6 | loss: 0.1693527
+	speed: 0.2740s/iter; left time: 1418.2898s
+	iters: 300, epoch: 6 | loss: 0.1622368
+	speed: 0.2736s/iter; left time: 1388.7164s
+	iters: 400, epoch: 6 | loss: 0.4631226
+	speed: 0.2741s/iter; left time: 1363.6977s
+	iters: 500, epoch: 6 | loss: 0.1774012
+	speed: 0.2738s/iter; left time: 1335.1510s
+	iters: 600, epoch: 6 | loss: 0.1199859
+	speed: 0.2739s/iter; left time: 1308.3089s
+	iters: 700, epoch: 6 | loss: 0.3618881
+	speed: 0.2740s/iter; left time: 1281.2452s
+	iters: 800, epoch: 6 | loss: 0.1620814
+	speed: 0.2742s/iter; left time: 1254.6257s
+	iters: 900, epoch: 6 | loss: 0.1346019
+	speed: 0.2733s/iter; left time: 1223.3405s
+	iters: 1000, epoch: 6 | loss: 0.1929341
+	speed: 0.2716s/iter; left time: 1188.3564s
+Epoch: 6 cost time: 291.48916268348694
+Epoch: 6, Steps: 1075 | Train Loss: 0.2081502 Vali Loss: 0.1311042 Test Loss: 0.1829978
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_ETTm2_96_96_AGPT_PT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 11425
+test shape: (11425, 96, 7) (11425, 96, 7)
+test shape: (11425, 96, 7) (11425, 96, 7)
+mse:0.17815962433815002, mae:0.26012110710144043
+================================================================================
+Model Profiling Summary
+Total Params             : 10,134,883
+Inference Time (s)       : 0.118378
+GPU Mem Footprint (MB)   : 103.88
+Peak Mem (MB)            : 204.64
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           ETTm2_96_192        Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               ETTm2               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTm2.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            2                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         128                 
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_ETTm2_96_192_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 34273
+val 11329
+test 11329
+	iters: 100, epoch: 1 | loss: 0.4215375
+	speed: 1.0094s/iter; left time: 2605.2395s
+	iters: 200, epoch: 1 | loss: 0.3061374
+	speed: 0.9789s/iter; left time: 2428.6993s
+Epoch: 1 cost time: 267.58495569229126
+Epoch: 1, Steps: 268 | Train Loss: 0.3411709 Vali Loss: 0.1719724 Test Loss: 0.2433298
+Validation loss decreased (inf --> 0.171972).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.3207880
+	speed: 2.1726s/iter; left time: 5025.2689s
+	iters: 200, epoch: 2 | loss: 0.3206005
+	speed: 0.9810s/iter; left time: 2170.9021s
+Epoch: 2 cost time: 267.33039259910583
+Epoch: 2, Steps: 268 | Train Loss: 0.3289888 Vali Loss: 0.1748388 Test Loss: 0.2450425
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.2510636
+	speed: 2.1744s/iter; left time: 4446.6673s
+	iters: 200, epoch: 3 | loss: 0.4282418
+	speed: 0.9849s/iter; left time: 1915.7237s
+Epoch: 3 cost time: 267.35503005981445
+Epoch: 3, Steps: 268 | Train Loss: 0.3226760 Vali Loss: 0.1714588 Test Loss: 0.2409683
+Validation loss decreased (0.171972 --> 0.171459).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.2497786
+	speed: 2.1476s/iter; left time: 3816.3256s
+	iters: 200, epoch: 4 | loss: 0.3700847
+	speed: 0.9495s/iter; left time: 1592.2335s
+Epoch: 4 cost time: 256.4493238925934
+Epoch: 4, Steps: 268 | Train Loss: 0.3186367 Vali Loss: 0.1720384 Test Loss: 0.2416231
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.2145487
+	speed: 2.0421s/iter; left time: 3081.4709s
+	iters: 200, epoch: 5 | loss: 0.2871685
+	speed: 0.9491s/iter; left time: 1337.2938s
+Epoch: 5 cost time: 256.08305644989014
+Epoch: 5, Steps: 268 | Train Loss: 0.3155002 Vali Loss: 0.1726264 Test Loss: 0.2414813
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.2840613
+	speed: 2.0694s/iter; left time: 2568.1107s
+	iters: 200, epoch: 6 | loss: 0.4663486
+	speed: 0.9597s/iter; left time: 1095.0094s
+Epoch: 6 cost time: 255.51230239868164
+Epoch: 6, Steps: 268 | Train Loss: 0.3137665 Vali Loss: 0.1723760 Test Loss: 0.2425168
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_ETTm2_96_192_AGPT_PT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 11329
+test shape: (11329, 192, 7) (11329, 192, 7)
+test shape: (11329, 192, 7) (11329, 192, 7)
+mse:0.24172288179397583, mae:0.301724910736084
+================================================================================
+Model Profiling Summary
+Total Params             : 10,724,803
+Inference Time (s)       : 0.246270
+GPU Mem Footprint (MB)   : 112.04
+Peak Mem (MB)            : 503.02
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           ETTm2_96_336        Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               ETTm2               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTm2.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            4                   e layers:           1                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_ETTm2_96_336_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 34129
+val 11185
+test 11185
+	iters: 100, epoch: 1 | loss: 0.2732512
+	speed: 0.1209s/iter; left time: 1277.8724s
+	iters: 200, epoch: 1 | loss: 0.3695816
+	speed: 0.1179s/iter; left time: 1234.1910s
+	iters: 300, epoch: 1 | loss: 0.2275597
+	speed: 0.1336s/iter; left time: 1385.2943s
+	iters: 400, epoch: 1 | loss: 0.6074482
+	speed: 0.1332s/iter; left time: 1368.0517s
+	iters: 500, epoch: 1 | loss: 0.6206284
+	speed: 0.1332s/iter; left time: 1354.7027s
+	iters: 600, epoch: 1 | loss: 0.6406479
+	speed: 0.1325s/iter; left time: 1334.3136s
+	iters: 700, epoch: 1 | loss: 0.3965867
+	speed: 0.1333s/iter; left time: 1329.0097s
+	iters: 800, epoch: 1 | loss: 0.3826944
+	speed: 0.1333s/iter; left time: 1315.5450s
+	iters: 900, epoch: 1 | loss: 0.5365494
+	speed: 0.1234s/iter; left time: 1206.1064s
+	iters: 1000, epoch: 1 | loss: 0.2716141
+	speed: 0.1157s/iter; left time: 1119.3799s
+Epoch: 1 cost time: 136.0860893726349
+Epoch: 1, Steps: 1067 | Train Loss: 0.4480454 Vali Loss: 0.2222328 Test Loss: 0.3073700
+Validation loss decreased (inf --> 0.222233).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.3371883
+	speed: 0.7554s/iter; left time: 7179.4701s
+	iters: 200, epoch: 2 | loss: 0.2290481
+	speed: 0.1298s/iter; left time: 1220.7894s
+	iters: 300, epoch: 2 | loss: 0.3011913
+	speed: 0.1152s/iter; left time: 1071.9965s
+	iters: 400, epoch: 2 | loss: 0.2212404
+	speed: 0.1209s/iter; left time: 1112.4334s
+	iters: 500, epoch: 2 | loss: 0.3909653
+	speed: 0.1329s/iter; left time: 1209.9337s
+	iters: 600, epoch: 2 | loss: 0.6859565
+	speed: 0.1331s/iter; left time: 1198.8811s
+	iters: 700, epoch: 2 | loss: 0.4234400
+	speed: 0.1334s/iter; left time: 1187.7643s
+	iters: 800, epoch: 2 | loss: 0.3742338
+	speed: 0.1335s/iter; left time: 1175.6819s
+	iters: 900, epoch: 2 | loss: 0.2806328
+	speed: 0.1329s/iter; left time: 1156.6616s
+	iters: 1000, epoch: 2 | loss: 0.2663452
+	speed: 0.1330s/iter; left time: 1144.2044s
+Epoch: 2 cost time: 138.33256578445435
+Epoch: 2, Steps: 1067 | Train Loss: 0.4359011 Vali Loss: 0.2278141 Test Loss: 0.3113979
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.5880532
+	speed: 0.6935s/iter; left time: 5850.7511s
+	iters: 200, epoch: 3 | loss: 0.3389714
+	speed: 0.1395s/iter; left time: 1163.3652s
+	iters: 300, epoch: 3 | loss: 0.4505518
+	speed: 0.1396s/iter; left time: 1150.1954s
+	iters: 400, epoch: 3 | loss: 0.2731407
+	speed: 0.1396s/iter; left time: 1135.9790s
+	iters: 500, epoch: 3 | loss: 0.2978734
+	speed: 0.1395s/iter; left time: 1121.4123s
+	iters: 600, epoch: 3 | loss: 0.2788432
+	speed: 0.1397s/iter; left time: 1108.6075s
+	iters: 700, epoch: 3 | loss: 0.4516350
+	speed: 0.1394s/iter; left time: 1092.7401s
+	iters: 800, epoch: 3 | loss: 0.2530977
+	speed: 0.1399s/iter; left time: 1082.2116s
+	iters: 900, epoch: 3 | loss: 0.6090382
+	speed: 0.1393s/iter; left time: 1063.7896s
+	iters: 1000, epoch: 3 | loss: 0.7105170
+	speed: 0.1397s/iter; left time: 1052.9097s
+Epoch: 3 cost time: 149.1352734565735
+Epoch: 3, Steps: 1067 | Train Loss: 0.4252202 Vali Loss: 0.2193529 Test Loss: 0.3013212
+Validation loss decreased (0.222233 --> 0.219353).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.4838581
+	speed: 0.7871s/iter; left time: 5800.8243s
+	iters: 200, epoch: 4 | loss: 0.8296496
+	speed: 0.1274s/iter; left time: 926.2715s
+	iters: 300, epoch: 4 | loss: 0.7034417
+	speed: 0.1227s/iter; left time: 879.6865s
+	iters: 400, epoch: 4 | loss: 0.3136127
+	speed: 0.1249s/iter; left time: 882.8815s
+	iters: 500, epoch: 4 | loss: 0.5616540
+	speed: 0.1368s/iter; left time: 953.6115s
+	iters: 600, epoch: 4 | loss: 0.6652406
+	speed: 0.1366s/iter; left time: 938.3405s
+	iters: 700, epoch: 4 | loss: 0.2475555
+	speed: 0.1369s/iter; left time: 926.4768s
+	iters: 800, epoch: 4 | loss: 0.7678269
+	speed: 0.1375s/iter; left time: 916.9656s
+	iters: 900, epoch: 4 | loss: 0.5246058
+	speed: 0.1367s/iter; left time: 898.1072s
+	iters: 1000, epoch: 4 | loss: 0.3368925
+	speed: 0.1358s/iter; left time: 878.9114s
+Epoch: 4 cost time: 142.25137948989868
+Epoch: 4, Steps: 1067 | Train Loss: 0.4195393 Vali Loss: 0.2271054 Test Loss: 0.3085744
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.2581247
+	speed: 0.7739s/iter; left time: 4877.6525s
+	iters: 200, epoch: 5 | loss: 0.4866539
+	speed: 0.1355s/iter; left time: 840.4743s
+	iters: 300, epoch: 5 | loss: 0.3680762
+	speed: 0.1370s/iter; left time: 835.9118s
+	iters: 400, epoch: 5 | loss: 0.3107340
+	speed: 0.1361s/iter; left time: 816.7999s
+	iters: 500, epoch: 5 | loss: 0.3697996
+	speed: 0.1364s/iter; left time: 805.0032s
+	iters: 600, epoch: 5 | loss: 0.2601553
+	speed: 0.1229s/iter; left time: 713.2236s
+	iters: 700, epoch: 5 | loss: 0.8511270
+	speed: 0.1209s/iter; left time: 689.5440s
+	iters: 800, epoch: 5 | loss: 0.6705353
+	speed: 0.1226s/iter; left time: 687.1560s
+	iters: 900, epoch: 5 | loss: 0.2719698
+	speed: 0.1269s/iter; left time: 698.2998s
+	iters: 1000, epoch: 5 | loss: 0.1686869
+	speed: 0.1394s/iter; left time: 753.0352s
+Epoch: 5 cost time: 140.9743902683258
+Epoch: 5, Steps: 1067 | Train Loss: 0.4158564 Vali Loss: 0.2192536 Test Loss: 0.3004872
+Validation loss decreased (0.219353 --> 0.219254).  Saving model ...
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.1860666
+	speed: 0.7908s/iter; left time: 4140.6144s
+	iters: 200, epoch: 6 | loss: 0.2816738
+	speed: 0.1394s/iter; left time: 715.7532s
+	iters: 300, epoch: 6 | loss: 0.4319052
+	speed: 0.1396s/iter; left time: 702.9830s
+	iters: 400, epoch: 6 | loss: 0.2511843
+	speed: 0.1394s/iter; left time: 688.0600s
+	iters: 500, epoch: 6 | loss: 0.3956001
+	speed: 0.1395s/iter; left time: 674.8140s
+	iters: 600, epoch: 6 | loss: 0.2250560
+	speed: 0.1396s/iter; left time: 661.3176s
+	iters: 700, epoch: 6 | loss: 0.2236328
+	speed: 0.1397s/iter; left time: 647.8558s
+	iters: 800, epoch: 6 | loss: 0.3569608
+	speed: 0.1396s/iter; left time: 633.1703s
+	iters: 900, epoch: 6 | loss: 0.2149072
+	speed: 0.1392s/iter; left time: 617.4681s
+	iters: 1000, epoch: 6 | loss: 0.3350617
+	speed: 0.1397s/iter; left time: 605.5808s
+Epoch: 6 cost time: 148.25415444374084
+Epoch: 6, Steps: 1067 | Train Loss: 0.4134905 Vali Loss: 0.2188100 Test Loss: 0.3001778
+Validation loss decreased (0.219254 --> 0.218810).  Saving model ...
+Updating learning rate to 3.125e-06
+	iters: 100, epoch: 7 | loss: 0.2294272
+	speed: 0.7560s/iter; left time: 3151.7465s
+	iters: 200, epoch: 7 | loss: 0.3249078
+	speed: 0.1393s/iter; left time: 566.7538s
+	iters: 300, epoch: 7 | loss: 0.3342887
+	speed: 0.1398s/iter; left time: 555.0286s
+	iters: 400, epoch: 7 | loss: 0.4656253
+	speed: 0.1397s/iter; left time: 540.5851s
+	iters: 500, epoch: 7 | loss: 0.2925510
+	speed: 0.1395s/iter; left time: 525.8957s
+	iters: 600, epoch: 7 | loss: 0.9674077
+	speed: 0.1395s/iter; left time: 511.8182s
+	iters: 700, epoch: 7 | loss: 0.2328446
+	speed: 0.1394s/iter; left time: 497.5126s
+	iters: 800, epoch: 7 | loss: 0.7571246
+	speed: 0.1395s/iter; left time: 483.9918s
+	iters: 900, epoch: 7 | loss: 0.2933663
+	speed: 0.1397s/iter; left time: 470.6945s
+	iters: 1000, epoch: 7 | loss: 0.3046586
+	speed: 0.1396s/iter; left time: 456.3174s
+Epoch: 7 cost time: 149.12221503257751
+Epoch: 7, Steps: 1067 | Train Loss: 0.4120930 Vali Loss: 0.2193551 Test Loss: 0.3008932
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 1.5625e-06
+	iters: 100, epoch: 8 | loss: 0.5230596
+	speed: 0.7737s/iter; left time: 2399.8807s
+	iters: 200, epoch: 8 | loss: 0.6455299
+	speed: 0.1267s/iter; left time: 380.2863s
+	iters: 300, epoch: 8 | loss: 0.5631570
+	speed: 0.1266s/iter; left time: 367.4517s
+	iters: 400, epoch: 8 | loss: 0.5941213
+	speed: 0.1362s/iter; left time: 381.5824s
+	iters: 500, epoch: 8 | loss: 0.2547143
+	speed: 0.1396s/iter; left time: 377.0711s
+	iters: 600, epoch: 8 | loss: 0.3083179
+	speed: 0.1398s/iter; left time: 363.7175s
+	iters: 700, epoch: 8 | loss: 0.6538525
+	speed: 0.1394s/iter; left time: 348.7695s
+	iters: 800, epoch: 8 | loss: 0.1905536
+	speed: 0.1398s/iter; left time: 335.7451s
+	iters: 900, epoch: 8 | loss: 0.5066553
+	speed: 0.1395s/iter; left time: 321.1074s
+	iters: 1000, epoch: 8 | loss: 0.8160903
+	speed: 0.1396s/iter; left time: 307.3081s
+Epoch: 8 cost time: 144.8109381198883
+Epoch: 8, Steps: 1067 | Train Loss: 0.4115344 Vali Loss: 0.2203116 Test Loss: 0.3013241
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 7.8125e-07
+	iters: 100, epoch: 9 | loss: 0.4411216
+	speed: 0.7867s/iter; left time: 1601.0090s
+	iters: 200, epoch: 9 | loss: 0.5126245
+	speed: 0.1399s/iter; left time: 270.7280s
+	iters: 300, epoch: 9 | loss: 0.7340481
+	speed: 0.1395s/iter; left time: 255.8969s
+	iters: 400, epoch: 9 | loss: 0.7716417
+	speed: 0.1392s/iter; left time: 241.5564s
+	iters: 500, epoch: 9 | loss: 0.6952508
+	speed: 0.1346s/iter; left time: 220.1355s
+	iters: 600, epoch: 9 | loss: 0.3816976
+	speed: 0.1262s/iter; left time: 193.7044s
+	iters: 700, epoch: 9 | loss: 0.3983004
+	speed: 0.1247s/iter; left time: 178.8735s
+	iters: 800, epoch: 9 | loss: 0.2655331
+	speed: 0.1260s/iter; left time: 168.2578s
+	iters: 900, epoch: 9 | loss: 0.5816355
+	speed: 0.1380s/iter; left time: 170.3815s
+	iters: 1000, epoch: 9 | loss: 0.4556136
+	speed: 0.1395s/iter; left time: 158.3840s
+Epoch: 9 cost time: 144.24073815345764
+Epoch: 9, Steps: 1067 | Train Loss: 0.4112988 Vali Loss: 0.2203734 Test Loss: 0.3013484
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_ETTm2_96_336_AGPT_PT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 11185
+test shape: (11185, 336, 7) (11185, 336, 7)
+test shape: (11185, 336, 7) (11185, 336, 7)
+mse:0.30041494965553284, mae:0.3412792682647705
+================================================================================
+Model Profiling Summary
+Total Params             : 5,304,915
+Inference Time (s)       : 0.075950
+GPU Mem Footprint (MB)   : 68.09
+Peak Mem (MB)            : 162.25
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           ETTm2_96_720        Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               ETTm2               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTm2.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            4                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         128                 
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_ETTm2_96_720_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 33745
+val 10801
+test 10801
+	iters: 100, epoch: 1 | loss: 0.5994121
+	speed: 1.0173s/iter; left time: 2585.0499s
+	iters: 200, epoch: 1 | loss: 0.5978904
+	speed: 0.9791s/iter; left time: 2389.9263s
+Epoch: 1 cost time: 264.8685984611511
+Epoch: 1, Steps: 264 | Train Loss: 0.5905924 Vali Loss: 0.2958628 Test Loss: 0.4091145
+Validation loss decreased (inf --> 0.295863).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.4069703
+	speed: 2.1361s/iter; left time: 4863.8962s
+	iters: 200, epoch: 2 | loss: 0.6091867
+	speed: 0.8765s/iter; left time: 1908.1127s
+Epoch: 2 cost time: 231.20988202095032
+Epoch: 2, Steps: 264 | Train Loss: 0.5765940 Vali Loss: 0.2877693 Test Loss: 0.4032017
+Validation loss decreased (0.295863 --> 0.287769).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.5008636
+	speed: 1.3985s/iter; left time: 2815.0979s
+	iters: 200, epoch: 3 | loss: 0.7652597
+	speed: 0.6772s/iter; left time: 1295.4574s
+Epoch: 3 cost time: 177.5164315700531
+Epoch: 3, Steps: 264 | Train Loss: 0.5676655 Vali Loss: 0.2903457 Test Loss: 0.4021607
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.5080936
+	speed: 1.4450s/iter; left time: 2527.2948s
+	iters: 200, epoch: 4 | loss: 0.4885538
+	speed: 0.6818s/iter; left time: 1124.2736s
+Epoch: 4 cost time: 180.20397663116455
+Epoch: 4, Steps: 264 | Train Loss: 0.5615891 Vali Loss: 0.2885113 Test Loss: 0.4015291
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.6154571
+	speed: 1.4402s/iter; left time: 2138.7261s
+	iters: 200, epoch: 5 | loss: 0.6761497
+	speed: 0.6839s/iter; left time: 947.2279s
+Epoch: 5 cost time: 180.30478429794312
+Epoch: 5, Steps: 264 | Train Loss: 0.5580292 Vali Loss: 0.2910654 Test Loss: 0.4018763
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_ETTm2_96_720_AGPT_PT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 10801
+test shape: (10801, 720, 7) (10801, 720, 7)
+test shape: (10801, 720, 7) (10801, 720, 7)
+mse:0.40061497688293457, mae:0.39992740750312805
+================================================================================
+Model Profiling Summary
+Total Params             : 13,969,363
+Inference Time (s)       : 0.177222
+GPU Mem Footprint (MB)   : 144.09
+Peak Mem (MB)            : 534.77
+================================================================================

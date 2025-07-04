@@ -1,0 +1,296 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           Exchange_96_96      Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/exchange_rate/
+  Data Path:          exchange_rate.csv   Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             8                   Dec In:             8                   
+  C Out:              8                   d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_Exchange_96_96_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 5120
+val 665
+test 1422
+	iters: 100, epoch: 1 | loss: 0.1064900
+	speed: 0.4435s/iter; left time: 665.7636s
+Epoch: 1 cost time: 70.36904764175415
+Epoch: 1, Steps: 160 | Train Loss: 0.1414738 Vali Loss: 0.1346240 Test Loss: 0.0866180
+Validation loss decreased (inf --> 0.134624).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.0998225
+	speed: 0.8049s/iter; left time: 1079.3530s
+Epoch: 2 cost time: 68.44208884239197
+Epoch: 2, Steps: 160 | Train Loss: 0.1324264 Vali Loss: 0.1393868 Test Loss: 0.0858309
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.1183515
+	speed: 0.7986s/iter; left time: 943.1362s
+Epoch: 3 cost time: 70.28397250175476
+Epoch: 3, Steps: 160 | Train Loss: 0.1287380 Vali Loss: 0.1369052 Test Loss: 0.0893725
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.1149895
+	speed: 0.7771s/iter; left time: 793.4571s
+Epoch: 4 cost time: 65.37499284744263
+Epoch: 4, Steps: 160 | Train Loss: 0.1266801 Vali Loss: 0.1438043 Test Loss: 0.0861292
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_Exchange_96_96_AGPT_PT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1422
+test shape: (1422, 96, 8) (1422, 96, 8)
+test shape: (1422, 96, 8) (1422, 96, 8)
+mse:0.08561889082193375, mae:0.20396451652050018
+================================================================================
+Model Profiling Summary
+Total Params             : 6,982,499
+Inference Time (s)       : 0.147519
+GPU Mem Footprint (MB)   : 80.03
+Peak Mem (MB)            : 194.61
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           Exchange_96_192     Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/exchange_rate/
+  Data Path:          exchange_rate.csv   Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             8                   Dec In:             8                   
+  C Out:              8                   d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_Exchange_96_192_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 5024
+val 569
+test 1326
+	iters: 100, epoch: 1 | loss: 0.2114391
+	speed: 0.4484s/iter; left time: 659.6283s
+Epoch: 1 cost time: 69.1552984714508
+Epoch: 1, Steps: 157 | Train Loss: 0.2667961 Vali Loss: 0.2338948 Test Loss: 0.1782073
+Validation loss decreased (inf --> 0.233895).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.2780835
+	speed: 0.7692s/iter; left time: 1010.7340s
+Epoch: 2 cost time: 66.24946475028992
+Epoch: 2, Steps: 157 | Train Loss: 0.2573573 Vali Loss: 0.2393360 Test Loss: 0.1755473
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.2588902
+	speed: 0.7543s/iter; left time: 872.7549s
+Epoch: 3 cost time: 65.23133420944214
+Epoch: 3, Steps: 157 | Train Loss: 0.2506032 Vali Loss: 0.2513620 Test Loss: 0.1856844
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.2374196
+	speed: 0.7046s/iter; left time: 704.6329s
+Epoch: 4 cost time: 62.29451537132263
+Epoch: 4, Steps: 157 | Train Loss: 0.2468093 Vali Loss: 0.2472511 Test Loss: 0.1835559
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_Exchange_96_192_AGPT_PT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1326
+test shape: (1326, 192, 8) (1326, 192, 8)
+test shape: (1326, 192, 8) (1326, 192, 8)
+mse:0.17817392945289612, mae:0.3001706898212433
+================================================================================
+Model Profiling Summary
+Total Params             : 7,572,419
+Inference Time (s)       : 0.167108
+GPU Mem Footprint (MB)   : 84.92
+Peak Mem (MB)            : 199.48
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           Exchange_96_336     Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/exchange_rate/
+  Data Path:          exchange_rate.csv   Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             8                   Dec In:             8                   
+  C Out:              8                   d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       1                   Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_Exchange_96_336_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 4880
+val 425
+test 1182
+	iters: 100, epoch: 1 | loss: 0.3789485
+	speed: 0.4484s/iter; left time: 24.2151s
+Epoch: 1 cost time: 66.87797212600708
+Epoch: 1, Steps: 153 | Train Loss: 0.4438925 Vali Loss: 0.3842562 Test Loss: 0.3399094
+Validation loss decreased (inf --> 0.384256).  Saving model ...
+Updating learning rate to 0.0001
+>>>>>>>testing : AGPT_loss_Exchange_96_336_AGPT_PT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1182
+test shape: (1182, 336, 8) (1182, 336, 8)
+test shape: (1182, 336, 8) (1182, 336, 8)
+mse:0.33995726704597473, mae:0.42250126600265503
+================================================================================
+Model Profiling Summary
+Total Params             : 8,457,299
+Inference Time (s)       : 0.132201
+GPU Mem Footprint (MB)   : 92.61
+Peak Mem (MB)            : 207.15
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           Exchange_96_720     Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/exchange_rate/
+  Data Path:          exchange_rate.csv   Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             8                   Dec In:             8                   
+  C Out:              8                   d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_Exchange_96_720_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 4496
+val 41
+test 798
+	iters: 100, epoch: 1 | loss: 0.9183372
+	speed: 0.4502s/iter; left time: 590.2604s
+Epoch: 1 cost time: 62.516905069351196
+Epoch: 1, Steps: 141 | Train Loss: 0.8353878 Vali Loss: 1.1499335 Test Loss: 0.8351896
+Validation loss decreased (inf --> 1.149933).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.9540190
+	speed: 0.6498s/iter; left time: 760.2565s
+Epoch: 2 cost time: 60.05195927619934
+Epoch: 2, Steps: 141 | Train Loss: 0.8199240 Vali Loss: 1.0511231 Test Loss: 0.8281618
+Validation loss decreased (1.149933 --> 1.051123).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.8189608
+	speed: 0.6438s/iter; left time: 662.5168s
+Epoch: 3 cost time: 59.427306175231934
+Epoch: 3, Steps: 141 | Train Loss: 0.8053463 Vali Loss: 1.1751102 Test Loss: 0.8231833
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.7540888
+	speed: 0.6462s/iter; left time: 573.8344s
+Epoch: 4 cost time: 58.73916721343994
+Epoch: 4, Steps: 141 | Train Loss: 0.7924779 Vali Loss: 1.3196102 Test Loss: 0.8138778
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.7573577
+	speed: 0.6399s/iter; left time: 477.9882s
+Epoch: 5 cost time: 59.91080832481384
+Epoch: 5, Steps: 141 | Train Loss: 0.7854962 Vali Loss: 1.2139860 Test Loss: 0.8245686
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_Exchange_96_720_AGPT_PT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 798
+test shape: (798, 720, 8) (798, 720, 8)
+test shape: (798, 720, 8) (798, 720, 8)
+mse:0.829055905342102, mae:0.6835806965827942
+================================================================================
+Model Profiling Summary
+Total Params             : 10,816,979
+Inference Time (s)       : 0.139725
+GPU Mem Footprint (MB)   : 112.45
+Peak Mem (MB)            : 226.92
+================================================================================

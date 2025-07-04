@@ -1,22 +1,22 @@
 #!/bin/bash
 
 # ===================== 配置参数 =====================
-MAX_JOBS=1
-TOTAL_GPUS=2
+MAX_JOBS=6
+TOTAL_GPUS=4
 MAX_RETRIES=1
 LOG_DIR="logs_AGPT_PT1"
 
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ECL.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTh1.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTm1.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTh2.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Exchange.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTm2.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ECL.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTh1.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTm1.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTh2.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Exchange.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTm2.sh"
 "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Traffic.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/PEMS.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/PEMS.sh"
 "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Solar.sh"
 "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Weather.sh"
 )

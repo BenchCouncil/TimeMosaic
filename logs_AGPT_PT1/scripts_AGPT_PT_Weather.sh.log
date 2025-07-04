@@ -1,0 +1,59 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           weather_96_96       Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/weather/  
+  Data Path:          weather.csv         Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             21                  Dec In:             21                  
+  C Out:              21                  d model:            512                 
+  n heads:            4                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_weather_96_96_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36696
+val 5175
+test 10444
+	iters: 100, epoch: 1 | loss: 0.4771556
+	speed: 0.1670s/iter; left time: 1898.8746s
+	iters: 200, epoch: 1 | loss: 0.4275452
+	speed: 0.3378s/iter; left time: 3807.2307s
+	iters: 300, epoch: 1 | loss: 0.8343711
+	speed: 0.3726s/iter; left time: 4162.4242s
+	iters: 400, epoch: 1 | loss: 0.3668149
+	speed: 0.3721s/iter; left time: 4119.4186s
+	iters: 500, epoch: 1 | loss: 0.5780714
+	speed: 0.3736s/iter; left time: 4098.6125s
+	iters: 600, epoch: 1 | loss: 0.3578613
+	speed: 0.3730s/iter; left time: 4054.3975s
+	iters: 700, epoch: 1 | loss: 0.4841776
+	speed: 0.3727s/iter; left time: 4013.8521s
+	iters: 800, epoch: 1 | loss: 0.3462479
+	speed: 0.3729s/iter; left time: 3979.7069s
+	iters: 900, epoch: 1 | loss: 0.5122660
+	speed: 0.3714s/iter; left time: 3925.6724s
