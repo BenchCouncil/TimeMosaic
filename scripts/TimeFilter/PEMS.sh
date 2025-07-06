@@ -1,4 +1,4 @@
-model_name=AGPT_PT
+model_name=TimeFilter
 
 seq_len=96
 pred_len=12
@@ -10,7 +10,7 @@ train_epochs=10
 patience=10
 
 python -u run.py \
- --task_name AGPT_loss \
+ --task_name Exp_TimeFilter \
  --is_training 1 \
  --root_path ./dataset/PEMS/ \
  --data_path PEMS03.npz \
@@ -38,7 +38,7 @@ python -u run.py \
 
 
 python -u run.py \
- --task_name AGPT_loss \
+ --task_name Exp_TimeFilter \
  --is_training 1 \
  --root_path ./dataset/PEMS/ \
  --data_path PEMS04.npz \
@@ -66,10 +66,8 @@ python -u run.py \
 
 
 python -u run.py \
- --task_name AGPT_loss \
+ --task_name Exp_TimeFilter \
  --is_training 1 \
- --use_multi_gpu \
- --devices 0,1,2,3 \
  --root_path ./dataset/PEMS/ \
  --data_path PEMS07.npz \
  --model_id PEMS07 \
@@ -96,7 +94,7 @@ python -u run.py \
 
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name Exp_TimeFilter \
   --is_training 1 \
   --root_path ./dataset/PEMS/ \
   --data_path PEMS08.npz \

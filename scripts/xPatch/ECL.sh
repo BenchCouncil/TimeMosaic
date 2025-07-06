@@ -1,11 +1,12 @@
-model_name=AGPTp
+
+model_name=xPatch
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name long_term_forecast \
   --is_training 1 \
-  --root_path ./dataset/exchange_rate/ \
-  --data_path exchange_rate.csv \
-  --model_id Exchange_96_96 \
+  --root_path ./dataset/electricity/ \
+  --data_path electricity.csv \
+  --model_id ECL_96_96 \
   --model $model_name \
   --data custom \
   --features M \
@@ -15,18 +16,19 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 8 \
-  --dec_in 8 \
-  --c_out 8 \
+  --enc_in 321 \
+  --dec_in 321 \
+  --c_out 321 \
   --des 'Exp' \
+  --batch_size 16 \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name long_term_forecast \
   --is_training 1 \
-  --root_path ./dataset/exchange_rate/ \
-  --data_path exchange_rate.csv \
-  --model_id Exchange_96_192 \
+  --root_path ./dataset/electricity/ \
+  --data_path electricity.csv \
+  --model_id ECL_96_192 \
   --model $model_name \
   --data custom \
   --features M \
@@ -36,18 +38,19 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 8 \
-  --dec_in 8 \
-  --c_out 8 \
+  --enc_in 321 \
+  --dec_in 321 \
+  --c_out 321 \
   --des 'Exp' \
+  --batch_size 16 \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name long_term_forecast \
   --is_training 1 \
-  --root_path ./dataset/exchange_rate/ \
-  --data_path exchange_rate.csv \
-  --model_id Exchange_96_336 \
+  --root_path ./dataset/electricity/ \
+  --data_path electricity.csv \
+  --model_id ECL_96_336 \
   --model $model_name \
   --data custom \
   --features M \
@@ -57,19 +60,19 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 8 \
-  --dec_in 8 \
-  --c_out 8 \
+  --enc_in 321 \
+  --dec_in 321 \
+  --c_out 321 \
   --des 'Exp' \
-  --itr 1 \
-  --train_epochs 1
+  --batch_size 16 \
+  --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name long_term_forecast \
   --is_training 1 \
-  --root_path ./dataset/exchange_rate/ \
-  --data_path exchange_rate.csv \
-  --model_id Exchange_96_720 \
+  --root_path ./dataset/electricity/ \
+  --data_path electricity.csv \
+  --model_id ECL_96_720 \
   --model $model_name \
   --data custom \
   --features M \
@@ -79,8 +82,9 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 8 \
-  --dec_in 8 \
-  --c_out 8 \
+  --enc_in 321 \
+  --dec_in 321 \
+  --c_out 321 \
   --des 'Exp' \
+  --batch_size 16 \
   --itr 1

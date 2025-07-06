@@ -185,13 +185,13 @@ class Model(nn.Module):
         
         # self.seg_len = configs.seg_len
         if configs.pred_len == 96:
-            self.seg_len = 16
+            self.seg_len = 8
         elif configs.pred_len == 192:
-            self.seg_len = 32
+            self.seg_len = 16
         elif configs.pred_len == 336:
-            self.seg_len = 56
+            self.seg_len = 28
         elif configs.pred_len == 720:
-            self.seg_len = 120
+            self.seg_len = 60
         else:
             self.seg_len = 2
             

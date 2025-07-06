@@ -4,6 +4,7 @@ import torch
 import torch.backends
 from exp.exp_long_term_forecasting import Exp_Long_Term_Forecast
 from exp.exp_AGPT import Exp_AGPT
+from exp.exp_TimeFilter import Exp_TimeFilter
 from utils.print_args import print_args
 import random
 import numpy as np
@@ -141,7 +142,18 @@ if __name__ == '__main__':
     parser.add_argument('--residual_connection', type=int, default=0)
     parser.add_argument('--batch_norm', type=int, default=0)
     parser.add_argument('--pct_start', type=float, default=0.4, help='pct_start')
+    
+    # TimeFilter
+    parser.add_argument('--alpha_TimeFilter', type=float, default=0.1, help='KNN for Graph Construction')
+    parser.add_argument('--top_p', type=float, default=0.5, help='Dynamic Routing in MoE')
+    parser.add_argument('--pos', type=int, choices=[0, 1], default=1, help='Positional Embedding. Set pos to 0 or 1')
 
+    # xPatch
+    parser.add_argument('--stride', type=int, default=8, help='stride')
+    parser.add_argument('--ma_type', type=str, default='ema', help='reg, ema, dema')
+    parser.add_argument('--alpha_xPatch', type=float, default=0.3, help='alpha')
+    parser.add_argument('--beta', type=float, default=0.3, help='beta')
+    parser.add_argument('--padding_patch', default='end', help='None: None; end: padding on the end')
 
 
     args = parser.parse_args()
@@ -166,6 +178,8 @@ if __name__ == '__main__':
 
     if args.task_name == 'long_term_forecast':
         Exp = Exp_Long_Term_Forecast
+    elif args.task_name == 'Exp_TimeFilter':
+        Exp = Exp_TimeFilter
     else:
         Exp = Exp_AGPT
 

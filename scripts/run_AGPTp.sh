@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # ===================== 配置参数 =====================
-MAX_JOBS=9
-TOTAL_GPUS=2
+MAX_JOBS=3
+TOTAL_GPUS=4
 MAX_RETRIES=1
-LOG_DIR="logs_AGPTp"
+LOG_DIR="logs_AGPT_PT_1624"
 
 mkdir -p "$LOG_DIR"
 
@@ -16,6 +16,7 @@ SCRIPT_LIST=(
 "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPTp/Exchange.sh"
 "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPTp/ETTm2.sh"
 "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPTp/Traffic.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPTp/PEMS.sh"
 "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPTp/Solar.sh"
 "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPTp/Weather.sh"
 )
@@ -52,7 +53,8 @@ run_with_retry() {
 
     while [ $attempt -le $MAX_RETRIES ]; do
         echo "[INFO] Running $script_path on GPU $gpu_id (Attempt $((attempt + 1)))"
-        CUDA_VISIBLE_DEVICES=$gpu_id bash "$script_path" > "$log_file" 2>&1
+        # CUDA_VISIBLE_DEVICES=$gpu_id bash "$script_path" > "$log_file" 2>&1
+        bash "$script_path" > "$log_file" 2>&1
         local status=$?
         if [ $status -eq 0 ]; then
             echo "[SUCCESS] $script_path succeeded. Log saved to $log_file"

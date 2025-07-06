@@ -1,8 +1,8 @@
 
-model_name=AGPTp
+model_name=TimeFilter
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name Exp_TimeFilter \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh2.csv \
@@ -24,7 +24,7 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name Exp_TimeFilter \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh2.csv \
@@ -46,7 +46,7 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name Exp_TimeFilter \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh2.csv \
@@ -68,7 +68,7 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name Exp_TimeFilter \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh2.csv \
