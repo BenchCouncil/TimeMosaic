@@ -1,0 +1,2626 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           traffic_96_96       Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/traffic/  
+  Data Path:          traffic.csv         Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             862                 Dec In:             862                 
+  C Out:              862                 d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               512                 
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         4                   
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      1                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_traffic_96_96_AGPT_PT_512_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 12089
+val 1661
+test 3413
+ts55-master-0:36:36 [0] NCCL INFO cudaDriverVersion 12020
+ts55-master-0:36:36 [0] NCCL INFO Bootstrap : Using eth0:10.211.67.41<0>
+ts55-master-0:36:36 [0] NCCL INFO NET/Plugin : dlerror=libnccl-net.so: cannot open shared object file: No such file or directory No plugin found (libnccl-net.so), using internal implementation
+NCCL version 2.20.5+cuda12.4
+ts55-master-0:36:2816 [3] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ts55-master-0:36:2816 [3] NCCL INFO NET/IB : No device found.
+ts55-master-0:36:2816 [3] NCCL INFO NET/Socket : Using [0]eth0:10.211.67.41<0>
+ts55-master-0:36:2816 [3] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:36:2816 [3] NCCL INFO Using network Socket
+ts55-master-0:36:2814 [1] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:36:2814 [1] NCCL INFO Using network Socket
+ts55-master-0:36:2815 [2] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:36:2815 [2] NCCL INFO Using network Socket
+ts55-master-0:36:2813 [0] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:36:2813 [0] NCCL INFO Using network Socket
+ts55-master-0:36:2813 [0] NCCL INFO comm 0x12fbeab0 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 61000 commId 0x7d6517a3f32e130 - Init START
+ts55-master-0:36:2816 [3] NCCL INFO comm 0x12fcef60 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId 67000 commId 0x7d6517a3f32e130 - Init START
+ts55-master-0:36:2814 [1] NCCL INFO comm 0x12fc5540 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 63000 commId 0x7d6517a3f32e130 - Init START
+ts55-master-0:36:2815 [2] NCCL INFO comm 0x12fca250 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 65000 commId 0x7d6517a3f32e130 - Init START
+ts55-master-0:36:2814 [1] NCCL INFO Setting affinity for GPU 1 to 03ffffff,ffffffff
+ts55-master-0:36:2814 [1] NCCL INFO NVLS multicast support is not available on dev 1
+ts55-master-0:36:2815 [2] NCCL INFO Setting affinity for GPU 2 to 03ffffff,ffffffff
+ts55-master-0:36:2815 [2] NCCL INFO NVLS multicast support is not available on dev 2
+ts55-master-0:36:2813 [0] NCCL INFO Setting affinity for GPU 0 to 03ffffff,ffffffff
+ts55-master-0:36:2813 [0] NCCL INFO NVLS multicast support is not available on dev 0
+ts55-master-0:36:2816 [3] NCCL INFO Setting affinity for GPU 3 to 03ffffff,ffffffff
+ts55-master-0:36:2816 [3] NCCL INFO NVLS multicast support is not available on dev 3
+ts55-master-0:36:2816 [3] NCCL INFO comm 0x12fcef60 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+ts55-master-0:36:2815 [2] NCCL INFO comm 0x12fca250 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+ts55-master-0:36:2813 [0] NCCL INFO comm 0x12fbeab0 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+ts55-master-0:36:2814 [1] NCCL INFO comm 0x12fc5540 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+ts55-master-0:36:2813 [0] NCCL INFO Channel 00/24 :    0   1   2   3
+ts55-master-0:36:2815 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 3/-1/-1->2->1 [5] 3/-1/-1->2->1 [6] 3/-1/-1->2->1 [7] 3/-1/-1->2->1 [8] 3/-1/-1->2->1 [9] 3/-1/-1->2->1 [10] 3/-1/-1->2->1 [11] 3/-1/-1->2->1 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1 [16] 3/-1/-1->2->1 [17] 3/-1/-1->2->1 [18] 3/-1/-1->2->1 [19] 3/-1/-1->2->1 [20] 3/-1/-1->2->1 [21] 3/-1/-1->2->1 [22] 3/-1/-1->2->1 [23] 3/-1/-1->2->1
+ts55-master-0:36:2813 [0] NCCL INFO Channel 01/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 02/24 :    0   1   2   3
+ts55-master-0:36:2815 [2] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:36:2814 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 2/-1/-1->1->0 [5] 2/-1/-1->1->0 [6] 2/-1/-1->1->0 [7] 2/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 2/-1/-1->1->0 [10] 2/-1/-1->1->0 [11] 2/-1/-1->1->0 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 2/-1/-1->1->0 [17] 2/-1/-1->1->0 [18] 2/-1/-1->1->0 [19] 2/-1/-1->1->0 [20] 2/-1/-1->1->0 [21] 2/-1/-1->1->0 [22] 2/-1/-1->1->0 [23] 2/-1/-1->1->0
+ts55-master-0:36:2816 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->2 [5] -1/-1/-1->3->2 [6] -1/-1/-1->3->2 [7] -1/-1/-1->3->2 [8] -1/-1/-1->3->2 [9] -1/-1/-1->3->2 [10] -1/-1/-1->3->2 [11] -1/-1/-1->3->2 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2 [16] -1/-1/-1->3->2 [17] -1/-1/-1->3->2 [18] -1/-1/-1->3->2 [19] -1/-1/-1->3->2 [20] -1/-1/-1->3->2 [21] -1/-1/-1->3->2 [22] -1/-1/-1->3->2 [23] -1/-1/-1->3->2
+ts55-master-0:36:2813 [0] NCCL INFO Channel 03/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 04/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 05/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 06/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 07/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 08/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 09/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 10/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 11/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 12/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 13/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 14/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 15/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 16/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 17/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 18/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 19/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 20/24 :    0   1   2   3
+ts55-master-0:36:2814 [1] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:36:2813 [0] NCCL INFO Channel 21/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 22/24 :    0   1   2   3
+ts55-master-0:36:2813 [0] NCCL INFO Channel 23/24 :    0   1   2   3
+ts55-master-0:36:2816 [3] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:36:2813 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] 1/-1/-1->0->-1 [9] 1/-1/-1->0->-1 [10] 1/-1/-1->0->-1 [11] 1/-1/-1->0->-1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] 1/-1/-1->0->-1 [19] 1/-1/-1->0->-1 [20] 1/-1/-1->0->-1 [21] 1/-1/-1->0->-1 [22] 1/-1/-1->0->-1 [23] 1/-1/-1->0->-1
+ts55-master-0:36:2813 [0] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:36:2815 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 04/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 05/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 07/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 01/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 02/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 04/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 05/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 16/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 08/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 07/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 17/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 09/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 18/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 19/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 11/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 10/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 21/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 22/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 23/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 13/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 14/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 17/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 16/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 19/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 17/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 20/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 18/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 21/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 19/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 20/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 23/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 21/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 22/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 23/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2813 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Connected all rings
+ts55-master-0:36:2813 [0] NCCL INFO Connected all rings
+ts55-master-0:36:2816 [3] NCCL INFO Connected all rings
+ts55-master-0:36:2815 [2] NCCL INFO Connected all rings
+ts55-master-0:36:2816 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 02/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 04/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 06/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 08/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 09/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 10/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 12/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 14/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 15/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 16/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 17/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 18/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 19/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 20/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 21/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 22/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Channel 23/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 04/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 08/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 10/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 12/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 14/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 16/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 18/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 18/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 19/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 20/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 21/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2814 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 22/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2815 [2] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:36:2816 [3] NCCL INFO Connected all trees
+ts55-master-0:36:2816 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:36:2816 [3] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:36:2813 [0] NCCL INFO Connected all trees
+ts55-master-0:36:2815 [2] NCCL INFO Connected all trees
+ts55-master-0:36:2814 [1] NCCL INFO Connected all trees
+ts55-master-0:36:2815 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:36:2815 [2] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:36:2814 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:36:2814 [1] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:36:2813 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:36:2813 [0] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:36:2813 [0] NCCL INFO comm 0x12fbeab0 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 61000 commId 0x7d6517a3f32e130 - Init COMPLETE
+ts55-master-0:36:2815 [2] NCCL INFO comm 0x12fca250 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 65000 commId 0x7d6517a3f32e130 - Init COMPLETE
+ts55-master-0:36:2814 [1] NCCL INFO comm 0x12fc5540 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 63000 commId 0x7d6517a3f32e130 - Init COMPLETE
+ts55-master-0:36:2816 [3] NCCL INFO comm 0x12fcef60 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId 67000 commId 0x7d6517a3f32e130 - Init COMPLETE
+	iters: 100, epoch: 1 | loss: 0.5765336
+	speed: 1.1455s/iter; left time: 34514.6118s
+	iters: 200, epoch: 1 | loss: 0.7145590
+	speed: 1.1397s/iter; left time: 34227.2714s
+	iters: 300, epoch: 1 | loss: 0.4563379
+	speed: 1.1388s/iter; left time: 34086.1636s
+	iters: 400, epoch: 1 | loss: 0.4937880
+	speed: 1.1391s/iter; left time: 33980.2863s
+	iters: 500, epoch: 1 | loss: 0.4609461
+	speed: 1.1405s/iter; left time: 33907.9538s
+	iters: 600, epoch: 1 | loss: 0.4356991
+	speed: 1.1408s/iter; left time: 33804.2848s
+	iters: 700, epoch: 1 | loss: 0.4565715
+	speed: 1.1400s/iter; left time: 33665.5583s
+	iters: 800, epoch: 1 | loss: 0.3770278
+	speed: 1.1400s/iter; left time: 33552.6971s
+	iters: 900, epoch: 1 | loss: 0.3612850
+	speed: 1.1408s/iter; left time: 33461.0962s
+	iters: 1000, epoch: 1 | loss: 0.3773935
+	speed: 1.1223s/iter; left time: 32804.6571s
+	iters: 1100, epoch: 1 | loss: 0.4369520
+	speed: 1.0950s/iter; left time: 31898.7280s
+	iters: 1200, epoch: 1 | loss: 0.3885909
+	speed: 1.1262s/iter; left time: 32694.0539s
+	iters: 1300, epoch: 1 | loss: 0.3993155
+	speed: 1.1414s/iter; left time: 33021.3013s
+	iters: 1400, epoch: 1 | loss: 0.3904007
+	speed: 1.1400s/iter; left time: 32868.3727s
+	iters: 1500, epoch: 1 | loss: 0.4377995
+	speed: 1.1414s/iter; left time: 32793.4666s
+	iters: 1600, epoch: 1 | loss: 0.3594099
+	speed: 1.1413s/iter; left time: 32677.8700s
+	iters: 1700, epoch: 1 | loss: 0.3803347
+	speed: 1.1406s/iter; left time: 32541.5185s
+	iters: 1800, epoch: 1 | loss: 0.2885532
+	speed: 1.1402s/iter; left time: 32417.3785s
+	iters: 1900, epoch: 1 | loss: 0.3925741
+	speed: 1.1398s/iter; left time: 32290.4501s
+	iters: 2000, epoch: 1 | loss: 0.4124037
+	speed: 1.1414s/iter; left time: 32223.5698s
+	iters: 2100, epoch: 1 | loss: 0.3796080
+	speed: 1.1410s/iter; left time: 32098.7910s
+	iters: 2200, epoch: 1 | loss: 0.3837311
+	speed: 1.1081s/iter; left time: 31061.4272s
+	iters: 2300, epoch: 1 | loss: 0.3242406
+	speed: 1.1039s/iter; left time: 30833.1165s
+	iters: 2400, epoch: 1 | loss: 0.4063579
+	speed: 1.1403s/iter; left time: 31735.4056s
+	iters: 2500, epoch: 1 | loss: 0.4189859
+	speed: 1.1405s/iter; left time: 31628.3086s
+	iters: 2600, epoch: 1 | loss: 0.3210551
+	speed: 1.1121s/iter; left time: 30728.4922s
+	iters: 2700, epoch: 1 | loss: 0.4339424
+	speed: 1.0978s/iter; left time: 30222.3003s
+	iters: 2800, epoch: 1 | loss: 0.3403224
+	speed: 1.1042s/iter; left time: 30289.1581s
+	iters: 2900, epoch: 1 | loss: 0.3570470
+	speed: 1.1338s/iter; left time: 30987.3944s
+	iters: 3000, epoch: 1 | loss: 0.3017361
+	speed: 1.1411s/iter; left time: 31073.3548s
+ts55-master-0:36:32805 [0] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:36:32805 [0] NCCL INFO Using network Socket
+ts55-master-0:36:32805 [0] NCCL INFO comm 0x1303f470 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId 61000 commId 0x5a8e1af2f8050d42 - Init START
+ts55-master-0:36:32805 [0] NCCL INFO Setting affinity for GPU 0 to 03ffffff,ffffffff
+ts55-master-0:36:32805 [0] NCCL INFO comm 0x1303f470 rank 0 nRanks 1 nNodes 1 localRanks 1 localRank 0 MNNVL 0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 00/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 01/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 02/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 03/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 04/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 05/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 06/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 07/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 08/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 09/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 10/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 11/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 12/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 13/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 14/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 15/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 16/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 17/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 18/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 19/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 20/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 21/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 22/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 23/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 24/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 25/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 26/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 27/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 28/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 29/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 30/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Channel 31/32 :    0
+ts55-master-0:36:32805 [0] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+ts55-master-0:36:32805 [0] NCCL INFO P2P Chunksize set to 131072
+ts55-master-0:36:32805 [0] NCCL INFO Connected all rings
+ts55-master-0:36:32805 [0] NCCL INFO Connected all trees
+ts55-master-0:36:32805 [0] NCCL INFO 32 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:36:32805 [0] NCCL INFO comm 0x1303f470 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId 61000 commId 0x5a8e1af2f8050d42 - Init COMPLETE
+Epoch: 1 cost time: 3422.614734888077
+Epoch: 1, Steps: 3023 | Train Loss: 0.4246045 Vali Loss: 0.5252497 Test Loss: 0.5980472
+Validation loss decreased (inf --> 0.525250).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.3781811
+	speed: 6.6150s/iter; left time: 179319.8948s
+	iters: 200, epoch: 2 | loss: 0.3922673
+	speed: 1.1399s/iter; left time: 30787.4906s
+	iters: 300, epoch: 2 | loss: 0.4316652
+	speed: 1.1403s/iter; left time: 30682.6621s
+	iters: 400, epoch: 2 | loss: 0.4072593
+	speed: 1.1407s/iter; left time: 30579.7726s
+	iters: 500, epoch: 2 | loss: 0.4579692
+	speed: 1.1403s/iter; left time: 30454.3993s
+	iters: 600, epoch: 2 | loss: 0.4229569
+	speed: 1.1395s/iter; left time: 30319.9787s
+	iters: 700, epoch: 2 | loss: 0.3924097
+	speed: 1.1400s/iter; left time: 30218.2476s
+	iters: 800, epoch: 2 | loss: 0.3162572
+	speed: 1.1397s/iter; left time: 30096.0289s
+	iters: 900, epoch: 2 | loss: 0.3271454
+	speed: 1.1402s/iter; left time: 29997.0993s
+	iters: 1000, epoch: 2 | loss: 0.4037035
+	speed: 1.1120s/iter; left time: 29143.0370s
+	iters: 1100, epoch: 2 | loss: 0.4873534
+	speed: 1.1004s/iter; left time: 28729.6516s
+	iters: 1200, epoch: 2 | loss: 0.3696195
+	speed: 1.1404s/iter; left time: 29659.5244s
+	iters: 1300, epoch: 2 | loss: 0.3809354
+	speed: 1.1397s/iter; left time: 29527.4369s
+	iters: 1400, epoch: 2 | loss: 0.4797457
+	speed: 1.1397s/iter; left time: 29414.2703s
+	iters: 1500, epoch: 2 | loss: 0.4511409
+	speed: 1.1406s/iter; left time: 29322.8090s
+	iters: 1600, epoch: 2 | loss: 0.3698668
+	speed: 1.1398s/iter; left time: 29187.2562s
+	iters: 1700, epoch: 2 | loss: 0.4263877
+	speed: 1.1396s/iter; left time: 29069.1895s
+	iters: 1800, epoch: 2 | loss: 0.4043321
+	speed: 1.1399s/iter; left time: 28963.7169s
+	iters: 1900, epoch: 2 | loss: 0.3086509
+	speed: 1.0999s/iter; left time: 27836.5674s
+	iters: 2000, epoch: 2 | loss: 0.3578087
+	speed: 1.0964s/iter; left time: 27636.8913s
+	iters: 2100, epoch: 2 | loss: 0.3717741
+	speed: 1.0958s/iter; left time: 27512.3460s
+	iters: 2200, epoch: 2 | loss: 0.3473568
+	speed: 1.0951s/iter; left time: 27385.3573s
+	iters: 2300, epoch: 2 | loss: 0.2879210
+	speed: 1.1167s/iter; left time: 27814.5776s
+	iters: 2400, epoch: 2 | loss: 0.3584732
+	speed: 1.1396s/iter; left time: 28270.6284s
+	iters: 2500, epoch: 2 | loss: 0.3621459
+	speed: 1.1399s/iter; left time: 28164.9217s
+	iters: 2600, epoch: 2 | loss: 0.4259809
+	speed: 1.1399s/iter; left time: 28051.4290s
+	iters: 2700, epoch: 2 | loss: 0.3072068
+	speed: 1.1395s/iter; left time: 27926.6013s
+	iters: 2800, epoch: 2 | loss: 0.4380708
+	speed: 1.1409s/iter; left time: 27846.3770s
+	iters: 2900, epoch: 2 | loss: 0.3412700
+	speed: 1.1409s/iter; left time: 27732.8452s
+	iters: 3000, epoch: 2 | loss: 0.4617016
+	speed: 1.1400s/iter; left time: 27598.0544s
+Epoch: 2 cost time: 3419.2866961956024
+Epoch: 2, Steps: 3023 | Train Loss: 0.3676868 Vali Loss: 0.5909505 Test Loss: 0.6851911
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.2846944
+	speed: 6.5955s/iter; left time: 158853.3548s
+	iters: 200, epoch: 3 | loss: 0.3121199
+	speed: 1.1421s/iter; left time: 27393.4827s
+	iters: 300, epoch: 3 | loss: 0.3372805
+	speed: 1.1438s/iter; left time: 27318.9078s
+	iters: 400, epoch: 3 | loss: 0.4528081
+	speed: 1.1432s/iter; left time: 27191.9233s
+	iters: 500, epoch: 3 | loss: 0.3465382
+	speed: 1.1430s/iter; left time: 27071.2225s
+	iters: 600, epoch: 3 | loss: 0.3144193
+	speed: 1.1427s/iter; left time: 26950.8943s
+	iters: 700, epoch: 3 | loss: 0.4209225
+	speed: 1.1422s/iter; left time: 26824.4589s
+	iters: 800, epoch: 3 | loss: 0.3555665
+	speed: 1.1420s/iter; left time: 26704.5321s
+	iters: 900, epoch: 3 | loss: 0.3292274
+	speed: 1.1422s/iter; left time: 26596.4347s
+	iters: 1000, epoch: 3 | loss: 0.2851519
+	speed: 1.1420s/iter; left time: 26477.6269s
+	iters: 1100, epoch: 3 | loss: 0.3496760
+	speed: 1.1200s/iter; left time: 25854.0737s
+	iters: 1200, epoch: 3 | loss: 0.4510624
+	speed: 1.0594s/iter; left time: 24349.1837s
+	iters: 1300, epoch: 3 | loss: 0.5473194
+	speed: 1.0930s/iter; left time: 25014.0776s
+	iters: 1400, epoch: 3 | loss: 0.4454330
+	speed: 1.1104s/iter; left time: 25299.5449s
+	iters: 1500, epoch: 3 | loss: 0.3425866
+	speed: 1.1421s/iter; left time: 25907.9977s
+	iters: 1600, epoch: 3 | loss: 0.3627173
+	speed: 1.1427s/iter; left time: 25807.0756s
+	iters: 1700, epoch: 3 | loss: 0.3406176
+	speed: 1.1426s/iter; left time: 25690.9322s
+	iters: 1800, epoch: 3 | loss: 0.3810903
+	speed: 1.1425s/iter; left time: 25574.3107s
+	iters: 1900, epoch: 3 | loss: 0.2619686
+	speed: 1.1424s/iter; left time: 25457.8357s
+	iters: 2000, epoch: 3 | loss: 0.2987351
+	speed: 1.1426s/iter; left time: 25348.7065s
+	iters: 2100, epoch: 3 | loss: 0.3408350
+	speed: 1.1422s/iter; left time: 25226.0108s
+	iters: 2200, epoch: 3 | loss: 0.3599665
+	speed: 1.1428s/iter; left time: 25125.1656s
+	iters: 2300, epoch: 3 | loss: 0.4471769
+	speed: 1.1179s/iter; left time: 24466.2356s
+	iters: 2400, epoch: 3 | loss: 0.3009843
+	speed: 1.1046s/iter; left time: 24064.0242s
+	iters: 2500, epoch: 3 | loss: 0.3052065
+	speed: 1.1396s/iter; left time: 24712.6746s
+	iters: 2600, epoch: 3 | loss: 0.3108074
+	speed: 1.1427s/iter; left time: 24665.7576s
+	iters: 2700, epoch: 3 | loss: 0.2801114
+	speed: 1.1436s/iter; left time: 24570.0516s
+	iters: 2800, epoch: 3 | loss: 0.3413130
+	speed: 1.1416s/iter; left time: 24412.7619s
+	iters: 2900, epoch: 3 | loss: 0.2916672
+	speed: 1.1417s/iter; left time: 24300.4935s
+	iters: 3000, epoch: 3 | loss: 0.3471903
+	speed: 1.1419s/iter; left time: 24191.6270s
+Epoch: 3 cost time: 3424.966272830963
+Epoch: 3, Steps: 3023 | Train Loss: 0.3500251 Vali Loss: 0.5578737 Test Loss: 0.6416643
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.3770565
+	speed: 6.6165s/iter; left time: 139356.8612s
+	iters: 200, epoch: 4 | loss: 0.3449114
+	speed: 1.1430s/iter; left time: 23959.6141s
+	iters: 300, epoch: 4 | loss: 0.3264357
+	speed: 1.1423s/iter; left time: 23830.7769s
+	iters: 400, epoch: 4 | loss: 0.2785112
+	speed: 1.1390s/iter; left time: 23647.0670s
+	iters: 500, epoch: 4 | loss: 0.4161780
+	speed: 1.0988s/iter; left time: 22702.8878s
+	iters: 600, epoch: 4 | loss: 0.2973690
+	speed: 1.1002s/iter; left time: 22621.6741s
+	iters: 700, epoch: 4 | loss: 0.3172615
+	speed: 1.1095s/iter; left time: 22702.2104s
+	iters: 800, epoch: 4 | loss: 0.3983155
+	speed: 1.1425s/iter; left time: 23263.0957s
+	iters: 900, epoch: 4 | loss: 0.4075273
+	speed: 1.1427s/iter; left time: 23153.0543s
+	iters: 1000, epoch: 4 | loss: 0.3623261
+	speed: 1.1424s/iter; left time: 23032.0723s
+	iters: 1100, epoch: 4 | loss: 0.3171624
+	speed: 1.1431s/iter; left time: 22932.5496s
+	iters: 1200, epoch: 4 | loss: 0.3502883
+	speed: 1.1062s/iter; left time: 22082.2329s
+	iters: 1300, epoch: 4 | loss: 0.3192745
+	speed: 1.1152s/iter; left time: 22150.6360s
+	iters: 1400, epoch: 4 | loss: 0.3811663
+	speed: 1.1425s/iter; left time: 22577.8384s
+	iters: 1500, epoch: 4 | loss: 0.3344744
+	speed: 1.1427s/iter; left time: 22466.9618s
+	iters: 1600, epoch: 4 | loss: 0.3056135
+	speed: 1.1427s/iter; left time: 22353.8724s
+	iters: 1700, epoch: 4 | loss: 0.3279317
+	speed: 1.1426s/iter; left time: 22237.3904s
+	iters: 1800, epoch: 4 | loss: 0.3238920
+	speed: 1.1436s/iter; left time: 22142.8348s
+	iters: 1900, epoch: 4 | loss: 0.2897693
+	speed: 1.1422s/iter; left time: 22001.4471s
+	iters: 2000, epoch: 4 | loss: 0.3808045
+	speed: 1.1430s/iter; left time: 21902.4595s
+	iters: 2100, epoch: 4 | loss: 0.3657188
+	speed: 1.1429s/iter; left time: 21786.7289s
+	iters: 2200, epoch: 4 | loss: 0.3667312
+	speed: 1.1427s/iter; left time: 21668.1216s
+	iters: 2300, epoch: 4 | loss: 0.3965183
+	speed: 1.1434s/iter; left time: 21567.3337s
+	iters: 2400, epoch: 4 | loss: 0.2829110
+	speed: 1.1041s/iter; left time: 20714.4529s
+	iters: 2500, epoch: 4 | loss: 0.3794293
+	speed: 1.1168s/iter; left time: 20842.4899s
+	iters: 2600, epoch: 4 | loss: 0.3838346
+	speed: 1.1444s/iter; left time: 21242.4170s
+	iters: 2700, epoch: 4 | loss: 0.3205111
+	speed: 1.1429s/iter; left time: 21100.9597s
+	iters: 2800, epoch: 4 | loss: 0.3222758
+	speed: 1.1422s/iter; left time: 20972.9164s
+	iters: 2900, epoch: 4 | loss: 0.3044173
+	speed: 1.1418s/iter; left time: 20851.9117s
+	iters: 3000, epoch: 4 | loss: 0.3004384
+	speed: 1.1440s/iter; left time: 20778.0056s
+Epoch: 4 cost time: 3425.021087408066
+Epoch: 4, Steps: 3023 | Train Loss: 0.3423559 Vali Loss: 0.5507957 Test Loss: 0.6394588
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_traffic_96_96_AGPT_PT_512_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 3413
+test shape: (3413, 96, 862) (3413, 96, 862)
+test shape: (3413, 96, 862) (3413, 96, 862)
+mse:0.5983507037162781, mae:0.4059348702430725
+================================================================================
+Model Profiling Summary
+Total Params             : 3,839,843
+Inference Time (s)       : 0.430689
+GPU Mem Footprint (MB)   : 70.57
+Peak Mem (MB)            : 302.31
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           traffic_96_192      Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/traffic/  
+  Data Path:          traffic.csv         Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             862                 Dec In:             862                 
+  C Out:              862                 d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               512                 
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         4                   
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      1                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_traffic_96_192_AGPT_PT_512_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 11993
+val 1565
+test 3317
+ts55-master-0:187164:187164 [0] NCCL INFO cudaDriverVersion 12020
+ts55-master-0:187164:187164 [0] NCCL INFO Bootstrap : Using eth0:10.211.67.41<0>
+ts55-master-0:187164:187164 [0] NCCL INFO NET/Plugin : dlerror=libnccl-net.so: cannot open shared object file: No such file or directory No plugin found (libnccl-net.so), using internal implementation
+NCCL version 2.20.5+cuda12.4
+ts55-master-0:187164:188050 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ts55-master-0:187164:188050 [0] NCCL INFO NET/IB : No device found.
+ts55-master-0:187164:188050 [0] NCCL INFO NET/Socket : Using [0]eth0:10.211.67.41<0>
+ts55-master-0:187164:188050 [0] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:187164:188050 [0] NCCL INFO Using network Socket
+ts55-master-0:187164:188052 [2] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:187164:188052 [2] NCCL INFO Using network Socket
+ts55-master-0:187164:188053 [3] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:187164:188053 [3] NCCL INFO Using network Socket
+ts55-master-0:187164:188051 [1] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:187164:188051 [1] NCCL INFO Using network Socket
+ts55-master-0:187164:188052 [2] NCCL INFO comm 0x122e31d0 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 65000 commId 0x9b26bb51d538b9d6 - Init START
+ts55-master-0:187164:188053 [3] NCCL INFO comm 0x122e7ee0 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId 67000 commId 0x9b26bb51d538b9d6 - Init START
+ts55-master-0:187164:188051 [1] NCCL INFO comm 0x122de4c0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 63000 commId 0x9b26bb51d538b9d6 - Init START
+ts55-master-0:187164:188050 [0] NCCL INFO comm 0x122d7a30 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 61000 commId 0x9b26bb51d538b9d6 - Init START
+ts55-master-0:187164:188052 [2] NCCL INFO Setting affinity for GPU 2 to 03ffffff,ffffffff
+ts55-master-0:187164:188052 [2] NCCL INFO NVLS multicast support is not available on dev 2
+ts55-master-0:187164:188053 [3] NCCL INFO Setting affinity for GPU 3 to 03ffffff,ffffffff
+ts55-master-0:187164:188053 [3] NCCL INFO NVLS multicast support is not available on dev 3
+ts55-master-0:187164:188050 [0] NCCL INFO Setting affinity for GPU 0 to 03ffffff,ffffffff
+ts55-master-0:187164:188050 [0] NCCL INFO NVLS multicast support is not available on dev 0
+ts55-master-0:187164:188051 [1] NCCL INFO Setting affinity for GPU 1 to 03ffffff,ffffffff
+ts55-master-0:187164:188051 [1] NCCL INFO NVLS multicast support is not available on dev 1
+ts55-master-0:187164:188051 [1] NCCL INFO comm 0x122de4c0 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+ts55-master-0:187164:188052 [2] NCCL INFO comm 0x122e31d0 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+ts55-master-0:187164:188051 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 2/-1/-1->1->0 [5] 2/-1/-1->1->0 [6] 2/-1/-1->1->0 [7] 2/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 2/-1/-1->1->0 [10] 2/-1/-1->1->0 [11] 2/-1/-1->1->0 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 2/-1/-1->1->0 [17] 2/-1/-1->1->0 [18] 2/-1/-1->1->0 [19] 2/-1/-1->1->0 [20] 2/-1/-1->1->0 [21] 2/-1/-1->1->0 [22] 2/-1/-1->1->0 [23] 2/-1/-1->1->0
+ts55-master-0:187164:188051 [1] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:187164:188052 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 3/-1/-1->2->1 [5] 3/-1/-1->2->1 [6] 3/-1/-1->2->1 [7] 3/-1/-1->2->1 [8] 3/-1/-1->2->1 [9] 3/-1/-1->2->1 [10] 3/-1/-1->2->1 [11] 3/-1/-1->2->1 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1 [16] 3/-1/-1->2->1 [17] 3/-1/-1->2->1 [18] 3/-1/-1->2->1 [19] 3/-1/-1->2->1 [20] 3/-1/-1->2->1 [21] 3/-1/-1->2->1 [22] 3/-1/-1->2->1 [23] 3/-1/-1->2->1
+ts55-master-0:187164:188052 [2] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:187164:188050 [0] NCCL INFO comm 0x122d7a30 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 00/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 01/24 :    0   1   2   3
+ts55-master-0:187164:188053 [3] NCCL INFO comm 0x122e7ee0 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 02/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 03/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 04/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 05/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 06/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 07/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 08/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 09/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 10/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 11/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 12/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 13/24 :    0   1   2   3
+ts55-master-0:187164:188053 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->2 [5] -1/-1/-1->3->2 [6] -1/-1/-1->3->2 [7] -1/-1/-1->3->2 [8] -1/-1/-1->3->2 [9] -1/-1/-1->3->2 [10] -1/-1/-1->3->2 [11] -1/-1/-1->3->2 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2 [16] -1/-1/-1->3->2 [17] -1/-1/-1->3->2 [18] -1/-1/-1->3->2 [19] -1/-1/-1->3->2 [20] -1/-1/-1->3->2 [21] -1/-1/-1->3->2 [22] -1/-1/-1->3->2 [23] -1/-1/-1->3->2
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 14/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 15/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 16/24 :    0   1   2   3
+ts55-master-0:187164:188053 [3] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 17/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 18/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 19/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 20/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 21/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 22/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 23/24 :    0   1   2   3
+ts55-master-0:187164:188050 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] 1/-1/-1->0->-1 [9] 1/-1/-1->0->-1 [10] 1/-1/-1->0->-1 [11] 1/-1/-1->0->-1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] 1/-1/-1->0->-1 [19] 1/-1/-1->0->-1 [20] 1/-1/-1->0->-1 [21] 1/-1/-1->0->-1 [22] 1/-1/-1->0->-1 [23] 1/-1/-1->0->-1
+ts55-master-0:187164:188050 [0] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 08/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 09/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 11/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 01/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 17/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 02/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 19/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 04/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 04/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 20/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 05/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 05/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 21/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 07/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 07/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 23/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 10/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 13/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 14/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 16/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 16/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 17/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 17/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 18/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 18/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 19/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 19/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 20/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 21/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 21/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 22/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 22/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 23/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 23/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Connected all rings
+ts55-master-0:187164:188050 [0] NCCL INFO Connected all rings
+ts55-master-0:187164:188052 [2] NCCL INFO Connected all rings
+ts55-master-0:187164:188053 [3] NCCL INFO Connected all rings
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 02/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 04/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 06/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 08/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 09/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 10/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 12/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 14/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 15/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 16/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 17/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 18/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 19/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 20/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 21/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 22/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188053 [3] NCCL INFO Channel 23/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 04/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 08/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 18/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 10/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 12/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 14/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188051 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 16/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 18/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 19/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 20/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 21/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 22/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188052 [2] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:187164:188050 [0] NCCL INFO Connected all trees
+ts55-master-0:187164:188050 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:187164:188050 [0] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:187164:188051 [1] NCCL INFO Connected all trees
+ts55-master-0:187164:188051 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:187164:188051 [1] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:187164:188053 [3] NCCL INFO Connected all trees
+ts55-master-0:187164:188052 [2] NCCL INFO Connected all trees
+ts55-master-0:187164:188053 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:187164:188053 [3] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:187164:188052 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:187164:188052 [2] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:187164:188052 [2] NCCL INFO comm 0x122e31d0 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 65000 commId 0x9b26bb51d538b9d6 - Init COMPLETE
+ts55-master-0:187164:188053 [3] NCCL INFO comm 0x122e7ee0 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId 67000 commId 0x9b26bb51d538b9d6 - Init COMPLETE
+ts55-master-0:187164:188050 [0] NCCL INFO comm 0x122d7a30 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 61000 commId 0x9b26bb51d538b9d6 - Init COMPLETE
+ts55-master-0:187164:188051 [1] NCCL INFO comm 0x122de4c0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 63000 commId 0x9b26bb51d538b9d6 - Init COMPLETE
+	iters: 100, epoch: 1 | loss: 0.5456106
+	speed: 1.1918s/iter; left time: 35623.4883s
+	iters: 200, epoch: 1 | loss: 0.5119136
+	speed: 1.1422s/iter; left time: 34028.2656s
+	iters: 300, epoch: 1 | loss: 0.4446940
+	speed: 1.1411s/iter; left time: 33881.8308s
+	iters: 400, epoch: 1 | loss: 0.4850493
+	speed: 1.1431s/iter; left time: 33824.4634s
+	iters: 500, epoch: 1 | loss: 0.4214811
+	speed: 1.1410s/iter; left time: 33648.1927s
+	iters: 600, epoch: 1 | loss: 0.4032950
+	speed: 1.1436s/iter; left time: 33610.8184s
+	iters: 700, epoch: 1 | loss: 0.3707841
+	speed: 1.1424s/iter; left time: 33462.2485s
+	iters: 800, epoch: 1 | loss: 0.4055473
+	speed: 1.1360s/iter; left time: 33162.3569s
+	iters: 900, epoch: 1 | loss: 0.4018825
+	speed: 1.1045s/iter; left time: 32132.3911s
+	iters: 1000, epoch: 1 | loss: 0.3781040
+	speed: 1.1229s/iter; left time: 32553.0815s
+	iters: 1100, epoch: 1 | loss: 0.4237096
+	speed: 1.1413s/iter; left time: 32974.4338s
+	iters: 1200, epoch: 1 | loss: 0.3700088
+	speed: 1.1417s/iter; left time: 32869.4175s
+	iters: 1300, epoch: 1 | loss: 0.3833156
+	speed: 1.1426s/iter; left time: 32781.5876s
+	iters: 1400, epoch: 1 | loss: 0.3913248
+	speed: 1.1428s/iter; left time: 32673.9253s
+	iters: 1500, epoch: 1 | loss: 0.4404408
+	speed: 1.1418s/iter; left time: 32530.4195s
+	iters: 1600, epoch: 1 | loss: 0.3758336
+	speed: 1.1425s/iter; left time: 32437.5431s
+	iters: 1700, epoch: 1 | loss: 0.3894184
+	speed: 1.1423s/iter; left time: 32318.1709s
+	iters: 1800, epoch: 1 | loss: 0.3585085
+	speed: 1.1419s/iter; left time: 32190.7063s
+	iters: 1900, epoch: 1 | loss: 0.3472153
+	speed: 1.1417s/iter; left time: 32071.5533s
+	iters: 2000, epoch: 1 | loss: 0.3737898
+	speed: 1.1335s/iter; left time: 31727.1907s
+	iters: 2100, epoch: 1 | loss: 0.3850932
+	speed: 1.1033s/iter; left time: 30772.2737s
+	iters: 2200, epoch: 1 | loss: 0.4021854
+	speed: 1.0570s/iter; left time: 29376.2279s
+	iters: 2300, epoch: 1 | loss: 0.3883812
+	speed: 1.0159s/iter; left time: 28130.1139s
+	iters: 2400, epoch: 1 | loss: 0.3694758
+	speed: 1.1783s/iter; left time: 32511.6917s
+	iters: 2500, epoch: 1 | loss: 0.4375400
+	speed: 1.1969s/iter; left time: 32905.1700s
+	iters: 2600, epoch: 1 | loss: 0.4187696
+	speed: 1.2010s/iter; left time: 32895.6846s
+	iters: 2700, epoch: 1 | loss: 0.4904270
+	speed: 1.1885s/iter; left time: 32435.2484s
+	iters: 2800, epoch: 1 | loss: 0.3673874
+	speed: 1.2058s/iter; left time: 32785.5488s
+	iters: 2900, epoch: 1 | loss: 0.3871252
+	speed: 1.1750s/iter; left time: 31832.1969s
+ts55-master-0:187164:228743 [0] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:187164:228743 [0] NCCL INFO Using network Socket
+ts55-master-0:187164:228743 [0] NCCL INFO comm 0x12354740 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId 61000 commId 0xada51f5ae8f0ad16 - Init START
+ts55-master-0:187164:228743 [0] NCCL INFO Setting affinity for GPU 0 to 03ffffff,ffffffff
+ts55-master-0:187164:228743 [0] NCCL INFO comm 0x12354740 rank 0 nRanks 1 nNodes 1 localRanks 1 localRank 0 MNNVL 0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 00/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 01/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 02/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 03/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 04/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 05/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 06/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 07/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 08/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 09/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 10/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 11/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 12/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 13/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 14/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 15/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 16/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 17/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 18/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 19/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 20/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 21/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 22/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 23/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 24/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 25/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 26/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 27/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 28/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 29/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 30/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Channel 31/32 :    0
+ts55-master-0:187164:228743 [0] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+ts55-master-0:187164:228743 [0] NCCL INFO P2P Chunksize set to 131072
+ts55-master-0:187164:228743 [0] NCCL INFO Connected all rings
+ts55-master-0:187164:228743 [0] NCCL INFO Connected all trees
+ts55-master-0:187164:228743 [0] NCCL INFO 32 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:187164:228743 [0] NCCL INFO comm 0x12354740 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId 61000 commId 0xada51f5ae8f0ad16 - Init COMPLETE
+Epoch: 1 cost time: 3427.6633574962616
+Epoch: 1, Steps: 2999 | Train Loss: 0.4109084 Vali Loss: 0.5196893 Test Loss: 0.6145952
+Validation loss decreased (inf --> 0.519689).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.3829187
+	speed: 7.9902s/iter; left time: 214873.5581s
+	iters: 200, epoch: 2 | loss: 0.3715963
+	speed: 1.1831s/iter; left time: 31696.6915s
+	iters: 300, epoch: 2 | loss: 0.3678474
+	speed: 1.2074s/iter; left time: 32227.8161s
+	iters: 400, epoch: 2 | loss: 0.3498744
+	speed: 1.2048s/iter; left time: 32038.8358s
+	iters: 500, epoch: 2 | loss: 0.3921084
+	speed: 1.1989s/iter; left time: 31760.7356s
+	iters: 600, epoch: 2 | loss: 0.4080542
+	speed: 1.1873s/iter; left time: 31334.8505s
+	iters: 700, epoch: 2 | loss: 0.3450351
+	speed: 1.2048s/iter; left time: 31677.4373s
+	iters: 800, epoch: 2 | loss: 0.3671732
+	speed: 1.2064s/iter; left time: 31597.5837s
+	iters: 900, epoch: 2 | loss: 0.3610890
+	speed: 1.1822s/iter; left time: 30845.8948s
+	iters: 1000, epoch: 2 | loss: 0.3404857
+	speed: 1.2063s/iter; left time: 31353.4646s
+	iters: 1100, epoch: 2 | loss: 0.3676178
+	speed: 1.2054s/iter; left time: 31209.9392s
+	iters: 1200, epoch: 2 | loss: 0.3282872
+	speed: 1.1988s/iter; left time: 30918.3722s
+	iters: 1300, epoch: 2 | loss: 0.3680986
+	speed: 1.1903s/iter; left time: 30580.1482s
+	iters: 1400, epoch: 2 | loss: 0.4342849
+	speed: 1.1984s/iter; left time: 30669.9094s
+	iters: 1500, epoch: 2 | loss: 0.3593033
+	speed: 1.1725s/iter; left time: 29889.5066s
+	iters: 1600, epoch: 2 | loss: 0.3536364
+	speed: 1.1426s/iter; left time: 29012.3268s
+	iters: 1700, epoch: 2 | loss: 0.3308838
+	speed: 1.1761s/iter; left time: 29746.9147s
+	iters: 1800, epoch: 2 | loss: 0.4078599
+	speed: 1.1909s/iter; left time: 30002.1254s
+	iters: 1900, epoch: 2 | loss: 0.3742667
+	speed: 1.1995s/iter; left time: 30098.9423s
+	iters: 2000, epoch: 2 | loss: 0.3979326
+	speed: 1.0966s/iter; left time: 27406.5693s
+	iters: 2100, epoch: 2 | loss: 0.3554299
+	speed: 0.9119s/iter; left time: 22700.1897s
+	iters: 2200, epoch: 2 | loss: 0.3626879
+	speed: 0.9129s/iter; left time: 22633.1912s
+	iters: 2300, epoch: 2 | loss: 0.3348975
+	speed: 0.9126s/iter; left time: 22533.7536s
+	iters: 2400, epoch: 2 | loss: 0.3889029
+	speed: 0.9142s/iter; left time: 22482.4076s
+	iters: 2500, epoch: 2 | loss: 0.3319783
+	speed: 0.9135s/iter; left time: 22372.9645s
+	iters: 2600, epoch: 2 | loss: 0.4201835
+	speed: 0.9124s/iter; left time: 22255.9480s
+	iters: 2700, epoch: 2 | loss: 0.3983707
+	speed: 0.9121s/iter; left time: 22155.8328s
+	iters: 2800, epoch: 2 | loss: 0.3539051
+	speed: 0.9006s/iter; left time: 21788.2713s
+	iters: 2900, epoch: 2 | loss: 0.4093727
+	speed: 0.8840s/iter; left time: 21297.3484s
+Epoch: 2 cost time: 3281.256073951721
+Epoch: 2, Steps: 2999 | Train Loss: 0.3647095 Vali Loss: 0.4974082 Test Loss: 0.5886223
+Validation loss decreased (0.519689 --> 0.497408).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.3584124
+	speed: 6.2369s/iter; left time: 149018.0798s
+	iters: 200, epoch: 3 | loss: 0.3587711
+	speed: 0.9146s/iter; left time: 21761.5591s
+	iters: 300, epoch: 3 | loss: 0.3212678
+	speed: 0.9152s/iter; left time: 21684.2761s
+	iters: 400, epoch: 3 | loss: 0.3301870
+	speed: 0.9151s/iter; left time: 21590.9512s
+	iters: 500, epoch: 3 | loss: 0.3644005
+	speed: 0.9128s/iter; left time: 21445.2660s
+	iters: 600, epoch: 3 | loss: 0.3565043
+	speed: 0.9132s/iter; left time: 21363.4040s
+	iters: 700, epoch: 3 | loss: 0.3098522
+	speed: 0.9071s/iter; left time: 21128.1252s
+	iters: 800, epoch: 3 | loss: 0.3166317
+	speed: 0.8817s/iter; left time: 20448.4464s
+	iters: 900, epoch: 3 | loss: 0.3509771
+	speed: 0.8835s/iter; left time: 20402.8149s
+	iters: 1000, epoch: 3 | loss: 0.3646492
+	speed: 0.8870s/iter; left time: 20395.3933s
+	iters: 1100, epoch: 3 | loss: 0.3755044
+	speed: 0.9007s/iter; left time: 20619.0627s
+	iters: 1200, epoch: 3 | loss: 0.3263475
+	speed: 0.9148s/iter; left time: 20851.5590s
+	iters: 1300, epoch: 3 | loss: 0.3625842
+	speed: 0.9132s/iter; left time: 20722.3584s
+	iters: 1400, epoch: 3 | loss: 0.3483179
+	speed: 0.9136s/iter; left time: 20641.2805s
+	iters: 1500, epoch: 3 | loss: 0.3903734
+	speed: 0.9154s/iter; left time: 20589.1832s
+	iters: 1600, epoch: 3 | loss: 0.3710213
+	speed: 0.9121s/iter; left time: 20425.5337s
+	iters: 1700, epoch: 3 | loss: 0.2650196
+	speed: 0.9139s/iter; left time: 20374.3215s
+	iters: 1800, epoch: 3 | loss: 0.3327211
+	speed: 0.9142s/iter; left time: 20288.5761s
+	iters: 1900, epoch: 3 | loss: 0.3773736
+	speed: 0.9138s/iter; left time: 20189.6518s
+	iters: 2000, epoch: 3 | loss: 0.3132815
+	speed: 0.9112s/iter; left time: 20039.4159s
+	iters: 2100, epoch: 3 | loss: 0.3340193
+	speed: 0.9131s/iter; left time: 19989.7805s
+	iters: 2200, epoch: 3 | loss: 0.3954890
+	speed: 0.9128s/iter; left time: 19892.2811s
+	iters: 2300, epoch: 3 | loss: 0.3585957
+	speed: 0.9131s/iter; left time: 19807.6881s
+	iters: 2400, epoch: 3 | loss: 0.3499553
+	speed: 0.9136s/iter; left time: 19726.7209s
+	iters: 2500, epoch: 3 | loss: 0.3769649
+	speed: 0.9132s/iter; left time: 19627.7943s
+	iters: 2600, epoch: 3 | loss: 0.3251261
+	speed: 0.9141s/iter; left time: 19555.2127s
+	iters: 2700, epoch: 3 | loss: 0.3016523
+	speed: 0.8982s/iter; left time: 19126.0400s
+	iters: 2800, epoch: 3 | loss: 0.3475127
+	speed: 0.8833s/iter; left time: 18720.5467s
+	iters: 2900, epoch: 3 | loss: 0.3507482
+	speed: 0.8873s/iter; left time: 18716.0861s
+Epoch: 3 cost time: 2719.9522058963776
+Epoch: 3, Steps: 2999 | Train Loss: 0.3506310 Vali Loss: 0.5094368 Test Loss: 0.6001360
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.3092182
+	speed: 6.2425s/iter; left time: 130429.8565s
+	iters: 200, epoch: 4 | loss: 0.3090639
+	speed: 0.8836s/iter; left time: 18373.3181s
+	iters: 300, epoch: 4 | loss: 0.3758772
+	speed: 0.8853s/iter; left time: 18320.1540s
+	iters: 400, epoch: 4 | loss: 0.3070275
+	speed: 0.9024s/iter; left time: 18584.5858s
+	iters: 500, epoch: 4 | loss: 0.3211648
+	speed: 0.9130s/iter; left time: 18711.4825s
+	iters: 600, epoch: 4 | loss: 0.3438424
+	speed: 0.9124s/iter; left time: 18608.1432s
+	iters: 700, epoch: 4 | loss: 0.3817790
+	speed: 0.9122s/iter; left time: 18512.8967s
+	iters: 800, epoch: 4 | loss: 0.2965625
+	speed: 0.9129s/iter; left time: 18435.0737s
+	iters: 900, epoch: 4 | loss: 0.3007675
+	speed: 0.9143s/iter; left time: 18371.4323s
+	iters: 1000, epoch: 4 | loss: 0.3648801
+	speed: 0.9143s/iter; left time: 18280.4246s
+	iters: 1100, epoch: 4 | loss: 0.3469306
+	speed: 0.9135s/iter; left time: 18173.1469s
+	iters: 1200, epoch: 4 | loss: 0.3406686
+	speed: 0.9148s/iter; left time: 18107.1834s
+	iters: 1300, epoch: 4 | loss: 0.3204056
+	speed: 0.9150s/iter; left time: 18020.6087s
+	iters: 1400, epoch: 4 | loss: 0.3693433
+	speed: 0.9148s/iter; left time: 17924.0012s
+	iters: 1500, epoch: 4 | loss: 0.3161920
+	speed: 0.9134s/iter; left time: 17805.0384s
+	iters: 1600, epoch: 4 | loss: 0.3170976
+	speed: 0.9138s/iter; left time: 17722.7391s
+	iters: 1700, epoch: 4 | loss: 0.3907172
+	speed: 0.9151s/iter; left time: 17655.7123s
+	iters: 1800, epoch: 4 | loss: 0.3979995
+	speed: 0.9124s/iter; left time: 17512.2043s
+	iters: 1900, epoch: 4 | loss: 0.3950071
+	speed: 0.9130s/iter; left time: 17432.6820s
+	iters: 2000, epoch: 4 | loss: 0.3288772
+	speed: 0.9145s/iter; left time: 17370.6978s
+	iters: 2100, epoch: 4 | loss: 0.3051829
+	speed: 0.9166s/iter; left time: 17318.6759s
+	iters: 2200, epoch: 4 | loss: 0.3474624
+	speed: 0.9125s/iter; left time: 17149.5067s
+	iters: 2300, epoch: 4 | loss: 0.2956627
+	speed: 0.9135s/iter; left time: 17077.8508s
+	iters: 2400, epoch: 4 | loss: 0.3846064
+	speed: 0.9126s/iter; left time: 16968.8949s
+	iters: 2500, epoch: 4 | loss: 0.3619460
+	speed: 0.9156s/iter; left time: 16932.2736s
+	iters: 2600, epoch: 4 | loss: 0.3400054
+	speed: 0.8989s/iter; left time: 16535.1143s
+	iters: 2700, epoch: 4 | loss: 0.3652818
+	speed: 0.8855s/iter; left time: 16200.2455s
+	iters: 2800, epoch: 4 | loss: 0.3457645
+	speed: 0.8876s/iter; left time: 16148.7822s
+	iters: 2900, epoch: 4 | loss: 0.3325208
+	speed: 0.8493s/iter; left time: 15367.7056s
+Epoch: 4 cost time: 2712.1958467960358
+Epoch: 4, Steps: 2999 | Train Loss: 0.3446213 Vali Loss: 0.5114282 Test Loss: 0.6043565
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.2873119
+	speed: 5.9722s/iter; left time: 106872.2912s
+	iters: 200, epoch: 5 | loss: 0.2844047
+	speed: 0.9144s/iter; left time: 16272.2751s
+	iters: 300, epoch: 5 | loss: 0.3451650
+	speed: 0.9143s/iter; left time: 16178.9768s
+	iters: 400, epoch: 5 | loss: 0.3110309
+	speed: 0.9130s/iter; left time: 16063.7178s
+	iters: 500, epoch: 5 | loss: 0.3389783
+	speed: 0.9132s/iter; left time: 15976.0075s
+	iters: 600, epoch: 5 | loss: 0.3528758
+	speed: 0.9142s/iter; left time: 15901.6406s
+	iters: 700, epoch: 5 | loss: 0.3080547
+	speed: 0.9146s/iter; left time: 15818.4657s
+	iters: 800, epoch: 5 | loss: 0.3817058
+	speed: 0.9136s/iter; left time: 15709.8644s
+	iters: 900, epoch: 5 | loss: 0.3388295
+	speed: 0.9144s/iter; left time: 15631.4323s
+	iters: 1000, epoch: 5 | loss: 0.3846650
+	speed: 0.9153s/iter; left time: 15556.0404s
+	iters: 1100, epoch: 5 | loss: 0.3773313
+	speed: 0.9145s/iter; left time: 15450.9259s
+	iters: 1200, epoch: 5 | loss: 0.4784579
+	speed: 0.9154s/iter; left time: 15374.0877s
+	iters: 1300, epoch: 5 | loss: 0.3263414
+	speed: 0.9130s/iter; left time: 15242.8051s
+	iters: 1400, epoch: 5 | loss: 0.2595896
+	speed: 0.9139s/iter; left time: 15166.1142s
+	iters: 1500, epoch: 5 | loss: 0.3246747
+	speed: 0.9116s/iter; left time: 15036.3153s
+	iters: 1600, epoch: 5 | loss: 0.3612946
+	speed: 0.9148s/iter; left time: 14997.7966s
+	iters: 1700, epoch: 5 | loss: 0.3714363
+	speed: 0.9150s/iter; left time: 14909.2772s
+	iters: 1800, epoch: 5 | loss: 0.3394443
+	speed: 0.9172s/iter; left time: 14853.4970s
+	iters: 1900, epoch: 5 | loss: 0.3711433
+	speed: 0.9126s/iter; left time: 14688.8433s
+	iters: 2000, epoch: 5 | loss: 0.3229448
+	speed: 0.9143s/iter; left time: 14624.7563s
+	iters: 2100, epoch: 5 | loss: 0.3966053
+	speed: 0.9138s/iter; left time: 14524.1893s
+	iters: 2200, epoch: 5 | loss: 0.3120606
+	speed: 0.9135s/iter; left time: 14428.1682s
+	iters: 2300, epoch: 5 | loss: 0.3689911
+	speed: 0.9155s/iter; left time: 14368.6154s
+	iters: 2400, epoch: 5 | loss: 0.3083776
+	speed: 0.9114s/iter; left time: 14212.8119s
+	iters: 2500, epoch: 5 | loss: 0.4302754
+	speed: 0.8676s/iter; left time: 13443.1911s
+	iters: 2600, epoch: 5 | loss: 0.3525550
+	speed: 0.8463s/iter; left time: 13028.2720s
+	iters: 2700, epoch: 5 | loss: 0.3030823
+	speed: 0.8507s/iter; left time: 13011.5991s
+	iters: 2800, epoch: 5 | loss: 0.3017898
+	speed: 0.8690s/iter; left time: 13204.7094s
+	iters: 2900, epoch: 5 | loss: 0.3263466
+	speed: 0.8548s/iter; left time: 12903.8729s
+Epoch: 5 cost time: 2710.381620645523
+Epoch: 5, Steps: 2999 | Train Loss: 0.3416072 Vali Loss: 0.5450157 Test Loss: 0.6518979
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_traffic_96_192_AGPT_PT_512_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 3317
+test shape: (3317, 192, 862) (3317, 192, 862)
+test shape: (3317, 192, 862) (3317, 192, 862)
+mse:0.5887182354927063, mae:0.4032041132450104
+================================================================================
+Model Profiling Summary
+Total Params             : 4,429,763
+Inference Time (s)       : 0.356122
+GPU Mem Footprint (MB)   : 79.18
+Peak Mem (MB)            : 309.95
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           traffic_96_336      Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/traffic/  
+  Data Path:          traffic.csv         Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             862                 Dec In:             862                 
+  C Out:              862                 d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               512                 
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         4                   
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      1                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_traffic_96_336_AGPT_PT_512_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 11849
+val 1421
+test 3173
+ts55-master-0:426945:426945 [0] NCCL INFO cudaDriverVersion 12020
+ts55-master-0:426945:426945 [0] NCCL INFO Bootstrap : Using eth0:10.211.67.41<0>
+ts55-master-0:426945:426945 [0] NCCL INFO NET/Plugin : dlerror=libnccl-net.so: cannot open shared object file: No such file or directory No plugin found (libnccl-net.so), using internal implementation
+NCCL version 2.20.5+cuda12.4
+ts55-master-0:426945:427846 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ts55-master-0:426945:427846 [0] NCCL INFO NET/IB : No device found.
+ts55-master-0:426945:427846 [0] NCCL INFO NET/Socket : Using [0]eth0:10.211.67.41<0>
+ts55-master-0:426945:427846 [0] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:426945:427846 [0] NCCL INFO Using network Socket
+ts55-master-0:426945:427847 [1] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:426945:427847 [1] NCCL INFO Using network Socket
+ts55-master-0:426945:427848 [2] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:426945:427848 [2] NCCL INFO Using network Socket
+ts55-master-0:426945:427849 [3] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:426945:427849 [3] NCCL INFO Using network Socket
+ts55-master-0:426945:427847 [1] NCCL INFO comm 0xfb3e970 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 63000 commId 0x133ea4c32722c7f1 - Init START
+ts55-master-0:426945:427846 [0] NCCL INFO comm 0xfb37ee0 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 61000 commId 0x133ea4c32722c7f1 - Init START
+ts55-master-0:426945:427848 [2] NCCL INFO comm 0xfb43680 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 65000 commId 0x133ea4c32722c7f1 - Init START
+ts55-master-0:426945:427849 [3] NCCL INFO comm 0xfb48390 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId 67000 commId 0x133ea4c32722c7f1 - Init START
+ts55-master-0:426945:427847 [1] NCCL INFO Setting affinity for GPU 1 to 03ffffff,ffffffff
+ts55-master-0:426945:427847 [1] NCCL INFO NVLS multicast support is not available on dev 1
+ts55-master-0:426945:427848 [2] NCCL INFO Setting affinity for GPU 2 to 03ffffff,ffffffff
+ts55-master-0:426945:427848 [2] NCCL INFO NVLS multicast support is not available on dev 2
+ts55-master-0:426945:427846 [0] NCCL INFO Setting affinity for GPU 0 to 03ffffff,ffffffff
+ts55-master-0:426945:427846 [0] NCCL INFO NVLS multicast support is not available on dev 0
+ts55-master-0:426945:427849 [3] NCCL INFO Setting affinity for GPU 3 to 03ffffff,ffffffff
+ts55-master-0:426945:427849 [3] NCCL INFO NVLS multicast support is not available on dev 3
+ts55-master-0:426945:427849 [3] NCCL INFO comm 0xfb48390 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+ts55-master-0:426945:427846 [0] NCCL INFO comm 0xfb37ee0 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+ts55-master-0:426945:427847 [1] NCCL INFO comm 0xfb3e970 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 00/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 01/24 :    0   1   2   3
+ts55-master-0:426945:427847 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 2/-1/-1->1->0 [5] 2/-1/-1->1->0 [6] 2/-1/-1->1->0 [7] 2/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 2/-1/-1->1->0 [10] 2/-1/-1->1->0 [11] 2/-1/-1->1->0 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 2/-1/-1->1->0 [17] 2/-1/-1->1->0 [18] 2/-1/-1->1->0 [19] 2/-1/-1->1->0 [20] 2/-1/-1->1->0 [21] 2/-1/-1->1->0 [22] 2/-1/-1->1->0 [23] 2/-1/-1->1->0
+ts55-master-0:426945:427849 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->2 [5] -1/-1/-1->3->2 [6] -1/-1/-1->3->2 [7] -1/-1/-1->3->2 [8] -1/-1/-1->3->2 [9] -1/-1/-1->3->2 [10] -1/-1/-1->3->2 [11] -1/-1/-1->3->2 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2 [16] -1/-1/-1->3->2 [17] -1/-1/-1->3->2 [18] -1/-1/-1->3->2 [19] -1/-1/-1->3->2 [20] -1/-1/-1->3->2 [21] -1/-1/-1->3->2 [22] -1/-1/-1->3->2 [23] -1/-1/-1->3->2
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 02/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 03/24 :    0   1   2   3
+ts55-master-0:426945:427848 [2] NCCL INFO comm 0xfb43680 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+ts55-master-0:426945:427847 [1] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 04/24 :    0   1   2   3
+ts55-master-0:426945:427849 [3] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 05/24 :    0   1   2   3
+ts55-master-0:426945:427848 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 3/-1/-1->2->1 [5] 3/-1/-1->2->1 [6] 3/-1/-1->2->1 [7] 3/-1/-1->2->1 [8] 3/-1/-1->2->1 [9] 3/-1/-1->2->1 [10] 3/-1/-1->2->1 [11] 3/-1/-1->2->1 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1 [16] 3/-1/-1->2->1 [17] 3/-1/-1->2->1 [18] 3/-1/-1->2->1 [19] 3/-1/-1->2->1 [20] 3/-1/-1->2->1 [21] 3/-1/-1->2->1 [22] 3/-1/-1->2->1 [23] 3/-1/-1->2->1
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 06/24 :    0   1   2   3
+ts55-master-0:426945:427848 [2] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 07/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 08/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 09/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 10/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 11/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 12/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 13/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 14/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 15/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 16/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 17/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 18/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 19/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 20/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 21/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 22/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 23/24 :    0   1   2   3
+ts55-master-0:426945:427846 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] 1/-1/-1->0->-1 [9] 1/-1/-1->0->-1 [10] 1/-1/-1->0->-1 [11] 1/-1/-1->0->-1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] 1/-1/-1->0->-1 [19] 1/-1/-1->0->-1 [20] 1/-1/-1->0->-1 [21] 1/-1/-1->0->-1 [22] 1/-1/-1->0->-1 [23] 1/-1/-1->0->-1
+ts55-master-0:426945:427846 [0] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 01/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 02/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 04/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 04/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 05/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 05/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 07/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 07/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 08/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 09/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 10/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 11/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 13/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 14/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 16/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 16/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 17/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 17/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 17/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 18/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 18/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 19/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 19/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 19/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 20/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 20/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 21/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 21/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 21/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 22/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 22/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 23/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 23/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 23/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Connected all rings
+ts55-master-0:426945:427849 [3] NCCL INFO Connected all rings
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Connected all rings
+ts55-master-0:426945:427848 [2] NCCL INFO Connected all rings
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 02/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 04/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 06/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 08/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 09/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 10/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 12/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 14/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 15/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 16/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 17/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 18/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 19/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 20/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 21/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 22/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427849 [3] NCCL INFO Channel 23/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 04/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 08/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 10/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 12/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 14/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 16/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 18/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 18/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 19/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 20/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 21/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427847 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 22/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427848 [2] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:426945:427846 [0] NCCL INFO Connected all trees
+ts55-master-0:426945:427846 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:426945:427846 [0] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:426945:427847 [1] NCCL INFO Connected all trees
+ts55-master-0:426945:427847 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:426945:427847 [1] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:426945:427849 [3] NCCL INFO Connected all trees
+ts55-master-0:426945:427848 [2] NCCL INFO Connected all trees
+ts55-master-0:426945:427849 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:426945:427849 [3] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:426945:427848 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:426945:427848 [2] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:426945:427848 [2] NCCL INFO comm 0xfb43680 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 65000 commId 0x133ea4c32722c7f1 - Init COMPLETE
+ts55-master-0:426945:427847 [1] NCCL INFO comm 0xfb3e970 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 63000 commId 0x133ea4c32722c7f1 - Init COMPLETE
+ts55-master-0:426945:427846 [0] NCCL INFO comm 0xfb37ee0 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 61000 commId 0x133ea4c32722c7f1 - Init COMPLETE
+ts55-master-0:426945:427849 [3] NCCL INFO comm 0xfb48390 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId 67000 commId 0x133ea4c32722c7f1 - Init COMPLETE
+	iters: 100, epoch: 1 | loss: 0.5301968
+	speed: 0.9867s/iter; left time: 29139.0376s
+	iters: 200, epoch: 1 | loss: 0.4939998
+	speed: 0.9124s/iter; left time: 26852.1499s
+	iters: 300, epoch: 1 | loss: 0.4372245
+	speed: 0.9158s/iter; left time: 26860.1293s
+	iters: 400, epoch: 1 | loss: 0.4697981
+	speed: 0.9142s/iter; left time: 26724.1427s
+	iters: 500, epoch: 1 | loss: 0.4560876
+	speed: 0.9163s/iter; left time: 26694.0603s
+	iters: 600, epoch: 1 | loss: 0.4441215
+	speed: 0.9145s/iter; left time: 26549.8497s
+	iters: 700, epoch: 1 | loss: 0.3886389
+	speed: 0.9147s/iter; left time: 26464.2956s
+	iters: 800, epoch: 1 | loss: 0.4170727
+	speed: 0.9133s/iter; left time: 26332.4032s
+	iters: 900, epoch: 1 | loss: 0.4056450
+	speed: 0.9162s/iter; left time: 26324.4508s
+	iters: 1000, epoch: 1 | loss: 0.4239122
+	speed: 0.9136s/iter; left time: 26157.4299s
+	iters: 1100, epoch: 1 | loss: 0.4013284
+	speed: 0.9157s/iter; left time: 26125.5210s
+	iters: 1200, epoch: 1 | loss: 0.4092821
+	speed: 0.9143s/iter; left time: 25995.0093s
+	iters: 1300, epoch: 1 | loss: 0.3867910
+	speed: 0.8994s/iter; left time: 25481.6558s
+	iters: 1400, epoch: 1 | loss: 0.3500937
+	speed: 0.8838s/iter; left time: 24951.8104s
+	iters: 1500, epoch: 1 | loss: 0.3451136
+	speed: 0.8848s/iter; left time: 24889.7365s
+	iters: 1600, epoch: 1 | loss: 0.4007708
+	speed: 0.8913s/iter; left time: 24983.3227s
+	iters: 1700, epoch: 1 | loss: 0.3731408
+	speed: 0.9112s/iter; left time: 25450.1818s
+	iters: 1800, epoch: 1 | loss: 0.4187999
+	speed: 0.9135s/iter; left time: 25424.8038s
+	iters: 1900, epoch: 1 | loss: 0.4437723
+	speed: 0.9160s/iter; left time: 25401.7307s
+	iters: 2000, epoch: 1 | loss: 0.3993713
+	speed: 0.9158s/iter; left time: 25305.0980s
+	iters: 2100, epoch: 1 | loss: 0.3662719
+	speed: 0.9142s/iter; left time: 25167.5992s
+	iters: 2200, epoch: 1 | loss: 0.3995975
+	speed: 0.9152s/iter; left time: 25104.4445s
+	iters: 2300, epoch: 1 | loss: 0.3726791
+	speed: 0.9017s/iter; left time: 24645.2276s
+	iters: 2400, epoch: 1 | loss: 0.4450935
+	speed: 0.8857s/iter; left time: 24118.5744s
+	iters: 2500, epoch: 1 | loss: 0.4069556
+	speed: 0.8898s/iter; left time: 24142.0618s
+	iters: 2600, epoch: 1 | loss: 0.3506764
+	speed: 0.8871s/iter; left time: 23978.1964s
+	iters: 2700, epoch: 1 | loss: 0.3998980
+	speed: 0.9002s/iter; left time: 24242.8595s
+	iters: 2800, epoch: 1 | loss: 0.3505141
+	speed: 0.9148s/iter; left time: 24545.9187s
+	iters: 2900, epoch: 1 | loss: 0.3824081
+	speed: 0.9150s/iter; left time: 24459.7400s
+ts55-master-0:426945:456255 [0] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:426945:456255 [0] NCCL INFO Using network Socket
+ts55-master-0:426945:456255 [0] NCCL INFO comm 0x15a1e030 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId 61000 commId 0x7ebbeecb10e74c3a - Init START
+ts55-master-0:426945:456255 [0] NCCL INFO Setting affinity for GPU 0 to 03ffffff,ffffffff
+ts55-master-0:426945:456255 [0] NCCL INFO comm 0x15a1e030 rank 0 nRanks 1 nNodes 1 localRanks 1 localRank 0 MNNVL 0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 00/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 01/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 02/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 03/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 04/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 05/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 06/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 07/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 08/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 09/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 10/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 11/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 12/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 13/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 14/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 15/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 16/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 17/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 18/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 19/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 20/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 21/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 22/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 23/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 24/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 25/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 26/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 27/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 28/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 29/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 30/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Channel 31/32 :    0
+ts55-master-0:426945:456255 [0] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+ts55-master-0:426945:456255 [0] NCCL INFO P2P Chunksize set to 131072
+ts55-master-0:426945:456255 [0] NCCL INFO Connected all rings
+ts55-master-0:426945:456255 [0] NCCL INFO Connected all trees
+ts55-master-0:426945:456255 [0] NCCL INFO 32 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:426945:456255 [0] NCCL INFO comm 0x15a1e030 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId 61000 commId 0x7ebbeecb10e74c3a - Init COMPLETE
+Epoch: 1 cost time: 2696.672834634781
+Epoch: 1, Steps: 2963 | Train Loss: 0.4176337 Vali Loss: 0.5175845 Test Loss: 0.6227199
+Validation loss decreased (inf --> 0.517585).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.3996208
+	speed: 5.6357s/iter; left time: 149728.1102s
+	iters: 200, epoch: 2 | loss: 0.4683606
+	speed: 0.9160s/iter; left time: 24244.9271s
+	iters: 300, epoch: 2 | loss: 0.3532267
+	speed: 0.9145s/iter; left time: 24112.3993s
+	iters: 400, epoch: 2 | loss: 0.3507970
+	speed: 0.9165s/iter; left time: 24073.3530s
+	iters: 500, epoch: 2 | loss: 0.3513134
+	speed: 0.9148s/iter; left time: 23937.2917s
+	iters: 600, epoch: 2 | loss: 0.4406132
+	speed: 0.9159s/iter; left time: 23875.9054s
+	iters: 700, epoch: 2 | loss: 0.3826674
+	speed: 0.8847s/iter; left time: 22973.5875s
+	iters: 800, epoch: 2 | loss: 0.3499744
+	speed: 0.8818s/iter; left time: 22809.2587s
+	iters: 900, epoch: 2 | loss: 0.4192526
+	speed: 0.8846s/iter; left time: 22793.4969s
+	iters: 1000, epoch: 2 | loss: 0.3885514
+	speed: 0.8993s/iter; left time: 23083.0087s
+	iters: 1100, epoch: 2 | loss: 0.3890477
+	speed: 0.9156s/iter; left time: 23409.6736s
+	iters: 1200, epoch: 2 | loss: 0.3449013
+	speed: 0.9161s/iter; left time: 23330.1804s
+	iters: 1300, epoch: 2 | loss: 0.3569059
+	speed: 0.9142s/iter; left time: 23191.0524s
+	iters: 1400, epoch: 2 | loss: 0.4204786
+	speed: 0.9188s/iter; left time: 23216.5630s
+	iters: 1500, epoch: 2 | loss: 0.3270760
+	speed: 0.9153s/iter; left time: 23037.1189s
+	iters: 1600, epoch: 2 | loss: 0.3437717
+	speed: 0.9135s/iter; left time: 22900.5419s
+	iters: 1700, epoch: 2 | loss: 0.3720750
+	speed: 0.9169s/iter; left time: 22893.1770s
+	iters: 1800, epoch: 2 | loss: 0.3915050
+	speed: 0.9161s/iter; left time: 22781.7606s
+	iters: 1900, epoch: 2 | loss: 0.3427913
+	speed: 0.9150s/iter; left time: 22662.6910s
+	iters: 2000, epoch: 2 | loss: 0.3693188
+	speed: 0.9183s/iter; left time: 22652.2897s
+	iters: 2100, epoch: 2 | loss: 0.3644835
+	speed: 0.9160s/iter; left time: 22505.2671s
+	iters: 2200, epoch: 2 | loss: 0.3623194
+	speed: 0.9158s/iter; left time: 22408.9754s
+	iters: 2300, epoch: 2 | loss: 0.3782203
+	speed: 0.8946s/iter; left time: 21798.9075s
+	iters: 2400, epoch: 2 | loss: 0.3447103
+	speed: 0.8890s/iter; left time: 21574.9700s
+	iters: 2500, epoch: 2 | loss: 0.3780431
+	speed: 0.8937s/iter; left time: 21598.3406s
+	iters: 2600, epoch: 2 | loss: 0.3270000
+	speed: 0.8895s/iter; left time: 21408.6920s
+	iters: 2700, epoch: 2 | loss: 0.3639577
+	speed: 0.9127s/iter; left time: 21876.4784s
+	iters: 2800, epoch: 2 | loss: 0.4194210
+	speed: 0.9142s/iter; left time: 21820.0103s
+	iters: 2900, epoch: 2 | loss: 0.3680936
+	speed: 0.9165s/iter; left time: 21782.3420s
+Epoch: 2 cost time: 2692.4900238513947
+Epoch: 2, Steps: 2963 | Train Loss: 0.3743450 Vali Loss: 0.5030940 Test Loss: 0.6030801
+Validation loss decreased (0.517585 --> 0.503094).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.3287565
+	speed: 5.6875s/iter; left time: 134252.4311s
+	iters: 200, epoch: 3 | loss: 0.3674191
+	speed: 0.8876s/iter; left time: 20863.6436s
+	iters: 300, epoch: 3 | loss: 0.3682504
+	speed: 0.8882s/iter; left time: 20788.4419s
+	iters: 400, epoch: 3 | loss: 0.4514968
+	speed: 0.9131s/iter; left time: 21279.9247s
+	iters: 500, epoch: 3 | loss: 0.3802913
+	speed: 0.9146s/iter; left time: 21224.2380s
+	iters: 600, epoch: 3 | loss: 0.3791684
+	speed: 0.9160s/iter; left time: 21163.5594s
+	iters: 700, epoch: 3 | loss: 0.3723391
+	speed: 0.9151s/iter; left time: 21051.9130s
+	iters: 800, epoch: 3 | loss: 0.3329464
+	speed: 0.9154s/iter; left time: 20968.1153s
+	iters: 900, epoch: 3 | loss: 0.3539317
+	speed: 0.9158s/iter; left time: 20885.1549s
+	iters: 1000, epoch: 3 | loss: 0.3894285
+	speed: 0.9151s/iter; left time: 20776.5853s
+	iters: 1100, epoch: 3 | loss: 0.3888628
+	speed: 0.9148s/iter; left time: 20679.5126s
+	iters: 1200, epoch: 3 | loss: 0.3196842
+	speed: 0.9154s/iter; left time: 20601.9721s
+	iters: 1300, epoch: 3 | loss: 0.3463569
+	speed: 0.9148s/iter; left time: 20497.0548s
+	iters: 1400, epoch: 3 | loss: 0.3065267
+	speed: 0.9143s/iter; left time: 20392.6905s
+	iters: 1500, epoch: 3 | loss: 0.3504379
+	speed: 0.9153s/iter; left time: 20325.0959s
+	iters: 1600, epoch: 3 | loss: 0.3468660
+	speed: 0.9163s/iter; left time: 20255.6710s
+	iters: 1700, epoch: 3 | loss: 0.3249460
+	speed: 0.9146s/iter; left time: 20125.8140s
+	iters: 1800, epoch: 3 | loss: 0.3491366
+	speed: 0.9117s/iter; left time: 19970.0611s
+	iters: 1900, epoch: 3 | loss: 0.3587208
+	speed: 0.9148s/iter; left time: 19947.5259s
+	iters: 2000, epoch: 3 | loss: 0.3825991
+	speed: 0.9143s/iter; left time: 19844.2003s
+	iters: 2100, epoch: 3 | loss: 0.4054315
+	speed: 0.9182s/iter; left time: 19836.9417s
+	iters: 2200, epoch: 3 | loss: 0.3267183
+	speed: 0.9007s/iter; left time: 19369.6610s
+	iters: 2300, epoch: 3 | loss: 0.3299719
+	speed: 0.8911s/iter; left time: 19073.8348s
+	iters: 2400, epoch: 3 | loss: 0.4068426
+	speed: 0.8926s/iter; left time: 19017.8503s
+	iters: 2500, epoch: 3 | loss: 0.4464733
+	speed: 0.8910s/iter; left time: 18892.7670s
+	iters: 2600, epoch: 3 | loss: 0.3284643
+	speed: 0.9023s/iter; left time: 19043.3545s
+	iters: 2700, epoch: 3 | loss: 0.3877056
+	speed: 0.9159s/iter; left time: 19238.3003s
+	iters: 2800, epoch: 3 | loss: 0.3532427
+	speed: 0.8997s/iter; left time: 18807.7764s
+	iters: 2900, epoch: 3 | loss: 0.3545330
+	speed: 0.8828s/iter; left time: 18366.7954s
+Epoch: 3 cost time: 2686.910216808319
+Epoch: 3, Steps: 2963 | Train Loss: 0.3607508 Vali Loss: 0.4968620 Test Loss: 0.5952571
+Validation loss decreased (0.503094 --> 0.496862).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.3439907
+	speed: 5.6560s/iter; left time: 116750.7723s
+	iters: 200, epoch: 4 | loss: 0.3594033
+	speed: 0.9141s/iter; left time: 18776.7475s
+	iters: 300, epoch: 4 | loss: 0.3165751
+	speed: 0.9141s/iter; left time: 18685.9019s
+	iters: 400, epoch: 4 | loss: 0.3396203
+	speed: 0.9145s/iter; left time: 18603.3620s
+	iters: 500, epoch: 4 | loss: 0.3386163
+	speed: 0.9162s/iter; left time: 18544.8993s
+	iters: 600, epoch: 4 | loss: 0.3193080
+	speed: 0.9168s/iter; left time: 18466.9775s
+	iters: 700, epoch: 4 | loss: 0.3729035
+	speed: 0.9151s/iter; left time: 18340.1245s
+	iters: 800, epoch: 4 | loss: 0.4113614
+	speed: 0.9155s/iter; left time: 18257.1725s
+	iters: 900, epoch: 4 | loss: 0.3728319
+	speed: 0.9149s/iter; left time: 18154.3659s
+	iters: 1000, epoch: 4 | loss: 0.3612316
+	speed: 0.9155s/iter; left time: 18073.8710s
+	iters: 1100, epoch: 4 | loss: 0.3533711
+	speed: 0.9140s/iter; left time: 17952.0511s
+	iters: 1200, epoch: 4 | loss: 0.3805803
+	speed: 0.9139s/iter; left time: 17858.9986s
+	iters: 1300, epoch: 4 | loss: 0.3499203
+	speed: 0.9161s/iter; left time: 17810.9393s
+	iters: 1400, epoch: 4 | loss: 0.3744236
+	speed: 0.9141s/iter; left time: 17679.7515s
+	iters: 1500, epoch: 4 | loss: 0.3312228
+	speed: 0.9153s/iter; left time: 17611.3703s
+	iters: 1600, epoch: 4 | loss: 0.3870351
+	speed: 0.9143s/iter; left time: 17501.3856s
+	iters: 1700, epoch: 4 | loss: 0.3387267
+	speed: 0.9153s/iter; left time: 17429.7306s
+	iters: 1800, epoch: 4 | loss: 0.3296058
+	speed: 0.9142s/iter; left time: 17317.0103s
+	iters: 1900, epoch: 4 | loss: 0.3218273
+	speed: 0.9146s/iter; left time: 17233.2382s
+	iters: 2000, epoch: 4 | loss: 0.3606702
+	speed: 0.9152s/iter; left time: 17151.8701s
+	iters: 2100, epoch: 4 | loss: 0.3725282
+	speed: 0.9114s/iter; left time: 16990.0279s
+	iters: 2200, epoch: 4 | loss: 0.3822568
+	speed: 0.8477s/iter; left time: 15718.5810s
+	iters: 2300, epoch: 4 | loss: 0.3745728
+	speed: 0.8362s/iter; left time: 15420.8438s
+	iters: 2400, epoch: 4 | loss: 0.3843017
+	speed: 0.8533s/iter; left time: 15651.3851s
+	iters: 2500, epoch: 4 | loss: 0.3481137
+	speed: 0.8669s/iter; left time: 15814.0236s
+	iters: 2600, epoch: 4 | loss: 0.3362980
+	speed: 0.9136s/iter; left time: 16574.1472s
+	iters: 2700, epoch: 4 | loss: 0.3703831
+	speed: 0.9156s/iter; left time: 16519.5207s
+	iters: 2800, epoch: 4 | loss: 0.3470246
+	speed: 0.9134s/iter; left time: 16388.5267s
+	iters: 2900, epoch: 4 | loss: 0.3650595
+	speed: 0.9161s/iter; left time: 16344.8546s
+Epoch: 4 cost time: 2685.172084093094
+Epoch: 4, Steps: 2963 | Train Loss: 0.3548102 Vali Loss: 0.5064441 Test Loss: 0.6081598
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.3767518
+	speed: 5.7240s/iter; left time: 101195.1223s
+	iters: 200, epoch: 5 | loss: 0.3180651
+	speed: 0.9160s/iter; left time: 16102.8150s
+	iters: 300, epoch: 5 | loss: 0.3709993
+	speed: 0.9162s/iter; left time: 16013.7162s
+	iters: 400, epoch: 5 | loss: 0.3457207
+	speed: 0.9147s/iter; left time: 15896.3079s
+	iters: 500, epoch: 5 | loss: 0.3645239
+	speed: 0.9135s/iter; left time: 15783.6864s
+	iters: 600, epoch: 5 | loss: 0.3858663
+	speed: 0.9152s/iter; left time: 15721.8291s
+	iters: 700, epoch: 5 | loss: 0.3477906
+	speed: 0.9171s/iter; left time: 15663.2901s
+	iters: 800, epoch: 5 | loss: 0.3544270
+	speed: 0.9148s/iter; left time: 15532.9234s
+	iters: 900, epoch: 5 | loss: 0.4174906
+	speed: 0.9143s/iter; left time: 15432.1729s
+	iters: 1000, epoch: 5 | loss: 0.3361321
+	speed: 0.9165s/iter; left time: 15377.7991s
+	iters: 1100, epoch: 5 | loss: 0.3608980
+	speed: 0.9162s/iter; left time: 15281.1151s
+	iters: 1200, epoch: 5 | loss: 0.3609183
+	speed: 0.9149s/iter; left time: 15168.0633s
+	iters: 1300, epoch: 5 | loss: 0.3726662
+	speed: 0.9136s/iter; left time: 15054.8495s
+	iters: 1400, epoch: 5 | loss: 0.3044023
+	speed: 0.9154s/iter; left time: 14992.7866s
+	iters: 1500, epoch: 5 | loss: 0.3728937
+	speed: 0.9012s/iter; left time: 14670.5261s
+	iters: 1600, epoch: 5 | loss: 0.3468212
+	speed: 0.8811s/iter; left time: 14255.2057s
+	iters: 1700, epoch: 5 | loss: 0.3332496
+	speed: 0.8851s/iter; left time: 14232.1604s
+	iters: 1800, epoch: 5 | loss: 0.3448606
+	speed: 0.8916s/iter; left time: 14246.2111s
+	iters: 1900, epoch: 5 | loss: 0.3444546
+	speed: 0.9069s/iter; left time: 14400.3848s
+	iters: 2000, epoch: 5 | loss: 0.3709629
+	speed: 0.9153s/iter; left time: 14443.1882s
+	iters: 2100, epoch: 5 | loss: 0.3249218
+	speed: 0.8959s/iter; left time: 14046.0821s
+	iters: 2200, epoch: 5 | loss: 0.3472072
+	speed: 0.8893s/iter; left time: 13853.7722s
+	iters: 2300, epoch: 5 | loss: 0.2978184
+	speed: 0.8912s/iter; left time: 13795.1125s
+	iters: 2400, epoch: 5 | loss: 0.3091252
+	speed: 0.8925s/iter; left time: 13725.9658s
+	iters: 2500, epoch: 5 | loss: 0.3833953
+	speed: 0.9036s/iter; left time: 13805.6374s
+	iters: 2600, epoch: 5 | loss: 0.3299705
+	speed: 0.9147s/iter; left time: 13884.8475s
+	iters: 2700, epoch: 5 | loss: 0.3853908
+	speed: 0.9137s/iter; left time: 13777.0615s
+	iters: 2800, epoch: 5 | loss: 0.3606093
+	speed: 0.9125s/iter; left time: 13667.8780s
+	iters: 2900, epoch: 5 | loss: 0.3886041
+	speed: 0.9136s/iter; left time: 13593.3068s
+Epoch: 5 cost time: 2690.3349590301514
+Epoch: 5, Steps: 2963 | Train Loss: 0.3519295 Vali Loss: 0.5135479 Test Loss: 0.6140699
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.3318017
+	speed: 5.7181s/iter; left time: 84148.0915s
+	iters: 200, epoch: 6 | loss: 0.3243070
+	speed: 0.9155s/iter; left time: 13381.0052s
+	iters: 300, epoch: 6 | loss: 0.3535821
+	speed: 0.9146s/iter; left time: 13276.7259s
+	iters: 400, epoch: 6 | loss: 0.3394307
+	speed: 0.9159s/iter; left time: 13203.6310s
+	iters: 500, epoch: 6 | loss: 0.3770700
+	speed: 0.9151s/iter; left time: 13100.8549s
+	iters: 600, epoch: 6 | loss: 0.3359409
+	speed: 0.9165s/iter; left time: 13029.2346s
+	iters: 700, epoch: 6 | loss: 0.3660416
+	speed: 0.9141s/iter; left time: 12904.0785s
+	iters: 800, epoch: 6 | loss: 0.3507457
+	speed: 0.9133s/iter; left time: 12801.2348s
+	iters: 900, epoch: 6 | loss: 0.3518080
+	speed: 0.8858s/iter; left time: 12326.8656s
+	iters: 1000, epoch: 6 | loss: 0.3565677
+	speed: 0.8833s/iter; left time: 12203.1407s
+	iters: 1100, epoch: 6 | loss: 0.3537894
+	speed: 0.8881s/iter; left time: 12181.2630s
+	iters: 1200, epoch: 6 | loss: 0.3243641
+	speed: 0.8992s/iter; left time: 12244.1858s
+	iters: 1300, epoch: 6 | loss: 0.3381485
+	speed: 0.9154s/iter; left time: 12372.9087s
+	iters: 1400, epoch: 6 | loss: 0.3533832
+	speed: 0.9122s/iter; left time: 12237.9634s
+	iters: 1500, epoch: 6 | loss: 0.3499683
+	speed: 0.9150s/iter; left time: 12184.3457s
+	iters: 1600, epoch: 6 | loss: 0.3681957
+	speed: 0.9137s/iter; left time: 12076.1175s
+	iters: 1700, epoch: 6 | loss: 0.3260744
+	speed: 0.9157s/iter; left time: 12010.2482s
+	iters: 1800, epoch: 6 | loss: 0.3186113
+	speed: 0.9153s/iter; left time: 11913.3859s
+	iters: 1900, epoch: 6 | loss: 0.3720169
+	speed: 0.9149s/iter; left time: 11817.3679s
+	iters: 2000, epoch: 6 | loss: 0.3177332
+	speed: 0.9091s/iter; left time: 11651.1642s
+	iters: 2100, epoch: 6 | loss: 0.3487725
+	speed: 0.8954s/iter; left time: 11385.6614s
+	iters: 2200, epoch: 6 | loss: 0.3272663
+	speed: 0.8902s/iter; left time: 11230.3320s
+	iters: 2300, epoch: 6 | loss: 0.3568605
+	speed: 0.8933s/iter; left time: 11180.9436s
+	iters: 2400, epoch: 6 | loss: 0.3295842
+	speed: 0.8568s/iter; left time: 10638.1451s
+	iters: 2500, epoch: 6 | loss: 0.3377306
+	speed: 0.8834s/iter; left time: 10880.3812s
+	iters: 2600, epoch: 6 | loss: 0.3664188
+	speed: 0.8841s/iter; left time: 10800.1007s
+	iters: 2700, epoch: 6 | loss: 0.3316208
+	speed: 0.7487s/iter; left time: 9070.9974s
+	iters: 2800, epoch: 6 | loss: 0.3333875
+	speed: 0.8529s/iter; left time: 10248.4029s
+	iters: 2900, epoch: 6 | loss: 0.4228914
+	speed: 0.9131s/iter; left time: 10880.6601s
+Epoch: 6 cost time: 2658.501656770706
+Epoch: 6, Steps: 2963 | Train Loss: 0.3504359 Vali Loss: 0.5119045 Test Loss: 0.6155379
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_traffic_96_336_AGPT_PT_512_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 3173
+test shape: (3173, 336, 862) (3173, 336, 862)
+test shape: (3173, 336, 862) (3173, 336, 862)
+mse:0.595118522644043, mae:0.39728066325187683
+================================================================================
+Model Profiling Summary
+Total Params             : 5,314,643
+Inference Time (s)       : 0.335781
+GPU Mem Footprint (MB)   : 92.10
+Peak Mem (MB)            : 321.41
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           traffic_96_720      Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/traffic/  
+  Data Path:          traffic.csv         Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             862                 Dec In:             862                 
+  C Out:              862                 d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               512                 
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         4                   
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      1                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_traffic_96_720_AGPT_PT_512_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 11465
+val 1037
+test 2789
+ts55-master-0:660370:660370 [0] NCCL INFO cudaDriverVersion 12020
+ts55-master-0:660370:660370 [0] NCCL INFO Bootstrap : Using eth0:10.211.67.41<0>
+ts55-master-0:660370:660370 [0] NCCL INFO NET/Plugin : dlerror=libnccl-net.so: cannot open shared object file: No such file or directory No plugin found (libnccl-net.so), using internal implementation
+NCCL version 2.20.5+cuda12.4
+ts55-master-0:660370:661334 [2] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ts55-master-0:660370:661334 [2] NCCL INFO NET/IB : No device found.
+ts55-master-0:660370:661334 [2] NCCL INFO NET/Socket : Using [0]eth0:10.211.67.41<0>
+ts55-master-0:660370:661334 [2] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:660370:661334 [2] NCCL INFO Using network Socket
+ts55-master-0:660370:661335 [3] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:660370:661335 [3] NCCL INFO Using network Socket
+ts55-master-0:660370:661332 [0] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:660370:661332 [0] NCCL INFO Using network Socket
+ts55-master-0:660370:661333 [1] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:660370:661333 [1] NCCL INFO Using network Socket
+ts55-master-0:660370:661333 [1] NCCL INFO comm 0x14a039c0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 63000 commId 0x2a4c8db5b03bf670 - Init START
+ts55-master-0:660370:661335 [3] NCCL INFO comm 0x14a0d3e0 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId 67000 commId 0x2a4c8db5b03bf670 - Init START
+ts55-master-0:660370:661332 [0] NCCL INFO comm 0x149fcf30 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 61000 commId 0x2a4c8db5b03bf670 - Init START
+ts55-master-0:660370:661334 [2] NCCL INFO comm 0x14a086d0 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 65000 commId 0x2a4c8db5b03bf670 - Init START
+ts55-master-0:660370:661332 [0] NCCL INFO Setting affinity for GPU 0 to 03ffffff,ffffffff
+ts55-master-0:660370:661332 [0] NCCL INFO NVLS multicast support is not available on dev 0
+ts55-master-0:660370:661335 [3] NCCL INFO Setting affinity for GPU 3 to 03ffffff,ffffffff
+ts55-master-0:660370:661335 [3] NCCL INFO NVLS multicast support is not available on dev 3
+ts55-master-0:660370:661334 [2] NCCL INFO Setting affinity for GPU 2 to 03ffffff,ffffffff
+ts55-master-0:660370:661334 [2] NCCL INFO NVLS multicast support is not available on dev 2
+ts55-master-0:660370:661333 [1] NCCL INFO Setting affinity for GPU 1 to 03ffffff,ffffffff
+ts55-master-0:660370:661333 [1] NCCL INFO NVLS multicast support is not available on dev 1
+ts55-master-0:660370:661333 [1] NCCL INFO comm 0x14a039c0 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+ts55-master-0:660370:661332 [0] NCCL INFO comm 0x149fcf30 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+ts55-master-0:660370:661334 [2] NCCL INFO comm 0x14a086d0 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+ts55-master-0:660370:661335 [3] NCCL INFO comm 0x14a0d3e0 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 00/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 01/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 02/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 03/24 :    0   1   2   3
+ts55-master-0:660370:661333 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 2/-1/-1->1->0 [5] 2/-1/-1->1->0 [6] 2/-1/-1->1->0 [7] 2/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 2/-1/-1->1->0 [10] 2/-1/-1->1->0 [11] 2/-1/-1->1->0 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 2/-1/-1->1->0 [17] 2/-1/-1->1->0 [18] 2/-1/-1->1->0 [19] 2/-1/-1->1->0 [20] 2/-1/-1->1->0 [21] 2/-1/-1->1->0 [22] 2/-1/-1->1->0 [23] 2/-1/-1->1->0
+ts55-master-0:660370:661334 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 3/-1/-1->2->1 [5] 3/-1/-1->2->1 [6] 3/-1/-1->2->1 [7] 3/-1/-1->2->1 [8] 3/-1/-1->2->1 [9] 3/-1/-1->2->1 [10] 3/-1/-1->2->1 [11] 3/-1/-1->2->1 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1 [16] 3/-1/-1->2->1 [17] 3/-1/-1->2->1 [18] 3/-1/-1->2->1 [19] 3/-1/-1->2->1 [20] 3/-1/-1->2->1 [21] 3/-1/-1->2->1 [22] 3/-1/-1->2->1 [23] 3/-1/-1->2->1
+ts55-master-0:660370:661333 [1] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:660370:661335 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->2 [5] -1/-1/-1->3->2 [6] -1/-1/-1->3->2 [7] -1/-1/-1->3->2 [8] -1/-1/-1->3->2 [9] -1/-1/-1->3->2 [10] -1/-1/-1->3->2 [11] -1/-1/-1->3->2 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2 [16] -1/-1/-1->3->2 [17] -1/-1/-1->3->2 [18] -1/-1/-1->3->2 [19] -1/-1/-1->3->2 [20] -1/-1/-1->3->2 [21] -1/-1/-1->3->2 [22] -1/-1/-1->3->2 [23] -1/-1/-1->3->2
+ts55-master-0:660370:661334 [2] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 04/24 :    0   1   2   3
+ts55-master-0:660370:661335 [3] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 05/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 06/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 07/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 08/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 09/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 10/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 11/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 12/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 13/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 14/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 15/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 16/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 17/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 18/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 19/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 20/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 21/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 22/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 23/24 :    0   1   2   3
+ts55-master-0:660370:661332 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] 1/-1/-1->0->-1 [9] 1/-1/-1->0->-1 [10] 1/-1/-1->0->-1 [11] 1/-1/-1->0->-1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] 1/-1/-1->0->-1 [19] 1/-1/-1->0->-1 [20] 1/-1/-1->0->-1 [21] 1/-1/-1->0->-1 [22] 1/-1/-1->0->-1 [23] 1/-1/-1->0->-1
+ts55-master-0:660370:661332 [0] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661332 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 04/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 05/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 07/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 16/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 17/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 18/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 19/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 21/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 22/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 23/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 01/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 02/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 04/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 05/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 08/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 07/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 09/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 11/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 10/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 13/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 14/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 17/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 16/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 17/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 19/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 18/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 20/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 19/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 21/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 20/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 21/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 23/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 22/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 23/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Connected all rings
+ts55-master-0:660370:661332 [0] NCCL INFO Connected all rings
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 04/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 08/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Connected all rings
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 10/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Connected all rings
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 12/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 02/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 14/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 04/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 16/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 06/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 18/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 08/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 19/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 09/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 20/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 10/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 21/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 22/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 12/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661334 [2] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 14/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 15/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 16/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 17/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 18/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 19/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 20/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 21/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 22/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Channel 23/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 18/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661333 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:660370:661335 [3] NCCL INFO Connected all trees
+ts55-master-0:660370:661335 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:660370:661335 [3] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:660370:661332 [0] NCCL INFO Connected all trees
+ts55-master-0:660370:661334 [2] NCCL INFO Connected all trees
+ts55-master-0:660370:661333 [1] NCCL INFO Connected all trees
+ts55-master-0:660370:661334 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:660370:661334 [2] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:660370:661333 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:660370:661333 [1] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:660370:661332 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:660370:661332 [0] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:660370:661334 [2] NCCL INFO comm 0x14a086d0 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 65000 commId 0x2a4c8db5b03bf670 - Init COMPLETE
+ts55-master-0:660370:661332 [0] NCCL INFO comm 0x149fcf30 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 61000 commId 0x2a4c8db5b03bf670 - Init COMPLETE
+ts55-master-0:660370:661333 [1] NCCL INFO comm 0x14a039c0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 63000 commId 0x2a4c8db5b03bf670 - Init COMPLETE
+ts55-master-0:660370:661335 [3] NCCL INFO comm 0x14a0d3e0 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId 67000 commId 0x2a4c8db5b03bf670 - Init COMPLETE
+	iters: 100, epoch: 1 | loss: 0.6130834
+	speed: 0.9621s/iter; left time: 27488.6494s
+	iters: 200, epoch: 1 | loss: 0.5321367
+	speed: 0.9177s/iter; left time: 26127.9196s
+	iters: 300, epoch: 1 | loss: 0.4804353
+	speed: 0.9171s/iter; left time: 26018.3209s
+	iters: 400, epoch: 1 | loss: 0.4941526
+	speed: 0.9160s/iter; left time: 25897.2131s
+	iters: 500, epoch: 1 | loss: 0.4676204
+	speed: 0.9218s/iter; left time: 25966.7942s
+	iters: 600, epoch: 1 | loss: 0.4411203
+	speed: 0.9179s/iter; left time: 25767.7386s
+	iters: 700, epoch: 1 | loss: 0.4687923
+	speed: 0.9183s/iter; left time: 25685.7657s
+	iters: 800, epoch: 1 | loss: 0.4477222
+	speed: 0.9173s/iter; left time: 25565.1514s
+	iters: 900, epoch: 1 | loss: 0.4086657
+	speed: 0.9192s/iter; left time: 25525.7454s
+	iters: 1000, epoch: 1 | loss: 0.4187831
+	speed: 0.9180s/iter; left time: 25400.6475s
+	iters: 1100, epoch: 1 | loss: 0.4250558
+	speed: 0.9176s/iter; left time: 25299.2718s
+	iters: 1200, epoch: 1 | loss: 0.4467771
+	speed: 0.9196s/iter; left time: 25262.3113s
+	iters: 1300, epoch: 1 | loss: 0.4564185
+	speed: 0.9190s/iter; left time: 25154.4685s
+	iters: 1400, epoch: 1 | loss: 0.4208928
+	speed: 0.9168s/iter; left time: 25001.2297s
+	iters: 1500, epoch: 1 | loss: 0.3977194
+	speed: 0.9191s/iter; left time: 24974.1242s
+	iters: 1600, epoch: 1 | loss: 0.4787864
+	speed: 0.9183s/iter; left time: 24858.5261s
+	iters: 1700, epoch: 1 | loss: 0.3894923
+	speed: 0.9194s/iter; left time: 24797.6495s
+	iters: 1800, epoch: 1 | loss: 0.3852443
+	speed: 0.9179s/iter; left time: 24664.4003s
+	iters: 1900, epoch: 1 | loss: 0.3831674
+	speed: 0.8930s/iter; left time: 23905.5868s
+	iters: 2000, epoch: 1 | loss: 0.4040325
+	speed: 0.8867s/iter; left time: 23650.0237s
+	iters: 2100, epoch: 1 | loss: 0.3762252
+	speed: 0.8926s/iter; left time: 23716.4468s
+	iters: 2200, epoch: 1 | loss: 0.4652186
+	speed: 0.8950s/iter; left time: 23691.6505s
+	iters: 2300, epoch: 1 | loss: 0.3862808
+	speed: 0.9130s/iter; left time: 24077.8878s
+	iters: 2400, epoch: 1 | loss: 0.4070356
+	speed: 0.9176s/iter; left time: 24107.0723s
+	iters: 2500, epoch: 1 | loss: 0.4626178
+	speed: 0.9199s/iter; left time: 24073.5098s
+	iters: 2600, epoch: 1 | loss: 0.4041886
+	speed: 0.8934s/iter; left time: 23292.1568s
+	iters: 2700, epoch: 1 | loss: 0.3574475
+	speed: 0.8882s/iter; left time: 23067.9559s
+	iters: 2800, epoch: 1 | loss: 0.3826040
+	speed: 0.8920s/iter; left time: 23078.0976s
+ts55-master-0:660370:690056 [0] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:660370:690056 [0] NCCL INFO Using network Socket
+ts55-master-0:660370:690056 [0] NCCL INFO comm 0x125da670 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId 61000 commId 0xd6ecc209b3dcdd34 - Init START
+ts55-master-0:660370:690056 [0] NCCL INFO Setting affinity for GPU 0 to 03ffffff,ffffffff
+ts55-master-0:660370:690056 [0] NCCL INFO comm 0x125da670 rank 0 nRanks 1 nNodes 1 localRanks 1 localRank 0 MNNVL 0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 00/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 01/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 02/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 03/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 04/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 05/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 06/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 07/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 08/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 09/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 10/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 11/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 12/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 13/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 14/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 15/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 16/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 17/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 18/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 19/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 20/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 21/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 22/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 23/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 24/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 25/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 26/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 27/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 28/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 29/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 30/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Channel 31/32 :    0
+ts55-master-0:660370:690056 [0] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+ts55-master-0:660370:690056 [0] NCCL INFO P2P Chunksize set to 131072
+ts55-master-0:660370:690056 [0] NCCL INFO Connected all rings
+ts55-master-0:660370:690056 [0] NCCL INFO Connected all trees
+ts55-master-0:660370:690056 [0] NCCL INFO 32 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:660370:690056 [0] NCCL INFO comm 0x125da670 rank 0 nranks 1 cudaDev 0 nvmlDev 0 busId 61000 commId 0xd6ecc209b3dcdd34 - Init COMPLETE
+Epoch: 1 cost time: 2615.866998910904
+Epoch: 1, Steps: 2867 | Train Loss: 0.4391470 Vali Loss: 0.5825930 Test Loss: 0.6877485
+Validation loss decreased (inf --> 0.582593).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.3640456
+	speed: 4.8804s/iter; left time: 125445.3740s
+	iters: 200, epoch: 2 | loss: 0.3581530
+	speed: 0.9211s/iter; left time: 23584.6459s
+	iters: 300, epoch: 2 | loss: 0.3925113
+	speed: 0.9166s/iter; left time: 23376.6264s
+	iters: 400, epoch: 2 | loss: 0.3852657
+	speed: 0.9186s/iter; left time: 23336.8193s
+	iters: 500, epoch: 2 | loss: 0.3787221
+	speed: 0.9195s/iter; left time: 23267.7874s
+	iters: 600, epoch: 2 | loss: 0.4177777
+	speed: 0.9194s/iter; left time: 23173.6183s
+	iters: 700, epoch: 2 | loss: 0.4410930
+	speed: 0.9198s/iter; left time: 23090.1401s
+	iters: 800, epoch: 2 | loss: 0.3945703
+	speed: 0.9198s/iter; left time: 22997.6827s
+	iters: 900, epoch: 2 | loss: 0.3645724
+	speed: 0.9199s/iter; left time: 22908.9547s
+	iters: 1000, epoch: 2 | loss: 0.4494086
+	speed: 0.9185s/iter; left time: 22781.4397s
+	iters: 1100, epoch: 2 | loss: 0.3966003
+	speed: 0.9195s/iter; left time: 22714.7463s
+	iters: 1200, epoch: 2 | loss: 0.4258196
+	speed: 0.9195s/iter; left time: 22623.3077s
+	iters: 1300, epoch: 2 | loss: 0.3699613
+	speed: 0.9192s/iter; left time: 22523.7817s
+	iters: 1400, epoch: 2 | loss: 0.4057927
+	speed: 0.9199s/iter; left time: 22448.5664s
+	iters: 1500, epoch: 2 | loss: 0.4095008
+	speed: 0.9182s/iter; left time: 22315.1583s
+	iters: 1600, epoch: 2 | loss: 0.3597299
+	speed: 0.9172s/iter; left time: 22198.8499s
+	iters: 1700, epoch: 2 | loss: 0.3889176
+	speed: 0.9185s/iter; left time: 22139.8713s
+	iters: 1800, epoch: 2 | loss: 0.3678354
+	speed: 0.9161s/iter; left time: 21990.7095s
+	iters: 1900, epoch: 2 | loss: 0.3840929
+	speed: 0.9096s/iter; left time: 21743.7128s
+	iters: 2000, epoch: 2 | loss: 0.3746721
+	speed: 0.8867s/iter; left time: 21107.7059s
+	iters: 2100, epoch: 2 | loss: 0.3709004
+	speed: 0.8833s/iter; left time: 20937.2168s
+	iters: 2200, epoch: 2 | loss: 0.4335071
+	speed: 0.8871s/iter; left time: 20939.5781s
+	iters: 2300, epoch: 2 | loss: 0.4012409
+	speed: 0.8914s/iter; left time: 20952.0167s
+	iters: 2400, epoch: 2 | loss: 0.4069842
+	speed: 0.8942s/iter; left time: 20927.7565s
+	iters: 2500, epoch: 2 | loss: 0.3697323
+	speed: 0.8821s/iter; left time: 20557.4408s
+	iters: 2600, epoch: 2 | loss: 0.4519327
+	speed: 0.8948s/iter; left time: 20761.9046s
+	iters: 2700, epoch: 2 | loss: 0.3796999
+	speed: 0.9074s/iter; left time: 20965.4040s
+	iters: 2800, epoch: 2 | loss: 0.4260827
+	speed: 0.9184s/iter; left time: 21126.3788s
+Epoch: 2 cost time: 2612.3815727233887
+Epoch: 2, Steps: 2867 | Train Loss: 0.3940732 Vali Loss: 0.5619085 Test Loss: 0.6622232
+Validation loss decreased (0.582593 --> 0.561909).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.3976949
+	speed: 5.2643s/iter; left time: 120221.1340s
+	iters: 200, epoch: 3 | loss: 0.3875295
+	speed: 0.9222s/iter; left time: 20967.0567s
+	iters: 300, epoch: 3 | loss: 0.3616338
+	speed: 0.9212s/iter; left time: 20852.6133s
+	iters: 400, epoch: 3 | loss: 0.3495003
+	speed: 0.9185s/iter; left time: 20700.1892s
+	iters: 500, epoch: 3 | loss: 0.3617505
+	speed: 0.9208s/iter; left time: 20660.6102s
+	iters: 600, epoch: 3 | loss: 0.4352936
+	speed: 0.9180s/iter; left time: 20506.4422s
+	iters: 700, epoch: 3 | loss: 0.3779778
+	speed: 0.9202s/iter; left time: 20462.3685s
+	iters: 800, epoch: 3 | loss: 0.3525641
+	speed: 0.9179s/iter; left time: 20320.4348s
+	iters: 900, epoch: 3 | loss: 0.3547730
+	speed: 0.9211s/iter; left time: 20299.3786s
+	iters: 1000, epoch: 3 | loss: 0.3329157
+	speed: 0.9182s/iter; left time: 20141.6238s
+	iters: 1100, epoch: 3 | loss: 0.3449875
+	speed: 0.9223s/iter; left time: 20139.7482s
+	iters: 1200, epoch: 3 | loss: 0.3823236
+	speed: 0.9205s/iter; left time: 20008.1835s
+	iters: 1300, epoch: 3 | loss: 0.3546291
+	speed: 0.9211s/iter; left time: 19930.2689s
+	iters: 1400, epoch: 3 | loss: 0.3697911
+	speed: 0.9210s/iter; left time: 19834.7658s
+	iters: 1500, epoch: 3 | loss: 0.4231647
+	speed: 0.9196s/iter; left time: 19712.9629s
+	iters: 1600, epoch: 3 | loss: 0.3480654
+	speed: 0.9206s/iter; left time: 19642.2855s
+	iters: 1700, epoch: 3 | loss: 0.3546728
+	speed: 0.9223s/iter; left time: 19587.6517s
+	iters: 1800, epoch: 3 | loss: 0.4195725
+	speed: 0.9055s/iter; left time: 19139.1147s
+	iters: 1900, epoch: 3 | loss: 0.3810040
+	speed: 0.8852s/iter; left time: 18622.4396s
+	iters: 2000, epoch: 3 | loss: 0.3695865
+	speed: 0.8515s/iter; left time: 17827.9034s
+	iters: 2100, epoch: 3 | loss: 0.4033998
+	speed: 0.8356s/iter; left time: 17410.6675s
+	iters: 2200, epoch: 3 | loss: 0.3998927
+	speed: 0.8808s/iter; left time: 18265.6080s
+	iters: 2300, epoch: 3 | loss: 0.3698415
+	speed: 0.8920s/iter; left time: 18408.3263s
+	iters: 2400, epoch: 3 | loss: 0.3885396
+	speed: 0.9058s/iter; left time: 18601.4936s
+	iters: 2500, epoch: 3 | loss: 0.3772206
+	speed: 0.9199s/iter; left time: 18799.4480s
+	iters: 2600, epoch: 3 | loss: 0.3283519
+	speed: 0.9199s/iter; left time: 18708.9049s
+	iters: 2700, epoch: 3 | loss: 0.3430267
+	speed: 0.9194s/iter; left time: 18606.3634s
+	iters: 2800, epoch: 3 | loss: 0.3376381
+	speed: 0.9197s/iter; left time: 18520.0593s
+Epoch: 3 cost time: 2610.6263012886047
+Epoch: 3, Steps: 2867 | Train Loss: 0.3798328 Vali Loss: 0.5770365 Test Loss: 0.6828273
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.3741547
+	speed: 5.2788s/iter; left time: 105418.3001s
+	iters: 200, epoch: 4 | loss: 0.3526214
+	speed: 0.9174s/iter; left time: 18228.8166s
+	iters: 300, epoch: 4 | loss: 0.3556863
+	speed: 0.9193s/iter; left time: 18173.8648s
+	iters: 400, epoch: 4 | loss: 0.4517836
+	speed: 0.9191s/iter; left time: 18077.9529s
+	iters: 500, epoch: 4 | loss: 0.3487784
+	speed: 0.9174s/iter; left time: 17954.0390s
+	iters: 600, epoch: 4 | loss: 0.3330403
+	speed: 0.9202s/iter; left time: 17916.9385s
+	iters: 700, epoch: 4 | loss: 0.3741745
+	speed: 0.9201s/iter; left time: 17822.8535s
+	iters: 800, epoch: 4 | loss: 0.3988273
+	speed: 0.9204s/iter; left time: 17735.7728s
+	iters: 900, epoch: 4 | loss: 0.3445713
+	speed: 0.9193s/iter; left time: 17622.7717s
+	iters: 1000, epoch: 4 | loss: 0.3777097
+	speed: 0.9187s/iter; left time: 17519.5022s
+	iters: 1100, epoch: 4 | loss: 0.3813295
+	speed: 0.9188s/iter; left time: 17430.3590s
+	iters: 1200, epoch: 4 | loss: 0.3930960
+	speed: 0.9189s/iter; left time: 17338.9379s
+	iters: 1300, epoch: 4 | loss: 0.3792779
+	speed: 0.8924s/iter; left time: 16749.7798s
+	iters: 1400, epoch: 4 | loss: 0.3750510
+	speed: 0.8813s/iter; left time: 16453.1529s
+	iters: 1500, epoch: 4 | loss: 0.3829002
+	speed: 0.8888s/iter; left time: 16505.9426s
+	iters: 1600, epoch: 4 | loss: 0.3133191
+	speed: 0.8921s/iter; left time: 16477.8591s
+	iters: 1700, epoch: 4 | loss: 0.4466335
+	speed: 0.9197s/iter; left time: 16895.7574s
+	iters: 1800, epoch: 4 | loss: 0.3996104
+	speed: 0.9170s/iter; left time: 16753.6107s
+	iters: 1900, epoch: 4 | loss: 0.3522371
+	speed: 0.9199s/iter; left time: 16714.1964s
+	iters: 2000, epoch: 4 | loss: 0.3833707
+	speed: 0.9128s/iter; left time: 16493.4309s
+	iters: 2100, epoch: 4 | loss: 0.3929254
+	speed: 0.8891s/iter; left time: 15977.9453s
+	iters: 2200, epoch: 4 | loss: 0.3632287
+	speed: 0.8863s/iter; left time: 15837.4387s
+	iters: 2300, epoch: 4 | loss: 0.3665940
+	speed: 0.8929s/iter; left time: 15866.4516s
+	iters: 2400, epoch: 4 | loss: 0.4121384
+	speed: 0.8912s/iter; left time: 15746.9493s
+	iters: 2500, epoch: 4 | loss: 0.3919624
+	speed: 0.9203s/iter; left time: 16169.8068s
+	iters: 2600, epoch: 4 | loss: 0.3620111
+	speed: 0.9196s/iter; left time: 16066.2412s
+	iters: 2700, epoch: 4 | loss: 0.3770123
+	speed: 0.9203s/iter; left time: 15985.5874s
+	iters: 2800, epoch: 4 | loss: 0.3675153
+	speed: 0.9207s/iter; left time: 15900.2183s
+Epoch: 4 cost time: 2612.1535160541534
+Epoch: 4, Steps: 2867 | Train Loss: 0.3740196 Vali Loss: 0.5635509 Test Loss: 0.6626025
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.3786762
+	speed: 5.2930s/iter; left time: 90525.7040s
+	iters: 200, epoch: 5 | loss: 0.3614826
+	speed: 0.9192s/iter; left time: 15629.6010s
+	iters: 300, epoch: 5 | loss: 0.4078468
+	speed: 0.9217s/iter; left time: 15578.6699s
+	iters: 400, epoch: 5 | loss: 0.3798348
+	speed: 0.9187s/iter; left time: 15437.6688s
+	iters: 500, epoch: 5 | loss: 0.3779660
+	speed: 0.9196s/iter; left time: 15359.3230s
+	iters: 600, epoch: 5 | loss: 0.3531867
+	speed: 0.9178s/iter; left time: 15238.3544s
+	iters: 700, epoch: 5 | loss: 0.3578483
+	speed: 0.9111s/iter; left time: 15035.4097s
+	iters: 800, epoch: 5 | loss: 0.3670693
+	speed: 0.8804s/iter; left time: 14440.6114s
+	iters: 900, epoch: 5 | loss: 0.3839957
+	speed: 0.8850s/iter; left time: 14428.3951s
+	iters: 1000, epoch: 5 | loss: 0.3258033
+	speed: 0.8843s/iter; left time: 14328.7292s
+	iters: 1100, epoch: 5 | loss: 0.3501942
+	speed: 0.9071s/iter; left time: 14606.6073s
+	iters: 1200, epoch: 5 | loss: 0.3691515
+	speed: 0.9193s/iter; left time: 14712.1505s
+	iters: 1300, epoch: 5 | loss: 0.3594961
+	speed: 0.9196s/iter; left time: 14624.6465s
+	iters: 1400, epoch: 5 | loss: 0.3623949
+	speed: 0.9175s/iter; left time: 14498.9121s
+	iters: 1500, epoch: 5 | loss: 0.3685153
+	speed: 0.9205s/iter; left time: 14453.8451s
+	iters: 1600, epoch: 5 | loss: 0.3505690
+	speed: 0.9183s/iter; left time: 14327.9939s
+	iters: 1700, epoch: 5 | loss: 0.3491266
+	speed: 0.9198s/iter; left time: 14260.3502s
+	iters: 1800, epoch: 5 | loss: 0.3981318
+	speed: 0.9197s/iter; left time: 14165.4002s
+	iters: 1900, epoch: 5 | loss: 0.4075320
+	speed: 0.9196s/iter; left time: 14073.2140s
+	iters: 2000, epoch: 5 | loss: 0.3743457
+	speed: 0.9208s/iter; left time: 13998.5004s
+	iters: 2100, epoch: 5 | loss: 0.3818744
+	speed: 0.8994s/iter; left time: 13583.8125s
+	iters: 2200, epoch: 5 | loss: 0.3787708
+	speed: 0.8848s/iter; left time: 13274.9267s
+	iters: 2300, epoch: 5 | loss: 0.3804533
+	speed: 0.8904s/iter; left time: 13269.1570s
+	iters: 2400, epoch: 5 | loss: 0.3518671
+	speed: 0.8905s/iter; left time: 13182.1883s
+	iters: 2500, epoch: 5 | loss: 0.3423969
+	speed: 0.9047s/iter; left time: 13301.3264s
+	iters: 2600, epoch: 5 | loss: 0.3991692
+	speed: 0.9191s/iter; left time: 13422.2586s
+	iters: 2700, epoch: 5 | loss: 0.3585571
+	speed: 0.9184s/iter; left time: 13319.5500s
+	iters: 2800, epoch: 5 | loss: 0.3536963
+	speed: 0.9201s/iter; left time: 13252.6079s
+Epoch: 5 cost time: 2611.1083817481995
+Epoch: 5, Steps: 2867 | Train Loss: 0.3711538 Vali Loss: 0.6136594 Test Loss: 0.7335533
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_traffic_96_720_AGPT_PT_512_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2789
+test shape: (2789, 720, 862) (2789, 720, 862)
+test shape: (2789, 720, 862) (2789, 720, 862)
+mse:0.6622598767280579, mae:0.4355606734752655
+================================================================================
+Model Profiling Summary
+Total Params             : 7,674,323
+Inference Time (s)       : 0.267252
+GPU Mem Footprint (MB)   : 126.54
+Peak Mem (MB)            : 351.96
+================================================================================

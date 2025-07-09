@@ -1,0 +1,936 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           weather_96_96       Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/weather/  
+  Data Path:          weather.csv         Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             21                  Dec In:             21                  
+  C Out:              21                  d model:            512                 
+  n heads:            4                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_weather_96_96_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36696
+val 5175
+test 10444
+	iters: 100, epoch: 1 | loss: 0.4360782
+	speed: 0.5878s/iter; left time: 6683.6612s
+	iters: 200, epoch: 1 | loss: 0.3579404
+	speed: 0.9917s/iter; left time: 11177.7931s
+	iters: 300, epoch: 1 | loss: 0.3769195
+	speed: 0.9917s/iter; left time: 11078.0445s
+	iters: 400, epoch: 1 | loss: 0.4765521
+	speed: 0.9933s/iter; left time: 10997.2641s
+	iters: 500, epoch: 1 | loss: 0.4101023
+	speed: 0.9929s/iter; left time: 10893.6233s
+	iters: 600, epoch: 1 | loss: 0.4295865
+	speed: 0.9922s/iter; left time: 10785.9249s
+	iters: 700, epoch: 1 | loss: 0.4161201
+	speed: 0.9934s/iter; left time: 10699.8549s
+	iters: 800, epoch: 1 | loss: 0.3903423
+	speed: 0.9928s/iter; left time: 10593.6892s
+	iters: 900, epoch: 1 | loss: 0.2889460
+	speed: 0.9930s/iter; left time: 10497.0580s
+	iters: 1000, epoch: 1 | loss: 0.3794780
+	speed: 0.9924s/iter; left time: 10391.8234s
+	iters: 1100, epoch: 1 | loss: 0.3837420
+	speed: 0.9922s/iter; left time: 10290.5278s
+Epoch: 1 cost time: 1098.2286314964294
+Epoch: 1, Steps: 1147 | Train Loss: 0.5179476 Vali Loss: 0.4507186 Test Loss: 0.1865514
+Validation loss decreased (inf --> 0.450719).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 1.3896245
+	speed: 3.2837s/iter; left time: 33572.1390s
+	iters: 200, epoch: 2 | loss: 0.4953524
+	speed: 0.9929s/iter; left time: 10051.7499s
+	iters: 300, epoch: 2 | loss: 0.3397776
+	speed: 0.9916s/iter; left time: 9939.6622s
+	iters: 400, epoch: 2 | loss: 0.3487005
+	speed: 0.9919s/iter; left time: 9843.4513s
+	iters: 500, epoch: 2 | loss: 0.3863416
+	speed: 0.9926s/iter; left time: 9750.8702s
+	iters: 600, epoch: 2 | loss: 0.4704762
+	speed: 0.9910s/iter; left time: 9636.3956s
+	iters: 700, epoch: 2 | loss: 0.3973360
+	speed: 0.9917s/iter; left time: 9544.3495s
+	iters: 800, epoch: 2 | loss: 0.2906419
+	speed: 0.9932s/iter; left time: 9459.2034s
+	iters: 900, epoch: 2 | loss: 0.3905622
+	speed: 0.9928s/iter; left time: 9356.3393s
+	iters: 1000, epoch: 2 | loss: 0.2930238
+	speed: 0.9923s/iter; left time: 9252.1326s
+	iters: 1100, epoch: 2 | loss: 0.5175757
+	speed: 0.9922s/iter; left time: 9152.3444s
+Epoch: 2 cost time: 1138.1087284088135
+Epoch: 2, Steps: 1147 | Train Loss: 0.4933669 Vali Loss: 0.4486406 Test Loss: 0.1854001
+Validation loss decreased (0.450719 --> 0.448641).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.4273987
+	speed: 3.2542s/iter; left time: 29538.0050s
+	iters: 200, epoch: 3 | loss: 1.2121491
+	speed: 0.9922s/iter; left time: 8906.9155s
+	iters: 300, epoch: 3 | loss: 0.3471113
+	speed: 0.9844s/iter; left time: 8738.9479s
+	iters: 400, epoch: 3 | loss: 0.4577003
+	speed: 0.9537s/iter; left time: 8370.2212s
+	iters: 500, epoch: 3 | loss: 0.3140857
+	speed: 0.9570s/iter; left time: 8304.0160s
+	iters: 600, epoch: 3 | loss: 0.3903955
+	speed: 0.9582s/iter; left time: 8218.1667s
+	iters: 700, epoch: 3 | loss: 0.6842057
+	speed: 0.9889s/iter; left time: 8382.7498s
+	iters: 800, epoch: 3 | loss: 0.5170929
+	speed: 0.9928s/iter; left time: 8316.6780s
+	iters: 900, epoch: 3 | loss: 0.3188412
+	speed: 0.9726s/iter; left time: 8050.1603s
+	iters: 1000, epoch: 3 | loss: 0.4346749
+	speed: 0.9556s/iter; left time: 7813.5635s
+	iters: 1100, epoch: 3 | loss: 0.3699629
+	speed: 0.9278s/iter; left time: 7493.9171s
+Epoch: 3 cost time: 1110.1753089427948
+Epoch: 3, Steps: 1147 | Train Loss: 0.4779720 Vali Loss: 0.4379583 Test Loss: 0.1788090
+Validation loss decreased (0.448641 --> 0.437958).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.4103523
+	speed: 3.0338s/iter; left time: 24058.1045s
+	iters: 200, epoch: 4 | loss: 0.3477935
+	speed: 0.9884s/iter; left time: 7739.1255s
+	iters: 300, epoch: 4 | loss: 0.3303080
+	speed: 0.9921s/iter; left time: 7668.7707s
+	iters: 400, epoch: 4 | loss: 0.3734748
+	speed: 0.9928s/iter; left time: 7575.3274s
+	iters: 500, epoch: 4 | loss: 0.2911837
+	speed: 0.9922s/iter; left time: 7471.4402s
+	iters: 600, epoch: 4 | loss: 0.3082097
+	speed: 0.9923s/iter; left time: 7373.1016s
+	iters: 700, epoch: 4 | loss: 0.4837495
+	speed: 0.9920s/iter; left time: 7271.2666s
+	iters: 800, epoch: 4 | loss: 0.4025574
+	speed: 0.9926s/iter; left time: 7176.6499s
+	iters: 900, epoch: 4 | loss: 0.4176715
+	speed: 0.9933s/iter; left time: 7082.1122s
+	iters: 1000, epoch: 4 | loss: 0.3337093
+	speed: 0.9935s/iter; left time: 6984.2249s
+	iters: 1100, epoch: 4 | loss: 0.3920324
+	speed: 0.9927s/iter; left time: 6879.3671s
+Epoch: 4 cost time: 1131.744152545929
+Epoch: 4, Steps: 1147 | Train Loss: 0.4715127 Vali Loss: 0.4380415 Test Loss: 0.1772204
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.4352608
+	speed: 3.2547s/iter; left time: 22076.5337s
+	iters: 200, epoch: 5 | loss: 0.3251988
+	speed: 0.9925s/iter; left time: 6632.6054s
+	iters: 300, epoch: 5 | loss: 0.2361027
+	speed: 0.9925s/iter; left time: 6533.9049s
+	iters: 400, epoch: 5 | loss: 0.6076223
+	speed: 0.9925s/iter; left time: 6434.2100s
+	iters: 500, epoch: 5 | loss: 0.5888517
+	speed: 0.9918s/iter; left time: 6330.6836s
+	iters: 600, epoch: 5 | loss: 0.3108351
+	speed: 0.9927s/iter; left time: 6237.4176s
+	iters: 700, epoch: 5 | loss: 0.3680681
+	speed: 0.9927s/iter; left time: 6137.6109s
+	iters: 800, epoch: 5 | loss: 0.5519067
+	speed: 0.9918s/iter; left time: 6033.2193s
+	iters: 900, epoch: 5 | loss: 0.3167026
+	speed: 0.9618s/iter; left time: 5754.5525s
+	iters: 1000, epoch: 5 | loss: 0.6070901
+	speed: 0.9506s/iter; left time: 5592.6494s
+	iters: 1100, epoch: 5 | loss: 0.4370822
+	speed: 0.9541s/iter; left time: 5517.3434s
+Epoch: 5 cost time: 1125.399701833725
+Epoch: 5, Steps: 1147 | Train Loss: 0.4679313 Vali Loss: 0.4394694 Test Loss: 0.1755252
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.4914757
+	speed: 3.2353s/iter; left time: 18234.1372s
+	iters: 200, epoch: 6 | loss: 0.4408154
+	speed: 0.9921s/iter; left time: 5492.3421s
+	iters: 300, epoch: 6 | loss: 0.3843326
+	speed: 0.9920s/iter; left time: 5392.3410s
+	iters: 400, epoch: 6 | loss: 0.5722707
+	speed: 0.9925s/iter; left time: 5296.1839s
+	iters: 500, epoch: 6 | loss: 0.4118041
+	speed: 0.9931s/iter; left time: 5199.7393s
+	iters: 600, epoch: 6 | loss: 0.5968859
+	speed: 0.9927s/iter; left time: 5098.5503s
+	iters: 700, epoch: 6 | loss: 0.3911599
+	speed: 0.9923s/iter; left time: 4997.3347s
+	iters: 800, epoch: 6 | loss: 0.4314245
+	speed: 0.9928s/iter; left time: 4900.5242s
+	iters: 900, epoch: 6 | loss: 0.3191958
+	speed: 0.9844s/iter; left time: 4760.3207s
+	iters: 1000, epoch: 6 | loss: 0.4008298
+	speed: 0.9515s/iter; left time: 4506.2476s
+	iters: 1100, epoch: 6 | loss: 0.5462681
+	speed: 0.9416s/iter; left time: 4365.2638s
+Epoch: 6 cost time: 1124.6114709377289
+Epoch: 6, Steps: 1147 | Train Loss: 0.4655859 Vali Loss: 0.4446076 Test Loss: 0.1762860
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_weather_96_96_AGPT_PT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 10444
+test shape: (10444, 96, 21) (10444, 96, 21)
+test shape: (10444, 96, 21) (10444, 96, 21)
+mse:0.1790739744901657, mae:0.21808327734470367
+================================================================================
+Model Profiling Summary
+Total Params             : 6,988,643
+Inference Time (s)       : 0.332805
+GPU Mem Footprint (MB)   : 80.97
+Peak Mem (MB)            : 375.26
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           weather_96_192      Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/weather/  
+  Data Path:          weather.csv         Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             21                  Dec In:             21                  
+  C Out:              21                  d model:            512                 
+  n heads:            16                  e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_weather_96_192_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36600
+val 5079
+test 10348
+	iters: 100, epoch: 1 | loss: 0.4580811
+	speed: 1.0178s/iter; left time: 11542.7059s
+	iters: 200, epoch: 1 | loss: 1.3904474
+	speed: 1.0243s/iter; left time: 11513.9876s
+	iters: 300, epoch: 1 | loss: 1.0306104
+	speed: 1.0241s/iter; left time: 11409.8651s
+	iters: 400, epoch: 1 | loss: 0.9217155
+	speed: 1.0251s/iter; left time: 11318.3716s
+	iters: 500, epoch: 1 | loss: 0.4815383
+	speed: 1.0247s/iter; left time: 11211.3364s
+	iters: 600, epoch: 1 | loss: 0.4148507
+	speed: 1.0257s/iter; left time: 11119.4771s
+	iters: 700, epoch: 1 | loss: 0.4056490
+	speed: 1.0245s/iter; left time: 11003.8620s
+	iters: 800, epoch: 1 | loss: 0.9477083
+	speed: 1.0248s/iter; left time: 10904.5584s
+	iters: 900, epoch: 1 | loss: 0.5742822
+	speed: 1.0258s/iter; left time: 10813.2293s
+	iters: 1000, epoch: 1 | loss: 0.5747704
+	speed: 1.0242s/iter; left time: 10694.0848s
+	iters: 1100, epoch: 1 | loss: 0.4590989
+	speed: 1.0244s/iter; left time: 10593.0257s
+Epoch: 1 cost time: 1171.835732460022
+Epoch: 1, Steps: 1144 | Train Loss: 0.5821713 Vali Loss: 0.5274335 Test Loss: 0.2322755
+Validation loss decreased (inf --> 0.527433).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.6341403
+	speed: 3.2308s/iter; left time: 32944.3915s
+	iters: 200, epoch: 2 | loss: 1.0370150
+	speed: 0.9884s/iter; left time: 9979.4544s
+	iters: 300, epoch: 2 | loss: 0.4175667
+	speed: 1.0225s/iter; left time: 10222.0101s
+	iters: 400, epoch: 2 | loss: 0.4288514
+	speed: 1.0243s/iter; left time: 10137.9272s
+	iters: 500, epoch: 2 | loss: 0.4693474
+	speed: 1.0230s/iter; left time: 10022.3850s
+	iters: 600, epoch: 2 | loss: 0.4239529
+	speed: 1.0235s/iter; left time: 9925.0641s
+	iters: 700, epoch: 2 | loss: 0.4339976
+	speed: 1.0243s/iter; left time: 9830.1580s
+	iters: 800, epoch: 2 | loss: 0.4541781
+	speed: 1.0246s/iter; left time: 9730.2148s
+	iters: 900, epoch: 2 | loss: 0.4510130
+	speed: 1.0245s/iter; left time: 9627.6530s
+	iters: 1000, epoch: 2 | loss: 0.5083244
+	speed: 1.0230s/iter; left time: 9510.7256s
+	iters: 1100, epoch: 2 | loss: 0.9757028
+	speed: 1.0240s/iter; left time: 9417.7914s
+Epoch: 2 cost time: 1163.2173931598663
+Epoch: 2, Steps: 1144 | Train Loss: 0.5513196 Vali Loss: 0.5159069 Test Loss: 0.2258607
+Validation loss decreased (0.527433 --> 0.515907).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.4033624
+	speed: 3.3327s/iter; left time: 30171.1200s
+	iters: 200, epoch: 3 | loss: 0.5438747
+	speed: 1.0240s/iter; left time: 9168.1353s
+	iters: 300, epoch: 3 | loss: 0.4283922
+	speed: 1.0236s/iter; left time: 9062.0328s
+	iters: 400, epoch: 3 | loss: 0.4417813
+	speed: 1.0247s/iter; left time: 8968.9809s
+	iters: 500, epoch: 3 | loss: 0.4013108
+	speed: 1.0238s/iter; left time: 8858.6548s
+	iters: 600, epoch: 3 | loss: 0.5543861
+	speed: 1.0236s/iter; left time: 8755.2487s
+	iters: 700, epoch: 3 | loss: 0.4658077
+	speed: 1.0190s/iter; left time: 8613.3482s
+	iters: 800, epoch: 3 | loss: 0.4544052
+	speed: 0.9830s/iter; left time: 8210.7960s
+	iters: 900, epoch: 3 | loss: 1.1531774
+	speed: 0.9753s/iter; left time: 8049.5356s
+	iters: 1000, epoch: 3 | loss: 0.6081663
+	speed: 0.9417s/iter; left time: 7677.7457s
+	iters: 1100, epoch: 3 | loss: 0.3764350
+	speed: 0.9392s/iter; left time: 7563.3628s
+Epoch: 3 cost time: 1141.702891588211
+Epoch: 3, Steps: 1144 | Train Loss: 0.5388938 Vali Loss: 0.5144888 Test Loss: 0.2238922
+Validation loss decreased (0.515907 --> 0.514489).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.4107098
+	speed: 3.2280s/iter; left time: 25530.2312s
+	iters: 200, epoch: 4 | loss: 0.3636101
+	speed: 1.0245s/iter; left time: 8000.3720s
+	iters: 300, epoch: 4 | loss: 0.3892092
+	speed: 1.0247s/iter; left time: 7899.7947s
+	iters: 400, epoch: 4 | loss: 0.3940457
+	speed: 0.9980s/iter; left time: 7593.7166s
+	iters: 500, epoch: 4 | loss: 0.3574775
+	speed: 0.9800s/iter; left time: 7358.5557s
+	iters: 600, epoch: 4 | loss: 0.4486671
+	speed: 0.9818s/iter; left time: 7274.0609s
+	iters: 700, epoch: 4 | loss: 0.5608291
+	speed: 0.9963s/iter; left time: 7282.1413s
+	iters: 800, epoch: 4 | loss: 0.9065922
+	speed: 1.0239s/iter; left time: 7381.5978s
+	iters: 900, epoch: 4 | loss: 0.3634594
+	speed: 1.0249s/iter; left time: 7286.1008s
+	iters: 1000, epoch: 4 | loss: 0.4134143
+	speed: 1.0238s/iter; left time: 7175.8461s
+	iters: 1100, epoch: 4 | loss: 0.3620422
+	speed: 1.0231s/iter; left time: 7068.6093s
+Epoch: 4 cost time: 1157.5577189922333
+Epoch: 4, Steps: 1144 | Train Loss: 0.5332476 Vali Loss: 0.5124224 Test Loss: 0.2240827
+Validation loss decreased (0.514489 --> 0.512422).  Saving model ...
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.4607161
+	speed: 3.3403s/iter; left time: 22597.2665s
+	iters: 200, epoch: 5 | loss: 0.4195817
+	speed: 1.0237s/iter; left time: 6823.0488s
+	iters: 300, epoch: 5 | loss: 0.4171945
+	speed: 1.0253s/iter; left time: 6731.3515s
+	iters: 400, epoch: 5 | loss: 0.3919549
+	speed: 1.0241s/iter; left time: 6620.8042s
+	iters: 500, epoch: 5 | loss: 0.5340437
+	speed: 1.0246s/iter; left time: 6521.3608s
+	iters: 600, epoch: 5 | loss: 0.4175372
+	speed: 1.0244s/iter; left time: 6418.1730s
+	iters: 700, epoch: 5 | loss: 0.8676916
+	speed: 1.0242s/iter; left time: 6314.1679s
+	iters: 800, epoch: 5 | loss: 0.3990298
+	speed: 1.0241s/iter; left time: 6211.3326s
+	iters: 900, epoch: 5 | loss: 0.4361970
+	speed: 1.0242s/iter; left time: 6109.5187s
+	iters: 1000, epoch: 5 | loss: 0.4988273
+	speed: 1.0236s/iter; left time: 6003.2064s
+	iters: 1100, epoch: 5 | loss: 0.5451043
+	speed: 1.0237s/iter; left time: 5901.5947s
+Epoch: 5 cost time: 1171.46555685997
+Epoch: 5, Steps: 1144 | Train Loss: 0.5300132 Vali Loss: 0.5108058 Test Loss: 0.2228250
+Validation loss decreased (0.512422 --> 0.510806).  Saving model ...
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.5299715
+	speed: 3.3409s/iter; left time: 18779.0700s
+	iters: 200, epoch: 6 | loss: 0.3686468
+	speed: 1.0233s/iter; left time: 5649.5820s
+	iters: 300, epoch: 6 | loss: 0.4309525
+	speed: 1.0239s/iter; left time: 5550.2951s
+	iters: 400, epoch: 6 | loss: 0.4827594
+	speed: 1.0246s/iter; left time: 5451.8198s
+	iters: 500, epoch: 6 | loss: 0.4920093
+	speed: 1.0240s/iter; left time: 5346.4359s
+	iters: 600, epoch: 6 | loss: 0.4280941
+	speed: 1.0237s/iter; left time: 5242.3181s
+	iters: 700, epoch: 6 | loss: 0.4488004
+	speed: 0.9879s/iter; left time: 4960.0835s
+	iters: 800, epoch: 6 | loss: 0.8446887
+	speed: 0.9798s/iter; left time: 4821.4865s
+	iters: 900, epoch: 6 | loss: 0.5245211
+	speed: 0.9027s/iter; left time: 4351.8992s
+	iters: 1000, epoch: 6 | loss: 0.4941957
+	speed: 0.8763s/iter; left time: 4137.0036s
+	iters: 1100, epoch: 6 | loss: 0.5916528
+	speed: 0.8888s/iter; left time: 4106.9196s
+Epoch: 6 cost time: 1117.5389733314514
+Epoch: 6, Steps: 1144 | Train Loss: 0.5282710 Vali Loss: 0.5159033 Test Loss: 0.2242659
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 3.125e-06
+	iters: 100, epoch: 7 | loss: 0.9575430
+	speed: 3.1311s/iter; left time: 14017.7555s
+	iters: 200, epoch: 7 | loss: 0.9049421
+	speed: 0.9760s/iter; left time: 4272.0143s
+	iters: 300, epoch: 7 | loss: 0.3593768
+	speed: 0.9317s/iter; left time: 3984.7381s
+	iters: 400, epoch: 7 | loss: 0.4136678
+	speed: 1.0241s/iter; left time: 4277.8010s
+	iters: 500, epoch: 7 | loss: 0.4518697
+	speed: 1.0248s/iter; left time: 4178.1778s
+	iters: 600, epoch: 7 | loss: 0.4543920
+	speed: 1.0251s/iter; left time: 4076.7607s
+	iters: 700, epoch: 7 | loss: 0.4300757
+	speed: 1.0240s/iter; left time: 3970.1135s
+	iters: 800, epoch: 7 | loss: 0.4642483
+	speed: 1.0250s/iter; left time: 3871.5507s
+	iters: 900, epoch: 7 | loss: 0.3824664
+	speed: 1.0251s/iter; left time: 3769.3959s
+	iters: 1000, epoch: 7 | loss: 0.5784569
+	speed: 1.0235s/iter; left time: 3661.1831s
+	iters: 1100, epoch: 7 | loss: 0.5201654
+	speed: 1.0245s/iter; left time: 3562.3192s
+Epoch: 7 cost time: 1152.9412701129913
+Epoch: 7, Steps: 1144 | Train Loss: 0.5273575 Vali Loss: 0.5149256 Test Loss: 0.2224885
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.5625e-06
+	iters: 100, epoch: 8 | loss: 0.7250890
+	speed: 3.3298s/iter; left time: 11098.3871s
+	iters: 200, epoch: 8 | loss: 0.4279793
+	speed: 1.0241s/iter; left time: 3311.0182s
+	iters: 300, epoch: 8 | loss: 0.9233461
+	speed: 1.0259s/iter; left time: 3214.0141s
+	iters: 400, epoch: 8 | loss: 0.4986147
+	speed: 1.0235s/iter; left time: 3104.2433s
+	iters: 500, epoch: 8 | loss: 0.4529912
+	speed: 1.0246s/iter; left time: 3005.2087s
+	iters: 600, epoch: 8 | loss: 0.3384565
+	speed: 1.0240s/iter; left time: 2900.9664s
+	iters: 700, epoch: 8 | loss: 0.4275860
+	speed: 1.0246s/iter; left time: 2800.3676s
+	iters: 800, epoch: 8 | loss: 0.4737576
+	speed: 1.0243s/iter; left time: 2697.0158s
+	iters: 900, epoch: 8 | loss: 0.4876878
+	speed: 1.0248s/iter; left time: 2595.9328s
+	iters: 1000, epoch: 8 | loss: 0.4503434
+	speed: 1.0246s/iter; left time: 2492.8147s
+	iters: 1100, epoch: 8 | loss: 0.4195764
+	speed: 1.0246s/iter; left time: 2390.3947s
+Epoch: 8 cost time: 1171.9494411945343
+Epoch: 8, Steps: 1144 | Train Loss: 0.5268298 Vali Loss: 0.5169408 Test Loss: 0.2227582
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_weather_96_192_AGPT_PT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 10348
+test shape: (10348, 192, 21) (10348, 192, 21)
+test shape: (10348, 192, 21) (10348, 192, 21)
+mse:0.22307617962360382, mae:0.2575872838497162
+================================================================================
+Model Profiling Summary
+Total Params             : 7,578,563
+Inference Time (s)       : 0.308266
+GPU Mem Footprint (MB)   : 86.36
+Peak Mem (MB)            : 380.63
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           weather_96_336      Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/weather/  
+  Data Path:          weather.csv         Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             21                  Dec In:             21                  
+  C Out:              21                  d model:            512                 
+  n heads:            4                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         128                 
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_weather_96_336_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36456
+val 4935
+test 10204
+Traceback (most recent call last):
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/run.py", line 194, in <module>
+    exp.train(setting)
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/exp/exp_AGPT.py", line 131, in train
+    outputs, aux_loss = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/models/AGPT_PT.py", line 344, in forward
+    dec_out, budget_loss = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/models/AGPT_PT.py", line 275, in forecast
+    segment_out, _ = self.encoder(segment_input)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/Transformer_EncDec.py", line 74, in forward
+    x, attn = attn_layer(x, attn_mask=attn_mask, tau=tau, delta=delta)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/layers/Transformer_EncDec.py", line 48, in forward
+    y = self.dropout(self.activation(self.conv1(y.transpose(-1, 1))))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/dropout.py", line 59, in forward
+    return F.dropout(input, self.p, self.training, self.inplace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/functional.py", line 1295, in dropout
+    return _VF.dropout_(input, p, training) if inplace else _VF.dropout(input, p, training)
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 316.00 MiB. GPU 0 has a total capacity of 79.15 GiB of which 31.00 MiB is free. Process 2399563 has 19.72 GiB memory in use. Process 2399568 has 24.02 GiB memory in use. Process 15410 has 8.94 GiB memory in use. Process 312600 has 26.40 GiB memory in use. Of the allocated memory 25.84 GiB is allocated by PyTorch, and 71.68 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           weather_96_720      Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/weather/  
+  Data Path:          weather.csv         Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             21                  Dec In:             21                  
+  C Out:              21                  d model:            512                 
+  n heads:            4                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         128                 
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      1                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_weather_96_720_AGPT_PT_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36072
+val 4551
+test 9820
+ts55-master-0:212193:212193 [0] NCCL INFO cudaDriverVersion 12020
+ts55-master-0:212193:212193 [0] NCCL INFO Bootstrap : Using eth0:10.211.67.41<0>
+ts55-master-0:212193:212193 [0] NCCL INFO NET/Plugin : dlerror=libnccl-net.so: cannot open shared object file: No such file or directory No plugin found (libnccl-net.so), using internal implementation
+NCCL version 2.20.5+cuda12.4
+ts55-master-0:212193:213118 [3] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ts55-master-0:212193:213118 [3] NCCL INFO NET/IB : No device found.
+ts55-master-0:212193:213118 [3] NCCL INFO NET/Socket : Using [0]eth0:10.211.67.41<0>
+ts55-master-0:212193:213118 [3] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:212193:213118 [3] NCCL INFO Using network Socket
+ts55-master-0:212193:213117 [2] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:212193:213115 [0] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:212193:213117 [2] NCCL INFO Using network Socket
+ts55-master-0:212193:213115 [0] NCCL INFO Using network Socket
+ts55-master-0:212193:213116 [1] NCCL INFO Using non-device net plugin version 0
+ts55-master-0:212193:213116 [1] NCCL INFO Using network Socket
+ts55-master-0:212193:213118 [3] NCCL INFO comm 0xeb25ee0 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId 67000 commId 0x121afd4e64576cc9 - Init START
+ts55-master-0:212193:213116 [1] NCCL INFO comm 0xeb1c4c0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 63000 commId 0x121afd4e64576cc9 - Init START
+ts55-master-0:212193:213117 [2] NCCL INFO comm 0xeb211d0 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 65000 commId 0x121afd4e64576cc9 - Init START
+ts55-master-0:212193:213115 [0] NCCL INFO comm 0xeb15c70 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 61000 commId 0x121afd4e64576cc9 - Init START
+ts55-master-0:212193:213117 [2] NCCL INFO Setting affinity for GPU 2 to 03ffffff,ffffffff
+ts55-master-0:212193:213117 [2] NCCL INFO NVLS multicast support is not available on dev 2
+ts55-master-0:212193:213116 [1] NCCL INFO Setting affinity for GPU 1 to 03ffffff,ffffffff
+ts55-master-0:212193:213116 [1] NCCL INFO NVLS multicast support is not available on dev 1
+ts55-master-0:212193:213118 [3] NCCL INFO Setting affinity for GPU 3 to 03ffffff,ffffffff
+ts55-master-0:212193:213118 [3] NCCL INFO NVLS multicast support is not available on dev 3
+ts55-master-0:212193:213115 [0] NCCL INFO Setting affinity for GPU 0 to 03ffffff,ffffffff
+ts55-master-0:212193:213115 [0] NCCL INFO NVLS multicast support is not available on dev 0
+ts55-master-0:212193:213115 [0] NCCL INFO comm 0xeb15c70 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 00/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 01/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 02/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 03/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 04/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 05/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 06/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 07/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 08/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 09/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 10/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 11/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 12/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 13/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 14/24 :    0   1   2   3
+ts55-master-0:212193:213117 [2] NCCL INFO comm 0xeb211d0 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+ts55-master-0:212193:213116 [1] NCCL INFO comm 0xeb1c4c0 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+ts55-master-0:212193:213117 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 3/-1/-1->2->1 [5] 3/-1/-1->2->1 [6] 3/-1/-1->2->1 [7] 3/-1/-1->2->1 [8] 3/-1/-1->2->1 [9] 3/-1/-1->2->1 [10] 3/-1/-1->2->1 [11] 3/-1/-1->2->1 [12] 3/-1/-1->2->1 [13] 3/-1/-1->2->1 [14] 3/-1/-1->2->1 [15] 3/-1/-1->2->1 [16] 3/-1/-1->2->1 [17] 3/-1/-1->2->1 [18] 3/-1/-1->2->1 [19] 3/-1/-1->2->1 [20] 3/-1/-1->2->1 [21] 3/-1/-1->2->1 [22] 3/-1/-1->2->1 [23] 3/-1/-1->2->1
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 15/24 :    0   1   2   3
+ts55-master-0:212193:213118 [3] NCCL INFO comm 0xeb25ee0 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+ts55-master-0:212193:213116 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 2/-1/-1->1->0 [5] 2/-1/-1->1->0 [6] 2/-1/-1->1->0 [7] 2/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 2/-1/-1->1->0 [10] 2/-1/-1->1->0 [11] 2/-1/-1->1->0 [12] 2/-1/-1->1->0 [13] 2/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 2/-1/-1->1->0 [17] 2/-1/-1->1->0 [18] 2/-1/-1->1->0 [19] 2/-1/-1->1->0 [20] 2/-1/-1->1->0 [21] 2/-1/-1->1->0 [22] 2/-1/-1->1->0 [23] 2/-1/-1->1->0
+ts55-master-0:212193:213116 [1] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 16/24 :    0   1   2   3
+ts55-master-0:212193:213117 [2] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:212193:213118 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->2 [5] -1/-1/-1->3->2 [6] -1/-1/-1->3->2 [7] -1/-1/-1->3->2 [8] -1/-1/-1->3->2 [9] -1/-1/-1->3->2 [10] -1/-1/-1->3->2 [11] -1/-1/-1->3->2 [12] -1/-1/-1->3->2 [13] -1/-1/-1->3->2 [14] -1/-1/-1->3->2 [15] -1/-1/-1->3->2 [16] -1/-1/-1->3->2 [17] -1/-1/-1->3->2 [18] -1/-1/-1->3->2 [19] -1/-1/-1->3->2 [20] -1/-1/-1->3->2 [21] -1/-1/-1->3->2 [22] -1/-1/-1->3->2 [23] -1/-1/-1->3->2
+ts55-master-0:212193:213118 [3] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 17/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 18/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 19/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 20/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 21/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 22/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 23/24 :    0   1   2   3
+ts55-master-0:212193:213115 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] 1/-1/-1->0->-1 [9] 1/-1/-1->0->-1 [10] 1/-1/-1->0->-1 [11] 1/-1/-1->0->-1 [12] 1/-1/-1->0->-1 [13] 1/-1/-1->0->-1 [14] 1/-1/-1->0->-1 [15] 1/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] 1/-1/-1->0->-1 [19] 1/-1/-1->0->-1 [20] 1/-1/-1->0->-1 [21] 1/-1/-1->0->-1 [22] 1/-1/-1->0->-1 [23] 1/-1/-1->0->-1
+ts55-master-0:212193:213115 [0] NCCL INFO P2P Chunksize set to 524288
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213115 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 04/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 05/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 07/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 16/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 17/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 18/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 19/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 21/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 22/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 23/0 : 2[2] -> 3[3] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 08/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 09/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 11/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 17/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 19/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 20/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 21/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 23/0 : 1[1] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 01/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 02/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 04/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 05/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 07/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 10/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 13/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 14/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 16/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 17/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 18/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 19/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 20/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 21/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 22/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 23/0 : 3[3] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Connected all rings
+ts55-master-0:212193:213116 [1] NCCL INFO Connected all rings
+ts55-master-0:212193:213115 [0] NCCL INFO Connected all rings
+ts55-master-0:212193:213118 [3] NCCL INFO Connected all rings
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 02/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 04/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 05/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 06/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 08/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 09/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 10/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 11/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 12/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 14/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 15/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 16/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 17/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 18/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 19/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 20/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 21/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 22/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Channel 23/0 : 3[3] -> 2[2] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 00/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 02/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 03/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 04/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 05/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 06/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 06/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 08/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 08/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 09/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 09/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 10/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 11/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 12/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 12/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 14/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 14/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 15/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 15/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 16/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 17/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 18/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 18/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 19/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 20/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 20/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 21/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 21/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 22/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213117 [2] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/direct pointer/read
+ts55-master-0:212193:213116 [1] NCCL INFO Channel 23/0 : 1[1] -> 0[0] via P2P/direct pointer/read
+ts55-master-0:212193:213118 [3] NCCL INFO Connected all trees
+ts55-master-0:212193:213118 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:212193:213118 [3] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:212193:213115 [0] NCCL INFO Connected all trees
+ts55-master-0:212193:213117 [2] NCCL INFO Connected all trees
+ts55-master-0:212193:213116 [1] NCCL INFO Connected all trees
+ts55-master-0:212193:213117 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:212193:213115 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:212193:213116 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+ts55-master-0:212193:213115 [0] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:212193:213117 [2] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:212193:213116 [1] NCCL INFO 24 coll channels, 0 collnet channels, 0 nvls channels, 32 p2p channels, 32 p2p channels per peer
+ts55-master-0:212193:213118 [3] NCCL INFO comm 0xeb25ee0 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId 67000 commId 0x121afd4e64576cc9 - Init COMPLETE
+ts55-master-0:212193:213116 [1] NCCL INFO comm 0xeb1c4c0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 63000 commId 0x121afd4e64576cc9 - Init COMPLETE
+ts55-master-0:212193:213115 [0] NCCL INFO comm 0xeb15c70 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 61000 commId 0x121afd4e64576cc9 - Init COMPLETE
+ts55-master-0:212193:213117 [2] NCCL INFO comm 0xeb211d0 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 65000 commId 0x121afd4e64576cc9 - Init COMPLETE
+	iters: 100, epoch: 1 | loss: 0.7497404
+	speed: 1.3271s/iter; left time: 3610.9500s
+	iters: 200, epoch: 1 | loss: 0.7423452
+	speed: 1.2529s/iter; left time: 3283.8429s
+Epoch: 1 cost time: 361.32264590263367
+Epoch: 1, Steps: 282 | Train Loss: 0.7382897 Vali Loss: 0.7360204 Test Loss: 0.3621622
+Validation loss decreased (inf --> 0.736020).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.6646627
+	speed: 2.8966s/iter; left time: 7064.8604s
+	iters: 200, epoch: 2 | loss: 0.6694909
+	speed: 1.2515s/iter; left time: 2927.2279s
+Epoch: 2 cost time: 353.15252447128296
+Epoch: 2, Steps: 282 | Train Loss: 0.7120153 Vali Loss: 0.7332656 Test Loss: 0.3612200
+Validation loss decreased (0.736020 --> 0.733266).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.6910031
+	speed: 2.8197s/iter; left time: 6082.0568s
+	iters: 200, epoch: 3 | loss: 0.7139710
+	speed: 1.1960s/iter; left time: 2460.2138s
+Epoch: 3 cost time: 339.26470017433167
+Epoch: 3, Steps: 282 | Train Loss: 0.7021492 Vali Loss: 0.7356495 Test Loss: 0.3598682
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.6422999
+	speed: 2.8198s/iter; left time: 5287.1841s
+	iters: 200, epoch: 4 | loss: 0.6681226
+	speed: 1.2412s/iter; left time: 2203.1991s
+Epoch: 4 cost time: 350.7548203468323
+Epoch: 4, Steps: 282 | Train Loss: 0.6985591 Vali Loss: 0.7333062 Test Loss: 0.3595829
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.7171917
+	speed: 2.9035s/iter; left time: 4625.2713s
+	iters: 200, epoch: 5 | loss: 0.6303817
+	speed: 1.2619s/iter; left time: 1884.0570s
+Epoch: 5 cost time: 355.0145719051361
+Epoch: 5, Steps: 282 | Train Loss: 0.6963074 Vali Loss: 0.7307689 Test Loss: 0.3590284
+Validation loss decreased (0.733266 --> 0.730769).  Saving model ...
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.7479670
+	speed: 2.9108s/iter; left time: 3816.1036s
+	iters: 200, epoch: 6 | loss: 0.7044233
+	speed: 1.2639s/iter; left time: 1530.5689s
+Epoch: 6 cost time: 355.6524679660797
+Epoch: 6, Steps: 282 | Train Loss: 0.6951330 Vali Loss: 0.7294005 Test Loss: 0.3589319
+Validation loss decreased (0.730769 --> 0.729401).  Saving model ...
+Updating learning rate to 3.125e-06
+	iters: 100, epoch: 7 | loss: 0.6564059
+	speed: 2.9069s/iter; left time: 2991.2049s
+	iters: 200, epoch: 7 | loss: 0.6729833
+	speed: 1.2593s/iter; left time: 1169.9331s
+Epoch: 7 cost time: 355.28075551986694
+Epoch: 7, Steps: 282 | Train Loss: 0.6948154 Vali Loss: 0.7308402 Test Loss: 0.3589911
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 1.5625e-06
+	iters: 100, epoch: 8 | loss: 0.7260060
+	speed: 2.9169s/iter; left time: 2178.9159s
+	iters: 200, epoch: 8 | loss: 0.7448651
+	speed: 1.2449s/iter; left time: 805.4544s
+Epoch: 8 cost time: 352.5212211608887
+Epoch: 8, Steps: 282 | Train Loss: 0.6945675 Vali Loss: 0.7297009 Test Loss: 0.3585333
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 7.8125e-07
+	iters: 100, epoch: 9 | loss: 0.6726173
+	speed: 2.8613s/iter; left time: 1330.5031s
+	iters: 200, epoch: 9 | loss: 0.7376406
+	speed: 1.2532s/iter; left time: 457.4359s
+Epoch: 9 cost time: 353.1159596443176
+Epoch: 9, Steps: 282 | Train Loss: 0.6942516 Vali Loss: 0.7312837 Test Loss: 0.3589122
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : AGPT_loss_weather_96_720_AGPT_PT_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 9820
+test shape: (9820, 720, 21) (9820, 720, 21)
+test shape: (9820, 720, 21) (9820, 720, 21)
+mse:0.35759031772613525, mae:0.3481423854827881
+================================================================================
+Model Profiling Summary
+Total Params             : 10,823,123
+Inference Time (s)       : 0.473699
+GPU Mem Footprint (MB)   : 141.98
+Peak Mem (MB)            : 430.61
+================================================================================
