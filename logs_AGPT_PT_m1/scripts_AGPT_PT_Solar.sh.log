@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/mnt/pfs/zitao_team/kuiyeding/AGPT/run.py", line 3, in <module>
+    import torch
+  File "/usr/local/lib/python3.12/dist-packages/torch/__init__.py", line 2143, in <module>
+    from . import _meta_registrations
+  File "/usr/local/lib/python3.12/dist-packages/torch/_meta_registrations.py", line 9, in <module>
+    from torch._decomp import (
+  File "/usr/local/lib/python3.12/dist-packages/torch/_decomp/__init__.py", line 245, in <module>
+    import torch._decomp.decompositions
+  File "/usr/local/lib/python3.12/dist-packages/torch/_decomp/decompositions.py", line 12, in <module>
+    import torch._prims as prims
+  File "/usr/local/lib/python3.12/dist-packages/torch/_prims/__init__.py", line 1147, in <module>
+    pow = _make_elementwise_binary_prim(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_prims/__init__.py", line 487, in _make_elementwise_binary_prim
+    return _make_prim(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_prims/__init__.py", line 320, in _make_prim
+    prim_def = torch.library.custom_op(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_library/custom_ops.py", line 142, in custom_op
+    return inner(fn)
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_library/custom_ops.py", line 123, in inner
+    result = CustomOpDef(namespace, opname, schema_str, fn)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_library/custom_ops.py", line 169, in __init__
+    self._register_to_dispatcher()
+  File "/usr/local/lib/python3.12/dist-packages/torch/_library/custom_ops.py", line 475, in _register_to_dispatcher
+    autograd_impl = _library.autograd.make_autograd_impl(self._opoverload, self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_library/autograd.py", line 28, in make_autograd_impl
+    @dataclass
+     ^^^^^^^^^
+  File "/usr/lib/python3.12/dataclasses.py", line 1275, in dataclass
+    return wrap(cls)
+           ^^^^^^^^^
+  File "/usr/lib/python3.12/dataclasses.py", line 1265, in wrap
+    return _process_class(cls, init, repr, eq, order, unsafe_hash,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/dataclasses.py", line 970, in _process_class
+    cls_annotations = inspect.get_annotations(cls)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/inspect.py", line 223, in get_annotations
+    obj_dict = getattr(obj, '__dict__', None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

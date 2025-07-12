@@ -1,24 +1,41 @@
 #!/bin/bash
 
 # ===================== 配置参数 =====================
-MAX_JOBS=5
+MAX_JOBS=1
 TOTAL_GPUS=4
 MAX_RETRIES=1
 LOG_DIR="logs_AGPT_PT_m1"
 
 mkdir -p "$LOG_DIR"
 
+# SCRIPT_LIST=(
+# # "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ECL.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTh1_cd.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTm1_cd.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTh2_cd.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Exchange_cd.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTm2_cd.sh"
+# # "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Traffic.sh"
+# # "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/PEMS.sh"
+# # "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Solar.sh"
+# # "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Weather.sh"
+# )
+
 SCRIPT_LIST=(
-# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ECL.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTh1.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTm1.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTh2.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Exchange.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTm2.sh"
-# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Traffic.sh"
-# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/PEMS.sh"
-# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Solar.sh"
-# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Weather.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ECL.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTh1_cd.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTm1_cd.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTh2_cd.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Exchange_cd.sh"
+# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTm2_cd.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Traffic.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/PEMS.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Solar.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Weather.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Wind1.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Wind2.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Wind3.sh"
+"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Wind4.sh"
 )
 
 
@@ -53,8 +70,8 @@ run_with_retry() {
 
     while [ $attempt -le $MAX_RETRIES ]; do
         echo "[INFO] Running $script_path on GPU $gpu_id (Attempt $((attempt + 1)))"
-        CUDA_VISIBLE_DEVICES=$gpu_id bash "$script_path" > "$log_file" 2>&1
-        # bash "$script_path" > "$log_file" 2>&1
+        # CUDA_VISIBLE_DEVICES=$gpu_id bash "$script_path" > "$log_file" 2>&1
+        bash "$script_path" > "$log_file" 2>&1
         local status=$?
         if [ $status -eq 0 ]; then
             echo "[SUCCESS] $script_path succeeded. Log saved to $log_file"

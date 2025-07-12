@@ -1,3 +1,4 @@
+
 model_name=AGPT_PT
 
 python -u run.py \
@@ -5,9 +6,9 @@ python -u run.py \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1,2,3 \
-  --root_path ./dataset/traffic/ \
-  --data_path traffic.csv \
-  --model_id traffic_96_96 \
+  --root_path ./dataset/electricity/ \
+  --data_path electricity.csv \
+  --model_id ECL_96_96 \
   --model $model_name \
   --data custom \
   --features M \
@@ -18,13 +19,11 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 862 \
-  --dec_in 862 \
-  --c_out 862 \
-  --d_model 512 \
-  --d_ff 512 \
+  --enc_in 321 \
+  --dec_in 321 \
+  --c_out 321 \
   --des 'Exp' \
-  --batch_size 4 \
+  --batch_size 16 \
   --itr 1
 
 python -u run.py \
@@ -32,9 +31,9 @@ python -u run.py \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1,2,3 \
-  --root_path ./dataset/traffic/ \
-  --data_path traffic.csv \
-  --model_id traffic_96_192 \
+  --root_path ./dataset/electricity/ \
+  --data_path electricity.csv \
+  --model_id ECL_96_192 \
   --model $model_name \
   --data custom \
   --features M \
@@ -45,13 +44,11 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 862 \
-  --dec_in 862 \
-  --c_out 862 \
-  --d_model 512 \
-  --d_ff 512 \
+  --enc_in 321 \
+  --dec_in 321 \
+  --c_out 321 \
   --des 'Exp' \
-  --batch_size 4 \
+  --batch_size 16 \
   --itr 1
 
 python -u run.py \
@@ -59,9 +56,9 @@ python -u run.py \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1,2,3 \
-  --root_path ./dataset/traffic/ \
-  --data_path traffic.csv \
-  --model_id traffic_96_336 \
+  --root_path ./dataset/electricity/ \
+  --data_path electricity.csv \
+  --model_id ECL_96_336 \
   --model $model_name \
   --data custom \
   --features M \
@@ -72,13 +69,11 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 862 \
-  --dec_in 862 \
-  --c_out 862 \
-  --d_model 512 \
-  --d_ff 512 \
+  --enc_in 321 \
+  --dec_in 321 \
+  --c_out 321 \
   --des 'Exp' \
-  --batch_size 4 \
+  --batch_size 16 \
   --itr 1
 
 python -u run.py \
@@ -86,9 +81,9 @@ python -u run.py \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1,2,3 \
-  --root_path ./dataset/traffic/ \
-  --data_path traffic.csv \
-  --model_id traffic_96_720 \
+  --root_path ./dataset/electricity/ \
+  --data_path electricity.csv \
+  --model_id ECL_96_720 \
   --model $model_name \
   --data custom \
   --features M \
@@ -99,11 +94,9 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 862 \
-  --dec_in 862 \
-  --c_out 862 \
-  --d_model 512 \
-  --d_ff 512 \
+  --enc_in 321 \
+  --dec_in 321 \
+  --c_out 321 \
   --des 'Exp' \
-  --batch_size 4 \
+  --batch_size 16 \
   --itr 1

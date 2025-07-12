@@ -3,11 +3,9 @@ model_name=AGPT_PT
 python -u run.py \
   --task_name AGPT_loss \
   --is_training 1 \
-  --use_multi_gpu \
-  --devices 0,1,2,3 \
-  --root_path ./dataset/traffic/ \
-  --data_path traffic.csv \
-  --model_id traffic_96_96 \
+  --root_path ./dataset/exchange_rate/ \
+  --data_path exchange_rate.csv \
+  --model_id Exchange_96_96 \
   --model $model_name \
   --data custom \
   --features M \
@@ -18,23 +16,18 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 862 \
-  --dec_in 862 \
-  --c_out 862 \
-  --d_model 512 \
-  --d_ff 512 \
+  --enc_in 8 \
+  --dec_in 8 \
+  --c_out 8 \
   --des 'Exp' \
-  --batch_size 4 \
   --itr 1
 
 python -u run.py \
   --task_name AGPT_loss \
   --is_training 1 \
-  --use_multi_gpu \
-  --devices 0,1,2,3 \
-  --root_path ./dataset/traffic/ \
-  --data_path traffic.csv \
-  --model_id traffic_96_192 \
+  --root_path ./dataset/exchange_rate/ \
+  --data_path exchange_rate.csv \
+  --model_id Exchange_96_192 \
   --model $model_name \
   --data custom \
   --features M \
@@ -45,23 +38,18 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 862 \
-  --dec_in 862 \
-  --c_out 862 \
-  --d_model 512 \
-  --d_ff 512 \
+  --enc_in 8 \
+  --dec_in 8 \
+  --c_out 8 \
   --des 'Exp' \
-  --batch_size 4 \
   --itr 1
 
 python -u run.py \
   --task_name AGPT_loss \
   --is_training 1 \
-  --use_multi_gpu \
-  --devices 0,1,2,3 \
-  --root_path ./dataset/traffic/ \
-  --data_path traffic.csv \
-  --model_id traffic_96_336 \
+  --root_path ./dataset/exchange_rate/ \
+  --data_path exchange_rate.csv \
+  --model_id Exchange_96_336 \
   --model $model_name \
   --data custom \
   --features M \
@@ -72,23 +60,19 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 862 \
-  --dec_in 862 \
-  --c_out 862 \
-  --d_model 512 \
-  --d_ff 512 \
+  --enc_in 8 \
+  --dec_in 8 \
+  --c_out 8 \
   --des 'Exp' \
-  --batch_size 4 \
-  --itr 1
+  --itr 1 \
+  --train_epochs 1
 
 python -u run.py \
   --task_name AGPT_loss \
   --is_training 1 \
-  --use_multi_gpu \
-  --devices 0,1,2,3 \
-  --root_path ./dataset/traffic/ \
-  --data_path traffic.csv \
-  --model_id traffic_96_720 \
+  --root_path ./dataset/exchange_rate/ \
+  --data_path exchange_rate.csv \
+  --model_id Exchange_96_720 \
   --model $model_name \
   --data custom \
   --features M \
@@ -99,11 +83,8 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 862 \
-  --dec_in 862 \
-  --c_out 862 \
-  --d_model 512 \
-  --d_ff 512 \
+  --enc_in 8 \
+  --dec_in 8 \
+  --c_out 8 \
   --des 'Exp' \
-  --batch_size 4 \
   --itr 1
