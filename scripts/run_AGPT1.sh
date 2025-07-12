@@ -4,7 +4,7 @@
 MAX_JOBS=5
 TOTAL_GPUS=4
 MAX_RETRIES=1
-LOG_DIR="logs_AGPT_PT1"
+LOG_DIR="logs_AGPT_PT_m1"
 
 mkdir -p "$LOG_DIR"
 
