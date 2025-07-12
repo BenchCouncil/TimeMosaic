@@ -118,6 +118,7 @@ class mask_moe(nn.Module):
 
     def noisy_top_k_gating(self, x, is_training, noise_epsilon=1e-2):
         clean_logits = self.gate(x)
+
         if self.noisy_gating and is_training:
             raw_noise = self.noise(x)
             noise_stddev = ((self.softplus(raw_noise) + noise_epsilon))
@@ -158,7 +159,7 @@ class mask_moe(nn.Module):
         mask_base = torch.eye(L, device=device, dtype=dtype).unsqueeze(0).unsqueeze(0)
         if self.top_p == 0.0:
             return mask_base, 0.0
-        
+
         x = x.reshape(B * H, L, L)
         gates, loss = self.noisy_top_k_gating(x, is_training)
         gates = gates.reshape(B, H, L, -1).float()
@@ -179,7 +180,7 @@ class mask_moe(nn.Module):
         mask = torch.einsum('bhli,lid->bhld', gates, masks) + mask_base
 
         return mask, loss
-
+ 
 
 def mask_topk(x, alpha=0.5, largest=False):
     # B, L = x.shape[0], x.shape[-1]

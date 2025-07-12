@@ -5,25 +5,31 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import silhouette_score
 import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+import matplotlib as mpl
+
+mpl.rcParams['font.family'] = 'STIXGeneral'
 
 # Parameters
-base_path = "../dataset"
+base_path = "../dataset/ETT-small/"
 p_list = [16, 32, 64, 128, 256]
-c_list = list(range(16, 512, 16))
+c_list = list(range(16, 256, 16))
 valid_extensions = [".csv", ".txt"]
 
 # Zipf Deviation
 def compute_zipf_deviation(freqs):
     sorted_freqs = np.sort(freqs)[::-1]
-    ranks = np.arange(1, len(sorted_freqs) + 1)
-    zipf_expectation = sorted_freqs[0] / ranks
-    deviation = np.mean(np.abs(np.log1p(sorted_freqs) - np.log1p(zipf_expectation)))
-    return deviation
+    ranks = np.arange(1, len(sorted_freqs) + 1).reshape(-1, 1)
+    log_ranks = np.log1p(ranks)
+    log_freqs = np.log1p(sorted_freqs).reshape(-1, 1)
+    model = LinearRegression().fit(log_ranks, log_freqs)
+    r2 = model.score(log_ranks, log_freqs)
+    return r2
 
 # Draw heatmap
 def plot_heatmap_smooth(matrix, title, filename, p_list, c_list):
     import seaborn as sns
-    fig, ax = plt.subplots(figsize=(12, 2.5))
+    fig, ax = plt.subplots(figsize=(6, 2.5))
     im = ax.imshow(matrix, aspect='auto', interpolation='bicubic', cmap='RdYlBu_r')
     ax.set_xticks(np.arange(len(c_list)))
     ax.set_yticks(np.arange(len(p_list)))
@@ -119,8 +125,8 @@ def main():
                 print(f"      ❌ Clustering C={c} failed: {e}")
                 continue
 
-    plot_heatmap_smooth(zipf_matrix, "Global Zipf Deviation Heatmap", "global_zipf_deviation.pdf", p_list, c_list)
-    plot_heatmap_smooth(sil_matrix, "Global Silhouette Score Heatmap", "global_silhouette_score.pdf", p_list, c_list)
+    plot_heatmap_smooth(zipf_matrix, "Zipf Deviation Heatmap", "zipf_deviation.pdf", p_list, c_list)
+    plot_heatmap_smooth(sil_matrix, "Silhouette Score Heatmap", "silhouette_score.pdf", p_list, c_list)
     print("🎉 All patches concatenated, clustered, and heatmaps saved. Check the output files in the current directory.")
 
 if __name__ == "__main__":

@@ -5,13 +5,14 @@ python -u run.py \
   --task_name AGPT_loss \
   --is_training 1 \
   --use_multi_gpu \
-  --devices 0,1,2,3 \
+  --devices 0,1 \
   --root_path ./dataset/electricity/ \
   --data_path electricity.csv \
   --model_id ECL_96_96 \
   --model $model_name \
   --data custom \
   --features M \
+  --channel CD \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 96 \
@@ -29,13 +30,14 @@ python -u run.py \
   --task_name AGPT_loss \
   --is_training 1 \
   --use_multi_gpu \
-  --devices 0,1,2,3 \
+  --devices 0,1 \
   --root_path ./dataset/electricity/ \
   --data_path electricity.csv \
   --model_id ECL_96_192 \
   --model $model_name \
   --data custom \
   --features M \
+  --channel CD \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 192 \
@@ -53,13 +55,14 @@ python -u run.py \
   --task_name AGPT_loss \
   --is_training 1 \
   --use_multi_gpu \
-  --devices 0,1,2,3 \
+  --devices 0,1 \
   --root_path ./dataset/electricity/ \
   --data_path electricity.csv \
   --model_id ECL_96_336 \
   --model $model_name \
   --data custom \
   --features M \
+  --channel CD \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 336 \
@@ -77,13 +80,14 @@ python -u run.py \
   --task_name AGPT_loss \
   --is_training 1 \
   --use_multi_gpu \
-  --devices 0,1,2,3 \
+  --devices 0,1 \
   --root_path ./dataset/electricity/ \
   --data_path electricity.csv \
   --model_id ECL_96_720 \
   --model $model_name \
   --data custom \
   --features M \
+  --channel CD \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 720 \

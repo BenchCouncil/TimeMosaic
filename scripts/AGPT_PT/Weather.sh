@@ -74,7 +74,7 @@ python -u run.py \
   --task_name AGPT_loss \
   --is_training 1 \
   --use_multi_gpu \
-  --devices 0,1,2,3 \
+  --devices 0,1 \
   --root_path ./dataset/weather/ \
   --data_path weather.csv \
   --model_id weather_96_720 \

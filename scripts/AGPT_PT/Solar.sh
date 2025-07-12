@@ -5,14 +5,14 @@ batch_size=32
 train_epochs=10
 patience=3
 
-root_path=./dataset/Solar/
+root_path=./dataset/solar/
 data_path=solar_AL.txt
 
 python -u run.py \
   --task_name AGPT_loss \
   --is_training 1 \
   --use_multi_gpu \
-  --devices 0,1,2,3 \
+  --devices 0,1 \
   --root_path $root_path \
   --data_path $data_path \
   --model_id solar_96_96 \

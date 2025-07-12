@@ -1,24 +1,24 @@
 #!/bin/bash
 
 # ===================== 配置参数 =====================
-MAX_JOBS=5
-TOTAL_GPUS=4
+MAX_JOBS=2
+TOTAL_GPUS=2
 MAX_RETRIES=1
-LOG_DIR="logs_AGPT_PT1"
+LOG_DIR="./logs_AGPT_PT_m"
 
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ECL.sh"
-# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTh1.sh"
-# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTm1.sh"
-# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTh2.sh"
-# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Exchange.sh"
-# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/ETTm2.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Traffic.sh"
-# "/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/PEMS.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Solar.sh"
-"/mnt/pfs/zitao_team/kuiyeding/AGPT/scripts/AGPT_PT/Weather.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/ECL.sh"ß
+# "/root/daye/AGPT/scripts/AGPT_PT/ETTh1.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/ETTm1.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/ETTh2.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/Exchange.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/ETTm2.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/Traffic.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/PEMS.sh"
+"/root/daye/AGPT/scripts/AGPT_PT/Solar.sh"
+"/root/daye/AGPT/scripts/AGPT_PT/Weather.sh"
 )
 
 
@@ -47,7 +47,7 @@ run_with_retry() {
     local gpu_id=$2
     local attempt=0
 
-    local clean_path=${script_path#/mnt/pfs/zitao_team/kuiyeding/AGPT/}
+    local clean_path=${script_path#/root/daye/AGPT/}
     local log_name="${clean_path//\//_}.log"
     local log_file="$LOG_DIR/$log_name"
 

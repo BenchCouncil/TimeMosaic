@@ -1,11 +1,48 @@
-from layers.Transformer_EncDec import Encoder, EncoderLayer
+from layers.Transformer_EncDec import Encoder
 from layers.SelfAttention_Family import FullAttention, AttentionLayer
 from layers.Embed import DataEmbedding_inverted
+from layers.revin import RevIN
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math
 
+class EncoderLayer(nn.Module):
+    def __init__(self, attention, d_model, d_ff=None, dropout=0.1, activation="relu", num_latent_token=0):
+        super(EncoderLayer, self).__init__()
+        d_ff = d_ff or 4 * d_model
+        self.attention = attention
+        self.conv1 = nn.Conv1d(in_channels=d_model, out_channels=d_ff, kernel_size=1)
+        self.conv2 = nn.Conv1d(in_channels=d_ff, out_channels=d_model, kernel_size=1)
+        self.norm1 = nn.LayerNorm(d_model)
+        self.norm2 = nn.LayerNorm(d_model)
+        self.dropout = nn.Dropout(dropout)
+        self.activation = F.relu if activation == "relu" else F.gelu
+        self.num_latent_token = num_latent_token
+
+    def forward(self, x, attn_mask=None, tau=None, delta=None):
+        # print(x.shape)
+        # raise ValueError
+        q = self.mask_last_tokens(x)
+        new_x, attn = self.attention(
+            q, x, x,
+            attn_mask=attn_mask,
+            tau=tau, delta=delta
+        )
+        x = x + self.dropout(new_x)
+
+        y = x = self.norm1(x)
+        y = self.dropout(self.activation(self.conv1(y.transpose(-1, 1))))
+        y = self.dropout(self.conv2(y).transpose(-1, 1))
+
+        return self.norm2(x + y), attn
+    
+    def mask_last_tokens(self, x):
+        x_masked = x.clone()
+        if self.num_latent_token > 0:
+            x_masked[:, :self.num_latent_token, :] = 0
+        return x_masked
+    
 class PositionalEmbedding(nn.Module):
     def __init__(self, d_model, max_len=5000):
         super().__init__()
@@ -185,17 +222,18 @@ class Model(nn.Module):
         
         # self.seg_len = configs.seg_len
         if configs.pred_len == 96:
-            self.seg_len = 8
+            self.seg_len = 32
         elif configs.pred_len == 192:
-            self.seg_len = 16
+            self.seg_len = 64
         elif configs.pred_len == 336:
-            self.seg_len = 28
+            self.seg_len = 168
         elif configs.pred_len == 720:
-            self.seg_len = 60
+            self.seg_len =240
         else:
             self.seg_len = 2
-            
+
         self.num_segs = self.pred_len // self.seg_len
+        self.channel = configs.channel
 
         self.patch_embedding = AdaptivePatchEmbedding(
             d_model=configs.d_model,
@@ -205,6 +243,7 @@ class Model(nn.Module):
             seq_len=configs.seq_len,
             in_channels=configs.enc_in,
         )
+        
         self.num_latent_token = configs.num_latent_token
         self.prompt_embeddings = nn.Embedding(self.num_latent_token * self.num_segs, self.d_model)
         nn.init.xavier_uniform_(self.prompt_embeddings.weight)
@@ -242,26 +281,52 @@ class Model(nn.Module):
             for _ in range(self.num_segs)
         ])
         
+        self.revin = False
+        self.revin_layer = RevIN(configs.enc_in,affine=True,subtract_last=False)
 
     def forecast(self, x_enc, x_mark_enc, x_dec, x_mark_dec):
         # Normalization from Non-stationary Transformer
-        means = x_enc.mean(1, keepdim=True).detach()
-        x_enc = x_enc - means
-        stdev = torch.sqrt(
-            torch.var(x_enc, dim=1, keepdim=True, unbiased=False) + 1e-5)
-        x_enc /= stdev
+        if self.revin:
+            x_enc = self.revin_layer(x_enc, 'norm')
+        else:
+            means = x_enc.mean(1, keepdim=True).detach()
+            x_enc = x_enc - means
+            stdev = torch.sqrt(
+                torch.var(x_enc, dim=1, keepdim=True, unbiased=False) + 1e-5)
+            x_enc /= stdev
         
         seg_outputs = []
         B, C = x_enc.shape[0], x_enc.shape[2]
-        # x_enc shape: torch.Size([B, T, C])
-        global_channel = self.enc_embedding(x_enc, None)
-        global_channel = global_channel.view(-1, 1, self.d_model)
-        # global_channel shape: torch.Size([B * C, 1, d_model])
-        x_enc = x_enc.permute(0, 2, 1)
-        # u: [bs * nvars x patch_num x d_model]
-        enc_out, n_vars, budget_loss = self.patch_embedding(x_enc)
-        # enc_out shape: torch.Size([B * C, patch_num, d_model])
-        enc_out = torch.cat([enc_out, global_channel], dim=1)
+        
+        
+        # channel independent
+        if self.channel == "CI":
+            #x_enc shape: torch.Size([B, T, C])
+            global_channel = self.enc_embedding(x_enc, None)
+            global_channel = global_channel.view(-1, 1, self.d_model)
+            # global_channel shape: torch.Size([B * C, 1, d_model])
+            x_enc = x_enc.permute(0, 2, 1)
+            # u: [bs * nvars x patch_num x d_model]
+            enc_out, n_vars, budget_loss = self.patch_embedding(x_enc)
+            # enc_out shape: torch.Size([B * C, patch_num, d_model])
+            enc_out = torch.cat([enc_out, global_channel], dim=1)
+        elif self.channel == "CD":
+            # channel-wise
+            # Step 1. 构造样本级别的 global channel
+            # → 对全通道做平均池化（或 mean embedding）
+            x_pool = x_enc.mean(dim=2)  # [B, T]
+            global_channel = self.enc_embedding(x_pool.unsqueeze(-1), None)  # [B, T, d]
+            global_channel = global_channel.mean(dim=1, keepdim=True)  # [B, 1, d]
+
+            # Step 2. broadcast 给所有通道
+            global_channel = global_channel.repeat_interleave(C, dim=0)  # [B*C, 1, d]
+
+            # Step 3. patch embedding
+            x_enc = x_enc.permute(0, 2, 1)  # [B, C, T] → [B*C, T]
+            enc_out, n_vars, budget_loss = self.patch_embedding(x_enc)  # [B*C, P, d]
+
+            # Step 4. 拼上全局 token
+            enc_out = torch.cat([enc_out, global_channel], dim=1)
 
         for i in range(self.num_segs):
             # Prompt embedding for segment i
@@ -287,8 +352,11 @@ class Model(nn.Module):
         dec_out = dec_out.permute(0, 2, 1)  # → [B, pred_len, C]
 
         # De-normalize
-        dec_out = dec_out * stdev[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1)
-        dec_out = dec_out + means[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1)
+        if self.revin:
+            dec_out = self.revin_layer(dec_out, 'denorm')
+        else:
+            dec_out = dec_out * stdev[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1)
+            dec_out = dec_out + means[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1)
 
         # # x_enc shape: torch.Size([B, T, C])
         # global_channel = self.enc_embedding(x_enc, None)

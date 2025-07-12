@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     # forecasting task
     parser.add_argument('--seq_len', type=int, default=96, help='input sequence length')
-    parser.add_argument('--label_len', type=int, default=48, help='start token length') # no longer needed in inverted Transformers
+    parser.add_argument('--label_len', type=int, default=0, help='start token length') # no longer needed in inverted Transformers
     parser.add_argument('--pred_len', type=int, default=96, help='prediction sequence length')
 
     # model define
@@ -78,6 +78,7 @@ if __name__ == '__main__':
     parser.add_argument('--learning_rate', type=float, default=0.0001, help='optimizer learning rate')
     parser.add_argument('--des', type=str, default='test', help='exp description')
     parser.add_argument('--loss', type=str, default='MSE', help='loss function')
+    parser.add_argument('--channel', type=str, default='CI', help='CI or CD')
     parser.add_argument('--lradj', type=str, default='type1', help='adjust learning rate')
     parser.add_argument('--use_amp', action='store_true', help='use automatic mixed precision training', default=False)
 
@@ -96,7 +97,7 @@ if __name__ == '__main__':
     parser.add_argument('--fc_dropout', type=float, default=0.1, help='fc_dropout')
     parser.add_argument('--fixed_weight', type=bool, default=False, help='fixed task emb weight')
     parser.add_argument('--adjust_lr', action='store_true', default=True, help='adjust learnring rate')
-    parser.add_argument('--num_latent_token', type=int, default=2, help='Number of prompt tokens')
+    parser.add_argument('--num_latent_token', type=int, default=4, help='Number of prompt tokens')
     parser.add_argument('--scale_rate', type=float, default=0.001, help='emb init scale rate')
     parser.add_argument('--patch_len_list', type=str, default='[8,16,32]',
                     help='List of candidate patch lengths for adaptive splitting')
