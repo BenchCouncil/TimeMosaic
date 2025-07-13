@@ -1,4 +1,4 @@
-model_name=DLinear
+model_name=PathFormer
 
 seq_len=96
 pred_len=12
@@ -10,7 +10,7 @@ train_epochs=10
 patience=10
 
 python -u run.py \
- --task_name long_term_forecast \
+ --task_name Exp_PathFormer \
  --is_training 1 \
  --root_path ./dataset/PEMS/ \
  --data_path PEMS03.npz \
@@ -38,7 +38,7 @@ python -u run.py \
 
 
 python -u run.py \
- --task_name long_term_forecast \
+ --task_name Exp_PathFormer \
  --is_training 1 \
  --root_path ./dataset/PEMS/ \
  --data_path PEMS04.npz \
@@ -66,7 +66,7 @@ python -u run.py \
 
 
 python -u run.py \
- --task_name long_term_forecast \
+ --task_name Exp_PathFormer \
  --is_training 1 \
  --root_path ./dataset/PEMS/ \
  --data_path PEMS07.npz \
@@ -94,7 +94,7 @@ python -u run.py \
 
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_PathFormer \
   --is_training 1 \
   --root_path ./dataset/PEMS/ \
   --data_path PEMS08.npz \

@@ -1,4 +1,4 @@
-model_name=DLinear
+model_name=PathFormer
 seq_len=96
 learning_rate=0.001
 batch_size=32
@@ -9,7 +9,7 @@ root_path=./dataset/Solar/
 data_path=solar_AL.txt
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_PathFormer \
   --is_training 1 \
   --root_path $root_path \
   --data_path $data_path \
@@ -36,7 +36,7 @@ python -u run.py \
   --patience $patience
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_PathFormer \
   --is_training 1 \
   --root_path $root_path \
   --data_path $data_path \
@@ -62,7 +62,7 @@ python -u run.py \
   --patience $patience
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_PathFormer \
   --is_training 1 \
   --root_path $root_path \
   --data_path $data_path \
@@ -89,7 +89,7 @@ python -u run.py \
   --patience $patience
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_PathFormer \
   --is_training 1 \
   --root_path $root_path \
   --data_path $data_path \

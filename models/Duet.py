@@ -66,18 +66,9 @@ class Model(nn.Module):
         else:
             temporal_feature, L_importance = self.cluster(input)
             
-        # temporal_feature = input
 
-        # B x d_model x n_vars -> B x n_vars x d_model
         temporal_feature = rearrange(temporal_feature, 'b d n -> b n d')
-        # if self.n_vars > 1:
-        #     changed_input = rearrange(input, 'b l n -> b n l')
-        #     channel_mask = self.mask_generator(changed_input)
 
-        #     channel_group_feature, attention = self.Channel_transformer(x=temporal_feature, attn_mask=channel_mask)
-
-        #     output = self.linear_head(channel_group_feature)
-        # else:
         output = temporal_feature
         output = self.linear_head(output)
 
@@ -89,10 +80,8 @@ class Model(nn.Module):
         output = output + \
                   (means[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1))
         
-        return output
+        return output, L_importance
 
     def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None, joint=False):
-        if self.task_name == 'long_term_forecast' or self.task_name == 'short_term_forecast':
-            dec_out = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
-            return dec_out[:, -self.pred_len:, :]  # [B, L, D]
-        return None
+        dec_out, L_importance = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
+        return dec_out[:, -self.pred_len:, :], L_importance

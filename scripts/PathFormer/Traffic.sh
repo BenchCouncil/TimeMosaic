@@ -1,7 +1,7 @@
-model_name=DLinear
+model_name=PathFormer
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_PathFormer \
   --is_training 1 \
   --root_path ./dataset/traffic/ \
   --data_path traffic.csv \
@@ -25,7 +25,7 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_PathFormer \
   --is_training 1 \
   --root_path ./dataset/traffic/ \
   --data_path traffic.csv \
@@ -49,7 +49,7 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_PathFormer \
   --is_training 1 \
   --root_path ./dataset/traffic/ \
   --data_path traffic.csv \
@@ -73,7 +73,7 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_PathFormer \
   --is_training 1 \
   --root_path ./dataset/traffic/ \
   --data_path traffic.csv \

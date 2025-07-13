@@ -10,7 +10,7 @@ root_path=./dataset/Solar/
 data_path=solar_AL.txt
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_DUET \
   --is_training 1 \
   --root_path $root_path \
   --data_path $data_path \
@@ -37,7 +37,7 @@ python -u run.py \
   --patience $patience
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_DUET \
   --is_training 1 \
   --root_path $root_path \
   --data_path $data_path \
@@ -63,7 +63,7 @@ python -u run.py \
   --patience $patience
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_DUET \
   --is_training 1 \
   --root_path $root_path \
   --data_path $data_path \
@@ -90,7 +90,7 @@ python -u run.py \
   --patience $patience
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name Exp_DUET \
   --is_training 1 \
   --root_path $root_path \
   --data_path $data_path \
