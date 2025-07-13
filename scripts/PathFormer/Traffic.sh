@@ -1,10 +1,8 @@
-model_name=AGPT_PT
+model_name=DLinear
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name long_term_forecast \
   --is_training 1 \
-  --use_multi_gpu \
-  --devices 0,1 \
   --root_path ./dataset/traffic/ \
   --data_path traffic.csv \
   --model_id traffic_96_96 \
@@ -27,10 +25,8 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name long_term_forecast \
   --is_training 1 \
-  --use_multi_gpu \
-  --devices 0,1 \
   --root_path ./dataset/traffic/ \
   --data_path traffic.csv \
   --model_id traffic_96_192 \
@@ -53,10 +49,8 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name long_term_forecast \
   --is_training 1 \
-  --use_multi_gpu \
-  --devices 0,1 \
   --root_path ./dataset/traffic/ \
   --data_path traffic.csv \
   --model_id traffic_96_336 \
@@ -79,10 +73,8 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name long_term_forecast \
   --is_training 1 \
-  --use_multi_gpu \
-  --devices 0,1 \
   --root_path ./dataset/traffic/ \
   --data_path traffic.csv \
   --model_id traffic_96_720 \

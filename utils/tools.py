@@ -123,6 +123,18 @@ def adjustment(gt, pred):
 def cal_accuracy(y_pred, y_true):
     return np.mean(y_pred == y_true)
 
+def visual(true, preds=None, name='./pic/test.pdf'):
+    """
+    Results visualization
+    """
+    plt.style.use('ggplot')
+    plt.figure()
+    plt.plot(true, label='GroundTruth', linewidth=2)
+    if preds is not None:
+        plt.plot(preds, label='Prediction', linewidth=2)
+    plt.legend(loc="upper right")
+    plt.savefig(name,bbox_inches='tight')
+
 def test_params_flop(model,x_shape):
     """
     If you want to thest former's flop, you need to give default value to inputs in model.forward(), the following code can only pass one argument to forward()

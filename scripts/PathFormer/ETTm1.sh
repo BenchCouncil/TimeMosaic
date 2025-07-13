@@ -1,16 +1,14 @@
-
-model_name=AGPT_PT
+model_name=DLinear
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name long_term_forecast \
   --is_training 1 \
-  --root_path ./dataset/wind/ \
-  --data_path Location2.csv \
-  --model_id Wind2_96_96 \
+  --root_path ./dataset/ETT-small/ \
+  --data_path ETTm1.csv \
+  --model_id ETTm1_96_96 \
   --model $model_name \
-  --data custom \
+  --data ETTm1 \
   --features M \
-  --target Power \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 96 \
@@ -22,41 +20,41 @@ python -u run.py \
   --c_out 7 \
   --des 'Exp' \
   --n_heads 2 \
+  --batch_size 32 \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name long_term_forecast \
   --is_training 1 \
-  --root_path ./dataset/wind/ \
-  --data_path Location2.csv \
-  --model_id Wind2_96_192 \
+  --root_path ./dataset/ETT-small/ \
+  --data_path ETTm1.csv \
+  --model_id ETTm1_96_192 \
   --model $model_name \
-  --data custom \
+  --data ETTm1 \
   --features M \
-  --target Power \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 192 \
-  --e_layers 1 \
+  --e_layers 3 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 8 \
+  --n_heads 2 \
+  --batch_size 128 \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name long_term_forecast \
   --is_training 1 \
-  --root_path ./dataset/wind/ \
-  --data_path Location2.csv \
-  --model_id Wind2_96_336 \
+  --root_path ./dataset/ETT-small/ \
+  --data_path ETTm1.csv \
+  --model_id ETTm1_96_336 \
   --model $model_name \
-  --data custom \
+  --data ETTm1 \
   --features M \
-  --target Power \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 336 \
@@ -67,28 +65,29 @@ python -u run.py \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 8 \
+  --n_heads 4 \
+  --batch_size 128 \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name long_term_forecast \
   --is_training 1 \
-  --root_path ./dataset/wind/ \
-  --data_path Location2.csv \
-  --model_id Wind2_96_720 \
+  --root_path ./dataset/ETT-small/ \
+  --data_path ETTm1.csv \
+  --model_id ETTm1_96_720 \
   --model $model_name \
-  --data custom \
+  --data ETTm1 \
   --features M \
-  --target Power \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 720 \
-  --e_layers 1 \
+  --e_layers 3 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 16 \
+  --n_heads 4 \
+  --batch_size 128 \
   --itr 1

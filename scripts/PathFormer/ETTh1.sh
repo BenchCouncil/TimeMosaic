@@ -1,16 +1,14 @@
-
-model_name=AGPT_PT
+model_name=PathFormer
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name Exp_PathFormer \
   --is_training 1 \
-  --root_path ./dataset/wind/ \
-  --data_path Location2.csv \
-  --model_id Wind2_96_96 \
+  --root_path ./dataset/ETT-small/ \
+  --data_path ETTh1.csv \
+  --model_id ETTh1_96_96 \
   --model $model_name \
-  --data custom \
+  --data ETTh1 \
   --features M \
-  --target Power \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 96 \
@@ -25,15 +23,14 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name Exp_PathFormer \
   --is_training 1 \
-  --root_path ./dataset/wind/ \
-  --data_path Location2.csv \
-  --model_id Wind2_96_192 \
+  --root_path ./dataset/ETT-small/ \
+  --data_path ETTh1.csv \
+  --model_id ETTh1_96_192 \
   --model $model_name \
-  --data custom \
+  --data ETTh1 \
   --features M \
-  --target Power \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 192 \
@@ -48,15 +45,14 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name Exp_PathFormer \
   --is_training 1 \
-  --root_path ./dataset/wind/ \
-  --data_path Location2.csv \
-  --model_id Wind2_96_336 \
+  --root_path ./dataset/ETT-small/ \
+  --data_path ETTh1.csv \
+  --model_id ETTh1_96_336 \
   --model $model_name \
-  --data custom \
+  --data ETTh1 \
   --features M \
-  --target Power \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 336 \
@@ -71,15 +67,14 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name Exp_PathFormer \
   --is_training 1 \
-  --root_path ./dataset/wind/ \
-  --data_path Location2.csv \
-  --model_id Wind2_96_720 \
+  --root_path ./dataset/ETT-small/ \
+  --data_path ETTh1.csv \
+  --model_id ETTh1_96_720 \
   --model $model_name \
-  --data custom \
+  --data ETTh1 \
   --features M \
-  --target Power \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 720 \

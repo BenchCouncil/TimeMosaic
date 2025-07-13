@@ -95,5 +95,4 @@ python -u run.py \
   --c_out 7 \
   --des 'Exp' \
   --n_heads 16 \
-  --train_epochs 2 \
   --itr 1

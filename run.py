@@ -5,6 +5,7 @@ import torch.backends
 from exp.exp_long_term_forecasting import Exp_Long_Term_Forecast
 from exp.exp_AGPT import Exp_AGPT
 from exp.exp_TimeFilter import Exp_TimeFilter
+from exp.exp_PathFormer import Exp_PathFormer 
 from utils.print_args import print_args
 import random
 import numpy as np
@@ -181,6 +182,8 @@ if __name__ == '__main__':
         Exp = Exp_Long_Term_Forecast
     elif args.task_name == 'Exp_TimeFilter':
         Exp = Exp_TimeFilter
+    elif args.task_name == 'Exp_PathFormer':
+        Exp = Exp_PathFormer
     else:
         Exp = Exp_AGPT
 

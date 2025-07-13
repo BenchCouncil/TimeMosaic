@@ -1,24 +1,28 @@
 #!/bin/bash
 
 # ===================== 配置参数 =====================
-MAX_JOBS=2
+MAX_JOBS=1
 TOTAL_GPUS=2
 MAX_RETRIES=1
-LOG_DIR="./logs_AGPT_PT_m"
+LOG_DIR="logs_AGPT_PT_m1"
 
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-# "/root/daye/AGPT/scripts/AGPT_PT/ECL.sh"ß
-# "/root/daye/AGPT/scripts/AGPT_PT/ETTh1.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/ETTm1.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/ETTh2.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/Exchange.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/ETTm2.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/ECL.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/ETTh1_cd.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/ETTm1_cd.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/ETTh2_cd.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/Exchange_cd.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/ETTm2_cd.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/Traffic.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/PEMS.sh"
-"/root/daye/AGPT/scripts/AGPT_PT/Solar.sh"
-"/root/daye/AGPT/scripts/AGPT_PT/Weather.sh"
+"/root/daye/AGPT/scripts/AGPT_PT/PEMS.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/Solar.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/Weather.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/Wind1.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/Wind2.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/Wind3.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/Wind4.sh"
 )
 
 
