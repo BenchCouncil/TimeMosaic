@@ -10,8 +10,10 @@ from exp.exp_DUET import Exp_DUET
 from utils.print_args import print_args
 import random
 import numpy as np
+import sys
+sys.dont_write_bytecode = True
 
-os.environ['CUDA_VISIBLE_DEVICE']='0,1,2,3'
+os.environ['CUDA_VISIBLE_DEVICE']='0,1'
 
 if __name__ == '__main__':
     fix_seed = 2025
