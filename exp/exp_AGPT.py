@@ -61,9 +61,9 @@ class Exp_AGPT(Exp_Basic):
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        outputs, _ = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
                 else:
-                    outputs, _ = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                    outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
                 f_dim = -1 if self.args.features == 'MS' else 0
                 outputs = outputs[:, -self.args.pred_len:, f_dim:]
                 batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
@@ -115,27 +115,51 @@ class Exp_AGPT(Exp_Basic):
                 # decoder input
                 dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
                 dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
-
+                
+                if self.args.mask_ratio > 0:
+                    B, T, C = batch_x.shape
+                    mask = torch.rand(B, T, C, device=batch_x.device) < self.args.mask_ratio
+                elif self.args.mask_ratio_patch > 0:
+                    patch_num = int((self.args.seq_len - self.args.patch_len) / self.args.stride + 2)
+                    B, T, C = batch_x.shape
+                    mask = (torch.rand(B * C, patch_num, device=batch_x.device) < self.args.mask_ratio_patch)
+                    mask = mask.unsqueeze(-1).expand(-1, -1, self.args.d_model)
+                else:
+                    mask = None
+                    
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        outputs, aux_loss = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
-
+                        outputs, cls_pred, dec_mask = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark, mask)
+                        
+                        counts = torch.bincount(cls_pred, minlength=3).float()
+                        current_ratio = counts / counts.sum()
+                        
                         f_dim = -1 if self.args.features == 'MS' else 0
                         outputs = outputs[:, -self.args.pred_len:, f_dim:]
                         batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
                         lambda_cls = 0.001
-                        loss = criterion(outputs, batch_y) + lambda_cls * aux_loss
+                        if self.args.mask_ratio > 0:
+                            loss = criterion(outputs, batch_y) + lambda_cls * criterion(current_ratio, current_ratio.fill_(1/3)) + criterion(batch_x, dec_mask)
+                        else:
+                            loss = criterion(outputs, batch_y) + lambda_cls * criterion(current_ratio, current_ratio.fill_(1/3))
                         train_loss.append(loss.mean().item())
                 else:
-                    outputs, aux_loss = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                    outputs, cls_pred, dec_mask = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark, mask)
+
+                    counts = torch.bincount(cls_pred, minlength=3).float()
+                    current_ratio = counts / counts.sum()
 
                     f_dim = -1 if self.args.features == 'MS' else 0
                     outputs = outputs[:, -self.args.pred_len:, f_dim:]
                     batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
+
                     lambda_cls = 0.001
-                    loss = criterion(outputs, batch_y) + lambda_cls * aux_loss
-                    # print("loss: ", criterion(outputs, batch_y))
+                    if self.args.mask_ratio > 0:
+                        loss = criterion(outputs, batch_y) + lambda_cls * criterion(current_ratio, current_ratio.fill_(1/3)) + lambda_cls * criterion(batch_x[mask], dec_mask[mask])
+                    else:
+                        loss = criterion(outputs, batch_y) + lambda_cls * criterion(current_ratio, current_ratio.fill_(1/3))
+                    # print("loss: ", criterion(outputs, batch_y))s
                     # print("reg_loss: ", reg_loss)
                     # raise ValueError
                     train_loss.append(loss.mean().item())
@@ -169,8 +193,8 @@ class Exp_AGPT(Exp_Basic):
             if early_stopping.early_stop:
                 print("Early stopping")
                 break
-
-            adjust_learning_rate(model_optim, epoch + 1, self.args)
+            
+            adjust_learning_rate(model_optim, epoch, self.args)
 
         best_model_path = path + '/' + 'checkpoint.pth'
         self.model.load_state_dict(torch.load(best_model_path))
@@ -204,9 +228,9 @@ class Exp_AGPT(Exp_Basic):
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        outputs, _ = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
                 else:
-                    outputs, _ = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                    outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
 
                 f_dim = -1 if self.args.features == 'MS' else 0
                 outputs = outputs[:, -self.args.pred_len:, :]
@@ -250,7 +274,7 @@ class Exp_AGPT(Exp_Basic):
             os.makedirs(folder_path)
 
         mae, mse, rmse, mape, mspe, _ = metric(preds, trues)
-        print('mse:{}, mae:{}'.format(mse, mae))
+        print('mse:{}, mae:{}, rmse:{}, mape:{}, mspe:{}'.format(mse, mae, rmse, mape, mspe))
         f = open("result_long_term_forecast.txt", 'a')
         f.write(setting + "  \n")
         f.write('mse:{}, mae:{}, rmse:{}, mape:{}, mspe:{}'.format(mse, mae, rmse, mape, mspe))

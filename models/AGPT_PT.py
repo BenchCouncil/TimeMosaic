@@ -58,7 +58,7 @@ class PositionalEmbedding(nn.Module):
         return self.pe[:, :x.size(1)]
 
 class AdaptivePatchEmbedding(nn.Module):
-    def __init__(self, d_model, patch_len_list, mode='fixed', dropout=0.0, seq_len=96, in_channels=1):
+    def __init__(self, d_model, patch_len_list, mode='fixed', dropout=0.0, seq_len=96, in_channels=1, training=True):
         super().__init__()
         self.patch_len_list = patch_len_list
         self.mode = mode
@@ -67,6 +67,7 @@ class AdaptivePatchEmbedding(nn.Module):
         self.region_num = seq_len // self.max_patch_len
         self.d_model = d_model
         self.in_channels = in_channels
+        self.training = training
         
         self.register_buffer('target_ratio', torch.ones(len(patch_len_list)) / len(patch_len_list))
 
@@ -81,6 +82,8 @@ class AdaptivePatchEmbedding(nn.Module):
         ])
 
         self.position_embedding = PositionalEmbedding(d_model)
+        # self.position_embedding = nn.Parameter(torch.ones(1, 12, d_model))  # [1, max_patches, d_model]
+        # nn.init.trunc_normal_(self.position_embedding, std=0.02)
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x):  # x: [B, C, L]
@@ -95,12 +98,24 @@ class AdaptivePatchEmbedding(nn.Module):
         for region_idx in range(self.region_num):
             region = x[:, region_idx, :]  # [B*C, max_patch_len]
             
-            # 分类：确定patch长度
-            cls_logits = self.region_cls(region)  # [B*C, num_classes]
-            cls_pred = torch.argmax(cls_logits, dim=-1)  # [B*C]
-            cls_pred_list.append(cls_pred)
-            region_patches = []
             
+            cls_logits = self.region_cls(region)  # [B*C, num_classes]
+            
+            # 不可微
+            cls_pred = torch.argmax(cls_logits, dim=-1)  # [B*C]
+            
+            # 可微
+            # if self.training:
+            #     cls_soft = F.gumbel_softmax(cls_logits, tau=1.0, hard=True, dim=-1)
+            #     cls_pred = cls_soft.argmax(dim=-1)
+            # else:
+            #     cls_pred = torch.argmax(cls_logits, dim=-1)
+                
+            cls_pred_list.append(cls_pred)
+            
+            
+            region_patches = []
+
             for idx, patch_len in enumerate(self.patch_len_list):
                 selected_idx = (cls_pred == idx).nonzero(as_tuple=True)[0]
                 if selected_idx.numel() == 0:
@@ -131,17 +146,15 @@ class AdaptivePatchEmbedding(nn.Module):
         # 拼接所有区域patch
         x_patch = torch.cat(all_patches, dim=1)  # [B*C, total_num_patch, d_model]
         x_patch += self.position_embedding(x_patch)
+        # x_patch = x_patch + self.position_embedding[:, :x_patch.size(1), :]
         x_patch = self.dropout(x_patch)
 
         if self.training:
             all_cls_pred = torch.cat(cls_pred_list, dim=0)  # List of [B*C] → [B*C*R]
-            counts = torch.bincount(all_cls_pred, minlength=len(self.patch_len_list)).float()
-            current_ratio = counts / counts.sum()
-            budget_loss = F.mse_loss(current_ratio[:-1], self.target_ratio[:-1])  # Budget Loss
         else:
-            budget_loss = None
+            all_cls_pred = None
 
-        return x_patch, C, budget_loss
+        return x_patch, C, all_cls_pred
 
 
 class Transpose(nn.Module):
@@ -167,49 +180,6 @@ class FlattenHead(nn.Module):
         x = self.dropout(x)
         return x
 
-
-        
-class PatchSelector1(nn.Module):
-    def __init__(self, d_model, select_n):
-        super().__init__()
-        self.d_model = d_model
-        self.select_n = select_n
-        self.score_layer = nn.Linear(d_model, 1)
-    
-    def forward(self, x):
-        # x: [B, C, d_model, patch_num]
-        B, C, D, P = x.shape
-        patches = x.permute(0, 1, 3, 2).reshape(B, C * P, D)  # [B, C*patch_num, d_model]
-        scores = self.score_layer(patches).squeeze(-1)         # [B, C*patch_num]
-        _, top_idx = torch.topk(scores, self.select_n, dim=1)  # [B, n]
-        idx_expanded = top_idx.unsqueeze(-1).expand(-1, -1, D) # [B, n, d_model]
-        selected = torch.gather(patches, 1, idx_expanded)      # [B, n, d_model]
-        return selected  # [B, n, d_model]
-
-class PatchSelector(nn.Module):
-    def __init__(self, d_model, patch_num):
-        super().__init__()
-        self.d_model = d_model
-        self.patch_num = patch_num
-        self.score_layer = nn.Linear(d_model, 1)
-
-    def forward(self, x, channel_idx):
-        # x: [B, C, d_model, patch_num]
-        B, C, D, P = x.shape
-        patches = x.permute(0, 1, 3, 2).reshape(B, C * P, D)   # [B, C*P, d_model]
-        scores = self.score_layer(patches).squeeze(-1)          # [B, C*P]
-
-        # 给本通道patch加偏置
-        start = channel_idx * P
-        end = (channel_idx + 1) * P
-        scores[:, start:end] += 1e6
-
-        # topk
-        _, top_idx = torch.topk(scores, P, dim=1)              # [B, patch_num]
-        idx_expanded = top_idx.unsqueeze(-1).expand(-1, -1, D) # [B, patch_num, d_model]
-        selected = torch.gather(patches, 1, idx_expanded)      # [B, patch_num, d_model]
-        return selected
-
 class Model(nn.Module):
     def __init__(self, configs, patch_len=16, stride=8):
         super().__init__()
@@ -217,6 +187,7 @@ class Model(nn.Module):
         self.seq_len = configs.seq_len
         self.pred_len = configs.pred_len
         self.d_model = configs.d_model
+        self.training = configs.is_training
 
         self.patch_len_list = eval(configs.patch_len_list)
         
@@ -228,7 +199,7 @@ class Model(nn.Module):
         elif configs.pred_len == 336:
             self.seg_len = 168
         elif configs.pred_len == 720:
-            self.seg_len =240
+            self.seg_len = 240
         else:
             self.seg_len = 2
 
@@ -242,6 +213,7 @@ class Model(nn.Module):
             dropout=configs.dropout,
             seq_len=configs.seq_len,
             in_channels=configs.enc_in,
+            training=configs.is_training
         )
         
         self.num_latent_token = configs.num_latent_token
@@ -268,13 +240,6 @@ class Model(nn.Module):
         self.head_nf = configs.d_model * \
                        int((configs.seq_len - patch_len) / stride + 2)
         self.patch_num = int((configs.seq_len - patch_len) / stride + 2)
-        # self.patch_selectors = nn.ModuleList([
-        #     PatchSelector(configs.d_model, self.patch_num) for _ in range(configs.enc_in)
-        # ])
-
-
-        # self.head = FlattenHead(configs.enc_in, self.head_nf, configs.pred_len,
-                                    # head_dropout=configs.dropout)
         
         self.heads = nn.ModuleList([
             FlattenHead(configs.enc_in, self.head_nf, self.seg_len, head_dropout=configs.dropout)
@@ -283,8 +248,25 @@ class Model(nn.Module):
         
         self.revin = False
         self.revin_layer = RevIN(configs.enc_in,affine=True,subtract_last=False)
+        
+        # mask
+        self.mask_ratio = getattr(configs, "mask_ratio", 0)
+        self.mask_ratio_patch = getattr(configs, "mask_ratio_patch", 0)
+        self.mask_reconstruct_head = None
 
-    def forecast(self, x_enc, x_mark_enc, x_dec, x_mark_dec):
+        if self.mask_ratio > 0:
+            # 优先使用 token masking
+            self.mask_ratio_patch = 0  # 明确互斥逻辑
+            self.mask_reconstruct_head = FlattenHead(
+                configs.enc_in, self.head_nf, configs.seq_len, head_dropout=configs.dropout
+            )
+        elif self.mask_ratio_patch > 0:
+            # patch masking，只需要设定比例
+            self.mask_ratio = 0
+
+
+
+    def forecast(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask):
         # Normalization from Non-stationary Transformer
         if self.revin:
             x_enc = self.revin_layer(x_enc, 'norm')
@@ -298,35 +280,55 @@ class Model(nn.Module):
         seg_outputs = []
         B, C = x_enc.shape[0], x_enc.shape[2]
         
-        
+        if self.mask_ratio > 0 and self.training:
+            x_enc[mask] = 0.0
+                
         # channel independent
         if self.channel == "CI":
-            #x_enc shape: torch.Size([B, T, C])
-            global_channel = self.enc_embedding(x_enc, None)
-            global_channel = global_channel.view(-1, 1, self.d_model)
-            # global_channel shape: torch.Size([B * C, 1, d_model])
-            x_enc = x_enc.permute(0, 2, 1)
-            # u: [bs * nvars x patch_num x d_model]
-            enc_out, n_vars, budget_loss = self.patch_embedding(x_enc)
-            # enc_out shape: torch.Size([B * C, patch_num, d_model])
-            enc_out = torch.cat([enc_out, global_channel], dim=1)
+            # simple CI
+            extra_token = self.enc_embedding(x_enc, None)
+            extra_token = extra_token.view(-1, 1, self.d_model)
         elif self.channel == "CD":
-            # channel-wise
-            # Step 1. 构造样本级别的 global channel
-            # → 对全通道做平均池化（或 mean embedding）
+            # simple channel-wise 
             x_pool = x_enc.mean(dim=2)  # [B, T]
-            global_channel = self.enc_embedding(x_pool.unsqueeze(-1), None)  # [B, T, d]
-            global_channel = global_channel.mean(dim=1, keepdim=True)  # [B, 1, d]
+            extra_token = self.enc_embedding(x_pool.unsqueeze(-1), None)  # [B, T, d]
+            extra_token = extra_token.mean(dim=1, keepdim=True)  # [B, 1, d]
+            extra_token = extra_token.repeat_interleave(C, dim=0)  # [B*C, 1, d]
+        elif self.channel == "CDA":
+            extra_token = self.enc_embedding(x_enc, x_mark_enc)  # [B, C+K, D]
+            extra_token = extra_token.repeat_interleave(C, dim=0)  # [B*C, C+K, D]
+        elif self.channel == "CI+":
+            global_tokens = self.enc_embedding(x_enc, x_mark_enc)  # [B, C+K, D]
+            var_tokens = global_tokens[:, :C, :]
+            cal_tokens = global_tokens[:, C:, :]
 
-            # Step 2. broadcast 给所有通道
-            global_channel = global_channel.repeat_interleave(C, dim=0)  # [B*C, 1, d]
+            var_tokens = var_tokens.reshape(-1, 1, self.d_model)          # [B*C, 1, D]
+            cal_tokens = cal_tokens.repeat_interleave(C, dim=0)          # [B*C, K, D]
 
-            # Step 3. patch embedding
-            x_enc = x_enc.permute(0, 2, 1)  # [B, C, T] → [B*C, T]
-            enc_out, n_vars, budget_loss = self.patch_embedding(x_enc)  # [B*C, P, d]
-
-            # Step 4. 拼上全局 token
-            enc_out = torch.cat([enc_out, global_channel], dim=1)
+            extra_token = torch.cat([var_tokens, cal_tokens], dim=1)
+        
+        x_enc = x_enc.permute(0, 2, 1)
+        # u: [bs * nvars x patch_num x d_model]
+        enc_out, n_vars, cls_pred = self.patch_embedding(x_enc)
+        
+        # mask
+        if self.mask_ratio > 0 and self.training:
+            enc_mask = torch.reshape(
+                enc_out, (-1, n_vars, enc_out.shape[-2], enc_out.shape[-1]))
+            # z: [bs x nvars x d_model x patch_num]
+            enc_mask = enc_mask.permute(0, 1, 3, 2)
+            # Decoder
+            dec_mask = self.mask_reconstruct_head(enc_mask)
+            dec_mask = dec_mask.permute(0, 2, 1)
+        elif self.mask_ratio_patch > 0 and self.training:
+            enc_out[mask] = 0.0
+            dec_mask = None
+        else:
+            dec_mask = None
+        
+        # enc_out shape: torch.Size([B * C, patch_num, d_model])
+        enc_out = torch.cat([enc_out, extra_token], dim=1)
+        
 
         for i in range(self.num_segs):
             # Prompt embedding for segment i
@@ -358,60 +360,14 @@ class Model(nn.Module):
             dec_out = dec_out * stdev[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1)
             dec_out = dec_out + means[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1)
 
-        # # x_enc shape: torch.Size([B, T, C])
-        # global_channel = self.enc_embedding(x_enc, None)
-        # global_channel = global_channel.view(-1, 1, self.d_model)
-        # # global_channel shape: torch.Size([B * C, 1, d_model])
-        # x_enc = x_enc.permute(0, 2, 1)
-        # # u: [bs * nvars x patch_num x d_model]
-        # enc_out, n_vars, budget_loss = self.patch_embedding(x_enc)
-        # # enc_out shape: torch.Size([B * C, patch_num, d_model])
-        # enc_out = torch.cat([enc_out, global_channel], dim=1)
-        # # enc_out shape: torch.Size([B * C, patch_num + 1, d_model])
-        
-        # # Encoder
-        # # z: [bs * nvars x patch_num x d_model]
-        # enc_out, attns = self.encoder(enc_out)
-        # # enc_out shape: torch.Size([B * C, patch_num + 1, d_model])
-        # enc_out = enc_out[:, :self.patch_num, :]  # 
-
-        # # z: [bs x nvars x patch_num x d_model]
-        # enc_out = torch.reshape(
-        #     enc_out, (-1, n_vars, enc_out.shape[-2], enc_out.shape[-1]))
-        # # z: [bs x nvars x d_model x patch_num]
-        # enc_out = enc_out.permute(0, 1, 3, 2)
-        # # enc_out    torch.Size([B, C, d_model, patch_num])
-        
-        # # print(enc_out.shape)
-        # # # raise ValueError
-        # # B, C, D, P = enc_out.shape
-        # # all_channel_outs = []
-        # # for i in range(C):
-        # #     selected = self.patch_selectors[i](enc_out, i)    # [B, n, d_model]
-        # #     out = self.heads[i](selected)  # e.g. [B, target_window]
-        # #     all_channel_outs.append(out.unsqueeze(1))
-        # # dec_out = torch.cat(all_channel_outs, dim=1)
-        # seg_outputs = []
-        # for i in range(self.num_segs):
-        #     seg_out = self.heads[i](enc_out)  # [B, C, seg_len]
-        #     seg_outputs.append(seg_out)
-        # dec_out = torch.cat(seg_outputs, dim=2)  # [B, C, pred_len]
-        # # Decoder
-        # # dec_out = self.head(enc_out)  # z: [bs x nvars x target_window]
-        # dec_out = dec_out.permute(0, 2, 1)
-
-        # # De-Normalization from Non-stationary Transformer
-        # dec_out = dec_out * \
-        #           (stdev[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1))
-        # dec_out = dec_out + \
-        #           (means[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1))
-        return dec_out, budget_loss
+        return dec_out, cls_pred, dec_mask
 
     def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None):
-        if self.task_name in ['long_term_forecast', 'AGPTp_loss', 'AGPT_loss']:
-            dec_out, budget_loss = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
-            if self.task_name == 'long_term_forecast':
-                return dec_out[:, -self.pred_len:, :]
+        dec_out, cls_pred, dec_mask = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec, mask)
+        if self.task_name == 'long_term_forecast':
+            return dec_out[:, -self.pred_len:, :]
+        else:
+            if self.training > 0:
+                return dec_out[:, -self.pred_len:, :], cls_pred, dec_mask
             else:
-                return dec_out[:, -self.pred_len:, :], budget_loss
-        return None
+                return dec_out[:, -self.pred_len:, :]

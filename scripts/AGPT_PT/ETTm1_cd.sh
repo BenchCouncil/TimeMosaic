@@ -10,7 +10,7 @@ python -u run.py \
   --data ETTm1 \
   --features M \
   --channel CD \
-  --seq_len 96 \
+  --seq_len 192 \
   --label_len 48 \
   --pred_len 96 \
   --e_layers 1 \

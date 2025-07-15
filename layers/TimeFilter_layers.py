@@ -118,7 +118,8 @@ class mask_moe(nn.Module):
 
     def noisy_top_k_gating(self, x, is_training, noise_epsilon=1e-2):
         clean_logits = self.gate(x)
-
+        # print(is_training)
+        # raise ValueError
         if self.noisy_gating and is_training:
             raw_noise = self.noise(x)
             noise_stddev = ((self.softplus(raw_noise) + noise_epsilon))

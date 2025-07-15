@@ -5,7 +5,7 @@ python -u run.py \
   --task_name AGPT_loss \
   --is_training 1 \
   --use_multi_gpu \
-  --devices 0,1,2,3 \
+  --devices 0,1 \
   --root_path ./dataset/electricity/ \
   --data_path electricity.csv \
   --model_id ECL_96_96 \
@@ -30,7 +30,7 @@ python -u run.py \
   --task_name AGPT_loss \
   --is_training 1 \
   --use_multi_gpu \
-  --devices 0,1,2,3 \
+  --devices 0,1 \
   --root_path ./dataset/electricity/ \
   --data_path electricity.csv \
   --model_id ECL_96_192 \

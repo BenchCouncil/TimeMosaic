@@ -9,7 +9,11 @@ import os
 import time
 import warnings
 import numpy as np
+from utils.dtw_metric import dtw, accelerated_dtw
+from utils.augmentation import run_augmentation, run_augmentation_single
 
+
+os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 warnings.filterwarnings('ignore')
 
 
@@ -34,9 +38,12 @@ class Exp_TimeFilter(Exp_Basic):
         return model_optim
 
     def _select_criterion(self):
-        criterion = nn.MSELoss()
+        if self.args.loss == 'MSE':
+            criterion = nn.MSELoss()
+        else:
+            criterion = nn.L1Loss()
         return criterion
-    
+
     def _get_mask(self):
         dtype = torch.float32
         L = self.args.seq_len * self.args.c_out // self.args.patch_len
@@ -76,8 +83,18 @@ class Exp_TimeFilter(Exp_Basic):
                 batch_x = batch_x.float().to(self.device)
                 batch_y = batch_y.float()
 
+                batch_x_mark = batch_x_mark.float().to(self.device)
+                batch_y_mark = batch_y_mark.float().to(self.device)
+
+                # decoder input
+                dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
+                dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
                 # encoder - decoder
-                outputs, _ = self.model(batch_x, self.masks, is_training=False)
+                if self.args.use_amp:
+                    with torch.cuda.amp.autocast():
+                        outputs, _ = self.model(batch_x, self.masks, is_training=False)
+                else:
+                    outputs, _ = self.model(batch_x, self.masks, is_training=False)
                 f_dim = -1 if self.args.features == 'MS' else 0
                 outputs = outputs[:, -self.args.pred_len:, f_dim:]
                 batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
@@ -88,6 +105,7 @@ class Exp_TimeFilter(Exp_Basic):
                 loss = criterion(pred, true)
 
                 total_loss.append(loss)
+
         total_loss = np.average(total_loss)
         self.model.train()
         return total_loss
@@ -177,7 +195,9 @@ class Exp_TimeFilter(Exp_Basic):
 
         preds = []
         trues = []
-        inputs = []
+        folder_path = './test_results/' + setting + '/'
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
 
         self.model.eval()
         with torch.no_grad():
@@ -185,46 +205,62 @@ class Exp_TimeFilter(Exp_Basic):
                 batch_x = batch_x.float().to(self.device)
                 batch_y = batch_y.float().to(self.device)
 
+                batch_x_mark = batch_x_mark.float().to(self.device)
+                batch_y_mark = batch_y_mark.float().to(self.device)
+
+                # decoder input
+                dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
+                dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
                 # encoder - decoder
-                outputs, _ = self.model(batch_x, self.masks, is_training=False)
+                if self.args.use_amp:
+                    with torch.cuda.amp.autocast():
+                        outputs, _ = self.model(batch_x, self.masks, is_training=False)
+                else:
+                    outputs, _ = self.model(batch_x, self.masks, is_training=False)
 
                 f_dim = -1 if self.args.features == 'MS' else 0
                 outputs = outputs[:, -self.args.pred_len:, :]
                 batch_y = batch_y[:, -self.args.pred_len:, :].to(self.device)
                 outputs = outputs.detach().cpu().numpy()
                 batch_y = batch_y.detach().cpu().numpy()
-                batch_x = batch_x.detach().cpu().numpy()
                 if test_data.scale and self.args.inverse:
-                    shape = outputs.shape
-                    outputs = test_data.inverse_transform(outputs.squeeze(0)).reshape(shape)
-                    batch_y = test_data.inverse_transform(batch_y.squeeze(0)).reshape(shape)
-        
+                    shape = batch_y.shape
+                    if outputs.shape[-1] != batch_y.shape[-1]:
+                        outputs = np.tile(outputs, [1, 1, int(batch_y.shape[-1] / outputs.shape[-1])])
+                    outputs = test_data.inverse_transform(outputs.reshape(shape[0] * shape[1], -1)).reshape(shape)
+                    batch_y = test_data.inverse_transform(batch_y.reshape(shape[0] * shape[1], -1)).reshape(shape)
+
                 outputs = outputs[:, :, f_dim:]
                 batch_y = batch_y[:, :, f_dim:]
-                batch_x = batch_x[:, :, f_dim:]
 
-                input_ = batch_x
                 pred = outputs
                 true = batch_y
 
-                inputs.append(input_)
                 preds.append(pred)
                 trues.append(true)
+                if i % 20 == 0:
+                    input = batch_x.detach().cpu().numpy()
+                    if test_data.scale and self.args.inverse:
+                        shape = input.shape
+                        input = test_data.inverse_transform(input.reshape(shape[0] * shape[1], -1)).reshape(shape)
+                    gt = np.concatenate((input[0, :, -1], true[0, :, -1]), axis=0)
+                    pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
+                    visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
 
-        inputs = np.concatenate(inputs, axis=0)
         preds = np.concatenate(preds, axis=0)
         trues = np.concatenate(trues, axis=0)
-        inputs = inputs.reshape(-1, inputs.shape[-2], inputs.shape[-1])
+        print('test shape:', preds.shape, trues.shape)
         preds = preds.reshape(-1, preds.shape[-2], preds.shape[-1])
         trues = trues.reshape(-1, trues.shape[-2], trues.shape[-1])
-        
+        print('test shape:', preds.shape, trues.shape)
+
         # result save
         folder_path = './results/' + setting + '/'
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
-        
+
         mae, mse, rmse, mape, mspe, _ = metric(preds, trues)
-        print('mse:{}, mae:{}'.format(mse, mae))
+        print('mse:{}, mae:{}, rmse:{}, mape:{}, mspe:{}'.format(mse, mae, rmse, mape, mspe))
         f = open("result_long_term_forecast.txt", 'a')
         f.write(setting + "  \n")
         f.write('mse:{}, mae:{}, rmse:{}, mape:{}, mspe:{}'.format(mse, mae, rmse, mape, mspe))
@@ -236,4 +272,40 @@ class Exp_TimeFilter(Exp_Basic):
         np.save(folder_path + 'pred.npy', preds)
         np.save(folder_path + 'true.npy', trues)
         
+        self.profile_model(test_loader)
+
         return
+    
+    def profile_model(self, test_loader):
+        self.model.eval()
+        with torch.no_grad():
+            batch_x, batch_y, batch_x_mark, batch_y_mark = next(iter(test_loader))
+            batch_x = batch_x.float().to(self.device)
+            batch_y = batch_y.float().to(self.device)
+            batch_x_mark = batch_x_mark.float().to(self.device)
+            batch_y_mark = batch_y_mark.float().to(self.device)
+
+            dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
+            dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
+
+            torch.cuda.reset_peak_memory_stats()
+            torch.cuda.synchronize()
+            start_time = time.time()
+
+            _ = self.model(batch_x, self.masks, is_training=False)
+
+            torch.cuda.synchronize()
+            end_time = time.time()
+
+            inference_time = end_time - start_time
+            gpu_mem = torch.cuda.memory_allocated(self.device) / 1024 / 1024
+            peak_mem = torch.cuda.max_memory_allocated(self.device) / 1024 / 1024
+            total_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
+
+            print("=" * 80)
+            print("Model Profiling Summary")
+            print(f"{'Total Params':<25}: {total_params:,}")
+            print(f"{'Inference Time (s)':<25}: {inference_time:.6f}")
+            print(f"{'GPU Mem Footprint (MB)':<25}: {gpu_mem:.2f}")
+            print(f"{'Peak Mem (MB)':<25}: {peak_mem:.2f}")
+            print("=" * 80)

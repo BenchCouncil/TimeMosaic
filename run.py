@@ -95,7 +95,7 @@ if __name__ == '__main__':
     parser.add_argument('--target_root_path', type=str, default='./data/electricity/', help='root path of the data file')
     parser.add_argument('--target_data_path', type=str, default='electricity.csv', help='data file')
 
-    # other
+    # AGPT
     parser.add_argument('--fc_dropout', type=float, default=0.1, help='fc_dropout')
     parser.add_argument('--fixed_weight', type=bool, default=False, help='fixed task emb weight')
     parser.add_argument('--adjust_lr', action='store_true', default=True, help='adjust learnring rate')
@@ -103,6 +103,8 @@ if __name__ == '__main__':
     parser.add_argument('--scale_rate', type=float, default=0.001, help='emb init scale rate')
     parser.add_argument('--patch_len_list', type=str, default='[8,16,32]',
                     help='List of candidate patch lengths for adaptive splitting')
+    parser.add_argument('--mask_ratio', type=float, default=0, help='mask_ratio')
+    parser.add_argument('--mask_ratio_patch', type=float, default=0, help='mask_ratio_patch')
     
     # SimpleTS
     parser.add_argument('--kernel_size', default=None, help='Specify the length of randomly initialized wavelets (if not None)')
@@ -157,6 +159,9 @@ if __name__ == '__main__':
     parser.add_argument('--alpha_xPatch', type=float, default=0.3, help='alpha')
     parser.add_argument('--beta', type=float, default=0.3, help='beta')
     parser.add_argument('--padding_patch', default='end', help='None: None; end: padding on the end')
+    
+    # TimeMxierPP
+    parser.add_argument('--channel_mixing', type=int, default=1, help='channel_mixing')
 
 
     args = parser.parse_args()
@@ -194,7 +199,7 @@ if __name__ == '__main__':
         for ii in range(args.itr):
             # setting record of experiments
             exp = Exp(args)  # set experiments
-            setting = '{}_{}_{}_{}_fixed{}_{}_{}'.format(args.task_name, args.model_id, args.model, args.d_ff, args.fixed_weight, args.learning_rate, args.scale_rate)
+            setting = '{}_{}_{}_{}_fixed{}_{}_{}_{}'.format(args.task_name, args.model_id, args.model, args.d_ff, args.fixed_weight, args.learning_rate, args.scale_rate, args.channel)
             print('>>>>>>>start training : {}>>>>>>>>>>>>>>>>>>>>>>>>>>'.format(setting))
             # print(args.input_scale_rate)
             # raise ValueError
@@ -206,11 +211,9 @@ if __name__ == '__main__':
                 torch.backends.mps.empty_cache()
             elif args.gpu_type == 'cuda':
                 torch.cuda.empty_cache()
-                
-
     else:
         ii = 0
-        setting = '{}_{}_{}_{}_fixed{}_{}_{}'.format(args.task_name, args.model_id, args.model, args.d_ff, args.fixed_weight, args.learning_rate, args.scale_rate)
+        setting = '{}_{}_{}_{}_fixed{}_{}_{}_{}'.format(args.task_name, args.model_id, args.model, args.d_ff, args.fixed_weight, args.learning_rate, args.scale_rate, args.channel)
         exp = Exp(args)  # set experiments
         print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
         exp.test(setting, test=1)

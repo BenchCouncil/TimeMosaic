@@ -1,0 +1,352 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_TimeFilter      Is Training:        1                   
+  Model ID:           ETTh2_96_96         Model:              TimeFilter          
+
+[1mData Loader[0m
+  Data:               ETTh2               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTh2.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            4                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_TimeFilter_ETTh2_96_96_TimeFilter_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 8449
+val 2785
+test 2785
+	iters: 100, epoch: 1 | loss: 0.4406654
+	speed: 0.0229s/iter; left time: 58.3284s
+	iters: 200, epoch: 1 | loss: 0.3967573
+	speed: 0.0154s/iter; left time: 37.7833s
+Epoch: 1 cost time: 4.905829429626465
+Epoch: 1, Steps: 265 | Train Loss: 0.4919142 Vali Loss: 0.2513223 Test Loss: 0.3104302
+Validation loss decreased (inf --> 0.251322).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.4913178
+	speed: 0.0479s/iter; left time: 109.4270s
+	iters: 200, epoch: 2 | loss: 0.3368393
+	speed: 0.0157s/iter; left time: 34.3476s
+Epoch: 2 cost time: 4.45374059677124
+Epoch: 2, Steps: 265 | Train Loss: 0.4010021 Vali Loss: 0.2367348 Test Loss: 0.3097459
+Validation loss decreased (0.251322 --> 0.236735).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.3416567
+	speed: 0.0665s/iter; left time: 134.3375s
+	iters: 200, epoch: 3 | loss: 0.3713681
+	speed: 0.0159s/iter; left time: 30.4897s
+Epoch: 3 cost time: 4.46649432182312
+Epoch: 3, Steps: 265 | Train Loss: 0.3649741 Vali Loss: 0.2530370 Test Loss: 0.3173751
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.3992922
+	speed: 0.0498s/iter; left time: 87.3838s
+	iters: 200, epoch: 4 | loss: 0.3001912
+	speed: 0.0155s/iter; left time: 25.7095s
+Epoch: 4 cost time: 4.5322425365448
+Epoch: 4, Steps: 265 | Train Loss: 0.3428726 Vali Loss: 0.2546168 Test Loss: 0.3386768
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.4846134
+	speed: 0.0494s/iter; left time: 73.7293s
+	iters: 200, epoch: 5 | loss: 0.2380284
+	speed: 0.0152s/iter; left time: 21.1773s
+Epoch: 5 cost time: 4.382653713226318
+Epoch: 5, Steps: 265 | Train Loss: 0.3321629 Vali Loss: 0.2539532 Test Loss: 0.3339854
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : Exp_TimeFilter_ETTh2_96_96_TimeFilter_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2785
+mse:0.3110678493976593, mae:0.36008334159851074
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_TimeFilter      Is Training:        1                   
+  Model ID:           ETTh2_96_192        Model:              TimeFilter          
+
+[1mData Loader[0m
+  Data:               ETTh2               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTh2.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            4                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_TimeFilter_ETTh2_96_192_TimeFilter_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 8353
+val 2689
+test 2689
+	iters: 100, epoch: 1 | loss: 0.6345765
+	speed: 0.0309s/iter; left time: 77.8798s
+	iters: 200, epoch: 1 | loss: 0.5251442
+	speed: 0.0261s/iter; left time: 63.1006s
+Epoch: 1 cost time: 7.437925815582275
+Epoch: 1, Steps: 262 | Train Loss: 0.6013397 Vali Loss: 0.3240368 Test Loss: 0.4103344
+Validation loss decreased (inf --> 0.324037).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.6232997
+	speed: 0.1536s/iter; left time: 346.8851s
+	iters: 200, epoch: 2 | loss: 0.4061400
+	speed: 0.0270s/iter; left time: 58.3617s
+Epoch: 2 cost time: 7.834777116775513
+Epoch: 2, Steps: 262 | Train Loss: 0.4865271 Vali Loss: 0.3023005 Test Loss: 0.4196238
+Validation loss decreased (0.324037 --> 0.302301).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.3693474
+	speed: 0.1611s/iter; left time: 321.6509s
+	iters: 200, epoch: 3 | loss: 0.4146004
+	speed: 0.0328s/iter; left time: 62.2294s
+Epoch: 3 cost time: 8.684845447540283
+Epoch: 3, Steps: 262 | Train Loss: 0.4372281 Vali Loss: 0.3033968 Test Loss: 0.4220737
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.3512869
+	speed: 0.1538s/iter; left time: 266.7596s
+	iters: 200, epoch: 4 | loss: 0.3296846
+	speed: 0.0248s/iter; left time: 40.4948s
+Epoch: 4 cost time: 6.819236755371094
+Epoch: 4, Steps: 262 | Train Loss: 0.4128891 Vali Loss: 0.3162075 Test Loss: 0.4392186
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.4514177
+	speed: 0.1264s/iter; left time: 186.2102s
+	iters: 200, epoch: 5 | loss: 0.3552551
+	speed: 0.0266s/iter; left time: 36.5031s
+Epoch: 5 cost time: 7.030259370803833
+Epoch: 5, Steps: 262 | Train Loss: 0.3998731 Vali Loss: 0.3210745 Test Loss: 0.4369124
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : Exp_TimeFilter_ETTh2_96_192_TimeFilter_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2689
+mse:0.4120136797428131, mae:0.4227178692817688
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_TimeFilter      Is Training:        1                   
+  Model ID:           ETTh2_96_336        Model:              TimeFilter          
+
+[1mData Loader[0m
+  Data:               ETTh2               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTh2.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            4                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_TimeFilter_ETTh2_96_336_TimeFilter_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 8209
+val 2545
+test 2545
+	iters: 100, epoch: 1 | loss: 0.6857314
+	speed: 0.0304s/iter; left time: 75.0359s
+	iters: 200, epoch: 1 | loss: 0.5148108
+	speed: 0.0250s/iter; left time: 59.2096s
+Epoch: 1 cost time: 7.118149042129517
+Epoch: 1, Steps: 257 | Train Loss: 0.7212309 Vali Loss: 0.4236620 Test Loss: 0.4509989
+Validation loss decreased (inf --> 0.423662).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.7019710
+	speed: 0.1314s/iter; left time: 290.8706s
+	iters: 200, epoch: 2 | loss: 0.5214440
+	speed: 0.0255s/iter; left time: 53.8699s
+Epoch: 2 cost time: 6.845328330993652
+Epoch: 2, Steps: 257 | Train Loss: 0.6084353 Vali Loss: 0.4227242 Test Loss: 0.4609681
+Validation loss decreased (0.423662 --> 0.422724).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.4786708
+	speed: 0.1341s/iter; left time: 262.4347s
+	iters: 200, epoch: 3 | loss: 0.5690643
+	speed: 0.0258s/iter; left time: 47.9020s
+Epoch: 3 cost time: 6.870870590209961
+Epoch: 3, Steps: 257 | Train Loss: 0.5524278 Vali Loss: 0.4041327 Test Loss: 0.4612525
+Validation loss decreased (0.422724 --> 0.404133).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.4633732
+	speed: 0.1351s/iter; left time: 229.7504s
+	iters: 200, epoch: 4 | loss: 0.5972621
+	speed: 0.0325s/iter; left time: 51.9256s
+Epoch: 4 cost time: 8.065276145935059
+Epoch: 4, Steps: 257 | Train Loss: 0.5233903 Vali Loss: 0.4108004 Test Loss: 0.4670378
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.6774269
+	speed: 0.1450s/iter; left time: 209.3052s
+	iters: 200, epoch: 5 | loss: 0.5088112
+	speed: 0.0294s/iter; left time: 39.4185s
+Epoch: 5 cost time: 7.924381256103516
+Epoch: 5, Steps: 257 | Train Loss: 0.5065222 Vali Loss: 0.4145446 Test Loss: 0.4790444
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.4703508
+	speed: 0.1553s/iter; left time: 184.1404s
+	iters: 200, epoch: 6 | loss: 0.6555852
+	speed: 0.0339s/iter; left time: 36.8340s
+Epoch: 6 cost time: 8.75537919998169
+Epoch: 6, Steps: 257 | Train Loss: 0.4978931 Vali Loss: 0.4169262 Test Loss: 0.4830272
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : Exp_TimeFilter_ETTh2_96_336_TimeFilter_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2545
+mse:0.4564846456050873, mae:0.4492667317390442
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_TimeFilter      Is Training:        1                   
+  Model ID:           ETTh2_96_720        Model:              TimeFilter          
+
+[1mData Loader[0m
+  Data:               ETTh2               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTh2.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            4                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_TimeFilter_ETTh2_96_720_TimeFilter_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 7825
+val 2161
+test 2161
+	iters: 100, epoch: 1 | loss: 1.0073986
+	speed: 0.0423s/iter; left time: 99.4044s
+	iters: 200, epoch: 1 | loss: 0.8737411
+	speed: 0.0402s/iter; left time: 90.4297s
+Epoch: 1 cost time: 9.826173782348633
+Epoch: 1, Steps: 245 | Train Loss: 0.9062854 Vali Loss: 0.6683587 Test Loss: 0.4504925
+Validation loss decreased (inf --> 0.668359).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.7251961
+	speed: 0.1449s/iter; left time: 305.1954s
+	iters: 200, epoch: 2 | loss: 0.7688822
+	speed: 0.0294s/iter; left time: 59.0410s
+Epoch: 2 cost time: 7.823693037033081
+Epoch: 2, Steps: 245 | Train Loss: 0.7970310 Vali Loss: 0.6491376 Test Loss: 0.4513266
+Validation loss decreased (0.668359 --> 0.649138).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.6661546
+	speed: 0.1619s/iter; left time: 301.3331s
+	iters: 200, epoch: 3 | loss: 0.7863788
+	speed: 0.0379s/iter; left time: 66.8027s
+Epoch: 3 cost time: 9.530351161956787
+Epoch: 3, Steps: 245 | Train Loss: 0.7256132 Vali Loss: 0.6490589 Test Loss: 0.4769075
+Validation loss decreased (0.649138 --> 0.649059).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.7091537
+	speed: 0.1512s/iter; left time: 244.3571s
+	iters: 200, epoch: 4 | loss: 0.6789776
+	speed: 0.0303s/iter; left time: 45.9988s
+Epoch: 4 cost time: 7.831286907196045
+Epoch: 4, Steps: 245 | Train Loss: 0.6902870 Vali Loss: 0.6698928 Test Loss: 0.4950100
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.7057815
+	speed: 0.1537s/iter; left time: 210.7005s
+	iters: 200, epoch: 5 | loss: 0.7007378
+	speed: 0.0401s/iter; left time: 51.0001s
+Epoch: 5 cost time: 9.868453741073608
+Epoch: 5, Steps: 245 | Train Loss: 0.6714398 Vali Loss: 0.6606460 Test Loss: 0.4927359
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.4836919
+	speed: 0.1791s/iter; left time: 201.6543s
+	iters: 200, epoch: 6 | loss: 0.7222667
+	speed: 0.0309s/iter; left time: 31.6873s
+Epoch: 6 cost time: 8.596006393432617
+Epoch: 6, Steps: 245 | Train Loss: 0.6628467 Vali Loss: 0.6675862 Test Loss: 0.5027089
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : Exp_TimeFilter_ETTh2_96_720_TimeFilter_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2161
+mse:0.4742889404296875, mae:0.46850213408470154

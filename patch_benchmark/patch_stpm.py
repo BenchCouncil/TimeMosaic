@@ -65,19 +65,19 @@ def plot_transition_matrix_variants(tokens, K, top_k=20, prefix="transition_matr
     plt.figure(figsize=(10, 8))
     sns.heatmap(
         P_top,
-        cmap="rocket", # rocket  YlOrRd crest
+        cmap="YlOrRd", # rocket  YlOrRd crest
         vmin=0, vmax=1.0,
         xticklabels=np.arange(1, top_k + 1),
         yticklabels=np.arange(1, top_k + 1),
         square=True,
-        cbar_kws={"label": "Transition Probability"}
+        # cbar_kws={"label": "Transition Probability"}
     )
 
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
-    plt.xlabel("Next State", fontsize=14)
-    plt.ylabel("Current State", fontsize=14)
-    plt.title("State Transition Probability Matrix\n(Top 20 Active States)", fontsize=16, fontweight="bold")
+    plt.xlabel("Patch", fontsize=20)
+    plt.ylabel("Patch", fontsize=20)
+    plt.title("State Transition Probability Matrix\n(Top 20 Active States)", fontsize=20, fontweight="bold")
 
     plt.tight_layout()
     plt.savefig(f"{prefix}.pdf")

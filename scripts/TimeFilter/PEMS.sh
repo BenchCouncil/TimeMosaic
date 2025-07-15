@@ -3,9 +3,9 @@ model_name=TimeFilter
 seq_len=96
 pred_len=12
 learning_rate=0.003
-d_model=128
-d_ff=256
-batch_size=16
+d_model=32
+d_ff=128
+batch_size=4
 train_epochs=10
 patience=10
 

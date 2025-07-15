@@ -68,7 +68,8 @@ class Model(nn.Module):
         # x: [B, C, T]
         x = x.permute(0, 2, 1).reshape(-1, C*T) # [B, C*T]
         x = self.patch_embed(x) # [B, N, D]  N = [C*T / P]
-
+        # print(is_training)
+        # raise ValueError
         x, moe_loss = self.backbone(x, masks, self.alpha, is_training)
 
         # [B, C, T/P, D]

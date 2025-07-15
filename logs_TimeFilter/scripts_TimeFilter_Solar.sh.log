@@ -1,0 +1,111 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_TimeFilter      Is Training:        1                   
+  Model ID:           solar_96_96         Model:              TimeFilter          
+
+[1mData Loader[0m
+  Data:               Solar               Root Path:          ./dataset/Solar/    
+  Data Path:          solar_AL.txt        Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             137                 Dec In:             137                 
+  C Out:              137                 d model:            512                 
+  n heads:            8                   e layers:           3                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.001               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_TimeFilter_solar_96_96_TimeFilter_2048_fixedFalse_0.001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36601
+val 5161
+test 10417
+	iters: 100, epoch: 1 | loss: 0.3138946
+	speed: 0.7367s/iter; left time: 8355.3428s
+	iters: 200, epoch: 1 | loss: 0.3133723
+	speed: 0.7255s/iter; left time: 8155.8474s
+	iters: 300, epoch: 1 | loss: 0.3252572
+	speed: 0.5589s/iter; left time: 6226.6992s
+	iters: 400, epoch: 1 | loss: 0.2795680
+	speed: 0.4842s/iter; left time: 5346.1698s
+	iters: 500, epoch: 1 | loss: 0.3750286
+	speed: 0.5589s/iter; left time: 6115.2717s
+	iters: 600, epoch: 1 | loss: 0.2525752
+	speed: 0.7210s/iter; left time: 7816.7527s
+	iters: 700, epoch: 1 | loss: 0.3166769
+	speed: 0.7120s/iter; left time: 7648.0065s
+	iters: 800, epoch: 1 | loss: 0.4106776
+	speed: 0.6539s/iter; left time: 6958.5534s
+	iters: 900, epoch: 1 | loss: 0.3191981
+	speed: 0.4868s/iter; left time: 5130.8894s
+	iters: 1000, epoch: 1 | loss: 0.3176292
+	speed: 0.4858s/iter; left time: 5072.6796s
+	iters: 1100, epoch: 1 | loss: 0.2522534
+	speed: 0.6740s/iter; left time: 6969.5655s
+Epoch: 1 cost time: 711.800571680069
+Epoch: 1, Steps: 1144 | Train Loss: 0.3445649 Vali Loss: 0.1768172 Test Loss: 0.2132739
+Validation loss decreased (inf --> 0.176817).  Saving model ...
+Updating learning rate to 0.001
+	iters: 100, epoch: 2 | loss: 0.3096213
+	speed: 2.9411s/iter; left time: 29990.0336s
+	iters: 200, epoch: 2 | loss: 0.3240353
+	speed: 0.7450s/iter; left time: 7522.5037s
+	iters: 300, epoch: 2 | loss: 0.2658298
+	speed: 0.7085s/iter; left time: 7083.1759s
+	iters: 400, epoch: 2 | loss: 0.2463344
+	speed: 0.5055s/iter; left time: 5002.7245s
+	iters: 500, epoch: 2 | loss: 0.3150955
+	speed: 0.5875s/iter; left time: 5756.1408s
+	iters: 600, epoch: 2 | loss: 0.3024209
+	speed: 0.7396s/iter; left time: 7171.9312s
+	iters: 700, epoch: 2 | loss: 0.3270050
+	speed: 0.7468s/iter; left time: 7167.1976s
+	iters: 800, epoch: 2 | loss: 0.2435228
+	speed: 0.4941s/iter; left time: 4692.8532s
+	iters: 900, epoch: 2 | loss: 0.3880792
+	speed: 0.3824s/iter; left time: 3593.0573s
+	iters: 1000, epoch: 2 | loss: 0.2781905
+	speed: 0.4665s/iter; left time: 4337.0928s
+	iters: 1100, epoch: 2 | loss: 0.3019602
+	speed: 0.6097s/iter; left time: 5607.7826s
+Epoch: 2 cost time: 699.1711039543152
+Epoch: 2, Steps: 1144 | Train Loss: 0.2993462 Vali Loss: 0.1922053 Test Loss: 0.2212053
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 0.0005
+	iters: 100, epoch: 3 | loss: 0.2538198
+	speed: 2.7923s/iter; left time: 25278.3378s
+	iters: 200, epoch: 3 | loss: 0.3080576
+	speed: 0.7433s/iter; left time: 6655.0703s
+	iters: 300, epoch: 3 | loss: 0.3091517
+	speed: 0.5951s/iter; left time: 5268.5230s
+	iters: 400, epoch: 3 | loss: 0.2615828
+	speed: 0.5167s/iter; left time: 4522.2793s
+	iters: 500, epoch: 3 | loss: 0.2329717
+	speed: 0.7114s/iter; left time: 6155.9858s
+	iters: 600, epoch: 3 | loss: 0.2549654
+	speed: 0.7371s/iter; left time: 6304.1826s
+	iters: 700, epoch: 3 | loss: 0.2584365
+	speed: 0.7224s/iter; left time: 6106.1637s
+	iters: 800, epoch: 3 | loss: 0.3196051
+	speed: 0.5040s/iter; left time: 4209.8284s
+	iters: 900, epoch: 3 | loss: 0.2576067
+	speed: 0.5998s/iter; left time: 4950.4912s
