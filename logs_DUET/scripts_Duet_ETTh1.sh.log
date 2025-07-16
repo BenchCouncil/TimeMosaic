@@ -1,0 +1,444 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_DUET            Is Training:        1                   
+  Model ID:           ETTh1_96_96         Model:              Duet                
+
+[1mData Loader[0m
+  Data:               ETTh1               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTh1.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            2                   e layers:           1                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_DUET_ETTh1_96_96_Duet_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 8449
+val 2785
+test 2785
+	iters: 100, epoch: 1 | loss: 0.3518906
+	speed: 0.0285s/iter; left time: 72.6769s
+	iters: 200, epoch: 1 | loss: 0.4347347
+	speed: 0.0161s/iter; left time: 39.4011s
+Epoch: 1 cost time: 5.450607061386108
+Epoch: 1, Steps: 265 | Train Loss: 0.4177785 Vali Loss: 0.7115595 Test Loss: 0.3974222
+Validation loss decreased (inf --> 0.711559).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.4040412
+	speed: 0.0540s/iter; left time: 123.5570s
+	iters: 200, epoch: 2 | loss: 0.3143212
+	speed: 0.0182s/iter; left time: 39.8493s
+Epoch: 2 cost time: 5.160675287246704
+Epoch: 2, Steps: 265 | Train Loss: 0.3831675 Vali Loss: 0.7111065 Test Loss: 0.3910244
+Validation loss decreased (0.711559 --> 0.711107).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.4559438
+	speed: 0.0636s/iter; left time: 128.4691s
+	iters: 200, epoch: 3 | loss: 0.4114989
+	speed: 0.0183s/iter; left time: 35.0764s
+Epoch: 3 cost time: 5.2318806648254395
+Epoch: 3, Steps: 265 | Train Loss: 0.3794284 Vali Loss: 0.7275944 Test Loss: 0.3882318
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.3802805
+	speed: 0.0577s/iter; left time: 101.2709s
+	iters: 200, epoch: 4 | loss: 0.3704333
+	speed: 0.0184s/iter; left time: 30.3948s
+Epoch: 4 cost time: 5.027496814727783
+Epoch: 4, Steps: 265 | Train Loss: 0.3779775 Vali Loss: 0.7122504 Test Loss: 0.3865353
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.3098754
+	speed: 0.0596s/iter; left time: 88.9201s
+	iters: 200, epoch: 5 | loss: 0.3658882
+	speed: 0.0166s/iter; left time: 23.0565s
+Epoch: 5 cost time: 4.9994447231292725
+Epoch: 5, Steps: 265 | Train Loss: 0.3772421 Vali Loss: 0.7152100 Test Loss: 0.3861833
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : Exp_DUET_ETTh1_96_96_Duet_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2785
+test shape: (2785, 96, 7) (2785, 96, 7)
+test shape: (2785, 96, 7) (2785, 96, 7)
+mse:0.39095738530158997, mae:0.4033249020576477, rmse:0.6252658367156982, mape:9.494792938232422, mspe:41003.01953125
+================================================================================
+Model Profiling Summary
+Total Params             : 3,553,752
+Inference Time (s)       : 0.003554
+GPU Mem Footprint (MB)   : 31.87
+Peak Mem (MB)            : 33.88
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_DUET            Is Training:        1                   
+  Model ID:           ETTh1_96_192        Model:              Duet                
+
+[1mData Loader[0m
+  Data:               ETTh1               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTh1.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            8                   e layers:           1                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_DUET_ETTh1_96_192_Duet_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 8353
+val 2689
+test 2689
+	iters: 100, epoch: 1 | loss: 0.5056401
+	speed: 0.0512s/iter; left time: 128.9691s
+	iters: 200, epoch: 1 | loss: 0.4788974
+	speed: 0.0434s/iter; left time: 104.9793s
+Epoch: 1 cost time: 11.943138599395752
+Epoch: 1, Steps: 262 | Train Loss: 0.4787584 Vali Loss: 1.0166515 Test Loss: 0.4480208
+Validation loss decreased (inf --> 1.016652).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.4526138
+	speed: 0.3355s/iter; left time: 757.9897s
+	iters: 200, epoch: 2 | loss: 0.4566956
+	speed: 0.0454s/iter; left time: 98.0695s
+Epoch: 2 cost time: 11.7734694480896
+Epoch: 2, Steps: 262 | Train Loss: 0.4462519 Vali Loss: 1.0040640 Test Loss: 0.4416600
+Validation loss decreased (1.016652 --> 1.004064).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.4829544
+	speed: 0.3597s/iter; left time: 718.2508s
+	iters: 200, epoch: 3 | loss: 0.4556243
+	speed: 0.0484s/iter; left time: 91.7977s
+Epoch: 3 cost time: 13.135121583938599
+Epoch: 3, Steps: 262 | Train Loss: 0.4423469 Vali Loss: 1.0182459 Test Loss: 0.4376052
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.4671805
+	speed: 0.3951s/iter; left time: 685.5382s
+	iters: 200, epoch: 4 | loss: 0.4199215
+	speed: 0.0499s/iter; left time: 81.5156s
+Epoch: 4 cost time: 13.829250574111938
+Epoch: 4, Steps: 262 | Train Loss: 0.4408983 Vali Loss: 1.0030731 Test Loss: 0.4367320
+Validation loss decreased (1.004064 --> 1.003073).  Saving model ...
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.4054385
+	speed: 0.4720s/iter; left time: 695.1964s
+	iters: 200, epoch: 5 | loss: 0.4695581
+	speed: 0.0734s/iter; left time: 100.7106s
+Epoch: 5 cost time: 20.167448043823242
+Epoch: 5, Steps: 262 | Train Loss: 0.4432214 Vali Loss: 1.0079554 Test Loss: 0.4362971
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.4165887
+	speed: 0.6336s/iter; left time: 767.2877s
+	iters: 200, epoch: 6 | loss: 0.4124731
+	speed: 0.0720s/iter; left time: 79.9653s
+Epoch: 6 cost time: 20.139274835586548
+Epoch: 6, Steps: 262 | Train Loss: 0.4402092 Vali Loss: 1.0030807 Test Loss: 0.4362584
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 3.125e-06
+	iters: 100, epoch: 7 | loss: 0.4333726
+	speed: 0.7241s/iter; left time: 687.1307s
+	iters: 200, epoch: 7 | loss: 0.4648502
+	speed: 0.0848s/iter; left time: 71.9813s
+Epoch: 7 cost time: 22.514007329940796
+Epoch: 7, Steps: 262 | Train Loss: 0.4406730 Vali Loss: 1.0262244 Test Loss: 0.4361769
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : Exp_DUET_ETTh1_96_192_Duet_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2689
+test shape: (2689, 192, 7) (2689, 192, 7)
+test shape: (2689, 192, 7) (2689, 192, 7)
+mse:0.43691545724868774, mae:0.42806997895240784, rmse:0.6609957814216614, mape:9.615039825439453, mspe:38418.61328125
+================================================================================
+Model Profiling Summary
+Total Params             : 3,603,000
+Inference Time (s)       : 0.026417
+GPU Mem Footprint (MB)   : 32.54
+Peak Mem (MB)            : 34.47
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_DUET            Is Training:        1                   
+  Model ID:           ETTh1_96_336        Model:              Duet                
+
+[1mData Loader[0m
+  Data:               ETTh1               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTh1.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            8                   e layers:           1                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_DUET_ETTh1_96_336_Duet_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 8209
+val 2545
+test 2545
+	iters: 100, epoch: 1 | loss: 0.4966268
+	speed: 0.1562s/iter; left time: 385.9330s
+	iters: 200, epoch: 1 | loss: 0.4889128
+	speed: 0.1397s/iter; left time: 331.1687s
+Epoch: 1 cost time: 37.24395751953125
+Epoch: 1, Steps: 257 | Train Loss: 0.5408733 Vali Loss: 1.3077309 Test Loss: 0.4900708
+Validation loss decreased (inf --> 1.307731).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.5018764
+	speed: 0.8240s/iter; left time: 1824.3089s
+	iters: 200, epoch: 2 | loss: 0.4871636
+	speed: 0.1408s/iter; left time: 297.7525s
+Epoch: 2 cost time: 36.21628546714783
+Epoch: 2, Steps: 257 | Train Loss: 0.5075733 Vali Loss: 1.2963642 Test Loss: 0.4838626
+Validation loss decreased (1.307731 --> 1.296364).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.4717663
+	speed: 0.8213s/iter; left time: 1607.2574s
+	iters: 200, epoch: 3 | loss: 0.4741194
+	speed: 0.1166s/iter; left time: 216.6163s
+Epoch: 3 cost time: 31.087550401687622
+Epoch: 3, Steps: 257 | Train Loss: 0.5041504 Vali Loss: 1.2985691 Test Loss: 0.4805098
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.4950066
+	speed: 0.7184s/iter; left time: 1221.3601s
+	iters: 200, epoch: 4 | loss: 0.4901238
+	speed: 0.1181s/iter; left time: 188.9107s
+Epoch: 4 cost time: 30.792459726333618
+Epoch: 4, Steps: 257 | Train Loss: 0.5031211 Vali Loss: 1.2962410 Test Loss: 0.4790983
+Validation loss decreased (1.296364 --> 1.296241).  Saving model ...
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.4906132
+	speed: 0.7649s/iter; left time: 1103.7125s
+	iters: 200, epoch: 5 | loss: 0.5154102
+	speed: 0.1291s/iter; left time: 173.4102s
+Epoch: 5 cost time: 34.298333168029785
+Epoch: 5, Steps: 257 | Train Loss: 0.5025654 Vali Loss: 1.2970976 Test Loss: 0.4786565
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.4561815
+	speed: 0.7831s/iter; left time: 928.7422s
+	iters: 200, epoch: 6 | loss: 0.5179909
+	speed: 0.1098s/iter; left time: 119.2074s
+Epoch: 6 cost time: 28.809809684753418
+Epoch: 6, Steps: 257 | Train Loss: 0.5021719 Vali Loss: 1.2968459 Test Loss: 0.4783437
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 3.125e-06
+	iters: 100, epoch: 7 | loss: 0.5834420
+	speed: 0.6708s/iter; left time: 623.1818s
+	iters: 200, epoch: 7 | loss: 0.4984672
+	speed: 0.1297s/iter; left time: 107.5058s
+Epoch: 7 cost time: 34.40212535858154
+Epoch: 7, Steps: 257 | Train Loss: 0.5019480 Vali Loss: 1.2979176 Test Loss: 0.4782642
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : Exp_DUET_ETTh1_96_336_Duet_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2545
+test shape: (2545, 336, 7) (2545, 336, 7)
+test shape: (2545, 336, 7) (2545, 336, 7)
+mse:0.47852519154548645, mae:0.4505193531513214, rmse:0.6917551755905151, mape:9.605923652648926, mspe:39603.953125
+================================================================================
+Model Profiling Summary
+Total Params             : 3,676,872
+Inference Time (s)       : 0.010523
+GPU Mem Footprint (MB)   : 33.87
+Peak Mem (MB)            : 35.68
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_DUET            Is Training:        1                   
+  Model ID:           ETTh1_96_720        Model:              Duet                
+
+[1mData Loader[0m
+  Data:               ETTh1               Root Path:          ./dataset/ETT-small/
+  Data Path:          ETTh1.csv           Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             7                   Dec In:             7                   
+  C Out:              7                   d model:            512                 
+  n heads:            16                  e layers:           1                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_DUET_ETTh1_96_720_Duet_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 7825
+val 2161
+test 2161
+	iters: 100, epoch: 1 | loss: 0.6229441
+	speed: 0.1235s/iter; left time: 290.2984s
+	iters: 200, epoch: 1 | loss: 0.5888517
+	speed: 0.0959s/iter; left time: 215.7788s
+Epoch: 1 cost time: 26.35317349433899
+Epoch: 1, Steps: 245 | Train Loss: 0.6620008 Vali Loss: 1.5745825 Test Loss: 0.4950219
+Validation loss decreased (inf --> 1.574582).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.6969401
+	speed: 0.6471s/iter; left time: 1362.8016s
+	iters: 200, epoch: 2 | loss: 0.6014354
+	speed: 0.1328s/iter; left time: 266.3512s
+Epoch: 2 cost time: 33.84776949882507
+Epoch: 2, Steps: 245 | Train Loss: 0.6285512 Vali Loss: 1.5664077 Test Loss: 0.4895679
+Validation loss decreased (1.574582 --> 1.566408).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.5570967
+	speed: 0.6054s/iter; left time: 1126.6796s
+	iters: 200, epoch: 3 | loss: 0.6731827
+	speed: 0.1149s/iter; left time: 202.3903s
+Epoch: 3 cost time: 29.10987639427185
+Epoch: 3, Steps: 245 | Train Loss: 0.6265003 Vali Loss: 1.5629466 Test Loss: 0.4861976
+Validation loss decreased (1.566408 --> 1.562947).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.5938792
+	speed: 0.7246s/iter; left time: 1170.8780s
+	iters: 200, epoch: 4 | loss: 0.6602334
+	speed: 0.1161s/iter; left time: 176.0738s
+Epoch: 4 cost time: 29.900349617004395
+Epoch: 4, Steps: 245 | Train Loss: 0.6255580 Vali Loss: 1.5616781 Test Loss: 0.4845713
+Validation loss decreased (1.562947 --> 1.561678).  Saving model ...
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.6162019
+	speed: 0.5271s/iter; left time: 722.6591s
+	iters: 200, epoch: 5 | loss: 0.5622832
+	speed: 0.0836s/iter; left time: 106.2858s
+Epoch: 5 cost time: 22.453132152557373
+Epoch: 5, Steps: 245 | Train Loss: 0.6248197 Vali Loss: 1.5622020 Test Loss: 0.4837363
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.6933284
+	speed: 0.5203s/iter; left time: 585.8372s
+	iters: 200, epoch: 6 | loss: 0.5572308
+	speed: 0.1206s/iter; left time: 123.7683s
+Epoch: 6 cost time: 29.998921394348145
+Epoch: 6, Steps: 245 | Train Loss: 0.6246177 Vali Loss: 1.5614387 Test Loss: 0.4834400
+Validation loss decreased (1.561678 --> 1.561439).  Saving model ...
+Updating learning rate to 3.125e-06
+	iters: 100, epoch: 7 | loss: 0.5726255
+	speed: 0.5382s/iter; left time: 474.1613s
+	iters: 200, epoch: 7 | loss: 0.6180398
+	speed: 0.0941s/iter; left time: 73.4636s
+Epoch: 7 cost time: 23.34210991859436
+Epoch: 7, Steps: 245 | Train Loss: 0.6243749 Vali Loss: 1.5596800 Test Loss: 0.4832617
+Validation loss decreased (1.561439 --> 1.559680).  Saving model ...
+Updating learning rate to 1.5625e-06
+	iters: 100, epoch: 8 | loss: 0.6303526
+	speed: 0.4956s/iter; left time: 315.1878s
+	iters: 200, epoch: 8 | loss: 0.6698387
+	speed: 0.1279s/iter; left time: 68.5525s
+Epoch: 8 cost time: 30.399062871932983
+Epoch: 8, Steps: 245 | Train Loss: 0.6246266 Vali Loss: 1.5614084 Test Loss: 0.4831592
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 7.8125e-07
+	iters: 100, epoch: 9 | loss: 0.6657708
+	speed: 0.6707s/iter; left time: 262.2288s
+	iters: 200, epoch: 9 | loss: 0.7140645
+	speed: 0.1126s/iter; left time: 32.7749s
+Epoch: 9 cost time: 27.677515029907227
+Epoch: 9, Steps: 245 | Train Loss: 0.6242376 Vali Loss: 1.5611519 Test Loss: 0.4831224
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 3.90625e-07
+	iters: 100, epoch: 10 | loss: 0.6705511
+	speed: 0.5753s/iter; left time: 83.9969s
+	iters: 200, epoch: 10 | loss: 0.5953992
+	speed: 0.1257s/iter; left time: 5.7805s
+Epoch: 10 cost time: 30.09736442565918
+Epoch: 10, Steps: 245 | Train Loss: 0.6243814 Vali Loss: 1.5629328 Test Loss: 0.4831018
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : Exp_DUET_ETTh1_96_720_Duet_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 2161
+test shape: (2161, 720, 7) (2161, 720, 7)
+test shape: (2161, 720, 7) (2161, 720, 7)
+mse:0.4819439947605133, mae:0.47656935453414917, rmse:0.6942218542098999, mape:9.804960250854492, mspe:41336.5625
+================================================================================
+Model Profiling Summary
+Total Params             : 3,873,864
+Inference Time (s)       : 0.003596
+GPU Mem Footprint (MB)   : 36.82
+Peak Mem (MB)            : 38.66
+================================================================================

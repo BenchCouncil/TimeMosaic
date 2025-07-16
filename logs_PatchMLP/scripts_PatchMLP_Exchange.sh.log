@@ -1,0 +1,348 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           Exchange_96_96      Model:              PatchMLP            
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/exchange_rate/
+  Data Path:          exchange_rate.csv   Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            96                  Label Len:          48                  
+  Pred Len:           96                  Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             8                   Dec In:             8                   
+  C Out:              8                   d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_Exchange_96_96_PatchMLP_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 5120
+val 665
+test 1422
+	iters: 100, epoch: 1 | loss: 0.1313350
+	speed: 0.0612s/iter; left time: 91.8517s
+Epoch: 1 cost time: 9.16708254814148
+Epoch: 1, Steps: 160 | Train Loss: 0.1499255 Vali Loss: 0.1459693 Test Loss: 0.0914358
+Validation loss decreased (inf --> 0.145969).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.1368552
+	speed: 0.1228s/iter; left time: 164.6147s
+Epoch: 2 cost time: 8.578735828399658
+Epoch: 2, Steps: 160 | Train Loss: 0.1232987 Vali Loss: 0.1454509 Test Loss: 0.0938036
+Validation loss decreased (0.145969 --> 0.145451).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.1186157
+	speed: 0.1297s/iter; left time: 153.1677s
+Epoch: 3 cost time: 8.614827632904053
+Epoch: 3, Steps: 160 | Train Loss: 0.1165717 Vali Loss: 0.1440767 Test Loss: 0.0935141
+Validation loss decreased (0.145451 --> 0.144077).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.0906388
+	speed: 0.1259s/iter; left time: 128.5210s
+Epoch: 4 cost time: 8.386191844940186
+Epoch: 4, Steps: 160 | Train Loss: 0.1135768 Vali Loss: 0.1425516 Test Loss: 0.0939971
+Validation loss decreased (0.144077 --> 0.142552).  Saving model ...
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.0976360
+	speed: 0.1221s/iter; left time: 105.1348s
+Epoch: 5 cost time: 8.270543575286865
+Epoch: 5, Steps: 160 | Train Loss: 0.1124355 Vali Loss: 0.1441371 Test Loss: 0.0936857
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.1313794
+	speed: 0.1272s/iter; left time: 89.1501s
+Epoch: 6 cost time: 8.36723017692566
+Epoch: 6, Steps: 160 | Train Loss: 0.1116049 Vali Loss: 0.1443006 Test Loss: 0.0936753
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 3.125e-06
+	iters: 100, epoch: 7 | loss: 0.1075047
+	speed: 0.1181s/iter; left time: 63.9170s
+Epoch: 7 cost time: 8.526434659957886
+Epoch: 7, Steps: 160 | Train Loss: 0.1113138 Vali Loss: 0.1440315 Test Loss: 0.0937123
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : long_term_forecast_Exchange_96_96_PatchMLP_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1422
+test shape: (1422, 96, 8) (1422, 96, 8)
+test shape: (1422, 96, 8) (1422, 96, 8)
+mse:0.09348931163549423, mae:0.21383559703826904, rmse:0.3057602047920227, mape:1.2424216270446777, mspe:939.9266357421875
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           Exchange_96_192     Model:              PatchMLP            
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/exchange_rate/
+  Data Path:          exchange_rate.csv   Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            96                  Label Len:          48                  
+  Pred Len:           192                 Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             8                   Dec In:             8                   
+  C Out:              8                   d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_Exchange_96_192_PatchMLP_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 5024
+val 569
+test 1326
+	iters: 100, epoch: 1 | loss: 0.1896152
+	speed: 0.0576s/iter; left time: 84.7367s
+Epoch: 1 cost time: 8.523564100265503
+Epoch: 1, Steps: 157 | Train Loss: 0.2778388 Vali Loss: 0.2386277 Test Loss: 0.1848660
+Validation loss decreased (inf --> 0.238628).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.2377201
+	speed: 0.2299s/iter; left time: 302.0731s
+Epoch: 2 cost time: 8.636218786239624
+Epoch: 2, Steps: 157 | Train Loss: 0.2448614 Vali Loss: 0.2349619 Test Loss: 0.1816161
+Validation loss decreased (0.238628 --> 0.234962).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.1898517
+	speed: 0.2257s/iter; left time: 261.1535s
+Epoch: 3 cost time: 9.123813390731812
+Epoch: 3, Steps: 157 | Train Loss: 0.2344372 Vali Loss: 0.2344433 Test Loss: 0.1846455
+Validation loss decreased (0.234962 --> 0.234443).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.2669079
+	speed: 0.2258s/iter; left time: 225.7643s
+Epoch: 4 cost time: 8.27641487121582
+Epoch: 4, Steps: 157 | Train Loss: 0.2298788 Vali Loss: 0.2327410 Test Loss: 0.1844794
+Validation loss decreased (0.234443 --> 0.232741).  Saving model ...
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.1866546
+	speed: 0.2405s/iter; left time: 202.7417s
+Epoch: 5 cost time: 8.749652624130249
+Epoch: 5, Steps: 157 | Train Loss: 0.2276985 Vali Loss: 0.2331710 Test Loss: 0.1846302
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.2924299
+	speed: 0.2363s/iter; left time: 162.0719s
+Epoch: 6 cost time: 10.694908618927002
+Epoch: 6, Steps: 157 | Train Loss: 0.2266629 Vali Loss: 0.2330801 Test Loss: 0.1844867
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 3.125e-06
+	iters: 100, epoch: 7 | loss: 0.2525362
+	speed: 0.3158s/iter; left time: 167.0687s
+Epoch: 7 cost time: 11.366453647613525
+Epoch: 7, Steps: 157 | Train Loss: 0.2260261 Vali Loss: 0.2327565 Test Loss: 0.1849633
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : long_term_forecast_Exchange_96_192_PatchMLP_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1326
+test shape: (1326, 192, 8) (1326, 192, 8)
+test shape: (1326, 192, 8) (1326, 192, 8)
+mse:0.18459638953208923, mae:0.30651071667671204, rmse:0.4296468198299408, mape:1.899387001991272, mspe:1950.394287109375
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           Exchange_96_336     Model:              PatchMLP            
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/exchange_rate/
+  Data Path:          exchange_rate.csv   Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            96                  Label Len:          48                  
+  Pred Len:           336                 Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             8                   Dec In:             8                   
+  C Out:              8                   d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       1                   Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_Exchange_96_336_PatchMLP_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 4880
+val 425
+test 1182
+	iters: 100, epoch: 1 | loss: 0.5559796
+	speed: 0.1347s/iter; left time: 7.2716s
+Epoch: 1 cost time: 19.69670033454895
+Epoch: 1, Steps: 153 | Train Loss: 0.4529809 Vali Loss: 0.3855946 Test Loss: 0.3387968
+Validation loss decreased (inf --> 0.385595).  Saving model ...
+Updating learning rate to 0.0001
+>>>>>>>testing : long_term_forecast_Exchange_96_336_PatchMLP_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1182
+test shape: (1182, 336, 8) (1182, 336, 8)
+test shape: (1182, 336, 8) (1182, 336, 8)
+mse:0.33885377645492554, mae:0.42280325293540955, rmse:0.5821114778518677, mape:3.064129114151001, mspe:3996.98046875
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          long_term_forecast  Is Training:        1                   
+  Model ID:           Exchange_96_720     Model:              PatchMLP            
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/exchange_rate/
+  Data Path:          exchange_rate.csv   Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mForecasting Task[0m
+  Seq Len:            96                  Label Len:          48                  
+  Pred Len:           720                 Seasonal Patterns:  Monthly             
+  Inverse:            0                   
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             8                   Dec In:             8                   
+  C Out:              8                   d model:            512                 
+  n heads:            8                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : long_term_forecast_Exchange_96_720_PatchMLP_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 4496
+val 41
+test 798
+	iters: 100, epoch: 1 | loss: 0.8135723
+	speed: 0.1354s/iter; left time: 177.5618s
+Epoch: 1 cost time: 18.675094842910767
+Epoch: 1, Steps: 141 | Train Loss: 0.8424638 Vali Loss: 1.2534513 Test Loss: 0.8495178
+Validation loss decreased (inf --> 1.253451).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.9478133
+	speed: 0.2854s/iter; left time: 333.9321s
+Epoch: 2 cost time: 17.04230308532715
+Epoch: 2, Steps: 141 | Train Loss: 0.7969668 Vali Loss: 1.1653788 Test Loss: 0.8574635
+Validation loss decreased (1.253451 --> 1.165379).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.6951144
+	speed: 0.2798s/iter; left time: 287.9478s
+Epoch: 3 cost time: 17.095112800598145
+Epoch: 3, Steps: 141 | Train Loss: 0.7699582 Vali Loss: 1.1681924 Test Loss: 0.8718804
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.6693397
+	speed: 0.2804s/iter; left time: 248.9866s
+Epoch: 4 cost time: 17.59092903137207
+Epoch: 4, Steps: 141 | Train Loss: 0.7572469 Vali Loss: 1.1234019 Test Loss: 0.8827503
+Validation loss decreased (1.165379 --> 1.123402).  Saving model ...
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.9078861
+	speed: 0.2797s/iter; left time: 208.9111s
+Epoch: 5 cost time: 17.388062238693237
+Epoch: 5, Steps: 141 | Train Loss: 0.7509139 Vali Loss: 1.1559770 Test Loss: 0.8817915
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.7220135
+	speed: 0.2876s/iter; left time: 174.2817s
+Epoch: 6 cost time: 17.762333393096924
+Epoch: 6, Steps: 141 | Train Loss: 0.7479434 Vali Loss: 1.1137857 Test Loss: 0.8791582
+Validation loss decreased (1.123402 --> 1.113786).  Saving model ...
+Updating learning rate to 3.125e-06
+	iters: 100, epoch: 7 | loss: 0.8026066
+	speed: 0.2922s/iter; left time: 135.8616s
+Epoch: 7 cost time: 17.583554983139038
+Epoch: 7, Steps: 141 | Train Loss: 0.7474871 Vali Loss: 1.1486304 Test Loss: 0.8799869
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 1.5625e-06
+	iters: 100, epoch: 8 | loss: 0.8039292
+	speed: 0.2965s/iter; left time: 96.0528s
+Epoch: 8 cost time: 17.879777193069458
+Epoch: 8, Steps: 141 | Train Loss: 0.7461838 Vali Loss: 1.1488221 Test Loss: 0.8799316
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 7.8125e-07
+	iters: 100, epoch: 9 | loss: 0.6983611
+	speed: 0.2840s/iter; left time: 51.9809s
+Epoch: 9 cost time: 17.198063135147095
+Epoch: 9, Steps: 141 | Train Loss: 0.7456201 Vali Loss: 1.1449687 Test Loss: 0.8799431
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : long_term_forecast_Exchange_96_720_PatchMLP_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 798
+test shape: (798, 720, 8) (798, 720, 8)
+test shape: (798, 720, 8) (798, 720, 8)
+mse:0.8802808523178101, mae:0.7060984373092651, rmse:0.9382328391075134, mape:6.262223243713379, mspe:16905.08984375

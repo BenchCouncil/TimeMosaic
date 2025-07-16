@@ -1,7 +1,7 @@
 Using GPU
 Args in experiment:
 [1mBasic Config[0m
-  Task Name:          long_term_forecast  Is Training:        1                   
+  Task Name:          Exp_TimeFilter      Is Training:        1                   
   Model ID:           Wind4_96_96         Model:              TimeFilter          
 
 [1mData Loader[0m
@@ -10,15 +10,10 @@ Args in experiment:
   Target:             Power               Freq:               h                   
   Checkpoints:        ./checkpoints/      
 
-[1mForecasting Task[0m
-  Seq Len:            96                  Label Len:          48                  
-  Pred Len:           96                  Seasonal Patterns:  Monthly             
-  Inverse:            0                   
-
 [1mModel Parameters[0m
   Num Kernels:        6                   
-  Enc In:             7                   Dec In:             7                   
-  C Out:              7                   d model:            512                 
+  Enc In:             9                   Dec In:             9                   
+  C Out:              9                   d model:            512                 
   n heads:            2                   e layers:           1                   
   d layers:           1                   d FF:               2048                
   Moving Avg:         25                  Factor:             3                   
@@ -40,87 +35,202 @@ Args in experiment:
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : long_term_forecast_Wind4_96_96_TimeFilter_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>start training : Exp_TimeFilter_Wind4_96_96_TimeFilter_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
 train 30468
 val 4286
 test 8665
-Traceback (most recent call last):
-  File "/root/daye/AGPT/run.py", line 202, in <module>
-    exp.train(setting)
-  File "/root/daye/AGPT/exp/exp_long_term_forecasting.py", line 130, in train
-    outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/models/TimeFilter.py", line 72, in forward
-    x, moe_loss = self.backbone(x, masks, self.alpha, is_training)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 276, in forward
-    x, loss = block(x, masks, alpha, is_training)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 254, in forward
-    out, loss = self.gnn(self.norm1(x), masks, alpha, is_training)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 228, in forward
-    adj, loss = self.graph_learner(x.reshape(B, L, self.n_heads, -1).permute(0, 2, 1, 3), masks, 
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 208, in forward
-    mask, loss = self.mask_moe(adj, masks, is_training)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 164, in forward
-    gates, loss = self.noisy_top_k_gating(x, is_training)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 120, in noisy_top_k_gating
-    clean_logits = self.gate(x)
-                   ^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/linear.py", line 117, in forward
-    return F.linear(input, self.weight, self.bias)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-RuntimeError: mat1 and mat2 shapes cannot be multiplied (3456x54 and 42x3)
+	iters: 100, epoch: 1 | loss: 0.9755474
+	speed: 0.0811s/iter; left time: 764.5826s
+	iters: 200, epoch: 1 | loss: 0.9570305
+	speed: 0.0684s/iter; left time: 638.1803s
+	iters: 300, epoch: 1 | loss: 1.0045826
+	speed: 0.0620s/iter; left time: 571.9653s
+	iters: 400, epoch: 1 | loss: 0.8586098
+	speed: 0.0612s/iter; left time: 558.9696s
+	iters: 500, epoch: 1 | loss: 0.8507638
+	speed: 0.0620s/iter; left time: 560.1953s
+	iters: 600, epoch: 1 | loss: 0.9289116
+	speed: 0.0631s/iter; left time: 563.1715s
+	iters: 700, epoch: 1 | loss: 0.9555447
+	speed: 0.0629s/iter; left time: 555.5372s
+	iters: 800, epoch: 1 | loss: 0.9882412
+	speed: 0.0635s/iter; left time: 554.7289s
+	iters: 900, epoch: 1 | loss: 0.8988206
+	speed: 0.0678s/iter; left time: 585.5354s
+Epoch: 1 cost time: 62.68023943901062
+Epoch: 1, Steps: 953 | Train Loss: 0.9286149 Vali Loss: 0.8120337 Test Loss: 0.7997425
+Validation loss decreased (inf --> 0.812034).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 1.0247273
+	speed: 0.4003s/iter; left time: 3393.8123s
+	iters: 200, epoch: 2 | loss: 0.8414952
+	speed: 0.0707s/iter; left time: 592.0307s
+	iters: 300, epoch: 2 | loss: 0.9821039
+	speed: 0.0790s/iter; left time: 654.2645s
+	iters: 400, epoch: 2 | loss: 0.9102654
+	speed: 0.0805s/iter; left time: 658.1907s
+	iters: 500, epoch: 2 | loss: 0.8659276
+	speed: 0.0702s/iter; left time: 567.3016s
+	iters: 600, epoch: 2 | loss: 0.9468951
+	speed: 0.0724s/iter; left time: 577.6107s
+	iters: 700, epoch: 2 | loss: 0.9962174
+	speed: 0.0710s/iter; left time: 559.0630s
+	iters: 800, epoch: 2 | loss: 0.8834345
+	speed: 0.0780s/iter; left time: 606.3083s
+	iters: 900, epoch: 2 | loss: 0.8873162
+	speed: 0.0813s/iter; left time: 624.0881s
+Epoch: 2 cost time: 72.45109486579895
+Epoch: 2, Steps: 953 | Train Loss: 0.9003321 Vali Loss: 0.8104806 Test Loss: 0.7965038
+Validation loss decreased (0.812034 --> 0.810481).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.9167523
+	speed: 0.4372s/iter; left time: 3289.5805s
+	iters: 200, epoch: 3 | loss: 0.7983313
+	speed: 0.0752s/iter; left time: 558.6882s
+	iters: 300, epoch: 3 | loss: 0.9375129
+	speed: 0.0717s/iter; left time: 525.0908s
+	iters: 400, epoch: 3 | loss: 1.0240098
+	speed: 0.0763s/iter; left time: 551.4604s
+	iters: 500, epoch: 3 | loss: 0.7355183
+	speed: 0.0745s/iter; left time: 530.8453s
+	iters: 600, epoch: 3 | loss: 0.9235256
+	speed: 0.0791s/iter; left time: 555.4406s
+	iters: 700, epoch: 3 | loss: 0.9095244
+	speed: 0.0711s/iter; left time: 492.4790s
+	iters: 800, epoch: 3 | loss: 0.9612210
+	speed: 0.0770s/iter; left time: 525.5046s
+	iters: 900, epoch: 3 | loss: 0.9100498
+	speed: 0.0771s/iter; left time: 518.6087s
+Epoch: 3 cost time: 72.4530918598175
+Epoch: 3, Steps: 953 | Train Loss: 0.8865628 Vali Loss: 0.7969885 Test Loss: 0.7856076
+Validation loss decreased (0.810481 --> 0.796989).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.8515782
+	speed: 0.4370s/iter; left time: 2872.0942s
+	iters: 200, epoch: 4 | loss: 0.9545665
+	speed: 0.0807s/iter; left time: 522.2485s
+	iters: 300, epoch: 4 | loss: 0.8530416
+	speed: 0.0739s/iter; left time: 470.8052s
+	iters: 400, epoch: 4 | loss: 0.9265645
+	speed: 0.0822s/iter; left time: 515.4812s
+	iters: 500, epoch: 4 | loss: 0.9638683
+	speed: 0.0745s/iter; left time: 460.0230s
+	iters: 600, epoch: 4 | loss: 0.8521471
+	speed: 0.0718s/iter; left time: 436.2024s
+	iters: 700, epoch: 4 | loss: 0.8317336
+	speed: 0.0789s/iter; left time: 471.0605s
+	iters: 800, epoch: 4 | loss: 0.8060796
+	speed: 0.0740s/iter; left time: 434.5370s
+	iters: 900, epoch: 4 | loss: 0.9279681
+	speed: 0.0726s/iter; left time: 418.8811s
+Epoch: 4 cost time: 72.71929383277893
+Epoch: 4, Steps: 953 | Train Loss: 0.8789816 Vali Loss: 0.7961117 Test Loss: 0.7842770
+Validation loss decreased (0.796989 --> 0.796112).  Saving model ...
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.8765016
+	speed: 0.4710s/iter; left time: 2646.4670s
+	iters: 200, epoch: 5 | loss: 0.9885999
+	speed: 0.0765s/iter; left time: 422.1637s
+	iters: 300, epoch: 5 | loss: 0.7934219
+	speed: 0.0697s/iter; left time: 377.4584s
+	iters: 400, epoch: 5 | loss: 0.8331458
+	speed: 0.0710s/iter; left time: 377.5138s
+	iters: 500, epoch: 5 | loss: 0.8693906
+	speed: 0.0632s/iter; left time: 329.7985s
+	iters: 600, epoch: 5 | loss: 0.9905876
+	speed: 0.0739s/iter; left time: 378.0645s
+	iters: 700, epoch: 5 | loss: 0.8989107
+	speed: 0.0635s/iter; left time: 318.5124s
+	iters: 800, epoch: 5 | loss: 0.7898422
+	speed: 0.0690s/iter; left time: 339.3303s
+	iters: 900, epoch: 5 | loss: 0.8559325
+	speed: 0.0787s/iter; left time: 379.4768s
+Epoch: 5 cost time: 70.9169385433197
+Epoch: 5, Steps: 953 | Train Loss: 0.8748758 Vali Loss: 0.7935106 Test Loss: 0.7841777
+Validation loss decreased (0.796112 --> 0.793511).  Saving model ...
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.8018814
+	speed: 0.4588s/iter; left time: 2140.6879s
+	iters: 200, epoch: 6 | loss: 0.9636482
+	speed: 0.0843s/iter; left time: 384.9377s
+	iters: 300, epoch: 6 | loss: 0.8680464
+	speed: 0.0793s/iter; left time: 354.1513s
+	iters: 400, epoch: 6 | loss: 0.8516301
+	speed: 0.0734s/iter; left time: 320.5836s
+	iters: 500, epoch: 6 | loss: 0.8133219
+	speed: 0.0700s/iter; left time: 298.6131s
+	iters: 600, epoch: 6 | loss: 0.8719619
+	speed: 0.0724s/iter; left time: 301.4767s
+	iters: 700, epoch: 6 | loss: 1.0052794
+	speed: 0.0750s/iter; left time: 304.8864s
+	iters: 800, epoch: 6 | loss: 0.8557395
+	speed: 0.0760s/iter; left time: 301.5205s
+	iters: 900, epoch: 6 | loss: 0.8545479
+	speed: 0.0781s/iter; left time: 302.1136s
+Epoch: 6 cost time: 74.60596060752869
+Epoch: 6, Steps: 953 | Train Loss: 0.8731881 Vali Loss: 0.7936188 Test Loss: 0.7852721
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 3.125e-06
+	iters: 100, epoch: 7 | loss: 0.9125627
+	speed: 0.4358s/iter; left time: 1618.0760s
+	iters: 200, epoch: 7 | loss: 0.9040115
+	speed: 0.0848s/iter; left time: 306.3435s
+	iters: 300, epoch: 7 | loss: 0.8648106
+	speed: 0.0859s/iter; left time: 301.8513s
+	iters: 400, epoch: 7 | loss: 0.7864791
+	speed: 0.0762s/iter; left time: 260.0428s
+	iters: 500, epoch: 7 | loss: 0.8232527
+	speed: 0.0728s/iter; left time: 241.2848s
+	iters: 600, epoch: 7 | loss: 0.8378039
+	speed: 0.0741s/iter; left time: 238.1094s
+	iters: 700, epoch: 7 | loss: 0.8455142
+	speed: 0.0755s/iter; left time: 234.8920s
+	iters: 800, epoch: 7 | loss: 0.8235989
+	speed: 0.0738s/iter; left time: 222.5007s
+	iters: 900, epoch: 7 | loss: 0.8382120
+	speed: 0.0766s/iter; left time: 223.0758s
+Epoch: 7 cost time: 75.08584666252136
+Epoch: 7, Steps: 953 | Train Loss: 0.8713232 Vali Loss: 0.7939798 Test Loss: 0.7837976
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.5625e-06
+	iters: 100, epoch: 8 | loss: 0.8039280
+	speed: 0.4422s/iter; left time: 1220.4413s
+	iters: 200, epoch: 8 | loss: 0.8973256
+	speed: 0.0736s/iter; left time: 195.7375s
+	iters: 300, epoch: 8 | loss: 0.8113782
+	speed: 0.0706s/iter; left time: 180.7717s
+	iters: 400, epoch: 8 | loss: 0.7852871
+	speed: 0.0762s/iter; left time: 187.5377s
+	iters: 500, epoch: 8 | loss: 0.8480442
+	speed: 0.0778s/iter; left time: 183.6108s
+	iters: 600, epoch: 8 | loss: 0.9194205
+	speed: 0.0770s/iter; left time: 173.9425s
+	iters: 700, epoch: 8 | loss: 0.9727919
+	speed: 0.0742s/iter; left time: 160.3003s
+	iters: 800, epoch: 8 | loss: 0.9629190
+	speed: 0.0770s/iter; left time: 158.6092s
+	iters: 900, epoch: 8 | loss: 0.8391560
+	speed: 0.0683s/iter; left time: 133.8797s
+Epoch: 8 cost time: 71.51209878921509
+Epoch: 8, Steps: 953 | Train Loss: 0.8708825 Vali Loss: 0.7943087 Test Loss: 0.7837135
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : Exp_TimeFilter_Wind4_96_96_TimeFilter_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 8665
+test shape: (8665, 96, 9) (8665, 96, 9)
+test shape: (8665, 96, 9) (8665, 96, 9)
+mse:0.7840025424957275, mae:0.6762035489082336, rmse:0.8854391574859619, mape:2.349841833114624, mspe:1082.853271484375
+================================================================================
+Model Profiling Summary
+Total Params             : 2,800,036
+Inference Time (s)       : 0.008218
+GPU Mem Footprint (MB)   : 58.13
+Peak Mem (MB)            : 98.52
+================================================================================
 Using GPU
 Args in experiment:
 [1mBasic Config[0m
-  Task Name:          long_term_forecast  Is Training:        1                   
+  Task Name:          Exp_TimeFilter      Is Training:        1                   
   Model ID:           Wind4_96_192        Model:              TimeFilter          
 
 [1mData Loader[0m
@@ -129,15 +239,10 @@ Args in experiment:
   Target:             Power               Freq:               h                   
   Checkpoints:        ./checkpoints/      
 
-[1mForecasting Task[0m
-  Seq Len:            96                  Label Len:          48                  
-  Pred Len:           192                 Seasonal Patterns:  Monthly             
-  Inverse:            0                   
-
 [1mModel Parameters[0m
   Num Kernels:        6                   
-  Enc In:             7                   Dec In:             7                   
-  C Out:              7                   d model:            512                 
+  Enc In:             9                   Dec In:             9                   
+  C Out:              9                   d model:            512                 
   n heads:            8                   e layers:           1                   
   d layers:           1                   d FF:               2048                
   Moving Avg:         25                  Factor:             3                   
@@ -159,87 +264,136 @@ Args in experiment:
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : long_term_forecast_Wind4_96_192_TimeFilter_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>start training : Exp_TimeFilter_Wind4_96_192_TimeFilter_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
 train 30372
 val 4190
 test 8569
-Traceback (most recent call last):
-  File "/root/daye/AGPT/run.py", line 202, in <module>
-    exp.train(setting)
-  File "/root/daye/AGPT/exp/exp_long_term_forecasting.py", line 130, in train
-    outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/models/TimeFilter.py", line 72, in forward
-    x, moe_loss = self.backbone(x, masks, self.alpha, is_training)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 276, in forward
-    x, loss = block(x, masks, alpha, is_training)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 254, in forward
-    out, loss = self.gnn(self.norm1(x), masks, alpha, is_training)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 228, in forward
-    adj, loss = self.graph_learner(x.reshape(B, L, self.n_heads, -1).permute(0, 2, 1, 3), masks, 
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 208, in forward
-    mask, loss = self.mask_moe(adj, masks, is_training)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 164, in forward
-    gates, loss = self.noisy_top_k_gating(x, is_training)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 120, in noisy_top_k_gating
-    clean_logits = self.gate(x)
-                   ^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/linear.py", line 117, in forward
-    return F.linear(input, self.weight, self.bias)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-RuntimeError: mat1 and mat2 shapes cannot be multiplied (13824x54 and 42x3)
+	iters: 100, epoch: 1 | loss: 1.0825510
+	speed: 0.0963s/iter; left time: 905.2327s
+	iters: 200, epoch: 1 | loss: 0.9536018
+	speed: 0.0702s/iter; left time: 653.2471s
+	iters: 300, epoch: 1 | loss: 0.9399224
+	speed: 0.0674s/iter; left time: 620.2319s
+	iters: 400, epoch: 1 | loss: 0.9218795
+	speed: 0.0753s/iter; left time: 685.6276s
+	iters: 500, epoch: 1 | loss: 0.9870914
+	speed: 0.0692s/iter; left time: 623.1013s
+	iters: 600, epoch: 1 | loss: 0.9320644
+	speed: 0.0665s/iter; left time: 591.7126s
+	iters: 700, epoch: 1 | loss: 0.9439512
+	speed: 0.0545s/iter; left time: 479.5046s
+	iters: 800, epoch: 1 | loss: 0.9022757
+	speed: 0.0521s/iter; left time: 453.2589s
+	iters: 900, epoch: 1 | loss: 0.9398775
+	speed: 0.0552s/iter; left time: 475.1474s
+Epoch: 1 cost time: 63.57163047790527
+Epoch: 1, Steps: 950 | Train Loss: 0.9690322 Vali Loss: 0.8409936 Test Loss: 0.8504032
+Validation loss decreased (inf --> 0.840994).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.8747593
+	speed: 1.5976s/iter; left time: 13500.9324s
+	iters: 200, epoch: 2 | loss: 0.9754531
+	speed: 0.0912s/iter; left time: 761.9260s
+	iters: 300, epoch: 2 | loss: 0.9483524
+	speed: 0.0848s/iter; left time: 700.0409s
+	iters: 400, epoch: 2 | loss: 0.9443674
+	speed: 0.0874s/iter; left time: 712.0584s
+	iters: 500, epoch: 2 | loss: 0.8755669
+	speed: 0.0794s/iter; left time: 639.6146s
+	iters: 600, epoch: 2 | loss: 0.9213430
+	speed: 0.0682s/iter; left time: 542.1682s
+	iters: 700, epoch: 2 | loss: 0.9010893
+	speed: 0.0601s/iter; left time: 471.6398s
+	iters: 800, epoch: 2 | loss: 0.9007835
+	speed: 0.0551s/iter; left time: 427.3337s
+	iters: 900, epoch: 2 | loss: 0.9541088
+	speed: 0.0467s/iter; left time: 357.4552s
+Epoch: 2 cost time: 67.85770964622498
+Epoch: 2, Steps: 950 | Train Loss: 0.9053175 Vali Loss: 0.8315624 Test Loss: 0.8441948
+Validation loss decreased (0.840994 --> 0.831562).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.8721466
+	speed: 1.2795s/iter; left time: 9597.3312s
+	iters: 200, epoch: 3 | loss: 0.8844272
+	speed: 0.0782s/iter; left time: 578.4210s
+	iters: 300, epoch: 3 | loss: 0.9064962
+	speed: 0.0701s/iter; left time: 511.6402s
+	iters: 400, epoch: 3 | loss: 0.8869867
+	speed: 0.0708s/iter; left time: 509.9164s
+	iters: 500, epoch: 3 | loss: 0.8488377
+	speed: 0.0736s/iter; left time: 522.9216s
+	iters: 600, epoch: 3 | loss: 0.8506191
+	speed: 0.0736s/iter; left time: 515.5495s
+	iters: 700, epoch: 3 | loss: 0.8572834
+	speed: 0.0737s/iter; left time: 508.8043s
+	iters: 800, epoch: 3 | loss: 0.8849861
+	speed: 0.0728s/iter; left time: 495.2210s
+	iters: 900, epoch: 3 | loss: 0.8113090
+	speed: 0.0772s/iter; left time: 517.5052s
+Epoch: 3 cost time: 71.52314305305481
+Epoch: 3, Steps: 950 | Train Loss: 0.8705169 Vali Loss: 0.8368176 Test Loss: 0.8440817
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.8645775
+	speed: 1.5995s/iter; left time: 10478.5171s
+	iters: 200, epoch: 4 | loss: 0.8082467
+	speed: 0.0710s/iter; left time: 458.0966s
+	iters: 300, epoch: 4 | loss: 0.8122134
+	speed: 0.0731s/iter; left time: 464.0064s
+	iters: 400, epoch: 4 | loss: 0.8843350
+	speed: 0.0701s/iter; left time: 438.0737s
+	iters: 500, epoch: 4 | loss: 0.8581607
+	speed: 0.0732s/iter; left time: 450.2516s
+	iters: 600, epoch: 4 | loss: 0.8803661
+	speed: 0.0703s/iter; left time: 425.3999s
+	iters: 700, epoch: 4 | loss: 0.8254852
+	speed: 0.0701s/iter; left time: 417.2283s
+	iters: 800, epoch: 4 | loss: 0.9571906
+	speed: 0.0731s/iter; left time: 427.7638s
+	iters: 900, epoch: 4 | loss: 0.8703154
+	speed: 0.0735s/iter; left time: 422.5151s
+Epoch: 4 cost time: 69.43382215499878
+Epoch: 4, Steps: 950 | Train Loss: 0.8500639 Vali Loss: 0.8358585 Test Loss: 0.8452547
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.8089204
+	speed: 1.7639s/iter; left time: 9879.4520s
+	iters: 200, epoch: 5 | loss: 0.8299692
+	speed: 0.0765s/iter; left time: 420.8187s
+	iters: 300, epoch: 5 | loss: 0.7729469
+	speed: 0.0922s/iter; left time: 497.8390s
+	iters: 400, epoch: 5 | loss: 0.9018701
+	speed: 0.0942s/iter; left time: 499.1380s
+	iters: 500, epoch: 5 | loss: 0.9048580
+	speed: 0.0889s/iter; left time: 462.3821s
+	iters: 600, epoch: 5 | loss: 0.8279226
+	speed: 0.0770s/iter; left time: 392.7918s
+	iters: 700, epoch: 5 | loss: 0.8492759
+	speed: 0.0744s/iter; left time: 371.9390s
+	iters: 800, epoch: 5 | loss: 0.7616737
+	speed: 0.0705s/iter; left time: 345.4975s
+	iters: 900, epoch: 5 | loss: 0.8530031
+	speed: 0.0668s/iter; left time: 320.5706s
+Epoch: 5 cost time: 75.92556834220886
+Epoch: 5, Steps: 950 | Train Loss: 0.8391971 Vali Loss: 0.8394079 Test Loss: 0.8468298
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : Exp_TimeFilter_Wind4_96_192_TimeFilter_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 8569
+test shape: (8569, 192, 9) (8569, 192, 9)
+test shape: (8569, 192, 9) (8569, 192, 9)
+mse:0.8440529108047485, mae:0.7122966647148132, rmse:0.9187235236167908, mape:2.3818581104278564, mspe:963.9974975585938
+================================================================================
+Model Profiling Summary
+Total Params             : 2,971,780
+Inference Time (s)       : 0.003267
+GPU Mem Footprint (MB)   : 59.92
+Peak Mem (MB)            : 100.21
+================================================================================
 Using GPU
 Args in experiment:
 [1mBasic Config[0m
-  Task Name:          long_term_forecast  Is Training:        1                   
+  Task Name:          Exp_TimeFilter      Is Training:        1                   
   Model ID:           Wind4_96_336        Model:              TimeFilter          
 
 [1mData Loader[0m
@@ -248,15 +402,10 @@ Args in experiment:
   Target:             Power               Freq:               h                   
   Checkpoints:        ./checkpoints/      
 
-[1mForecasting Task[0m
-  Seq Len:            96                  Label Len:          48                  
-  Pred Len:           336                 Seasonal Patterns:  Monthly             
-  Inverse:            0                   
-
 [1mModel Parameters[0m
   Num Kernels:        6                   
-  Enc In:             7                   Dec In:             7                   
-  C Out:              7                   d model:            512                 
+  Enc In:             9                   Dec In:             9                   
+  C Out:              9                   d model:            512                 
   n heads:            8                   e layers:           1                   
   d layers:           1                   d FF:               2048                
   Moving Avg:         25                  Factor:             3                   
@@ -278,87 +427,158 @@ Args in experiment:
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : long_term_forecast_Wind4_96_336_TimeFilter_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>start training : Exp_TimeFilter_Wind4_96_336_TimeFilter_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
 train 30228
 val 4046
 test 8425
-Traceback (most recent call last):
-  File "/root/daye/AGPT/run.py", line 202, in <module>
-    exp.train(setting)
-  File "/root/daye/AGPT/exp/exp_long_term_forecasting.py", line 130, in train
-    outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/models/TimeFilter.py", line 72, in forward
-    x, moe_loss = self.backbone(x, masks, self.alpha, is_training)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 276, in forward
-    x, loss = block(x, masks, alpha, is_training)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 254, in forward
-    out, loss = self.gnn(self.norm1(x), masks, alpha, is_training)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 228, in forward
-    adj, loss = self.graph_learner(x.reshape(B, L, self.n_heads, -1).permute(0, 2, 1, 3), masks, 
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 208, in forward
-    mask, loss = self.mask_moe(adj, masks, is_training)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 164, in forward
-    gates, loss = self.noisy_top_k_gating(x, is_training)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 120, in noisy_top_k_gating
-    clean_logits = self.gate(x)
-                   ^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/linear.py", line 117, in forward
-    return F.linear(input, self.weight, self.bias)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-RuntimeError: mat1 and mat2 shapes cannot be multiplied (13824x54 and 42x3)
+	iters: 100, epoch: 1 | loss: 1.0089146
+	speed: 0.1171s/iter; left time: 1094.7028s
+	iters: 200, epoch: 1 | loss: 1.1032999
+	speed: 0.0827s/iter; left time: 765.3752s
+	iters: 300, epoch: 1 | loss: 0.9739156
+	speed: 0.0937s/iter; left time: 857.6883s
+	iters: 400, epoch: 1 | loss: 1.0151831
+	speed: 0.0909s/iter; left time: 822.8949s
+	iters: 500, epoch: 1 | loss: 1.0943310
+	speed: 0.0969s/iter; left time: 867.5577s
+	iters: 600, epoch: 1 | loss: 0.9577144
+	speed: 0.0840s/iter; left time: 743.1285s
+	iters: 700, epoch: 1 | loss: 0.9817759
+	speed: 0.0687s/iter; left time: 601.0366s
+	iters: 800, epoch: 1 | loss: 0.9642380
+	speed: 0.0696s/iter; left time: 601.9595s
+	iters: 900, epoch: 1 | loss: 0.9343090
+	speed: 0.0718s/iter; left time: 613.7273s
+Epoch: 1 cost time: 81.0344021320343
+Epoch: 1, Steps: 945 | Train Loss: 1.0017699 Vali Loss: 0.8387054 Test Loss: 0.8732844
+Validation loss decreased (inf --> 0.838705).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.9103802
+	speed: 1.2598s/iter; left time: 10589.7229s
+	iters: 200, epoch: 2 | loss: 0.8970284
+	speed: 0.0664s/iter; left time: 551.8419s
+	iters: 300, epoch: 2 | loss: 0.9480798
+	speed: 0.0598s/iter; left time: 490.4181s
+	iters: 400, epoch: 2 | loss: 0.9528943
+	speed: 0.0509s/iter; left time: 412.9075s
+	iters: 500, epoch: 2 | loss: 0.8749775
+	speed: 0.0474s/iter; left time: 379.7565s
+	iters: 600, epoch: 2 | loss: 0.9526113
+	speed: 0.0441s/iter; left time: 348.4673s
+	iters: 700, epoch: 2 | loss: 0.9198578
+	speed: 0.0454s/iter; left time: 354.5650s
+	iters: 800, epoch: 2 | loss: 0.8964379
+	speed: 0.0475s/iter; left time: 365.8588s
+	iters: 900, epoch: 2 | loss: 0.8539069
+	speed: 0.0497s/iter; left time: 378.1951s
+Epoch: 2 cost time: 50.20085024833679
+Epoch: 2, Steps: 945 | Train Loss: 0.9378391 Vali Loss: 0.8305920 Test Loss: 0.8660168
+Validation loss decreased (0.838705 --> 0.830592).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.9714597
+	speed: 1.7044s/iter; left time: 12716.6114s
+	iters: 200, epoch: 3 | loss: 0.9178790
+	speed: 0.0709s/iter; left time: 522.2577s
+	iters: 300, epoch: 3 | loss: 0.9368154
+	speed: 0.0720s/iter; left time: 522.5395s
+	iters: 400, epoch: 3 | loss: 0.8765600
+	speed: 0.0689s/iter; left time: 493.6587s
+	iters: 500, epoch: 3 | loss: 0.9038908
+	speed: 0.0701s/iter; left time: 495.1305s
+	iters: 600, epoch: 3 | loss: 0.8749706
+	speed: 0.0637s/iter; left time: 443.5279s
+	iters: 700, epoch: 3 | loss: 0.9389644
+	speed: 0.0731s/iter; left time: 501.1982s
+	iters: 800, epoch: 3 | loss: 0.9369605
+	speed: 0.0732s/iter; left time: 494.7685s
+	iters: 900, epoch: 3 | loss: 0.9040042
+	speed: 0.0726s/iter; left time: 483.4716s
+Epoch: 3 cost time: 68.21427464485168
+Epoch: 3, Steps: 945 | Train Loss: 0.9045540 Vali Loss: 0.8279750 Test Loss: 0.8658828
+Validation loss decreased (0.830592 --> 0.827975).  Saving model ...
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.8883034
+	speed: 1.8439s/iter; left time: 12014.6462s
+	iters: 200, epoch: 4 | loss: 0.7915093
+	speed: 0.0921s/iter; left time: 591.1699s
+	iters: 300, epoch: 4 | loss: 0.8598539
+	speed: 0.0953s/iter; left time: 601.8433s
+	iters: 400, epoch: 4 | loss: 0.9043027
+	speed: 0.0879s/iter; left time: 546.0773s
+	iters: 500, epoch: 4 | loss: 0.8705360
+	speed: 0.0915s/iter; left time: 559.5542s
+	iters: 600, epoch: 4 | loss: 0.8932487
+	speed: 0.0880s/iter; left time: 529.2623s
+	iters: 700, epoch: 4 | loss: 0.8702568
+	speed: 0.0923s/iter; left time: 545.7878s
+	iters: 800, epoch: 4 | loss: 0.8524051
+	speed: 0.0973s/iter; left time: 566.1579s
+	iters: 900, epoch: 4 | loss: 0.9219580
+	speed: 0.0954s/iter; left time: 545.3772s
+Epoch: 4 cost time: 88.85122847557068
+Epoch: 4, Steps: 945 | Train Loss: 0.8866230 Vali Loss: 0.8347520 Test Loss: 0.8706164
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.9523484
+	speed: 2.3171s/iter; left time: 12908.7986s
+	iters: 200, epoch: 5 | loss: 0.8643965
+	speed: 0.0937s/iter; left time: 512.4865s
+	iters: 300, epoch: 5 | loss: 0.8345617
+	speed: 0.0976s/iter; left time: 524.2837s
+	iters: 400, epoch: 5 | loss: 0.8796199
+	speed: 0.0949s/iter; left time: 500.4363s
+	iters: 500, epoch: 5 | loss: 0.8708370
+	speed: 0.0891s/iter; left time: 460.5298s
+	iters: 600, epoch: 5 | loss: 0.8971152
+	speed: 0.0934s/iter; left time: 473.4184s
+	iters: 700, epoch: 5 | loss: 0.8390083
+	speed: 0.0929s/iter; left time: 461.6227s
+	iters: 800, epoch: 5 | loss: 0.8839658
+	speed: 0.0831s/iter; left time: 404.5649s
+	iters: 900, epoch: 5 | loss: 0.8631695
+	speed: 0.0954s/iter; left time: 455.0460s
+Epoch: 5 cost time: 87.56859803199768
+Epoch: 5, Steps: 945 | Train Loss: 0.8769721 Vali Loss: 0.8372263 Test Loss: 0.8704727
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 6.25e-06
+	iters: 100, epoch: 6 | loss: 0.8449665
+	speed: 2.0592s/iter; left time: 9525.6632s
+	iters: 200, epoch: 6 | loss: 0.8844863
+	speed: 0.0952s/iter; left time: 430.9415s
+	iters: 300, epoch: 6 | loss: 0.8453837
+	speed: 0.1029s/iter; left time: 455.5532s
+	iters: 400, epoch: 6 | loss: 0.8211759
+	speed: 0.0915s/iter; left time: 395.6653s
+	iters: 500, epoch: 6 | loss: 0.8525752
+	speed: 0.0994s/iter; left time: 419.9861s
+	iters: 600, epoch: 6 | loss: 0.9483927
+	speed: 0.0850s/iter; left time: 350.6685s
+	iters: 700, epoch: 6 | loss: 0.9287396
+	speed: 0.0913s/iter; left time: 367.4877s
+	iters: 800, epoch: 6 | loss: 0.9027990
+	speed: 0.0844s/iter; left time: 331.4663s
+	iters: 900, epoch: 6 | loss: 0.8607602
+	speed: 0.0857s/iter; left time: 328.0388s
+Epoch: 6 cost time: 87.31274652481079
+Epoch: 6, Steps: 945 | Train Loss: 0.8719825 Vali Loss: 0.8326712 Test Loss: 0.8690525
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : Exp_TimeFilter_Wind4_96_336_TimeFilter_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 8425
+test shape: (8425, 336, 9) (8425, 336, 9)
+test shape: (8425, 336, 9) (8425, 336, 9)
+mse:0.8657338619232178, mae:0.7263050675392151, rmse:0.9304482340812683, mape:2.394615650177002, mspe:1022.9312133789062
+================================================================================
+Model Profiling Summary
+Total Params             : 3,414,292
+Inference Time (s)       : 0.003686
+GPU Mem Footprint (MB)   : 63.64
+Peak Mem (MB)            : 103.77
+================================================================================
 Using GPU
 Args in experiment:
 [1mBasic Config[0m
-  Task Name:          long_term_forecast  Is Training:        1                   
+  Task Name:          Exp_TimeFilter      Is Training:        1                   
   Model ID:           Wind4_96_720        Model:              TimeFilter          
 
 [1mData Loader[0m
@@ -367,15 +587,10 @@ Args in experiment:
   Target:             Power               Freq:               h                   
   Checkpoints:        ./checkpoints/      
 
-[1mForecasting Task[0m
-  Seq Len:            96                  Label Len:          48                  
-  Pred Len:           720                 Seasonal Patterns:  Monthly             
-  Inverse:            0                   
-
 [1mModel Parameters[0m
   Num Kernels:        6                   
-  Enc In:             7                   Dec In:             7                   
-  C Out:              7                   d model:            512                 
+  Enc In:             9                   Dec In:             9                   
+  C Out:              9                   d model:            512                 
   n heads:            16                  e layers:           1                   
   d layers:           1                   d FF:               2048                
   Moving Avg:         25                  Factor:             3                   
@@ -397,80 +612,129 @@ Args in experiment:
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : long_term_forecast_Wind4_96_720_TimeFilter_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>start training : Exp_TimeFilter_Wind4_96_720_TimeFilter_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
 train 29844
 val 3662
 test 8041
-Traceback (most recent call last):
-  File "/root/daye/AGPT/run.py", line 202, in <module>
-    exp.train(setting)
-  File "/root/daye/AGPT/exp/exp_long_term_forecasting.py", line 130, in train
-    outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/models/TimeFilter.py", line 72, in forward
-    x, moe_loss = self.backbone(x, masks, self.alpha, is_training)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 276, in forward
-    x, loss = block(x, masks, alpha, is_training)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 254, in forward
-    out, loss = self.gnn(self.norm1(x), masks, alpha, is_training)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 228, in forward
-    adj, loss = self.graph_learner(x.reshape(B, L, self.n_heads, -1).permute(0, 2, 1, 3), masks, 
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 208, in forward
-    mask, loss = self.mask_moe(adj, masks, is_training)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 164, in forward
-    gates, loss = self.noisy_top_k_gating(x, is_training)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/daye/AGPT/layers/TimeFilter_layers.py", line 120, in noisy_top_k_gating
-    clean_logits = self.gate(x)
-                   ^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/root/anaconda3/envs/Time/lib/python3.11/site-packages/torch/nn/modules/linear.py", line 117, in forward
-    return F.linear(input, self.weight, self.bias)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-RuntimeError: mat1 and mat2 shapes cannot be multiplied (27648x54 and 42x3)
+	iters: 100, epoch: 1 | loss: 1.1085277
+	speed: 0.1726s/iter; left time: 1593.4723s
+	iters: 200, epoch: 1 | loss: 1.0505075
+	speed: 0.1543s/iter; left time: 1408.8769s
+	iters: 300, epoch: 1 | loss: 1.0462358
+	speed: 0.1302s/iter; left time: 1175.6298s
+	iters: 400, epoch: 1 | loss: 1.0274177
+	speed: 0.1284s/iter; left time: 1146.3110s
+	iters: 500, epoch: 1 | loss: 1.0390582
+	speed: 0.1241s/iter; left time: 1096.0243s
+	iters: 600, epoch: 1 | loss: 0.9813536
+	speed: 0.1308s/iter; left time: 1141.6345s
+	iters: 700, epoch: 1 | loss: 1.0077122
+	speed: 0.1312s/iter; left time: 1132.0618s
+	iters: 800, epoch: 1 | loss: 1.0359881
+	speed: 0.1312s/iter; left time: 1119.3434s
+	iters: 900, epoch: 1 | loss: 1.0495697
+	speed: 0.1372s/iter; left time: 1156.3752s
+Epoch: 1 cost time: 128.24900031089783
+Epoch: 1, Steps: 933 | Train Loss: 1.0360045 Vali Loss: 0.8616459 Test Loss: 0.9027739
+Validation loss decreased (inf --> 0.861646).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.9926227
+	speed: 2.6961s/iter; left time: 22372.4437s
+	iters: 200, epoch: 2 | loss: 0.8608446
+	speed: 0.1297s/iter; left time: 1063.2854s
+	iters: 300, epoch: 2 | loss: 1.0251483
+	speed: 0.1237s/iter; left time: 1001.3263s
+	iters: 400, epoch: 2 | loss: 1.0150174
+	speed: 0.1258s/iter; left time: 1006.5128s
+	iters: 500, epoch: 2 | loss: 0.9945122
+	speed: 0.1314s/iter; left time: 1037.7300s
+	iters: 600, epoch: 2 | loss: 0.9586217
+	speed: 0.1252s/iter; left time: 976.2999s
+	iters: 700, epoch: 2 | loss: 0.9637511
+	speed: 0.1276s/iter; left time: 981.8927s
+	iters: 800, epoch: 2 | loss: 0.9662675
+	speed: 0.1351s/iter; left time: 1026.6811s
+	iters: 900, epoch: 2 | loss: 0.9747919
+	speed: 0.1274s/iter; left time: 955.3219s
+Epoch: 2 cost time: 121.61695504188538
+Epoch: 2, Steps: 933 | Train Loss: 0.9738934 Vali Loss: 0.8581463 Test Loss: 0.8968434
+Validation loss decreased (0.861646 --> 0.858146).  Saving model ...
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.9057997
+	speed: 3.1390s/iter; left time: 23118.6218s
+	iters: 200, epoch: 3 | loss: 0.9125095
+	speed: 0.1453s/iter; left time: 1055.6605s
+	iters: 300, epoch: 3 | loss: 0.8969283
+	speed: 0.1415s/iter; left time: 1014.1214s
+	iters: 400, epoch: 3 | loss: 0.9422564
+	speed: 0.1767s/iter; left time: 1248.1552s
+	iters: 500, epoch: 3 | loss: 0.9441916
+	speed: 0.1529s/iter; left time: 1065.0421s
+	iters: 600, epoch: 3 | loss: 0.9427055
+	speed: 0.1217s/iter; left time: 835.7142s
+	iters: 700, epoch: 3 | loss: 0.9362203
+	speed: 0.1310s/iter; left time: 885.9091s
+	iters: 800, epoch: 3 | loss: 0.9394801
+	speed: 0.1237s/iter; left time: 824.6000s
+	iters: 900, epoch: 3 | loss: 0.9072647
+	speed: 0.1294s/iter; left time: 849.7960s
+Epoch: 3 cost time: 134.25672459602356
+Epoch: 3, Steps: 933 | Train Loss: 0.9424438 Vali Loss: 0.8601890 Test Loss: 0.8961502
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.9331623
+	speed: 2.7069s/iter; left time: 17411.0111s
+	iters: 200, epoch: 4 | loss: 0.9900643
+	speed: 0.1285s/iter; left time: 813.6895s
+	iters: 300, epoch: 4 | loss: 0.9904267
+	speed: 0.1244s/iter; left time: 775.3327s
+	iters: 400, epoch: 4 | loss: 0.8850394
+	speed: 0.1246s/iter; left time: 763.8019s
+	iters: 500, epoch: 4 | loss: 0.9094898
+	speed: 0.1203s/iter; left time: 725.7462s
+	iters: 600, epoch: 4 | loss: 0.8659105
+	speed: 0.1217s/iter; left time: 721.7398s
+	iters: 700, epoch: 4 | loss: 0.9191371
+	speed: 0.1181s/iter; left time: 688.6560s
+	iters: 800, epoch: 4 | loss: 0.9398687
+	speed: 0.1156s/iter; left time: 662.7005s
+	iters: 900, epoch: 4 | loss: 0.9293355
+	speed: 0.1212s/iter; left time: 682.7506s
+Epoch: 4 cost time: 115.26049971580505
+Epoch: 4, Steps: 933 | Train Loss: 0.9248522 Vali Loss: 0.8582548 Test Loss: 0.8964561
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+	iters: 100, epoch: 5 | loss: 0.9811950
+	speed: 2.6420s/iter; left time: 14528.2528s
+	iters: 200, epoch: 5 | loss: 0.9438629
+	speed: 0.1211s/iter; left time: 653.5850s
+	iters: 300, epoch: 5 | loss: 0.9367658
+	speed: 0.1219s/iter; left time: 646.0301s
+	iters: 400, epoch: 5 | loss: 0.9471598
+	speed: 0.1262s/iter; left time: 656.3120s
+	iters: 500, epoch: 5 | loss: 0.9084129
+	speed: 0.1227s/iter; left time: 625.8789s
+	iters: 600, epoch: 5 | loss: 0.8599074
+	speed: 0.1188s/iter; left time: 593.7059s
+	iters: 700, epoch: 5 | loss: 0.9161350
+	speed: 0.1171s/iter; left time: 573.8120s
+	iters: 800, epoch: 5 | loss: 0.9596716
+	speed: 0.1121s/iter; left time: 537.7323s
+	iters: 900, epoch: 5 | loss: 0.9118506
+	speed: 0.1198s/iter; left time: 563.1097s
+Epoch: 5 cost time: 114.136643409729
+Epoch: 5, Steps: 933 | Train Loss: 0.9157488 Vali Loss: 0.8624977 Test Loss: 0.8977990
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : Exp_TimeFilter_Wind4_96_720_TimeFilter_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 8041
+test shape: (8041, 720, 9) (8041, 720, 9)
+test shape: (8041, 720, 9) (8041, 720, 9)
+mse:0.8964043855667114, mae:0.74644935131073, rmse:0.9467863440513611, mape:2.4206576347351074, mspe:952.1963500976562
+================================================================================
+Model Profiling Summary
+Total Params             : 4,588,116
+Inference Time (s)       : 0.003411
+GPU Mem Footprint (MB)   : 74.22
+Peak Mem (MB)            : 113.93
+================================================================================

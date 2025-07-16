@@ -1,0 +1,672 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_DUET            Is Training:        1                   
+  Model ID:           PEMS03              Model:              Duet                
+
+[1mData Loader[0m
+  Data:               PEMS                Root Path:          ./dataset/PEMS/     
+  Data Path:          PEMS03.npz          Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             358                 Dec In:             358                 
+  C Out:              358                 d model:            128                 
+  n heads:            8                   e layers:           5                   
+  d layers:           1                   d FF:               256                 
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           10                  Learning Rate:      0.003               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_DUET_PEMS03_Duet_256_fixedFalse_0.003_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 15617
+val 5135
+test 5135
+	iters: 100, epoch: 1 | loss: 0.2604022
+	speed: 0.1794s/iter; left time: 859.6359s
+	iters: 200, epoch: 1 | loss: 0.2687806
+	speed: 0.1528s/iter; left time: 716.9085s
+	iters: 300, epoch: 1 | loss: 0.2749276
+	speed: 0.1634s/iter; left time: 750.3553s
+	iters: 400, epoch: 1 | loss: 0.2164030
+	speed: 0.1573s/iter; left time: 706.3605s
+Epoch: 1 cost time: 77.48458552360535
+Epoch: 1, Steps: 489 | Train Loss: 0.2361187 Vali Loss: 0.1892007 Test Loss: 0.1839916
+Validation loss decreased (inf --> 0.189201).  Saving model ...
+Updating learning rate to 0.003
+	iters: 100, epoch: 2 | loss: 0.2578079
+	speed: 1.5706s/iter; left time: 6756.5253s
+	iters: 200, epoch: 2 | loss: 0.2503811
+	speed: 0.1725s/iter; left time: 724.9218s
+	iters: 300, epoch: 2 | loss: 0.2648997
+	speed: 0.1783s/iter; left time: 731.3088s
+	iters: 400, epoch: 2 | loss: 0.2241511
+	speed: 0.1835s/iter; left time: 734.5003s
+Epoch: 2 cost time: 87.05357885360718
+Epoch: 2, Steps: 489 | Train Loss: 0.2254857 Vali Loss: 0.1321538 Test Loss: 0.1290826
+Validation loss decreased (0.189201 --> 0.132154).  Saving model ...
+Updating learning rate to 0.0015
+	iters: 100, epoch: 3 | loss: 0.2754128
+	speed: 1.6128s/iter; left time: 6149.4378s
+	iters: 200, epoch: 3 | loss: 0.2497730
+	speed: 0.1566s/iter; left time: 581.6306s
+	iters: 300, epoch: 3 | loss: 0.2321267
+	speed: 0.1669s/iter; left time: 602.9468s
+	iters: 400, epoch: 3 | loss: 0.2748793
+	speed: 0.1693s/iter; left time: 594.8730s
+Epoch: 3 cost time: 81.37686944007874
+Epoch: 3, Steps: 489 | Train Loss: 0.2227224 Vali Loss: 0.1310482 Test Loss: 0.1282476
+Validation loss decreased (0.132154 --> 0.131048).  Saving model ...
+Updating learning rate to 0.00075
+	iters: 100, epoch: 4 | loss: 0.2110656
+	speed: 1.6092s/iter; left time: 5349.0316s
+	iters: 200, epoch: 4 | loss: 0.2278116
+	speed: 0.1692s/iter; left time: 545.5075s
+	iters: 300, epoch: 4 | loss: 0.1903379
+	speed: 0.1751s/iter; left time: 547.1309s
+	iters: 400, epoch: 4 | loss: 0.2154629
+	speed: 0.1712s/iter; left time: 517.7163s
+Epoch: 4 cost time: 84.28230714797974
+Epoch: 4, Steps: 489 | Train Loss: 0.2217574 Vali Loss: 0.1314320 Test Loss: 0.1283536
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 0.000375
+	iters: 100, epoch: 5 | loss: 0.2063827
+	speed: 1.6051s/iter; left time: 4550.4162s
+	iters: 200, epoch: 5 | loss: 0.1724799
+	speed: 0.1692s/iter; left time: 462.8055s
+	iters: 300, epoch: 5 | loss: 0.1904062
+	speed: 0.1637s/iter; left time: 431.2560s
+	iters: 400, epoch: 5 | loss: 0.2879341
+	speed: 0.1670s/iter; left time: 423.3672s
+Epoch: 5 cost time: 82.99839401245117
+Epoch: 5, Steps: 489 | Train Loss: 0.2213017 Vali Loss: 0.1247000 Test Loss: 0.1219913
+Validation loss decreased (0.131048 --> 0.124700).  Saving model ...
+Updating learning rate to 0.0001875
+	iters: 100, epoch: 6 | loss: 0.2282074
+	speed: 1.6204s/iter; left time: 3801.4144s
+	iters: 200, epoch: 6 | loss: 0.2535959
+	speed: 0.1680s/iter; left time: 377.2500s
+	iters: 300, epoch: 6 | loss: 0.2356297
+	speed: 0.1745s/iter; left time: 374.4212s
+	iters: 400, epoch: 6 | loss: 0.2183108
+	speed: 0.1710s/iter; left time: 349.9228s
+Epoch: 6 cost time: 84.58045792579651
+Epoch: 6, Steps: 489 | Train Loss: 0.2209717 Vali Loss: 0.1257990 Test Loss: 0.1231198
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 9.375e-05
+	iters: 100, epoch: 7 | loss: 0.2020995
+	speed: 1.6547s/iter; left time: 3072.7008s
+	iters: 200, epoch: 7 | loss: 0.2578175
+	speed: 0.1697s/iter; left time: 298.2488s
+	iters: 300, epoch: 7 | loss: 0.2367170
+	speed: 0.1780s/iter; left time: 294.9710s
+	iters: 400, epoch: 7 | loss: 0.2277086
+	speed: 0.1721s/iter; left time: 267.9997s
+Epoch: 7 cost time: 86.02139496803284
+Epoch: 7, Steps: 489 | Train Loss: 0.2210218 Vali Loss: 0.1272275 Test Loss: 0.1244089
+EarlyStopping counter: 2 out of 10
+Updating learning rate to 4.6875e-05
+	iters: 100, epoch: 8 | loss: 0.1858954
+	speed: 1.6538s/iter; left time: 2262.3881s
+	iters: 200, epoch: 8 | loss: 0.2284495
+	speed: 0.1796s/iter; left time: 227.7170s
+	iters: 300, epoch: 8 | loss: 0.2597021
+	speed: 0.1831s/iter; left time: 213.8511s
+	iters: 400, epoch: 8 | loss: 0.1872961
+	speed: 0.1861s/iter; left time: 198.7077s
+Epoch: 8 cost time: 88.98239707946777
+Epoch: 8, Steps: 489 | Train Loss: 0.2209119 Vali Loss: 0.1287324 Test Loss: 0.1260873
+EarlyStopping counter: 3 out of 10
+Updating learning rate to 2.34375e-05
+	iters: 100, epoch: 9 | loss: 0.2198533
+	speed: 1.4687s/iter; left time: 1290.9960s
+	iters: 200, epoch: 9 | loss: 0.2155767
+	speed: 0.1106s/iter; left time: 86.1248s
+	iters: 300, epoch: 9 | loss: 0.2460523
+	speed: 0.1202s/iter; left time: 81.5876s
+	iters: 400, epoch: 9 | loss: 0.2597988
+	speed: 0.1252s/iter; left time: 72.4657s
+Epoch: 9 cost time: 60.77107524871826
+Epoch: 9, Steps: 489 | Train Loss: 0.2214542 Vali Loss: 0.1261755 Test Loss: 0.1236185
+EarlyStopping counter: 4 out of 10
+Updating learning rate to 1.171875e-05
+	iters: 100, epoch: 10 | loss: 0.1704755
+	speed: 1.2685s/iter; left time: 494.6989s
+	iters: 200, epoch: 10 | loss: 0.1698904
+	speed: 0.1334s/iter; left time: 38.6814s
+	iters: 300, epoch: 10 | loss: 0.1928085
+	speed: 0.1314s/iter; left time: 24.9676s
+	iters: 400, epoch: 10 | loss: 0.2048014
+	speed: 0.1401s/iter; left time: 12.6052s
+Epoch: 10 cost time: 66.57273626327515
+Epoch: 10, Steps: 489 | Train Loss: 0.2210003 Vali Loss: 0.1280498 Test Loss: 0.1252409
+EarlyStopping counter: 5 out of 10
+Updating learning rate to 5.859375e-06
+>>>>>>>testing : Exp_DUET_PEMS03_Duet_256_fixedFalse_0.003_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 5135
+test shape: (5135, 12, 358) (5135, 12, 358)
+test shape: (5135, 12, 358) (5135, 12, 358)
+mse:0.12199055403470993, mae:0.24169766902923584, rmse:0.3492714762687683, mape:1.8719576597213745, mspe:13451.38671875
+================================================================================
+Model Profiling Summary
+Total Params             : 792,514
+Inference Time (s)       : 0.037505
+GPU Mem Footprint (MB)   : 27.87
+Peak Mem (MB)            : 68.04
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_DUET            Is Training:        1                   
+  Model ID:           PEMS04              Model:              Duet                
+
+[1mData Loader[0m
+  Data:               PEMS                Root Path:          ./dataset/PEMS/     
+  Data Path:          PEMS04.npz          Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             307                 Dec In:             307                 
+  C Out:              307                 d model:            128                 
+  n heads:            8                   e layers:           5                   
+  d layers:           1                   d FF:               256                 
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           10                  Learning Rate:      0.003               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_DUET_PEMS04_Duet_256_fixedFalse_0.003_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 10088
+val 3291
+test 3292
+	iters: 100, epoch: 1 | loss: 0.2507721
+	speed: 0.1623s/iter; left time: 496.8995s
+	iters: 200, epoch: 1 | loss: 0.2310421
+	speed: 0.1543s/iter; left time: 456.9255s
+	iters: 300, epoch: 1 | loss: 0.2336143
+	speed: 0.1448s/iter; left time: 414.2130s
+Epoch: 1 cost time: 48.41253852844238
+Epoch: 1, Steps: 316 | Train Loss: 0.2356961 Vali Loss: 0.1477018 Test Loss: 0.1387150
+Validation loss decreased (inf --> 0.147702).  Saving model ...
+Updating learning rate to 0.003
+	iters: 100, epoch: 2 | loss: 0.2335347
+	speed: 0.9704s/iter; left time: 2663.7983s
+	iters: 200, epoch: 2 | loss: 0.1826203
+	speed: 0.1713s/iter; left time: 453.0351s
+	iters: 300, epoch: 2 | loss: 0.2087431
+	speed: 0.1758s/iter; left time: 447.5167s
+Epoch: 2 cost time: 54.622212171554565
+Epoch: 2, Steps: 316 | Train Loss: 0.2205116 Vali Loss: 0.1510664 Test Loss: 0.1425853
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 0.0015
+	iters: 100, epoch: 3 | loss: 0.2021185
+	speed: 1.0512s/iter; left time: 2553.2681s
+	iters: 200, epoch: 3 | loss: 0.2204546
+	speed: 0.1766s/iter; left time: 411.2769s
+	iters: 300, epoch: 3 | loss: 0.2065053
+	speed: 0.1699s/iter; left time: 378.8174s
+Epoch: 3 cost time: 55.58142685890198
+Epoch: 3, Steps: 316 | Train Loss: 0.2191886 Vali Loss: 0.1460184 Test Loss: 0.1373605
+Validation loss decreased (0.147702 --> 0.146018).  Saving model ...
+Updating learning rate to 0.00075
+	iters: 100, epoch: 4 | loss: 0.2346190
+	speed: 1.0464s/iter; left time: 2211.1320s
+	iters: 200, epoch: 4 | loss: 0.1915650
+	speed: 0.1649s/iter; left time: 331.9564s
+	iters: 300, epoch: 4 | loss: 0.1912051
+	speed: 0.1708s/iter; left time: 326.8262s
+Epoch: 4 cost time: 54.563573598861694
+Epoch: 4, Steps: 316 | Train Loss: 0.2184135 Vali Loss: 0.1557423 Test Loss: 0.1472428
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 0.000375
+	iters: 100, epoch: 5 | loss: 0.2384900
+	speed: 1.0015s/iter; left time: 1799.7387s
+	iters: 200, epoch: 5 | loss: 0.2117442
+	speed: 0.1309s/iter; left time: 222.1274s
+	iters: 300, epoch: 5 | loss: 0.1970923
+	speed: 0.1241s/iter; left time: 198.1768s
+Epoch: 5 cost time: 42.71742582321167
+Epoch: 5, Steps: 316 | Train Loss: 0.2184476 Vali Loss: 0.1426594 Test Loss: 0.1342745
+Validation loss decreased (0.146018 --> 0.142659).  Saving model ...
+Updating learning rate to 0.0001875
+	iters: 100, epoch: 6 | loss: 0.2007336
+	speed: 0.7286s/iter; left time: 1079.0263s
+	iters: 200, epoch: 6 | loss: 0.2011423
+	speed: 0.1290s/iter; left time: 178.1657s
+	iters: 300, epoch: 6 | loss: 0.2203094
+	speed: 0.1292s/iter; left time: 165.4901s
+Epoch: 6 cost time: 41.27914834022522
+Epoch: 6, Steps: 316 | Train Loss: 0.2182362 Vali Loss: 0.1472964 Test Loss: 0.1387647
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 9.375e-05
+	iters: 100, epoch: 7 | loss: 0.1946111
+	speed: 0.7445s/iter; left time: 867.3648s
+	iters: 200, epoch: 7 | loss: 0.1896576
+	speed: 0.1220s/iter; left time: 129.9534s
+	iters: 300, epoch: 7 | loss: 0.1809053
+	speed: 0.1212s/iter; left time: 116.9145s
+Epoch: 7 cost time: 39.27005171775818
+Epoch: 7, Steps: 316 | Train Loss: 0.2176960 Vali Loss: 0.1471597 Test Loss: 0.1386484
+EarlyStopping counter: 2 out of 10
+Updating learning rate to 4.6875e-05
+	iters: 100, epoch: 8 | loss: 0.2000705
+	speed: 0.7392s/iter; left time: 627.5763s
+	iters: 200, epoch: 8 | loss: 0.2191171
+	speed: 0.1260s/iter; left time: 94.3937s
+	iters: 300, epoch: 8 | loss: 0.2588993
+	speed: 0.1273s/iter; left time: 82.6302s
+Epoch: 8 cost time: 40.73008894920349
+Epoch: 8, Steps: 316 | Train Loss: 0.2176966 Vali Loss: 0.1451369 Test Loss: 0.1367175
+EarlyStopping counter: 3 out of 10
+Updating learning rate to 2.34375e-05
+	iters: 100, epoch: 9 | loss: 0.2274567
+	speed: 0.7889s/iter; left time: 420.4576s
+	iters: 200, epoch: 9 | loss: 0.2184903
+	speed: 0.1334s/iter; left time: 57.7422s
+	iters: 300, epoch: 9 | loss: 0.1874960
+	speed: 0.1290s/iter; left time: 42.9527s
+Epoch: 9 cost time: 42.14545702934265
+Epoch: 9, Steps: 316 | Train Loss: 0.2177557 Vali Loss: 0.1455903 Test Loss: 0.1371610
+EarlyStopping counter: 4 out of 10
+Updating learning rate to 1.171875e-05
+	iters: 100, epoch: 10 | loss: 0.2304655
+	speed: 0.7899s/iter; left time: 171.4135s
+	iters: 200, epoch: 10 | loss: 0.1975310
+	speed: 0.1288s/iter; left time: 15.0660s
+	iters: 300, epoch: 10 | loss: 0.2001217
+	speed: 0.1251s/iter; left time: 2.1265s
+Epoch: 10 cost time: 40.8604462146759
+Epoch: 10, Steps: 316 | Train Loss: 0.2175761 Vali Loss: 0.1456930 Test Loss: 0.1372991
+EarlyStopping counter: 5 out of 10
+Updating learning rate to 5.859375e-06
+>>>>>>>testing : Exp_DUET_PEMS04_Duet_256_fixedFalse_0.003_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 3292
+test shape: (3292, 12, 307) (3292, 12, 307)
+test shape: (3292, 12, 307) (3292, 12, 307)
+mse:0.13432930409908295, mae:0.2575940787792206, rmse:0.3665096163749695, mape:1.9066052436828613, mspe:14035.05078125
+================================================================================
+Model Profiling Summary
+Total Params             : 792,412
+Inference Time (s)       : 0.010113
+GPU Mem Footprint (MB)   : 28.37
+Peak Mem (MB)            : 61.95
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_DUET            Is Training:        1                   
+  Model ID:           PEMS07              Model:              Duet                
+
+[1mData Loader[0m
+  Data:               PEMS                Root Path:          ./dataset/PEMS/     
+  Data Path:          PEMS07.npz          Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             883                 Dec In:             883                 
+  C Out:              883                 d model:            128                 
+  n heads:            8                   e layers:           5                   
+  d layers:           1                   d FF:               256                 
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           10                  Learning Rate:      0.003               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_DUET_PEMS07_Duet_256_fixedFalse_0.003_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 16827
+val 5538
+test 5538
+	iters: 100, epoch: 1 | loss: 0.1922834
+	speed: 0.1517s/iter; left time: 782.8408s
+	iters: 200, epoch: 1 | loss: 0.2572150
+	speed: 0.1356s/iter; left time: 686.0274s
+	iters: 300, epoch: 1 | loss: 0.2082191
+	speed: 0.1409s/iter; left time: 698.7736s
+	iters: 400, epoch: 1 | loss: 0.2195189
+	speed: 0.1396s/iter; left time: 678.5842s
+	iters: 500, epoch: 1 | loss: 0.2295504
+	speed: 0.1360s/iter; left time: 647.3571s
+Epoch: 1 cost time: 73.99369883537292
+Epoch: 1, Steps: 526 | Train Loss: 0.2261476 Vali Loss: 0.1165726 Test Loss: 0.1199968
+Validation loss decreased (inf --> 0.116573).  Saving model ...
+Updating learning rate to 0.003
+	iters: 100, epoch: 2 | loss: 0.2400080
+	speed: 1.2396s/iter; left time: 5745.4375s
+	iters: 200, epoch: 2 | loss: 0.2233543
+	speed: 0.1398s/iter; left time: 633.9754s
+	iters: 300, epoch: 2 | loss: 0.2532848
+	speed: 0.1359s/iter; left time: 602.5693s
+	iters: 400, epoch: 2 | loss: 0.1996286
+	speed: 0.1318s/iter; left time: 571.1476s
+	iters: 500, epoch: 2 | loss: 0.2206591
+	speed: 0.1326s/iter; left time: 561.5475s
+Epoch: 2 cost time: 71.53678297996521
+Epoch: 2, Steps: 526 | Train Loss: 0.2154417 Vali Loss: 0.1233388 Test Loss: 0.1272749
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 0.0015
+	iters: 100, epoch: 3 | loss: 0.2172640
+	speed: 1.2444s/iter; left time: 5113.2921s
+	iters: 200, epoch: 3 | loss: 0.2172183
+	speed: 0.1299s/iter; left time: 520.6036s
+	iters: 300, epoch: 3 | loss: 0.1975383
+	speed: 0.1338s/iter; left time: 522.8780s
+	iters: 400, epoch: 3 | loss: 0.2254073
+	speed: 0.1396s/iter; left time: 531.8446s
+	iters: 500, epoch: 3 | loss: 0.1792668
+	speed: 0.1369s/iter; left time: 507.7210s
+Epoch: 3 cost time: 71.60518026351929
+Epoch: 3, Steps: 526 | Train Loss: 0.2137342 Vali Loss: 0.1199511 Test Loss: 0.1231005
+EarlyStopping counter: 2 out of 10
+Updating learning rate to 0.00075
+	iters: 100, epoch: 4 | loss: 0.2030830
+	speed: 1.2427s/iter; left time: 4452.6266s
+	iters: 200, epoch: 4 | loss: 0.2037372
+	speed: 0.1350s/iter; left time: 470.2919s
+	iters: 300, epoch: 4 | loss: 0.2091208
+	speed: 0.1363s/iter; left time: 461.2292s
+	iters: 400, epoch: 4 | loss: 0.2202275
+	speed: 0.1406s/iter; left time: 461.5597s
+	iters: 500, epoch: 4 | loss: 0.2053295
+	speed: 0.1366s/iter; left time: 434.8489s
+Epoch: 4 cost time: 72.68943405151367
+Epoch: 4, Steps: 526 | Train Loss: 0.2132046 Vali Loss: 0.1168758 Test Loss: 0.1204738
+EarlyStopping counter: 3 out of 10
+Updating learning rate to 0.000375
+	iters: 100, epoch: 5 | loss: 0.2221498
+	speed: 1.2674s/iter; left time: 3874.2902s
+	iters: 200, epoch: 5 | loss: 0.1996811
+	speed: 0.1490s/iter; left time: 440.5869s
+	iters: 300, epoch: 5 | loss: 0.2053923
+	speed: 0.1404s/iter; left time: 401.0709s
+	iters: 400, epoch: 5 | loss: 0.2041812
+	speed: 0.1426s/iter; left time: 393.0242s
+	iters: 500, epoch: 5 | loss: 0.1670143
+	speed: 0.1489s/iter; left time: 395.6562s
+Epoch: 5 cost time: 77.56615042686462
+Epoch: 5, Steps: 526 | Train Loss: 0.2128563 Vali Loss: 0.1177512 Test Loss: 0.1213442
+EarlyStopping counter: 4 out of 10
+Updating learning rate to 0.0001875
+	iters: 100, epoch: 6 | loss: 0.1882721
+	speed: 1.2962s/iter; left time: 3280.6522s
+	iters: 200, epoch: 6 | loss: 0.2485762
+	speed: 0.1452s/iter; left time: 352.8727s
+	iters: 300, epoch: 6 | loss: 0.2316939
+	speed: 0.1420s/iter; left time: 331.0746s
+	iters: 400, epoch: 6 | loss: 0.1879759
+	speed: 0.1441s/iter; left time: 321.4354s
+	iters: 500, epoch: 6 | loss: 0.2485302
+	speed: 0.1423s/iter; left time: 303.2534s
+Epoch: 6 cost time: 75.66505455970764
+Epoch: 6, Steps: 526 | Train Loss: 0.2125858 Vali Loss: 0.1151166 Test Loss: 0.1182799
+Validation loss decreased (0.116573 --> 0.115117).  Saving model ...
+Updating learning rate to 9.375e-05
+	iters: 100, epoch: 7 | loss: 0.2058181
+	speed: 1.2451s/iter; left time: 2496.4426s
+	iters: 200, epoch: 7 | loss: 0.1794716
+	speed: 0.1438s/iter; left time: 273.9359s
+	iters: 300, epoch: 7 | loss: 0.2157606
+	speed: 0.1410s/iter; left time: 254.5773s
+	iters: 400, epoch: 7 | loss: 0.2151094
+	speed: 0.1451s/iter; left time: 247.3589s
+	iters: 500, epoch: 7 | loss: 0.2145586
+	speed: 0.1459s/iter; left time: 234.2294s
+Epoch: 7 cost time: 76.14614057540894
+Epoch: 7, Steps: 526 | Train Loss: 0.2125381 Vali Loss: 0.1153523 Test Loss: 0.1187165
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 4.6875e-05
+	iters: 100, epoch: 8 | loss: 0.2235859
+	speed: 1.1637s/iter; left time: 1721.0614s
+	iters: 200, epoch: 8 | loss: 0.2402998
+	speed: 0.1265s/iter; left time: 174.4155s
+	iters: 300, epoch: 8 | loss: 0.1885101
+	speed: 0.1104s/iter; left time: 141.2623s
+	iters: 400, epoch: 8 | loss: 0.2433527
+	speed: 0.1063s/iter; left time: 125.3823s
+	iters: 500, epoch: 8 | loss: 0.2119945
+	speed: 0.1017s/iter; left time: 109.7104s
+Epoch: 8 cost time: 61.1207537651062
+Epoch: 8, Steps: 526 | Train Loss: 0.2123922 Vali Loss: 0.1146414 Test Loss: 0.1181175
+Validation loss decreased (0.115117 --> 0.114641).  Saving model ...
+Updating learning rate to 2.34375e-05
+	iters: 100, epoch: 9 | loss: 0.2279427
+	speed: 0.9359s/iter; left time: 891.9336s
+	iters: 200, epoch: 9 | loss: 0.2685108
+	speed: 0.1140s/iter; left time: 97.2653s
+	iters: 300, epoch: 9 | loss: 0.1686783
+	speed: 0.1084s/iter; left time: 81.6523s
+	iters: 400, epoch: 9 | loss: 0.2072799
+	speed: 0.1133s/iter; left time: 73.9947s
+	iters: 500, epoch: 9 | loss: 0.1974528
+	speed: 0.1131s/iter; left time: 62.5290s
+Epoch: 9 cost time: 59.92350769042969
+Epoch: 9, Steps: 526 | Train Loss: 0.2124036 Vali Loss: 0.1151690 Test Loss: 0.1186581
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 1.171875e-05
+	iters: 100, epoch: 10 | loss: 0.1963110
+	speed: 0.9441s/iter; left time: 403.1443s
+	iters: 200, epoch: 10 | loss: 0.1843545
+	speed: 0.1158s/iter; left time: 37.8723s
+	iters: 300, epoch: 10 | loss: 0.1728129
+	speed: 0.1134s/iter; left time: 25.7399s
+	iters: 400, epoch: 10 | loss: 0.2078901
+	speed: 0.1128s/iter; left time: 14.3248s
+	iters: 500, epoch: 10 | loss: 0.2004151
+	speed: 0.1147s/iter; left time: 3.0957s
+Epoch: 10 cost time: 60.41330409049988
+Epoch: 10, Steps: 526 | Train Loss: 0.2123706 Vali Loss: 0.1158781 Test Loss: 0.1191924
+EarlyStopping counter: 2 out of 10
+Updating learning rate to 5.859375e-06
+>>>>>>>testing : Exp_DUET_PEMS07_Duet_256_fixedFalse_0.003_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 5538
+test shape: (5538, 12, 883) (5538, 12, 883)
+test shape: (5538, 12, 883) (5538, 12, 883)
+mse:0.11783020943403244, mae:0.24605469405651093, rmse:0.34326404333114624, mape:2.2185630798339844, mspe:243264.0
+================================================================================
+Model Profiling Summary
+Total Params             : 793,564
+Inference Time (s)       : 0.017322
+GPU Mem Footprint (MB)   : 34.97
+Peak Mem (MB)            : 131.55
+================================================================================
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          Exp_DUET            Is Training:        1                   
+  Model ID:           PEMS08              Model:              Duet                
+
+[1mData Loader[0m
+  Data:               PEMS                Root Path:          ./dataset/PEMS/     
+  Data Path:          PEMS08.npz          Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             170                 Dec In:             170                 
+  C Out:              170                 d model:            128                 
+  n heads:            8                   e layers:           5                   
+  d layers:           1                   d FF:               256                 
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         32                  
+  Patience:           10                  Learning Rate:      0.003               
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      0                   Devices:            0,1,2,3             
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : Exp_DUET_PEMS08_Duet_256_fixedFalse_0.003_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 10606
+val 3464
+test 3465
+	iters: 100, epoch: 1 | loss: 0.2317177
+	speed: 0.1250s/iter; left time: 402.6848s
+	iters: 200, epoch: 1 | loss: 0.2654435
+	speed: 0.0630s/iter; left time: 196.5723s
+	iters: 300, epoch: 1 | loss: 0.2213975
+	speed: 0.0873s/iter; left time: 263.6672s
+Epoch: 1 cost time: 30.480618238449097
+Epoch: 1, Steps: 332 | Train Loss: 0.2313602 Vali Loss: 0.1400742 Test Loss: 0.1245836
+Validation loss decreased (inf --> 0.140074).  Saving model ...
+Updating learning rate to 0.003
+	iters: 100, epoch: 2 | loss: 0.2043871
+	speed: 0.6085s/iter; left time: 1758.0586s
+	iters: 200, epoch: 2 | loss: 0.2070052
+	speed: 0.0965s/iter; left time: 269.0108s
+	iters: 300, epoch: 2 | loss: 0.2370805
+	speed: 0.1003s/iter; left time: 269.7093s
+Epoch: 2 cost time: 33.04187250137329
+Epoch: 2, Steps: 332 | Train Loss: 0.2173624 Vali Loss: 0.1449557 Test Loss: 0.1310530
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 0.0015
+	iters: 100, epoch: 3 | loss: 0.2352790
+	speed: 0.6138s/iter; left time: 1569.4747s
+	iters: 200, epoch: 3 | loss: 0.2321338
+	speed: 0.0981s/iter; left time: 240.9345s
+	iters: 300, epoch: 3 | loss: 0.2371489
+	speed: 0.0975s/iter; left time: 229.8502s
+Epoch: 3 cost time: 33.54974293708801
+Epoch: 3, Steps: 332 | Train Loss: 0.2150701 Vali Loss: 0.1534012 Test Loss: 0.1411550
+EarlyStopping counter: 2 out of 10
+Updating learning rate to 0.00075
+	iters: 100, epoch: 4 | loss: 0.2256169
+	speed: 0.5954s/iter; left time: 1324.7562s
+	iters: 200, epoch: 4 | loss: 0.2164753
+	speed: 0.1011s/iter; left time: 214.8672s
+	iters: 300, epoch: 4 | loss: 0.2209994
+	speed: 0.0922s/iter; left time: 186.7267s
+Epoch: 4 cost time: 32.420121908187866
+Epoch: 4, Steps: 332 | Train Loss: 0.2147518 Vali Loss: 0.1419329 Test Loss: 0.1280018
+EarlyStopping counter: 3 out of 10
+Updating learning rate to 0.000375
+	iters: 100, epoch: 5 | loss: 0.1959736
+	speed: 0.7190s/iter; left time: 1361.0052s
+	iters: 200, epoch: 5 | loss: 0.2101456
+	speed: 0.1280s/iter; left time: 229.4841s
+	iters: 300, epoch: 5 | loss: 0.1984870
+	speed: 0.1250s/iter; left time: 211.5806s
+Epoch: 5 cost time: 42.87256646156311
+Epoch: 5, Steps: 332 | Train Loss: 0.2143636 Vali Loss: 0.1435165 Test Loss: 0.1299772
+EarlyStopping counter: 4 out of 10
+Updating learning rate to 0.0001875
+	iters: 100, epoch: 6 | loss: 0.2045003
+	speed: 0.7923s/iter; left time: 1236.8012s
+	iters: 200, epoch: 6 | loss: 0.2127061
+	speed: 0.1315s/iter; left time: 192.1558s
+	iters: 300, epoch: 6 | loss: 0.2010051
+	speed: 0.1248s/iter; left time: 169.8563s
+Epoch: 6 cost time: 42.86019968986511
+Epoch: 6, Steps: 332 | Train Loss: 0.2139348 Vali Loss: 0.1480980 Test Loss: 0.1353253
+EarlyStopping counter: 5 out of 10
+Updating learning rate to 9.375e-05
+	iters: 100, epoch: 7 | loss: 0.1889579
+	speed: 0.7892s/iter; left time: 969.8806s
+	iters: 200, epoch: 7 | loss: 0.2341575
+	speed: 0.1193s/iter; left time: 134.6410s
+	iters: 300, epoch: 7 | loss: 0.2343121
+	speed: 0.1296s/iter; left time: 133.3885s
+Epoch: 7 cost time: 41.80305290222168
+Epoch: 7, Steps: 332 | Train Loss: 0.2138910 Vali Loss: 0.1429233 Test Loss: 0.1289451
+EarlyStopping counter: 6 out of 10
+Updating learning rate to 4.6875e-05
+	iters: 100, epoch: 8 | loss: 0.2220293
+	speed: 0.8005s/iter; left time: 718.0069s
+	iters: 200, epoch: 8 | loss: 0.1975282
+	speed: 0.1199s/iter; left time: 95.5219s
+	iters: 300, epoch: 8 | loss: 0.2479274
+	speed: 0.1267s/iter; left time: 88.3107s
+Epoch: 8 cost time: 41.23064565658569
+Epoch: 8, Steps: 332 | Train Loss: 0.2138847 Vali Loss: 0.1428432 Test Loss: 0.1291410
+EarlyStopping counter: 7 out of 10
+Updating learning rate to 2.34375e-05
+	iters: 100, epoch: 9 | loss: 0.2119641
+	speed: 0.8107s/iter; left time: 458.0697s
+	iters: 200, epoch: 9 | loss: 0.2209256
+	speed: 0.1342s/iter; left time: 62.3875s
+	iters: 300, epoch: 9 | loss: 0.1936712
+	speed: 0.1312s/iter; left time: 47.8780s
+Epoch: 9 cost time: 44.18892526626587
+Epoch: 9, Steps: 332 | Train Loss: 0.2138460 Vali Loss: 0.1438771 Test Loss: 0.1307204
+EarlyStopping counter: 8 out of 10
+Updating learning rate to 1.171875e-05
+	iters: 100, epoch: 10 | loss: 0.2275964
+	speed: 0.8336s/iter; left time: 194.2175s
+	iters: 200, epoch: 10 | loss: 0.2593813
+	speed: 0.1222s/iter; left time: 16.2506s
+	iters: 300, epoch: 10 | loss: 0.1994499
+	speed: 0.1241s/iter; left time: 4.0951s
+Epoch: 10 cost time: 42.63640737533569
+Epoch: 10, Steps: 332 | Train Loss: 0.2135953 Vali Loss: 0.1455473 Test Loss: 0.1323668
+EarlyStopping counter: 9 out of 10
+Updating learning rate to 5.859375e-06
+>>>>>>>testing : Exp_DUET_PEMS08_Duet_256_fixedFalse_0.003_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 3465
+test shape: (3465, 12, 170) (3465, 12, 170)
+test shape: (3465, 12, 170) (3465, 12, 170)
+mse:0.12485284358263016, mae:0.24097777903079987, rmse:0.35334521532058716, mape:1.931134819984436, mspe:5463.544921875
+================================================================================
+Model Profiling Summary
+Total Params             : 792,138
+Inference Time (s)       : 0.007555
+GPU Mem Footprint (MB)   : 23.20
+Peak Mem (MB)            : 41.80
+================================================================================

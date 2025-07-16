@@ -16,12 +16,12 @@ python -u run.py \
   --pred_len 96 \
   --e_layers 3 \
   --d_layers 1 \
-  --factor 3 \
+  --factor 1 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 4 \
+  --n_heads 1 \
   --itr 1
 
 python -u run.py \

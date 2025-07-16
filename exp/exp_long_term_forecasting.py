@@ -264,4 +264,41 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         np.save(folder_path + 'pred.npy', preds)
         np.save(folder_path + 'true.npy', trues)
 
+        self.profile_model(test_loader)
+
         return
+    
+    def profile_model(self, test_loader):
+        self.model.eval()
+        with torch.no_grad():
+            batch_x, batch_y, batch_x_mark, batch_y_mark = next(iter(test_loader))
+            batch_x = batch_x.float().to(self.device)
+            batch_y = batch_y.float().to(self.device)
+            batch_x_mark = batch_x_mark.float().to(self.device)
+            batch_y_mark = batch_y_mark.float().to(self.device)
+
+            dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
+            dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
+
+            torch.cuda.reset_peak_memory_stats()
+            torch.cuda.synchronize()
+            start_time = time.time()
+
+            _ = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+
+            torch.cuda.synchronize()
+            end_time = time.time()
+
+            inference_time = end_time - start_time
+            gpu_mem = torch.cuda.memory_allocated(self.device) / 1024 / 1024
+            peak_mem = torch.cuda.max_memory_allocated(self.device) / 1024 / 1024
+            total_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
+
+            print("=" * 80)
+            print("Model Profiling Summary")
+            print(f"{'Total Params':<25}: {total_params:,}")
+            print(f"{'Inference Time (s)':<25}: {inference_time:.6f}")
+            print(f"{'GPU Mem Footprint (MB)':<25}: {gpu_mem:.2f}")
+            print(f"{'Peak Mem (MB)':<25}: {peak_mem:.2f}")
+            print("=" * 80)
+

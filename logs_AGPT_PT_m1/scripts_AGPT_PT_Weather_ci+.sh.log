@@ -1,0 +1,62 @@
+Using GPU
+Args in experiment:
+[1mBasic Config[0m
+  Task Name:          AGPT_loss           Is Training:        1                   
+  Model ID:           weather_96_720      Model:              AGPT_PT             
+
+[1mData Loader[0m
+  Data:               custom              Root Path:          ./dataset/weather/  
+  Data Path:          weather.csv         Features:           M                   
+  Target:             OT                  Freq:               h                   
+  Checkpoints:        ./checkpoints/      
+
+[1mModel Parameters[0m
+  Num Kernels:        6                   
+  Enc In:             21                  Dec In:             21                  
+  C Out:              21                  d model:            512                 
+  n heads:            4                   e layers:           2                   
+  d layers:           1                   d FF:               2048                
+  Moving Avg:         25                  Factor:             3                   
+  Distil:             1                   Dropout:            0.1                 
+  Embed:              timeF               Activation:         gelu                
+
+[1mRun Parameters[0m
+  Num Workers:        10                  Itr:                1                   
+  Train Epochs:       10                  Batch Size:         128                 
+  Patience:           3                   Learning Rate:      0.0001              
+  Des:                Exp                 Loss:               MSE                 
+  Lradj:              type1               Use Amp:            0                   
+
+[1mGPU[0m
+  Use GPU:            1                   GPU:                0                   
+  Use Multi GPU:      1                   Devices:            0,1                 
+
+[1mDe-stationary Projector Params[0m
+  P Hidden Dims:      128, 128            P Hidden Layers:    2                   
+
+Use GPU: cuda:0
+>>>>>>>start training : AGPT_loss_weather_96_720_AGPT_PT_2048_fixedFalse_0.0001_0.001_CI+>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 36072
+val 4551
+test 9820
+	iters: 100, epoch: 1 | loss: 0.6566801
+	speed: 1.4635s/iter; left time: 3982.2424s
+	iters: 200, epoch: 1 | loss: 0.7619170
+	speed: 1.4688s/iter; left time: 3849.5943s
+Epoch: 1 cost time: 410.01851534843445
+Epoch: 1, Steps: 282 | Train Loss: 0.7375697 Vali Loss: 0.7343149 Test Loss: 0.3620806
+Validation loss decreased (inf --> 0.734315).  Saving model ...
+Updating learning rate to 0.0002
+	iters: 100, epoch: 2 | loss: 0.6252256
+	speed: 4.4660s/iter; left time: 10892.5677s
+	iters: 200, epoch: 2 | loss: 0.6472626
+	speed: 1.4769s/iter; left time: 3454.4151s
+Epoch: 2 cost time: 409.0976731777191
+Epoch: 2, Steps: 282 | Train Loss: 0.7073850 Vali Loss: 0.7337047 Test Loss: 0.3568651
+Validation loss decreased (0.734315 --> 0.733705).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 3 | loss: 0.7496371
+	speed: 4.4663s/iter; left time: 9633.8062s
+	iters: 200, epoch: 3 | loss: 0.6104726
+	speed: 1.3533s/iter; left time: 2783.6373s
+Epoch: 3 cost time: 363.80288767814636

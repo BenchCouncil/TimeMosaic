@@ -9,7 +9,7 @@ LOG_DIR="logs_SimpleTM"
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-"/root/daye/AGPT/scripts/SimpleTM/ECL.sh"
+# "/root/daye/AGPT/scripts/SimpleTM/ECL.sh"
 # "/root/daye/AGPT/scripts/SimpleTM/ETTh1.sh"
 # "/root/daye/AGPT/scripts/SimpleTM/ETTm1.sh"
 # "/root/daye/AGPT/scripts/SimpleTM/ETTh2.sh"
@@ -19,10 +19,10 @@ SCRIPT_LIST=(
 # "/root/daye/AGPT/scripts/SimpleTM/PEMS.sh"
 # "/root/daye/AGPT/scripts/SimpleTM/Solar.sh"
 # "/root/daye/AGPT/scripts/SimpleTM/Weather.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/Wind1.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/Wind2.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/Wind3.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/Wind4.sh"
+"/root/daye/AGPT/scripts/SimpleTM/Wind1.sh"
+"/root/daye/AGPT/scripts/SimpleTM/Wind2.sh"
+"/root/daye/AGPT/scripts/SimpleTM/Wind3.sh"
+"/root/daye/AGPT/scripts/SimpleTM/Wind4.sh"
 )
 
 

@@ -13,14 +13,14 @@ python -u run.py \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 96 \
-  --e_layers 3 \
+  --e_layers 1 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 4 \
+  --n_heads 1 \
   --itr 1
 
 python -u run.py \
@@ -35,14 +35,14 @@ python -u run.py \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 192 \
-  --e_layers 3 \
+  --e_layers 1 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 4 \
+  --n_heads 1 \
   --itr 1
 
 python -u run.py \
@@ -57,14 +57,14 @@ python -u run.py \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 336 \
-  --e_layers 3 \
+  --e_layers 1 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 4 \
+  --n_heads 1 \
   --itr 1
 
 python -u run.py \
@@ -79,12 +79,12 @@ python -u run.py \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 720 \
-  --e_layers 3 \
+  --e_layers 1 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 4 \
+  --n_heads 1 \
   --itr 1

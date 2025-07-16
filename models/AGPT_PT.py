@@ -190,7 +190,7 @@ class Model(nn.Module):
         self.training = configs.is_training
 
         self.patch_len_list = eval(configs.patch_len_list)
-        
+
         # self.seg_len = configs.seg_len
         if configs.pred_len == 96:
             self.seg_len = 32
@@ -219,7 +219,6 @@ class Model(nn.Module):
         self.num_latent_token = configs.num_latent_token
         self.prompt_embeddings = nn.Embedding(self.num_latent_token * self.num_segs, self.d_model)
         nn.init.xavier_uniform_(self.prompt_embeddings.weight)
-
 
         self.encoder = Encoder([
             EncoderLayer(
@@ -294,6 +293,18 @@ class Model(nn.Module):
             extra_token = self.enc_embedding(x_pool.unsqueeze(-1), None)  # [B, T, d]
             extra_token = extra_token.mean(dim=1, keepdim=True)  # [B, 1, d]
             extra_token = extra_token.repeat_interleave(C, dim=0)  # [B*C, 1, d]
+        elif self.channel == "CDP":
+            # simple channel-wise 
+            x_pool = x_enc.mean(dim=2)  # [B, T]
+            channel_token = self.enc_embedding(x_pool.unsqueeze(-1), None)  # [B, T, d]
+            channel_token = channel_token.mean(dim=1, keepdim=True)  # [B, 1, d]
+            channel_token = channel_token.repeat_interleave(C, dim=0)  # [B*C, 1, d]
+
+            global_tokens = self.enc_embedding(x_enc, x_mark_enc)  # [B, C+K, D]
+            cal_tokens = global_tokens[:, C:, :]
+            cal_tokens = cal_tokens.repeat_interleave(C, dim=0) 
+
+            extra_token = torch.cat([channel_token, cal_tokens], dim=1)
         elif self.channel == "CDA":
             extra_token = self.enc_embedding(x_enc, x_mark_enc)  # [B, C+K, D]
             extra_token = extra_token.repeat_interleave(C, dim=0)  # [B*C, C+K, D]
