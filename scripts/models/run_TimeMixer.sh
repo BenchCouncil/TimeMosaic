@@ -4,25 +4,25 @@
 MAX_JOBS=2
 TOTAL_GPUS=2
 MAX_RETRIES=1
-LOG_DIR="logs_PatchMLP"
+LOG_DIR="logs_TimeMixer"
 
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-# "/root/daye/AGPT/scripts/PatchMLP/ECL.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/ETTh1.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/ETTm1.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/ETTh2.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Exchange.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/ETTm2.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/PEMS.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Solar.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Weather.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Wind1.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Wind2.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Wind3.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Wind4.sh"
-"/root/daye/AGPT/scripts/PatchMLP/Traffic.sh"
+"/root/daye/AGPT/scripts/TimeMixer/ETTh1.sh"
+"/root/daye/AGPT/scripts/TimeMixer/ETTm1.sh"
+"/root/daye/AGPT/scripts/TimeMixer/ETTh2.sh"
+"/root/daye/AGPT/scripts/TimeMixer/Exchange.sh"
+"/root/daye/AGPT/scripts/TimeMixer/ETTm2.sh"
+"/root/daye/AGPT/scripts/TimeMixer/Traffic.sh"
+"/root/daye/AGPT/scripts/TimeMixer/PEMS.sh"
+"/root/daye/AGPT/scripts/TimeMixer/Solar.sh"
+"/root/daye/AGPT/scripts/TimeMixer/Weather.sh"
+"/root/daye/AGPT/scripts/TimeMixer/Wind1.sh"
+"/root/daye/AGPT/scripts/TimeMixer/Wind2.sh"
+"/root/daye/AGPT/scripts/TimeMixer/Wind3.sh"
+"/root/daye/AGPT/scripts/TimeMixer/Wind4.sh"
+"/root/daye/AGPT/scripts/TimeMixer/ECL.sh"
 )
 
 

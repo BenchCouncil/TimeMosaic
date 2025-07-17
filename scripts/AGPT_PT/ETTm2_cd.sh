@@ -9,18 +9,18 @@ python -u run.py \
   --model $model_name \
   --data ETTm2 \
   --features M \
-  --channel CD \
+  --channel CI \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 96 \
-  --e_layers 3 \
+  --e_layers 1 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 16 \
+  --n_heads 1 \
   --batch_size 32 \
   --itr 1
 

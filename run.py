@@ -107,7 +107,13 @@ if __name__ == '__main__':
                     help='List of candidate patch lengths for adaptive splitting')
     parser.add_argument('--mask_ratio', type=float, default=0, help='mask_ratio')
     parser.add_argument('--mask_ratio_patch', type=float, default=0, help='mask_ratio_patch')
-    
+    parser.add_argument('--pre96', type=int, default=32, help='')
+    parser.add_argument('--pre192', type=int, default=64, help='')
+    parser.add_argument('--pre336', type=int, default=168, help='')
+    parser.add_argument('--pre720', type=int, default=240, help='')
+    parser.add_argument('--pre12', type=int, default=2, help='')
+
+
     # SimpleTS
     parser.add_argument('--kernel_size', default=None, help='Specify the length of randomly initialized wavelets (if not None)')
     parser.add_argument('--alpha', type=float, default=1, help='Weight of the inner product score in geometric attention')
@@ -164,6 +170,16 @@ if __name__ == '__main__':
     
     # TimeMxierPP
     parser.add_argument('--channel_mixing', type=int, default=1, help='channel_mixing')
+    
+    # xdeepfm
+    parser.add_argument('--use_linear', type=lambda x: (str(x).lower() == 'true'), default=False, help='是否使用Linear分支 (True/False)')
+    parser.add_argument('--use_dnn', type=lambda x: (str(x).lower() == 'true'), default=True, help='是否使用DNN分支 (True/False)')
+    parser.add_argument('--use_cin', type=lambda x: (str(x).lower() == 'true'), default=True, help='是否使用CIN分支 (True/False)')
+    parser.add_argument('--dnn_hidden_units', type=int, nargs='+', default=[256, 256], help='DNN‘s number of neurons in each hidden layer')
+    parser.add_argument('--cin_layer_size', type=int, nargs='+', default=[256,128,128,64], help='The number of feature maps for each hidden layer for CIN')
+    parser.add_argument('--gate_hidden_units', type=int, default=64, help='Dimension size of the hidden layer in the gated network for fusion of CIN and DNN')
+    parser.add_argument('--channel_xpatchfm', type=str, default="CD", help="CI or CD")
+    
 
 
     args = parser.parse_args()

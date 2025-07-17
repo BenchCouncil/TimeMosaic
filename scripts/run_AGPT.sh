@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ===================== 配置参数 =====================
-MAX_JOBS=5
+MAX_JOBS=2
 TOTAL_GPUS=2
 MAX_RETRIES=1
 LOG_DIR="logs_AGPT_PT_m1"
@@ -9,7 +9,7 @@ LOG_DIR="logs_AGPT_PT_m1"
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-# "/root/daye/AGPT/scripts/AGPT_PT/ECL_ci+.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/ECL_cdp.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/ETTh1_cd.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/ETTm1_cd.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/ETTh2_cda.sh"
@@ -23,7 +23,7 @@ SCRIPT_LIST=(
 # "/root/daye/AGPT/scripts/AGPT_PT/Traffic_ci+.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/PEMS.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/Solar.sh"
-"/root/daye/AGPT/scripts/AGPT_PT/Weather_ci+.sh"
+"/root/daye/AGPT/scripts/AGPT_PT/Weather_cda.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/Wind1.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/Wind2.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/Wind3.sh"

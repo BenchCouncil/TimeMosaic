@@ -1,7 +1,7 @@
 import os
 import torch
 from models import PatchTST, AGPT, AGPTp, AGPTp_loss, AGPT_loss, AGPT_loss_G, AGPT_PT, SimpleTM, iTransformer, TimeMixer, \
-    FreTS, WPMixer, DLinear, TimesNet, Duet, PatchMLP, TimeFilter, xPatch, PathFormer, TimeMixerPP
+    FreTS, WPMixer, DLinear, TimesNet, Duet, PatchMLP, TimeFilter, xPatch, PathFormer, TimeMixerPP, xPatchFM
 
 class Exp_Basic(object):
     def __init__(self, args):
@@ -26,7 +26,8 @@ class Exp_Basic(object):
             'TimeFilter': TimeFilter,
             'xPatch': xPatch,
             'PathFormer': PathFormer, 
-            'TimeMixerPP': TimeMixerPP
+            'TimeMixerPP': TimeMixerPP,
+            'xPatchFM': xPatchFM
             }
 
         self.device = self._acquire_device()

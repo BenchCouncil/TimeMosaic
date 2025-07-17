@@ -1,28 +1,28 @@
 #!/bin/bash
 
 # ===================== 配置参数 =====================
-MAX_JOBS=2
+MAX_JOBS=4
 TOTAL_GPUS=2
 MAX_RETRIES=1
-LOG_DIR="logs_PatchMLP"
+LOG_DIR="logs_xPatch"
 
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-# "/root/daye/AGPT/scripts/PatchMLP/ECL.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/ETTh1.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/ETTm1.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/ETTh2.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Exchange.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/ETTm2.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/PEMS.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Solar.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Weather.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Wind1.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Wind2.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Wind3.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Wind4.sh"
-"/root/daye/AGPT/scripts/PatchMLP/Traffic.sh"
+# "/root/daye/AGPT/scripts/xPatch/ECL.sh"
+# "/root/daye/AGPT/scripts/xPatch/ETTh1.sh"
+# "/root/daye/AGPT/scripts/xPatch/ETTm1.sh"
+# "/root/daye/AGPT/scripts/xPatch/ETTh2.sh"
+# "/root/daye/AGPT/scripts/xPatch/Exchange.sh"
+# "/root/daye/AGPT/scripts/xPatch/ETTm2.sh"
+# "/root/daye/AGPT/scripts/xPatch/PEMS.sh"
+# "/root/daye/AGPT/scripts/xPatch/Solar.sh"
+# "/root/daye/AGPT/scripts/xPatch/Weather.sh"
+# "/root/daye/AGPT/scripts/xPatch/Wind1.sh"
+# "/root/daye/AGPT/scripts/xPatch/Wind2.sh"
+# "/root/daye/AGPT/scripts/xPatch/Wind3.sh"
+# "/root/daye/AGPT/scripts/xPatch/Wind4.sh"
+"/root/daye/AGPT/scripts/xPatch/Traffic.sh"
 )
 
 

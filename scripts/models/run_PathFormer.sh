@@ -1,28 +1,28 @@
 #!/bin/bash
 
 # ===================== 配置参数 =====================
-MAX_JOBS=2
+MAX_JOBS=3
 TOTAL_GPUS=2
 MAX_RETRIES=1
-LOG_DIR="logs_PatchMLP"
+LOG_DIR="logs_PathFormer"
 
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-# "/root/daye/AGPT/scripts/PatchMLP/ECL.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/ETTh1.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/ETTm1.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/ETTh2.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Exchange.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/ETTm2.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/PEMS.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Solar.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Weather.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Wind1.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Wind2.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Wind3.sh"
-# "/root/daye/AGPT/scripts/PatchMLP/Wind4.sh"
-"/root/daye/AGPT/scripts/PatchMLP/Traffic.sh"
+"/root/daye/AGPT/scripts/PathFormer/ECL.sh"
+"/root/daye/AGPT/scripts/PathFormer/ETTh1.sh"
+"/root/daye/AGPT/scripts/PathFormer/ETTm1.sh"
+"/root/daye/AGPT/scripts/PathFormer/ETTh2.sh"
+"/root/daye/AGPT/scripts/PathFormer/Exchange.sh"
+"/root/daye/AGPT/scripts/PathFormer/ETTm2.sh"
+"/root/daye/AGPT/scripts/PathFormer/PEMS.sh"
+"/root/daye/AGPT/scripts/PathFormer/Solar.sh"
+"/root/daye/AGPT/scripts/PathFormer/Weather.sh"
+"/root/daye/AGPT/scripts/PathFormer/Wind1.sh"
+"/root/daye/AGPT/scripts/PathFormer/Wind2.sh"
+"/root/daye/AGPT/scripts/PathFormer/Wind3.sh"
+"/root/daye/AGPT/scripts/PathFormer/Wind4.sh"
+"/root/daye/AGPT/scripts/PathFormer/Traffic.sh"
 )
 
 

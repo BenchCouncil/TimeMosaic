@@ -1,36 +1,36 @@
-model_name=PathFormer
+
+model_name=xPatchFM
 
 python -u run.py \
-  --task_name Exp_PathFormer \
+  --task_name long_term_forecast \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
-  --data_path ETTm1.csv \
-  --model_id ETTm1_96_96 \
+  --data_path ETTh2.csv \
+  --model_id ETTh2_96_96 \
   --model $model_name \
-  --data ETTm1 \
+  --data ETTh2 \
   --features M \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 96 \
-  --e_layers 1 \
+  --e_layers 3 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 2 \
-  --batch_size 32 \
+  --n_heads 4 \
   --itr 1
 
 python -u run.py \
-  --task_name Exp_PathFormer \
+  --task_name long_term_forecast \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
-  --data_path ETTm1.csv \
-  --model_id ETTm1_96_192 \
+  --data_path ETTh2.csv \
+  --model_id ETTh2_96_192 \
   --model $model_name \
-  --data ETTm1 \
+  --data ETTh2 \
   --features M \
   --seq_len 96 \
   --label_len 48 \
@@ -42,23 +42,22 @@ python -u run.py \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 2 \
-  --batch_size 128 \
+  --n_heads 4 \
   --itr 1
 
 python -u run.py \
-  --task_name Exp_PathFormer \
+  --task_name long_term_forecast \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
-  --data_path ETTm1.csv \
-  --model_id ETTm1_96_336 \
+  --data_path ETTh2.csv \
+  --model_id ETTh2_96_336 \
   --model $model_name \
-  --data ETTm1 \
+  --data ETTh2 \
   --features M \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 336 \
-  --e_layers 1 \
+  --e_layers 3 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
@@ -66,17 +65,16 @@ python -u run.py \
   --c_out 7 \
   --des 'Exp' \
   --n_heads 4 \
-  --batch_size 128 \
   --itr 1
 
 python -u run.py \
-  --task_name Exp_PathFormer \
+  --task_name long_term_forecast \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
-  --data_path ETTm1.csv \
-  --model_id ETTm1_96_720 \
+  --data_path ETTh2.csv \
+  --model_id ETTh2_96_720 \
   --model $model_name \
-  --data ETTm1 \
+  --data ETTh2 \
   --features M \
   --seq_len 96 \
   --label_len 48 \
@@ -89,5 +87,4 @@ python -u run.py \
   --c_out 7 \
   --des 'Exp' \
   --n_heads 4 \
-  --batch_size 128 \
   --itr 1

@@ -191,17 +191,9 @@ class Model(nn.Module):
 
         self.patch_len_list = eval(configs.patch_len_list)
 
-        # self.seg_len = configs.seg_len
-        if configs.pred_len == 96:
-            self.seg_len = 32
-        elif configs.pred_len == 192:
-            self.seg_len = 64
-        elif configs.pred_len == 336:
-            self.seg_len = 168
-        elif configs.pred_len == 720:
-            self.seg_len = 240
-        else:
-            self.seg_len = 2
+        seg_len_map = {96: configs.pre96, 192: configs.pre192, 336: configs.pre336, 720: configs.pre720}
+
+        self.seg_len = seg_len_map.get(configs.pred_len, configs.pre12)
 
         self.num_segs = self.pred_len // self.seg_len
         self.channel = configs.channel
