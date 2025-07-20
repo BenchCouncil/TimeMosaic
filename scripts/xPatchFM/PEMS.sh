@@ -1,4 +1,4 @@
-model_name=DLinear
+model_name=xPatchFM
 
 seq_len=96
 pred_len=12

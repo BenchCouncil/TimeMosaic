@@ -1,4 +1,4 @@
-model_name=DLinear
+model_name=xPatchFM
 
 python -u run.py \
   --task_name long_term_forecast \
