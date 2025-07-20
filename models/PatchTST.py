@@ -33,7 +33,7 @@ class Model(nn.Module):
     Paper link: https://arxiv.org/pdf/2211.14730.pdf
     """
 
-    def __init__(self, configs, patch_len=96, stride=96):
+    def __init__(self, configs, patch_len=16, stride=8):
         """
         patch_len: int, patch len for patch_embedding
         stride: int, stride for patch_embedding
@@ -42,6 +42,7 @@ class Model(nn.Module):
         self.task_name = configs.task_name
         self.seq_len = configs.seq_len
         self.pred_len = configs.pred_len
+        self.visualize_attn = configs.visualize_attn
         padding = stride
 
         # patching and embedding
@@ -54,7 +55,7 @@ class Model(nn.Module):
                 EncoderLayer(
                     AttentionLayer(
                         FullAttention(False, configs.factor, attention_dropout=configs.dropout,
-                                      output_attention=False), configs.d_model, configs.n_heads),
+                                      output_attention=True), configs.d_model, configs.n_heads),
                     configs.d_model,
                     configs.d_ff,
                     dropout=configs.dropout,
@@ -87,6 +88,10 @@ class Model(nn.Module):
         # Encoder
         # z: [bs * nvars x patch_num x d_model]
         enc_out, attns = self.encoder(enc_out)
+        # print(len(attns))
+        # print(attns[-1])
+        # print(attns[-1].shape)
+        # raise ValueError
         # z: [bs x nvars x patch_num x d_model]
         enc_out = torch.reshape(
             enc_out, (-1, n_vars, enc_out.shape[-2], enc_out.shape[-1]))
@@ -107,5 +112,8 @@ class Model(nn.Module):
     def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None):
         if self.task_name == 'long_term_forecast' or self.task_name == 'short_term_forecast':
             dec_out = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
-            return dec_out[:, -self.pred_len:, :]  # [B, L, D]
+            if self.visualize_attn:
+                return dec_out[:, -self.pred_len:, :]  # [B, L, D]
+            else:
+                return dec_out[:, -self.pred_len:, :], attns
         return None

@@ -19,7 +19,7 @@ python -u run.py \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 2 \
+  --n_heads 8 \
   --batch_size 32 \
   --itr 1
 
@@ -35,14 +35,14 @@ python -u run.py \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 192 \
-  --e_layers 3 \
+  --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 2 \
+  --n_heads 1 \
   --batch_size 128 \
   --itr 1
 
@@ -65,7 +65,7 @@ python -u run.py \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 4 \
+  --n_heads 3 \
   --batch_size 128 \
   --itr 1
 
@@ -78,10 +78,11 @@ python -u run.py \
   --model $model_name \
   --data ETTm1 \
   --features M \
+  --channel CD \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 720 \
-  --e_layers 3 \
+  --e_layers 1 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \

@@ -302,3 +302,32 @@ class Exp_Long_Term_Forecast(Exp_Basic):
             print(f"{'Peak Mem (MB)':<25}: {peak_mem:.2f}")
             print("=" * 80)
 
+    def visualize_attn(self, setting):
+        
+        test_data, test_loader = self._get_data(flag='test')
+        self.model.load_state_dict(torch.load(os.path.join('./checkpoints/' + setting, 'checkpoint.pth')))
+        self.model.eval()
+
+        with torch.no_grad():
+            batch_x, batch_y, batch_x_mark, batch_y_mark = next(iter(test_loader))
+            batch_x = batch_x.float().to(self.device)
+            batch_y = batch_y.float().to(self.device)
+            batch_x_mark = batch_x_mark.float().to(self.device)
+            batch_y_mark = batch_y_mark.float().to(self.device)
+
+            dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
+            dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
+
+            output, attns = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+
+            from utils.vis import plot_single_attn_map
+            plot_single_attn_map(
+                attns=attns,
+                batch_size=batch_x.shape[0],
+                n_vars=batch_x.shape[-1],
+                layer=0,
+                sample_index=0,
+                var_index=0,
+                head_index=0,
+                save_path=f"./attn_vis/{setting}_layer0_sample0_var0_head0.png"
+            )

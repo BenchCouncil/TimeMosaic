@@ -40,45 +40,52 @@ Args in experiment:
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : long_term_forecast_Exchange_96_96_SimpleTM_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>start training : long_term_forecast_Exchange_96_96_SimpleTM_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
 train 5120
 val 665
 test 1422
 	iters: 100, epoch: 1 | loss: 0.0893924
-	speed: 0.0592s/iter; left time: 88.8896s
-Epoch: 1 cost time: 8.873932123184204
+	speed: 0.0996s/iter; left time: 149.4701s
+Epoch: 1 cost time: 15.3742196559906
 Epoch: 1, Steps: 160 | Train Loss: 0.1339568 Vali Loss: 0.1300166 Test Loss: 0.0865804
 Validation loss decreased (inf --> 0.130017).  Saving model ...
 Updating learning rate to 0.0001
 	iters: 100, epoch: 2 | loss: 0.1467323
-	speed: 0.0978s/iter; left time: 131.1424s
-Epoch: 2 cost time: 8.06986379623413
+	speed: 0.2107s/iter; left time: 282.5614s
+Epoch: 2 cost time: 15.136775732040405
 Epoch: 2, Steps: 160 | Train Loss: 0.1206586 Vali Loss: 0.1273124 Test Loss: 0.0882841
 Validation loss decreased (0.130017 --> 0.127312).  Saving model ...
 Updating learning rate to 5e-05
 	iters: 100, epoch: 3 | loss: 0.1573787
-	speed: 0.1009s/iter; left time: 119.1514s
-Epoch: 3 cost time: 8.564951419830322
+	speed: 0.2047s/iter; left time: 241.7680s
+Epoch: 3 cost time: 14.796061754226685
 Epoch: 3, Steps: 160 | Train Loss: 0.1139082 Vali Loss: 0.1306967 Test Loss: 0.0880023
 EarlyStopping counter: 1 out of 3
 Updating learning rate to 2.5e-05
 	iters: 100, epoch: 4 | loss: 0.0889980
-	speed: 0.1063s/iter; left time: 108.5060s
-Epoch: 4 cost time: 8.89730954170227
+	speed: 0.2035s/iter; left time: 207.7446s
+Epoch: 4 cost time: 15.39164137840271
 Epoch: 4, Steps: 160 | Train Loss: 0.1090499 Vali Loss: 0.1294103 Test Loss: 0.0869966
 EarlyStopping counter: 2 out of 3
 Updating learning rate to 1.25e-05
 	iters: 100, epoch: 5 | loss: 0.1197015
-	speed: 0.1080s/iter; left time: 92.9593s
-Epoch: 5 cost time: 9.32446813583374
+	speed: 0.2095s/iter; left time: 180.3403s
+Epoch: 5 cost time: 15.309024333953857
 Epoch: 5, Steps: 160 | Train Loss: 0.1077290 Vali Loss: 0.1282069 Test Loss: 0.0879423
 EarlyStopping counter: 3 out of 3
 Early stopping
->>>>>>>testing : long_term_forecast_Exchange_96_96_SimpleTM_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>testing : long_term_forecast_Exchange_96_96_SimpleTM_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 test 1422
 test shape: (1422, 96, 8) (1422, 96, 8)
 test shape: (1422, 96, 8) (1422, 96, 8)
-mse:0.08755157142877579, mae:0.20594802498817444
+mse:0.08755157142877579, mae:0.20594802498817444, rmse:0.295891135931015, mape:1.2319464683532715, mspe:979.9241333007812
+================================================================================
+Model Profiling Summary
+Total Params             : 6,404,832
+Inference Time (s)       : 0.008545
+GPU Mem Footprint (MB)   : 65.86
+Peak Mem (MB)            : 845.37
+================================================================================
 Using GPU
 Args in experiment:
 [1mBasic Config[0m
@@ -121,45 +128,52 @@ Args in experiment:
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : long_term_forecast_Exchange_96_192_SimpleTM_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>start training : long_term_forecast_Exchange_96_192_SimpleTM_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
 train 5024
 val 569
 test 1326
 	iters: 100, epoch: 1 | loss: 0.2909721
-	speed: 0.0664s/iter; left time: 97.6050s
-Epoch: 1 cost time: 10.055604696273804
+	speed: 0.1093s/iter; left time: 160.7906s
+Epoch: 1 cost time: 16.52951693534851
 Epoch: 1, Steps: 157 | Train Loss: 0.2606538 Vali Loss: 0.2288429 Test Loss: 0.1868793
 Validation loss decreased (inf --> 0.228843).  Saving model ...
 Updating learning rate to 0.0001
 	iters: 100, epoch: 2 | loss: 0.2694219
-	speed: 0.1104s/iter; left time: 145.0427s
-Epoch: 2 cost time: 9.23786973953247
+	speed: 0.3636s/iter; left time: 477.7155s
+Epoch: 2 cost time: 16.676472902297974
 Epoch: 2, Steps: 157 | Train Loss: 0.2428952 Vali Loss: 0.2285534 Test Loss: 0.1825071
 Validation loss decreased (0.228843 --> 0.228553).  Saving model ...
 Updating learning rate to 5e-05
 	iters: 100, epoch: 3 | loss: 0.2194417
-	speed: 0.1102s/iter; left time: 127.4647s
-Epoch: 3 cost time: 9.235058546066284
+	speed: 0.3948s/iter; left time: 456.8177s
+Epoch: 3 cost time: 16.388923406600952
 Epoch: 3, Steps: 157 | Train Loss: 0.2332267 Vali Loss: 0.2320362 Test Loss: 0.1821180
 EarlyStopping counter: 1 out of 3
 Updating learning rate to 2.5e-05
 	iters: 100, epoch: 4 | loss: 0.2077828
-	speed: 0.1100s/iter; left time: 110.0007s
-Epoch: 4 cost time: 9.277401447296143
+	speed: 0.3882s/iter; left time: 388.1623s
+Epoch: 4 cost time: 17.20192265510559
 Epoch: 4, Steps: 157 | Train Loss: 0.2255313 Vali Loss: 0.2368908 Test Loss: 0.1828119
 EarlyStopping counter: 2 out of 3
 Updating learning rate to 1.25e-05
 	iters: 100, epoch: 5 | loss: 0.2236991
-	speed: 0.1156s/iter; left time: 97.4674s
-Epoch: 5 cost time: 9.701324939727783
+	speed: 0.4053s/iter; left time: 341.6977s
+Epoch: 5 cost time: 17.04772925376892
 Epoch: 5, Steps: 157 | Train Loss: 0.2224962 Vali Loss: 0.2399363 Test Loss: 0.1850550
 EarlyStopping counter: 3 out of 3
 Early stopping
->>>>>>>testing : long_term_forecast_Exchange_96_192_SimpleTM_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>testing : long_term_forecast_Exchange_96_192_SimpleTM_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 test 1326
 test shape: (1326, 192, 8) (1326, 192, 8)
 test shape: (1326, 192, 8) (1326, 192, 8)
-mse:0.18239736557006836, mae:0.3033716380596161
+mse:0.18239736557006836, mae:0.3033716380596161, rmse:0.42708003520965576, mape:1.94646155834198, mspe:2039.0828857421875
+================================================================================
+Model Profiling Summary
+Total Params             : 6,454,080
+Inference Time (s)       : 0.026086
+GPU Mem Footprint (MB)   : 66.63
+Peak Mem (MB)            : 846.04
+================================================================================
 Using GPU
 Args in experiment:
 [1mBasic Config[0m
@@ -202,21 +216,28 @@ Args in experiment:
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : long_term_forecast_Exchange_96_336_SimpleTM_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>start training : long_term_forecast_Exchange_96_336_SimpleTM_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
 train 4880
 val 425
 test 1182
 	iters: 100, epoch: 1 | loss: 0.3584153
-	speed: 0.0676s/iter; left time: 3.6486s
-Epoch: 1 cost time: 10.026280641555786
+	speed: 0.1737s/iter; left time: 9.3800s
+Epoch: 1 cost time: 25.48841381072998
 Epoch: 1, Steps: 153 | Train Loss: 0.4397021 Vali Loss: 0.3909096 Test Loss: 0.3209632
 Validation loss decreased (inf --> 0.390910).  Saving model ...
 Updating learning rate to 0.0001
->>>>>>>testing : long_term_forecast_Exchange_96_336_SimpleTM_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>testing : long_term_forecast_Exchange_96_336_SimpleTM_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 test 1182
 test shape: (1182, 336, 8) (1182, 336, 8)
 test shape: (1182, 336, 8) (1182, 336, 8)
-mse:0.3209648132324219, mae:0.41055527329444885
+mse:0.3209648132324219, mae:0.41055527329444885, rmse:0.5665375590324402, mape:2.9322054386138916, mspe:3488.05859375
+================================================================================
+Model Profiling Summary
+Total Params             : 6,527,952
+Inference Time (s)       : 0.030801
+GPU Mem Footprint (MB)   : 68.13
+Peak Mem (MB)            : 847.40
+================================================================================
 Using GPU
 Args in experiment:
 [1mBasic Config[0m
@@ -259,42 +280,49 @@ Args in experiment:
   P Hidden Dims:      128, 128            P Hidden Layers:    2                   
 
 Use GPU: cuda:0
->>>>>>>start training : long_term_forecast_Exchange_96_720_SimpleTM_2048_fixedFalse_0.0001_0.001>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>start training : long_term_forecast_Exchange_96_720_SimpleTM_2048_fixedFalse_0.0001_0.001_CI>>>>>>>>>>>>>>>>>>>>>>>>>>
 train 4496
 val 41
 test 798
 	iters: 100, epoch: 1 | loss: 0.8509523
-	speed: 0.0672s/iter; left time: 88.0905s
-Epoch: 1 cost time: 9.279091596603394
+	speed: 0.1648s/iter; left time: 215.9937s
+Epoch: 1 cost time: 22.56405472755432
 Epoch: 1, Steps: 141 | Train Loss: 0.8293821 Vali Loss: 1.1467927 Test Loss: 0.8214755
 Validation loss decreased (inf --> 1.146793).  Saving model ...
 Updating learning rate to 0.0001
 	iters: 100, epoch: 2 | loss: 0.7683831
-	speed: 0.0968s/iter; left time: 113.2380s
-Epoch: 2 cost time: 8.505308866500854
+	speed: 0.3562s/iter; left time: 416.8030s
+Epoch: 2 cost time: 22.49614644050598
 Epoch: 2, Steps: 141 | Train Loss: 0.7998830 Vali Loss: 0.9860328 Test Loss: 0.8420179
 Validation loss decreased (1.146793 --> 0.986033).  Saving model ...
 Updating learning rate to 5e-05
 	iters: 100, epoch: 3 | loss: 0.7409002
-	speed: 0.0956s/iter; left time: 98.4165s
-Epoch: 3 cost time: 8.314016580581665
+	speed: 0.3539s/iter; left time: 364.1862s
+Epoch: 3 cost time: 22.76922059059143
 Epoch: 3, Steps: 141 | Train Loss: 0.7791036 Vali Loss: 1.0840831 Test Loss: 0.7938489
 EarlyStopping counter: 1 out of 3
 Updating learning rate to 2.5e-05
 	iters: 100, epoch: 4 | loss: 0.8161600
-	speed: 0.0959s/iter; left time: 85.1782s
-Epoch: 4 cost time: 8.369886875152588
+	speed: 0.3525s/iter; left time: 312.9812s
+Epoch: 4 cost time: 22.218878507614136
 Epoch: 4, Steps: 141 | Train Loss: 0.7624290 Vali Loss: 1.1138196 Test Loss: 0.8156639
 EarlyStopping counter: 2 out of 3
 Updating learning rate to 1.25e-05
 	iters: 100, epoch: 5 | loss: 0.7673558
-	speed: 0.0939s/iter; left time: 70.1273s
-Epoch: 5 cost time: 8.405187368392944
+	speed: 0.3525s/iter; left time: 263.3422s
+Epoch: 5 cost time: 22.010797023773193
 Epoch: 5, Steps: 141 | Train Loss: 0.7521527 Vali Loss: 1.1437826 Test Loss: 0.7979541
 EarlyStopping counter: 3 out of 3
 Early stopping
->>>>>>>testing : long_term_forecast_Exchange_96_720_SimpleTM_2048_fixedFalse_0.0001_0.001<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>testing : long_term_forecast_Exchange_96_720_SimpleTM_2048_fixedFalse_0.0001_0.001_CI<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 test 798
 test shape: (798, 720, 8) (798, 720, 8)
 test shape: (798, 720, 8) (798, 720, 8)
-mse:0.8429850935935974, mae:0.6908191442489624
+mse:0.8429850935935974, mae:0.6908191442489624, rmse:0.9181421995162964, mape:6.07175874710083, mspe:15724.2275390625
+================================================================================
+Model Profiling Summary
+Total Params             : 6,724,944
+Inference Time (s)       : 0.014588
+GPU Mem Footprint (MB)   : 71.47
+Peak Mem (MB)            : 850.37
+================================================================================

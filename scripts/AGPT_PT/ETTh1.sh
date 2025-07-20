@@ -13,14 +13,14 @@ python -u run.py \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 96 \
-  --e_layers 1 \
+  --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 2 \
+  --n_heads 8 \
   --itr 1
 
 python -u run.py \
@@ -35,14 +35,14 @@ python -u run.py \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 192 \
-  --e_layers 1 \
+  --e_layers 3 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 8 \
+  --n_heads 1 \
   --itr 1
 
 python -u run.py \
@@ -54,17 +54,18 @@ python -u run.py \
   --model $model_name \
   --data ETTh1 \
   --features M \
+  --channel CDA \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 336 \
-  --e_layers 1 \
+  --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 8 \
+  --n_heads 16 \
   --itr 1
 
 python -u run.py \
@@ -76,16 +77,16 @@ python -u run.py \
   --model $model_name \
   --data ETTh1 \
   --features M \
+  --channel CD \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 720 \
-  --e_layers 1 \
+  --e_layers 3 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 16 \
-  --train_epochs 2 \
+  --n_heads 2 \
   --itr 1

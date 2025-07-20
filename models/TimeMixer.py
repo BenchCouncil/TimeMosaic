@@ -501,7 +501,7 @@ class Model(nn.Module):
 
     def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None):
         if self.task_name == 'long_term_forecast' or self.task_name == 'short_term_forecast':
-            dec_out = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
+            dec_out = self.forecast(x_enc, None, None, None)
             return dec_out
         if self.task_name == 'imputation':
             dec_out = self.imputation(x_enc, x_mark_enc, mask)

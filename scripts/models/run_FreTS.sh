@@ -4,30 +4,25 @@
 MAX_JOBS=2
 TOTAL_GPUS=2
 MAX_RETRIES=1
-LOG_DIR="logs_AGPT_PT_m1"
+LOG_DIR="logs_FreTS"
 
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-# "/root/daye/AGPT/scripts/AGPT_PT/ECL_cdp.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/ETTh1_cd.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/ETTm1_cd.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/ETTh2_cda.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/ETTh2_cd.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/ETTh2.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/ETTh2_cdp.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/ETTh2_ci+.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/ECL_ci+.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/Exchange_cd.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/ETTm2_cd.sh"
-"/root/daye/AGPT/scripts/AGPT_PT/Traffic_cdp.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/PEMS.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/Solar.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/Weather_cda.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/Wind1.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/Wind2.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/Wind3.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/Wind4.sh"
+# "/root/daye/AGPT/scripts/FreTS/ETTh1.sh"
+"/root/daye/AGPT/scripts/FreTS/ETTm1.sh"
+"/root/daye/AGPT/scripts/FreTS/ETTh2.sh"
+"/root/daye/AGPT/scripts/FreTS/Exchange.sh"
+"/root/daye/AGPT/scripts/FreTS/ETTm2.sh"
+"/root/daye/AGPT/scripts/FreTS/PEMS.sh"
+"/root/daye/AGPT/scripts/FreTS/Solar.sh"
+"/root/daye/AGPT/scripts/FreTS/Weather.sh"
+"/root/daye/AGPT/scripts/FreTS/Wind1.sh"
+"/root/daye/AGPT/scripts/FreTS/Wind2.sh"
+"/root/daye/AGPT/scripts/FreTS/Wind3.sh"
+"/root/daye/AGPT/scripts/FreTS/Wind4.sh"
+"/root/daye/AGPT/scripts/FreTS/Traffic.sh"
+"/root/daye/AGPT/scripts/FreTS/ECL.sh"
 )
 
 
@@ -62,8 +57,7 @@ run_with_retry() {
 
     while [ $attempt -le $MAX_RETRIES ]; do
         echo "[INFO] Running $script_path on GPU $gpu_id (Attempt $((attempt + 1)))"
-        # CUDA_VISIBLE_DEVICES=$gpu_id bash "$script_path" > "$log_file" 2>&1
-        bash "$script_path" > "$log_file" 2>&1
+        CUDA_VISIBLE_DEVICES=$gpu_id bash "$script_path" > "$log_file" 2>&1
         local status=$?
         if [ $status -eq 0 ]; then
             echo "[SUCCESS] $script_path succeeded. Log saved to $log_file"

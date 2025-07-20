@@ -37,10 +37,10 @@ class Exp_AGPT(Exp_Basic):
         return model_optim
 
     def _select_criterion(self):
-        if self.args.loss == 'MSE':
-            criterion = nn.MSELoss()
-        else:
-            criterion = nn.L1Loss()
+        # if self.args.loss == 'MSE':
+            # criterion = nn.MSELoss()
+        # else:
+        criterion = nn.L1Loss()
         return criterion
  
 
@@ -275,20 +275,26 @@ class Exp_AGPT(Exp_Basic):
 
         mae, mse, rmse, mape, mspe, _ = metric(preds, trues)
         print('mse:{}, mae:{}, rmse:{}, mape:{}, mspe:{}'.format(mse, mae, rmse, mape, mspe))
-        f = open("result_long_term_forecast.txt", 'a')
-        f.write(setting + "  \n")
-        f.write('mse:{}, mae:{}, rmse:{}, mape:{}, mspe:{}'.format(mse, mae, rmse, mape, mspe))
-        f.write('\n')
-        f.write('\n')
-        f.close()
+        # f = open("result_long_term_forecast.txt", 'a')
+        # f.write(setting + "  \n")
+        # f.write('mse:{}, mae:{}, rmse:{}, mape:{}, mspe:{}'.format(mse, mae, rmse, mape, mspe))
+        # f.write('\n')
+        # f.write('\n')
+        # f.close()
 
-        np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
-        np.save(folder_path + 'pred.npy', preds)
-        np.save(folder_path + 'true.npy', trues)
+        # np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
+        # np.save(folder_path + 'pred.npy', preds)
+        # np.save(folder_path + 'true.npy', trues)
         
         self.profile_model(test_loader)
+        
+        best_model_path = os.path.join('./checkpoints/' + setting, 'checkpoint.pth')
+        if os.path.exists(best_model_path):
+            os.remove(best_model_path)
+            print(f"Deleted model checkpoint at: {best_model_path}")
 
         return
+    
     def profile_model(self, test_loader):
         self.model.eval()
         with torch.no_grad():
@@ -301,7 +307,6 @@ class Exp_AGPT(Exp_Basic):
             dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
             dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
 
-            # 同步 + 清空显存记录
             torch.cuda.reset_peak_memory_stats()
             torch.cuda.synchronize()
             start_time = time.time()

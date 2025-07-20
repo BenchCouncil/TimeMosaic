@@ -50,20 +50,53 @@ class AMS(nn.Module):
     def _gates_to_load(self, gates):
         return (gates > 0).sum(0)
 
+    # def _prob_in_top_k(self, clean_values, noisy_values, noise_stddev, noisy_top_values):
+    #     batch = clean_values.size(0)
+    #     m = noisy_top_values.size(1)
+    #     top_values_flat = noisy_top_values.flatten()
+
+    #     threshold_positions_if_in = torch.arange(batch, device=clean_values.device) * m + self.k
+    #     threshold_if_in = torch.unsqueeze(torch.gather(top_values_flat, 0, threshold_positions_if_in), 1)
+    #     is_in = torch.gt(noisy_values, threshold_if_in)
+    #     threshold_positions_if_out = threshold_positions_if_in - 1
+    #     threshold_if_out = torch.unsqueeze(torch.gather(top_values_flat, 0, threshold_positions_if_out), 1)
+    #     normal = Normal(self.mean, self.std)
+    #     eps = 1e-6
+    #     safe_stddev = noise_stddev.clamp(min=eps)
+    #     prob_if_in = normal.cdf((clean_values - threshold_if_in) / safe_stddev)
+    #     prob_if_out = normal.cdf((clean_values - threshold_if_out) / safe_stddev)
+    #     prob = torch.where(is_in, prob_if_in, prob_if_out)
+    #     return prob
+    
     def _prob_in_top_k(self, clean_values, noisy_values, noise_stddev, noisy_top_values):
         batch = clean_values.size(0)
         m = noisy_top_values.size(1)
         top_values_flat = noisy_top_values.flatten()
 
         threshold_positions_if_in = torch.arange(batch, device=clean_values.device) * m + self.k
-        threshold_if_in = torch.unsqueeze(torch.gather(top_values_flat, 0, threshold_positions_if_in), 1)
-        is_in = torch.gt(noisy_values, threshold_if_in)
+        threshold_if_in = torch.gather(top_values_flat, 0, threshold_positions_if_in).unsqueeze(1)
         threshold_positions_if_out = threshold_positions_if_in - 1
-        threshold_if_out = torch.unsqueeze(torch.gather(top_values_flat, 0, threshold_positions_if_out), 1)
+        threshold_if_out = torch.gather(top_values_flat, 0, threshold_positions_if_out).unsqueeze(1)
+
+        clean_values = torch.nan_to_num(clean_values, nan=0.0, posinf=1e3, neginf=-1e3)
+        threshold_if_in = torch.nan_to_num(threshold_if_in, nan=0.0, posinf=1e3, neginf=-1e3)
+        threshold_if_out = torch.nan_to_num(threshold_if_out, nan=0.0, posinf=1e3, neginf=-1e3)
+        noise_stddev = torch.nan_to_num(noise_stddev, nan=1.0, posinf=1.0, neginf=1.0)
+        safe_stddev = noise_stddev.clamp(min=1e-6)
+
+        z_in = (clean_values - threshold_if_in) / safe_stddev
+        z_out = (clean_values - threshold_if_out) / safe_stddev
+
+        z_in = torch.nan_to_num(z_in, nan=0.0, posinf=5.0, neginf=-5.0)
+        z_out = torch.nan_to_num(z_out, nan=0.0, posinf=5.0, neginf=-5.0)
+
         normal = Normal(self.mean, self.std)
-        prob_if_in = normal.cdf((clean_values - threshold_if_in) / noise_stddev)
-        prob_if_out = normal.cdf((clean_values - threshold_if_out) / noise_stddev)
+        prob_if_in = normal.cdf(z_in)
+        prob_if_out = normal.cdf(z_out)
+
+        is_in = torch.gt(noisy_values, threshold_if_in)
         prob = torch.where(is_in, prob_if_in, prob_if_out)
+
         return prob
 
     def seasonality_and_trend_decompose(self, x):

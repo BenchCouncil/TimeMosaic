@@ -126,15 +126,10 @@ class Exp_PathFormer(Exp_Basic):
                 batch_x_mark = batch_x_mark.float().to(self.device)
                 batch_y_mark = batch_y_mark.float().to(self.device)
 
-
-
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        if self.args.model=='PathFormer':
-                            outputs, balance_loss = self.model(batch_x)
-                        else:
-                            outputs = self.model(batch_x)
+                        outputs, balance_loss = self.model(batch_x)
 
                         f_dim = -1 if self.args.features == 'MS' else 0
                         outputs = outputs[:, -self.args.pred_len:, f_dim:]
@@ -142,16 +137,12 @@ class Exp_PathFormer(Exp_Basic):
                         loss = criterion(outputs, batch_y)
                         train_loss.append(loss.item())
                 else:
-                    if self.args.model == 'PathFormer':
-                        outputs, balance_loss = self.model(batch_x)
-                    else:
-                        outputs = self.model(batch_x)
+                    outputs, balance_loss = self.model(batch_x)
                     f_dim = -1 if self.args.features == 'MS' else 0
                     outputs = outputs[:, -self.args.pred_len:, f_dim:]
                     batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
                     loss = criterion(outputs, batch_y)
-                    if self.args.model=="PathFormer":
-                        loss = loss + balance_loss
+                    loss = loss + balance_loss
                     train_loss.append(loss.item())
 
                 if (i + 1) % 100 == 0:
@@ -187,7 +178,7 @@ class Exp_PathFormer(Exp_Basic):
                 break
 
             if self.args.lradj != 'TST':
-                adjust_learning_rate(model_optim, scheduler, epoch + 1, self.args)
+                adjust_learning_rate(model_optim, epoch, self.args)
             else:
                 print('Updating learning rate to {}'.format(scheduler.get_last_lr()[0]))
 
@@ -251,71 +242,71 @@ class Exp_PathFormer(Exp_Basic):
                     pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
                     visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
 
-        if self.args.test_flop:
-            test_params_flop((batch_x.shape[1], batch_x.shape[2]))
-            exit()
-        preds = np.array(preds)
-        trues = np.array(trues)
-        inputx = np.array(inputx)
-
+        preds = np.concatenate(preds, axis=0)
+        trues = np.concatenate(trues, axis=0)
+        print('test shape:', preds.shape, trues.shape)
         preds = preds.reshape(-1, preds.shape[-2], preds.shape[-1])
         trues = trues.reshape(-1, trues.shape[-2], trues.shape[-1])
-        inputx = inputx.reshape(-1, inputx.shape[-2], inputx.shape[-1])
-
-        mae, mse, rmse, mape, mspe, rse, corr = metric(preds, trues)
-        print('mse:{}, mae:{}, rmse:{}, mape:{}, mspe:{}'.format(mse, mae, rse, mape, mspe))
-        f = open("result.txt", 'a')
-        f.write(setting + "  \n")
-        f.write('mse:{}, mae:{}, rse:{}'.format(mse, mae, rse))
-        f.write('\n')
-        f.write('\n')
-        f.close()
-        return
-
-    def predict(self, setting, load=False):
-        pred_data, pred_loader = self._get_data(flag='pred')
-
-        if load:
-            path = os.path.join(self.args.checkpoints, setting)
-            best_model_path = path + '/' + 'checkpoint.pth'
-            self.model.load_state_dict(torch.load(best_model_path))
-
-
-        preds = []
-
-        self.model.eval()
-        with torch.no_grad():
-            for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in enumerate(pred_loader):
-                batch_x = batch_x.float().to(self.device)
-                batch_y = batch_y.float()
-                batch_x_mark = batch_x_mark.float().to(self.device)
-                batch_y_mark = batch_y_mark.float().to(self.device)
-
-
-                # encoder - decoder
-                if self.args.use_amp:
-                    with torch.cuda.amp.autocast():
-                        if self.args.model=='PathFormer':
-                            outputs, a_loss = self.model(batch_x)
-                        else:
-                            outputs = self.model(batch_x)
-
-                else:
-                    if self.args.model == 'PathFormer':
-                        outputs, a_loss = self.model(batch_x)
-                    else:
-                        outputs = self.model(batch_x)
-                pred = outputs.detach().cpu().numpy()  # .squeeze()
-                preds.append(pred)
-
-        preds = np.array(preds)
-        preds = preds.reshape(-1, preds.shape[-2], preds.shape[-1])
+        print('test shape:', preds.shape, trues.shape)
 
         # result save
-        # folder_path = './results/' + setting + '/'
-        # if not os.path.exists(folder_path):
-        #     os.makedirs(folder_path)
-        #
-        # np.save(folder_path + 'real_prediction.npy', preds)
+        folder_path = './results/' + setting + '/'
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+
+        mae, mse, rmse, mape, mspe, _ = metric(preds, trues)
+        print('mse:{}, mae:{}, rmse:{}, mape:{}, mspe:{}'.format(mse, mae, rmse, mape, mspe))
+        # f = open("result_long_term_forecast.txt", 'a')
+        # f.write(setting + "  \n")
+        # f.write('mse:{}, mae:{}, rmse:{}, mape:{}, mspe:{}'.format(mse, mae, rmse, mape, mspe))
+        # f.write('\n')
+        # f.write('\n')
+        # f.close()
+
+        # np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
+        # np.save(folder_path + 'pred.npy', preds)
+        # np.save(folder_path + 'true.npy', trues)
+        
+        self.profile_model(test_loader)
+        
+        best_model_path = os.path.join('./checkpoints/' + setting, 'checkpoint.pth')
+        if os.path.exists(best_model_path):
+            os.remove(best_model_path)
+            print(f"Deleted model checkpoint at: {best_model_path}")
 
         return
+    
+    def profile_model(self, test_loader):
+        self.model.eval()
+        with torch.no_grad():
+            batch_x, batch_y, batch_x_mark, batch_y_mark = next(iter(test_loader))
+            batch_x = batch_x.float().to(self.device)
+            batch_y = batch_y.float().to(self.device)
+            batch_x_mark = batch_x_mark.float().to(self.device)
+            batch_y_mark = batch_y_mark.float().to(self.device)
+
+            dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
+            dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
+
+            # 同步 + 清空显存记录
+            torch.cuda.reset_peak_memory_stats()
+            torch.cuda.synchronize()
+            start_time = time.time()
+
+            _ = self.model(batch_x)
+
+            torch.cuda.synchronize()
+            end_time = time.time()
+
+            inference_time = end_time - start_time
+            gpu_mem = torch.cuda.memory_allocated(self.device) / 1024 / 1024
+            peak_mem = torch.cuda.max_memory_allocated(self.device) / 1024 / 1024
+            total_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
+
+            print("=" * 80)
+            print("Model Profiling Summary")
+            print(f"{'Total Params':<25}: {total_params:,}")
+            print(f"{'Inference Time (s)':<25}: {inference_time:.6f}")
+            print(f"{'GPU Mem Footprint (MB)':<25}: {gpu_mem:.2f}")
+            print(f"{'Peak Mem (MB)':<25}: {peak_mem:.2f}")
+            print("=" * 80)

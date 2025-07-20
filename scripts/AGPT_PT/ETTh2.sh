@@ -10,10 +10,11 @@ python -u run.py \
   --model $model_name \
   --data ETTh2 \
   --features M \
+  --channel CDA \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 96 \
-  --e_layers 1 \
+  --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
@@ -32,6 +33,7 @@ python -u run.py \
   --model $model_name \
   --data ETTh2 \
   --features M \
+  --channel CDA \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 192 \
@@ -54,6 +56,7 @@ python -u run.py \
   --model $model_name \
   --data ETTh2 \
   --features M \
+  --channel CDA \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 336 \
@@ -64,7 +67,7 @@ python -u run.py \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 1 \
+  --n_heads 2 \
   --itr 1
 
 python -u run.py \
@@ -79,12 +82,12 @@ python -u run.py \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 720 \
-  --e_layers 1 \
+  --e_layers 3 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 1 \
+  --n_heads 16 \
   --itr 1

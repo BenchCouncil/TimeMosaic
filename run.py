@@ -46,6 +46,8 @@ if __name__ == '__main__':
                         help='hidden layer dimensions of projector (List)')
     parser.add_argument('--p_hidden_layers', type=int, default=2, help='number of hidden layers in projector')
     parser.add_argument('--gpu_type', type=str, default='cuda', help='gpu type')  # cuda or mps
+    parser.add_argument('--visualize_attn', action='store_true', help='Whether to visualize attention')
+
 
     # forecasting task
     parser.add_argument('--seq_len', type=int, default=96, help='input sequence length')
@@ -111,7 +113,7 @@ if __name__ == '__main__':
     parser.add_argument('--pre192', type=int, default=64, help='')
     parser.add_argument('--pre336', type=int, default=168, help='')
     parser.add_argument('--pre720', type=int, default=240, help='')
-    parser.add_argument('--pre12', type=int, default=2, help='')
+    parser.add_argument('--pre12', type=int, default=6, help='')
 
 
     # SimpleTS
@@ -147,11 +149,11 @@ if __name__ == '__main__':
     parser.add_argument('--noisy_gating', action='store_true', help='DUET noisy_gating', default=True)
 
     # PathFormer
-    parser.add_argument('--layer_nums', type=int, default=3)
-    parser.add_argument('--num_nodes', type=int, default=21)
-    parser.add_argument('--patch_size_list', nargs='+', type=int, default=[16,12,8,32,12,8,6,4,8,6,4,2])
+    parser.add_argument('--layer_nums', type=int, default=2)
+    parser.add_argument('--num_nodes', type=int, default=4)
+    parser.add_argument('--patch_size_list', nargs='+', type=int, default=[32,16,8])
     parser.add_argument('--revin', type=int, default=1, help='whether to apply RevIN')
-    parser.add_argument('--num_experts_list', type=list, default=[4, 4, 4])
+    parser.add_argument('--num_experts_list', type=list, default=[2, 2, 2])
     parser.add_argument('--residual_connection', type=int, default=0)
     parser.add_argument('--batch_norm', type=int, default=0)
     parser.add_argument('--pct_start', type=float, default=0.4, help='pct_start')
@@ -229,13 +231,25 @@ if __name__ == '__main__':
                 torch.backends.mps.empty_cache()
             elif args.gpu_type == 'cuda':
                 torch.cuda.empty_cache()
+    # else:
+    #     ii = 0
+    #     setting = '{}_{}_{}_{}_fixed{}_{}_{}_{}'.format(args.task_name, args.model_id, args.model, args.d_ff, args.fixed_weight, args.learning_rate, args.scale_rate, args.channel)
+    #     exp = Exp(args)  # set experiments
+    #     print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
+    #     exp.test(setting, test=1)
+    #     if args.gpu_type == 'mps':
+    #         torch.backends.mps.empty_cache()
+    #     elif args.gpu_type == 'cuda':
+    #         torch.cuda.empty_cache()
     else:
         ii = 0
-        setting = '{}_{}_{}_{}_fixed{}_{}_{}_{}'.format(args.task_name, args.model_id, args.model, args.d_ff, args.fixed_weight, args.learning_rate, args.scale_rate, args.channel)
-        exp = Exp(args)  # set experiments
-        print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
-        exp.test(setting, test=1)
-        if args.gpu_type == 'mps':
-            torch.backends.mps.empty_cache()
-        elif args.gpu_type == 'cuda':
-            torch.cuda.empty_cache()
+        setting = '{}_{}_{}_{}_fixed{}_{}_{}_{}'.format(args.task_name, args.model_id, args.model,
+                                                        args.d_ff, args.fixed_weight, args.learning_rate,
+                                                        args.scale_rate, args.channel)
+        exp = Exp(args)
+        if args.visualize_attn:
+            print(f'>>>>>>>visualizing attention : {setting}<<<<<<<<<<<<<<<<<<<')
+            exp.visualize_attn(setting)
+        else:
+            print(f'>>>>>>>testing : {setting}<<<<<<<<<<<<<<<<<<<')
+            exp.test(setting, test=1)

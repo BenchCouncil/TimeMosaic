@@ -9,6 +9,8 @@ python -u run.py \
   --model $model_name \
   --data custom \
   --features M \
+  --d_model 32 \
+  --d_ff 128 \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 96 \
@@ -30,6 +32,8 @@ python -u run.py \
   --model $model_name \
   --data custom \
   --features M \
+  --d_model 32 \
+  --d_ff 128 \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 192 \
@@ -51,6 +55,8 @@ python -u run.py \
   --model $model_name \
   --data custom \
   --features M \
+  --d_model 32 \
+  --d_ff 128 \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 336 \
@@ -73,6 +79,8 @@ python -u run.py \
   --model $model_name \
   --data custom \
   --features M \
+  --d_model 32 \
+  --d_ff 128 \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 720 \
