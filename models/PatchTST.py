@@ -107,13 +107,13 @@ class Model(nn.Module):
                   (stdev[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1))
         dec_out = dec_out + \
                   (means[:, 0, :].unsqueeze(1).repeat(1, self.pred_len, 1))
-        return dec_out
+        return dec_out, attns
 
     def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask=None):
         if self.task_name == 'long_term_forecast' or self.task_name == 'short_term_forecast':
-            dec_out = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
+            dec_out, attns = self.forecast(x_enc, x_mark_enc, x_dec, x_mark_dec)
             if self.visualize_attn:
-                return dec_out[:, -self.pred_len:, :]  # [B, L, D]
-            else:
                 return dec_out[:, -self.pred_len:, :], attns
+            else:
+                return dec_out[:, -self.pred_len:, :]
         return None

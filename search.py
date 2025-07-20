@@ -2,7 +2,7 @@ import os
 import re
 
 log_dir = "logs"
-prefix = "Weather_96_96"
+prefix = "ETTm1_96_720"
 best_mse = float("inf")
 best_mae = float("inf")
 best_mse_file = ""
