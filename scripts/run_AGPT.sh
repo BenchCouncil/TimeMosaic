@@ -4,7 +4,7 @@
 MAX_JOBS=2
 TOTAL_GPUS=2
 MAX_RETRIES=1
-LOG_DIR="logs_AGPT_PT_m1"
+LOG_DIR="logs_AGPT_PT"
 
 mkdir -p "$LOG_DIR"
 
@@ -20,9 +20,9 @@ SCRIPT_LIST=(
 # "/root/daye/AGPT/scripts/AGPT_PT/ECL_ci+.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/Exchange_cd.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/ETTm2_cd.sh"
-"/root/daye/AGPT/scripts/AGPT_PT/Traffic_cdp.sh"
+# "/root/daye/AGPT/scripts/AGPT_PT/Traffic_cdp.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/PEMS.sh"
-# "/root/daye/AGPT/scripts/AGPT_PT/Solar.sh"
+"/root/daye/AGPT/scripts/AGPT_PT/Solar_cdp.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/Weather_cda.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/Wind1.sh"
 # "/root/daye/AGPT/scripts/AGPT_PT/Wind2.sh"

@@ -252,4 +252,5 @@ if __name__ == '__main__':
             exp.visualize_attn(setting)
         else:
             print(f'>>>>>>>testing : {setting}<<<<<<<<<<<<<<<<<<<')
+            # setting = 'long_term_forecast_ETTh1_96_96_PatchTST_2048_fixedFalse_0.0001_0.001_CI'
             exp.test(setting, test=1)

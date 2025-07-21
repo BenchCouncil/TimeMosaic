@@ -17,7 +17,7 @@ python -u run.py \
   --model $model_name \
   --data Solar \
   --features M \
-  --d_model 64 \
+  --d_model 32 \
   --d_ff 128 \
   --seq_len $seq_len \
   --label_len 0 \
@@ -44,7 +44,7 @@ python -u run.py \
   --model $model_name \
   --data Solar \
   --features M \
-  --d_model 64 \
+  --d_model 32 \
   --d_ff 128 \
   --seq_len $seq_len \
   --label_len 0 \
@@ -70,7 +70,7 @@ python -u run.py \
   --model $model_name \
   --data Solar \
   --features M \
-  --d_model 64 \
+  --d_model 32 \
   --d_ff 128 \
   --seq_len $seq_len \
   --label_len 0 \
@@ -97,7 +97,7 @@ python -u run.py \
   --model $model_name \
   --data Solar \
   --features M \
-  --d_model 64 \
+  --d_model 32 \
   --d_ff 128 \
   --seq_len $seq_len \
   --label_len 0 \

@@ -18,6 +18,7 @@ python -u run.py \
   --model_id solar_96_96 \
   --model $model_name \
   --data Solar \
+  --channel CDP \
   --features M \
   --seq_len $seq_len \
   --label_len 0 \
@@ -30,8 +31,8 @@ python -u run.py \
   --c_out 137 \
   --des 'Exp' \
   --itr 1 \
-  --d_model 32 \
-  --d_ff 128 \
+  --d_model 512 \
+  --d_ff 2048 \
   --batch_size $batch_size \
   --learning_rate $learning_rate \
   --train_epochs $train_epochs \
@@ -48,6 +49,7 @@ python -u run.py \
   --model $model_name \
   --data Solar \
   --features M \
+  --channel CDP \
   --seq_len $seq_len \
   --label_len 0 \
   --pred_len 192 \
@@ -58,8 +60,8 @@ python -u run.py \
   --c_out 137 \
   --des 'Exp' \
   --itr 1 \
-  --d_model 32 \
-  --d_ff 128 \
+  --d_model 512 \
+  --d_ff 2048 \
   --batch_size $batch_size \
   --learning_rate $learning_rate \
   --train_epochs $train_epochs \
@@ -76,6 +78,7 @@ python -u run.py \
   --model $model_name \
   --data Solar \
   --features M \
+  --channel CDP \
   --seq_len $seq_len \
   --label_len 0 \
   --pred_len 336 \
@@ -87,8 +90,8 @@ python -u run.py \
   --c_out 137 \
   --des 'Exp' \
   --itr 1 \
-  --d_model 32 \
-  --d_ff 128 \
+  --d_model 512 \
+  --d_ff 2048 \
   --batch_size $batch_size \
   --learning_rate $learning_rate \
   --train_epochs $train_epochs \
@@ -105,6 +108,7 @@ python -u run.py \
   --model $model_name \
   --data Solar \
   --features M \
+  --channel CDP \
   --seq_len $seq_len \
   --label_len 0 \
   --pred_len 720 \
@@ -116,8 +120,8 @@ python -u run.py \
   --c_out 137 \
   --des 'Exp' \
   --itr 1 \
-  --d_model 32 \
-  --d_ff 128 \
+  --d_model 512 \
+  --d_ff 2048 \
   --batch_size $batch_size \
   --learning_rate $learning_rate \
   --train_epochs $train_epochs \

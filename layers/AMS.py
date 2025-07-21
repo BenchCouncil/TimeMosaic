@@ -3,7 +3,7 @@ import torch.nn as nn
 from torch.distributions.normal import Normal
 from layers.Layer import Transformer_Layer
 from utils.Other import SparseDispatcher, FourierLayer, series_decomp_multi, MLP
-
+import random
 
 class AMS(nn.Module):
     def __init__(self, input_size, output_size, num_experts, device, num_nodes=1, d_model=32, d_ff=64, dynamic=False,
@@ -144,6 +144,26 @@ class AMS(nn.Module):
         balance_loss = self.cv_squared(importance) + self.cv_squared(load)
         balance_loss *= loss_coef
         dispatcher = SparseDispatcher(self.num_experts, gates)
+
+
+
+        #### add ####
+        # Debug 分配是否有效
+        total = sum(dispatcher._part_sizes)  # 或 dispatcher.part_sizes 具体取决于实现
+        if total != x.shape[0]:
+            print(f"[Warning] SparseDispatcher 分配不一致：总共分配 {total}，batch 实际为 {x.shape[0]}")
+            print(f"[Detail] part_sizes = {dispatcher._part_sizes}")
+        # 强制避免所有分配为0的情况
+        min_assignments = (gates.sum(dim=0) == 0)  # shape: [num_experts]
+        if min_assignments.any():
+            batch_size = gates.size(0)
+            for idx in min_assignments.nonzero(as_tuple=True)[0]:
+                # 随机挑一个样本分给这个 expert
+                gates[random.randint(0, batch_size - 1), idx] = 1e-2
+
+        #### add ####
+
+
         expert_inputs = dispatcher.dispatch(x)
         expert_outputs = [self.experts[i](expert_inputs[i])[0] for i in range(self.num_experts)]
         output = dispatcher.combine(expert_outputs)

@@ -40,7 +40,7 @@ class CIN(nn.Module):
         self.d_model = d_model
         self.cross_layer_sizes = cross_layer_sizes
         self.all_patch = num_patches
-        self.channel = configs.channel
+        self.channel = configs.channel_xpatchfm
         self.num_patches = int((configs.seq_len - configs.patch_len) / stride + 2) 
         self.activation = {
             'relu': nn.ReLU(),
@@ -65,9 +65,12 @@ class CIN(nn.Module):
         self.norm = nn.LayerNorm(d_model)
 
         self.threshold = 0.5
-        self.mask_linear = nn.ModuleList([
-            nn.Linear(d_model, 1) for _ in range(len(self.cross_layer_sizes))
-        ])
+        # mask 1
+        # self.mask_linear = nn.Linear(d_model, 1)
+        # mask 2
+        # self.mask_linear = nn.ModuleList([
+        #     nn.Linear(d_model, 1) for _ in range(len(self.cross_layer_sizes))
+        # ])
 
     def forward(self, x):
         """
@@ -76,7 +79,10 @@ class CIN(nn.Module):
         """
         if self.channel == "CD":
             x = x.view(-1, self.all_patch, self.d_model)
-        
+            # mask_logits = self.mask_linear[i](X_k).squeeze(-1)
+            # soft_mask = torch.sigmoid(mask_logits)
+            # x = x * soft_mask.unsqueeze(-1)
+
         x_residual = x
         layer_outputs = []
 
@@ -84,6 +90,11 @@ class CIN(nn.Module):
         X_k = x                     
         
         for i, H_k in enumerate(self.cross_layer_sizes):
+            
+            if self.channel == "CD":
+                mask_logits = self.mask_linear[i](X_k).squeeze(-1)
+                soft_mask = torch.sigmoid(mask_logits)
+                X_k = X_k * soft_mask.unsqueeze(-1)
             outer_product = torch.einsum('bmd,bnd->bmnd', X_k, X_0)
             X_next = torch.einsum('bmnd,imnk->bikd', outer_product, self.weights[i])
           
