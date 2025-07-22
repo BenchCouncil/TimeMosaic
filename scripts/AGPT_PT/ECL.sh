@@ -12,6 +12,7 @@ python -u run.py \
   --model $model_name \
   --data custom \
   --features M \
+  --channel CDP \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 96 \
@@ -36,6 +37,7 @@ python -u run.py \
   --model $model_name \
   --data custom \
   --features M \
+  --channel CDP \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 192 \
@@ -60,6 +62,7 @@ python -u run.py \
   --model $model_name \
   --data custom \
   --features M \
+  --channel CI+ \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 336 \
@@ -84,6 +87,7 @@ python -u run.py \
   --model $model_name \
   --data custom \
   --features M \
+  --channel CDP \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 720 \

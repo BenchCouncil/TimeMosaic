@@ -9,6 +9,8 @@ python -u run.py \
   --model $model_name \
   --data custom \
   --features M \
+  --use_multi_gpu \
+  --devices 0,1 \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 96 \
@@ -18,10 +20,10 @@ python -u run.py \
   --enc_in 862 \
   --dec_in 862 \
   --c_out 862 \
-  --d_model 512 \
-  --d_ff 512 \
+  --d_model 32 \
+  --d_ff 128 \
   --des 'Exp' \
-  --batch_size 4 \
+  --batch_size 1 \
   --itr 1
 
 python -u run.py \
@@ -42,8 +44,8 @@ python -u run.py \
   --enc_in 862 \
   --dec_in 862 \
   --c_out 862 \
-  --d_model 512 \
-  --d_ff 512 \
+  --d_model 32 \
+  --d_ff 128 \
   --des 'Exp' \
   --batch_size 4 \
   --itr 1
@@ -66,8 +68,8 @@ python -u run.py \
   --enc_in 862 \
   --dec_in 862 \
   --c_out 862 \
-  --d_model 512 \
-  --d_ff 512 \
+  --d_model 32 \
+  --d_ff 128 \
   --des 'Exp' \
   --batch_size 4 \
   --itr 1
@@ -90,8 +92,8 @@ python -u run.py \
   --enc_in 862 \
   --dec_in 862 \
   --c_out 862 \
-  --d_model 512 \
-  --d_ff 512 \
+  --d_model 32 \
+  --d_ff 128 \
   --des 'Exp' \
   --batch_size 4 \
   --itr 1

@@ -96,8 +96,8 @@ if __name__ == '__main__':
 
     # iTransformer
     parser.add_argument('--inverse', action='store_true', help='inverse output data', default=False)
-    parser.add_argument('--target_root_path', type=str, default='./data/electricity/', help='root path of the data file')
-    parser.add_argument('--target_data_path', type=str, default='electricity.csv', help='data file')
+    # parser.add_argument('--target_root_path', type=str, default='./data/electricity/', help='root path of the data file')
+    # parser.add_argument('--target_data_path', type=str, default='electricity.csv', help='data file')
 
     # AGPT
     parser.add_argument('--fc_dropout', type=float, default=0.1, help='fc_dropout')
@@ -178,10 +178,13 @@ if __name__ == '__main__':
     parser.add_argument('--use_dnn', type=lambda x: (str(x).lower() == 'true'), default=True, help='是否使用DNN分支 (True/False)')
     parser.add_argument('--use_cin', type=lambda x: (str(x).lower() == 'true'), default=True, help='是否使用CIN分支 (True/False)')
     parser.add_argument('--dnn_hidden_units', type=int, nargs='+', default=[256, 256], help='DNN‘s number of neurons in each hidden layer')
-    parser.add_argument('--cin_layer_size', type=int, nargs='+', default=[256,128,128,64], help='The number of feature maps for each hidden layer for CIN')
+    parser.add_argument('--cin_layer_size', type=int, nargs='+', default=[256,128,64], help='The number of feature maps for each hidden layer for CIN')
     parser.add_argument('--gate_hidden_units', type=int, default=64, help='Dimension size of the hidden layer in the gated network for fusion of CIN and DNN')
     parser.add_argument('--channel_xpatchfm', type=str, default="CD", help="CI or CD")
     
+    # zero-shot
+    parser.add_argument('--target_root_path', type=str, default='./dataset/ETT-small/', help='root path of the data file')
+    parser.add_argument('--target_data_path', type=str, default='ETTh2.csv', help='data file')
 
 
     args = parser.parse_args()

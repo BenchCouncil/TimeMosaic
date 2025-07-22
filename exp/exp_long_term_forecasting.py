@@ -266,10 +266,10 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
         self.profile_model(test_loader)
         
-        best_model_path = os.path.join('./checkpoints/' + setting, 'checkpoint.pth')
-        if os.path.exists(best_model_path):
-            os.remove(best_model_path)
-            print(f"Deleted model checkpoint at: {best_model_path}")
+        # best_model_path = os.path.join('./checkpoints/' + setting, 'checkpoint.pth')
+        # if os.path.exists(best_model_path):
+        #     os.remove(best_model_path)
+        #     print(f"Deleted model checkpoint at: {best_model_path}")
 
         return
     

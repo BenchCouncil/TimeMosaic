@@ -309,7 +309,7 @@ class Model(nn.Module):
             cal_tokens = cal_tokens.repeat_interleave(C, dim=0)          # [B*C, K, D]
 
             extra_token = torch.cat([var_tokens, cal_tokens], dim=1)
-        
+
         x_enc = x_enc.permute(0, 2, 1)
         # u: [bs * nvars x patch_num x d_model]
         enc_out, n_vars, cls_pred = self.patch_embedding(x_enc)

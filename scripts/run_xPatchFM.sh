@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # ===================== 配置参数 =====================
-MAX_JOBS=2
-TOTAL_GPUS=1
-MAX_RETRIES=1
+MAX_JOBS=5
+TOTAL_GPUS=4
+MAX_RETRIES=0
 LOG_DIR="logs/xPatchFM"
 mkdir -p "$LOG_DIR"
 

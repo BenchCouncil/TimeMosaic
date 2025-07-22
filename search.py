@@ -2,7 +2,7 @@ import os
 import re
 
 log_dir = "logs"
-prefix = "ETTm2_96_192"
+prefix = "ETTm2_96_336"
 best_mse = float("inf")
 best_mae = float("inf")
 best_mse_file = ""

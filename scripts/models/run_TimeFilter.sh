@@ -15,14 +15,14 @@ SCRIPT_LIST=(
 # "/root/daye/AGPT/scripts/TimeFilter/ETTh2.sh"
 # "/root/daye/AGPT/scripts/TimeFilter/Exchange.sh"
 # "/root/daye/AGPT/scripts/TimeFilter/ETTm2.sh"
-# "/root/daye/AGPT/scripts/TimeFilter/Traffic.sh"
+"/root/daye/AGPT/scripts/TimeFilter/Traffic.sh"
 # "/root/daye/AGPT/scripts/TimeFilter/PEMS.sh"
-"/root/daye/AGPT/scripts/TimeFilter/Solar.sh"
+# "/root/daye/AGPT/scripts/TimeFilter/Solar.sh"
 # "/root/daye/AGPT/scripts/TimeFilter/Weather.sh"
 # "/root/daye/AGPT/scripts/TimeFilter/Wind1.sh"
-"/root/daye/AGPT/scripts/TimeFilter/Wind2.sh"
-"/root/daye/AGPT/scripts/TimeFilter/Wind3.sh"
-"/root/daye/AGPT/scripts/TimeFilter/Wind4.sh"
+# "/root/daye/AGPT/scripts/TimeFilter/Wind2.sh"
+# "/root/daye/AGPT/scripts/TimeFilter/Wind3.sh"
+# "/root/daye/AGPT/scripts/TimeFilter/Wind4.sh"
 )
 
 

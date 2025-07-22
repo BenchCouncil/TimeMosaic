@@ -20,7 +20,6 @@ python -u run.py \
   --c_out 7 \
   --des 'Exp' \
   --n_heads 8 \
-  --batch_size 32 \
   --itr 1
 
 python -u run.py \
@@ -43,7 +42,6 @@ python -u run.py \
   --c_out 7 \
   --des 'Exp' \
   --n_heads 1 \
-  --batch_size 128 \
   --itr 1
 
 python -u run.py \
@@ -66,7 +64,6 @@ python -u run.py \
   --c_out 7 \
   --des 'Exp' \
   --n_heads 3 \
-  --batch_size 128 \
   --itr 1
 
 python -u run.py \
@@ -90,5 +87,4 @@ python -u run.py \
   --c_out 7 \
   --des 'Exp' \
   --n_heads 4 \
-  --batch_size 128 \
   --itr 1
