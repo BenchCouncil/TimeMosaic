@@ -11,6 +11,7 @@ import warnings
 import numpy as np
 from utils.dtw_metric import dtw, accelerated_dtw
 from utils.augmentation import run_augmentation, run_augmentation_single
+import torch.nn.functional as F
 
 
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
@@ -61,9 +62,9 @@ class Exp_AGPT(Exp_Basic):
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        outputs, _ = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
                 else:
-                    outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                    outputs, _ = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
                 f_dim = -1 if self.args.features == 'MS' else 0
                 outputs = outputs[:, -self.args.pred_len:, f_dim:]
                 batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
@@ -147,21 +148,27 @@ class Exp_AGPT(Exp_Basic):
                 else:
                     outputs, cls_pred, dec_mask = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark, mask)
 
-                    counts = torch.bincount(cls_pred, minlength=3).float()
-                    current_ratio = counts / counts.sum()
+
+                    if self.args.model == "TimeMosaic":
+                        cls_soft = self.model.patch_embedding.latest_cls_soft  # [N, num_classes]
+                        current_ratio = cls_soft.mean(dim=0)
+                    else:
+                        counts = torch.bincount(cls_pred, minlength=3).float()
+                        current_ratio = counts / counts.sum()
+
+                    target_ratio = torch.full_like(current_ratio, 1.0 / len(current_ratio)).detach()
+                    loss_reg = criterion(current_ratio, target_ratio)
 
                     f_dim = -1 if self.args.features == 'MS' else 0
                     outputs = outputs[:, -self.args.pred_len:, f_dim:]
                     batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
 
-                    lambda_cls = 0.001
+                    lambda_cls = 0.01
                     if self.args.mask_ratio > 0:
-                        loss = criterion(outputs, batch_y) + lambda_cls * criterion(current_ratio, current_ratio.fill_(1/3)) + lambda_cls * criterion(batch_x[mask], dec_mask[mask])
+                        loss = criterion(outputs, batch_y) + lambda_cls * loss_reg + lambda_cls * criterion(batch_x[mask], dec_mask[mask])
                     else:
-                        loss = criterion(outputs, batch_y) + lambda_cls * criterion(current_ratio, current_ratio.fill_(1/3))
-                    # print("loss: ", criterion(outputs, batch_y))s
-                    # print("reg_loss: ", reg_loss)
-                    # raise ValueError
+                        loss = criterion(outputs, batch_y) + lambda_cls * loss_reg
+
                     train_loss.append(loss.mean().item())
 
                 if (i + 1) % 100 == 0:
@@ -200,7 +207,7 @@ class Exp_AGPT(Exp_Basic):
         self.model.load_state_dict(torch.load(best_model_path))
 
         return self.model
-
+    
     def test(self, setting, test=0):
         test_data, test_loader = self._get_data(flag='test')
         if test:
@@ -214,6 +221,8 @@ class Exp_AGPT(Exp_Basic):
             os.makedirs(folder_path)
 
         self.model.eval()
+        all_pred_list = []
+
         with torch.no_grad():
             for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in enumerate(test_loader):
                 batch_x = batch_x.float().to(self.device)
@@ -228,9 +237,9 @@ class Exp_AGPT(Exp_Basic):
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        outputs, cls_pred  = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
                 else:
-                    outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                    outputs, cls_pred  = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
 
                 f_dim = -1 if self.args.features == 'MS' else 0
                 outputs = outputs[:, -self.args.pred_len:, :]
@@ -246,6 +255,9 @@ class Exp_AGPT(Exp_Basic):
 
                 outputs = outputs[:, :, f_dim:]
                 batch_y = batch_y[:, :, f_dim:]
+                if cls_pred is not None:
+                    all_pred_list.append(cls_pred.cpu())
+
 
                 pred = outputs
                 true = batch_y
@@ -260,6 +272,16 @@ class Exp_AGPT(Exp_Basic):
                     gt = np.concatenate((input[0, :, -1], true[0, :, -1]), axis=0)
                     pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
                     visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
+
+        # print(len(all_pred_list))
+        if self.args.counts:
+            if len(all_pred_list) > 0:
+                patch_len_list = eval(self.args.patch_len_list)
+                all_cls_pred = torch.cat(all_pred_list)
+                patch_counts = torch.bincount(all_cls_pred, minlength=len(patch_len_list))
+                print("Granularity counts:")
+                for i, patch_len in enumerate(patch_len_list):
+                    print(f"Patch size {patch_len}: {patch_counts[i].item()} 次")
 
         preds = np.concatenate(preds, axis=0)
         trues = np.concatenate(trues, axis=0)

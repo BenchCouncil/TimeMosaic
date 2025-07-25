@@ -2,12 +2,12 @@
 model_name=WPMixer
 
 # Datasets and prediction lengths
-dataset=weather
+dataset=custom
 seq_lens=(512 512 512 512)
 pred_lens=(96 192 336 720)
 learning_rates=(0.000913333 0.001379042 0.000607991 0.001470479)
 batches=(32 64 32 128)
-epochs=(60 60 60 60)
+epochs=(10 10 10 10)
 dropouts=(0.4 0.4 0.4 0.4)
 patch_lens=(16 16 16 16)
 lradjs=(type3 type3 type3 type3)
@@ -42,5 +42,8 @@ for i in "${!pred_lens[@]}"; do
 		--dropout ${dropouts[$i]} \
 		--patience ${patiences[$i]} \
 		--train_epochs ${epochs[$i]} \
+		--enc_in 21 \
+		--dec_in 21 \
+		--c_out 21 \
 		--use_amp
 done

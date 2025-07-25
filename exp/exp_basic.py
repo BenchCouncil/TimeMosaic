@@ -1,7 +1,9 @@
 import os
 import torch
-from models import PatchTST, AGPT, AGPTp, AGPTp_loss, AGPT_loss, AGPT_loss_G, AGPT_PT, SimpleTM, iTransformer, TimeMixer, \
-    FreTS, WPMixer, DLinear, TimesNet, Duet, PatchMLP, TimeFilter, xPatch, PathFormer, TimeMixerPP, xPatchFM
+from models import PatchTST, AGPT, SimpleTM, iTransformer, TimeMixer, FreTS, WPMixer, DLinear, TimesNet,\
+            Duet, PatchMLP, TimeFilter, xPatch, PathFormer, TimeMixerPP, Autoformer, FEDformer, \
+            Informer, LightTS, Reformer, ETSformer, Pyraformer, MICN, Crossformer, TiDE, TSMixer, \
+            SegRNN, SCINet
 
 class Exp_Basic(object):
     def __init__(self, args):
@@ -9,11 +11,6 @@ class Exp_Basic(object):
         self.model_dict = {
             'PatchTST': PatchTST,
             'AGPT': AGPT,
-            'AGPTp': AGPTp,
-            'AGPTp_loss': AGPTp_loss,
-            'AGPT_loss': AGPT_loss,
-            'AGPT_loss_G': AGPT_loss_G,
-            'AGPT_PT': AGPT_PT,
             'SimpleTM': SimpleTM,
             'iTransformer': iTransformer,
             'TimeMixer': TimeMixer,
@@ -27,7 +24,19 @@ class Exp_Basic(object):
             'xPatch': xPatch,
             'PathFormer': PathFormer, 
             'TimeMixerPP': TimeMixerPP,
-            'xPatchFM': xPatchFM
+            'Autoformer': Autoformer,
+            'FEDformer': FEDformer,
+            'Informer': Informer,
+            'LightTS': LightTS,
+            'Reformer': Reformer,
+            'ETSformer': ETSformer,
+            'Pyraformer': Pyraformer,
+            'MICN': MICN,
+            'Crossformer': Crossformer,
+            'TiDE': TiDE,
+            'TSMixer': TSMixer,
+            'SegRNN': SegRNN,
+            "SCINet": SCINet,
             }
 
         self.device = self._acquire_device()

@@ -1,36 +1,37 @@
 
-model_name=PatchTST
+model_name=AGPT
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name AGPT_loss \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
-  --data_path ETTh2.csv \
-  --model_id ETTh2_96_96 \
+  --data_path ETTh1.csv \
+  --model_id ETTh1_96_96 \
   --model $model_name \
-  --data ETTh2 \
+  --data ETTh1 \
   --features M \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 96 \
-  --e_layers 3 \
+  --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 4 \
+  --n_heads 8 \
+  --train_epochs 10 \
   --itr 1
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name AGPT_loss \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
-  --data_path ETTh2.csv \
-  --model_id ETTh2_96_192 \
+  --data_path ETTh1.csv \
+  --model_id ETTh1_96_192 \
   --model $model_name \
-  --data ETTh2 \
+  --data ETTh1 \
   --features M \
   --seq_len 96 \
   --label_len 48 \
@@ -42,40 +43,42 @@ python -u run.py \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 4 \
+  --n_heads 1 \
   --itr 1
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name AGPT_loss \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
-  --data_path ETTh2.csv \
-  --model_id ETTh2_96_336 \
+  --data_path ETTh1.csv \
+  --model_id ETTh1_96_336 \
   --model $model_name \
-  --data ETTh2 \
+  --data ETTh1 \
   --features M \
+  --channel CDA \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 336 \
-  --e_layers 3 \
+  --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 4 \
+  --n_heads 16 \
   --itr 1
 
 python -u run.py \
-  --task_name long_term_forecast \
+  --task_name AGPT_loss \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
-  --data_path ETTh2.csv \
-  --model_id ETTh2_96_720 \
+  --data_path ETTh1.csv \
+  --model_id ETTh1_96_720 \
   --model $model_name \
-  --data ETTh2 \
+  --data ETTh1 \
   --features M \
+  --channel CD \
   --seq_len 96 \
   --label_len 48 \
   --pred_len 720 \
@@ -86,5 +89,5 @@ python -u run.py \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
-  --n_heads 4 \
+  --n_heads 2 \
   --itr 1

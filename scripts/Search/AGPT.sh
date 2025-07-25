@@ -7,38 +7,32 @@ MAX_RETRIES=1
 mkdir -p logs
 > failures.txt  # 清空失败日志
 
-# declare -a models=("PatchTST" "AGPT_PT" "SimpleTM" "iTransformer" "DLinear" "TimeFilter" "PatchMLP" "Duet")
-declare -a models=("AGPT_PT")
+declare -a models=("PatchTST" "AGPT_PT" "SimpleTM" "iTransformer" "DLinear" "TimeFilter" "PatchMLP" "Duet")
 
 datasets=(
-  # "ETTh1 ./dataset/ETT-small/ ETTh1.csv 7 ETTh1"
-  # "ETTh2 ./dataset/ETT-small/ ETTh2.csv 7 ETTh2"
-  # "ETTm1 ./dataset/ETT-small/ ETTm1.csv 7 ETTm1"
+  "ETTh1 ./dataset/ETT-small/ ETTh1.csv 7 ETTh1"
+  "ETTh2 ./dataset/ETT-small/ ETTh2.csv 7 ETTh2"
+  "ETTm1 ./dataset/ETT-small/ ETTm1.csv 7 ETTm1"
   "ETTm2 ./dataset/ETT-small/ ETTm2.csv 7 ETTm2"
-  # "Exchange ./dataset/exchange_rate/ exchange_rate.csv 8 custom"
+  "Exchange ./dataset/exchange_rate/ exchange_rate.csv 8 custom"
   "Weather ./dataset/weather/ weather.csv 21 custom"
 )
 
 declare -a pre_combos=(
   "32 64 168 240"
-  # "16 16 16 16"
-  # "8 8 24 24"
-  # "32 32 48 48"
+  "16 16 16 16"
+  "8 8 24 24"
+  "32 32 48 48"
 )
-# d_pairs=("16 32" "32 128" "64 128" "128 256" "256 512" "256 1024" "512 2048")
-d_pairs=("512 2048")
-# losses=("MAE" "MSE")
-losses=("MAE")
+d_pairs=("16 32" "32 128" "64 128" "128 256" "256 512" "256 1024" "512 2048")
+losses=("MAE" "MSE")
 channels=("CD" "CI" "CDA" "CI+")
 e_layers_list=(1 2 3)
 n_heads_list=(1 2 4 8 16)
-# seq_lens=(96 192 320 512 736)
-seq_lens=(96)
+seq_lens=(96 192 320 512 736)
 pred_lens=(96 192 336 720)
-# pred_lens=(720)
 label_len=48
 
-# 控制并发任务数
 SEMAPHORE=/tmp/gs_semaphore
 mkfifo $SEMAPHORE
 exec 9<>$SEMAPHORE
@@ -68,7 +62,7 @@ run_job() {
     fi
   done
 
-  echo >&9  # 释放 token
+  echo >&9
 }
 
 job_index=0
@@ -98,7 +92,7 @@ for pre in "${pre_combos[@]}"; do
                                 log_file="logs/${model_id}.log"
 
                                 cmd="python -u run.py \
-                                    --task_name search_${model_name} \
+                                    --task_name TimeMosaic \
                                     --is_training 1 \
                                     --root_path $root_path \
                                     --data_path $data_path \
@@ -127,7 +121,7 @@ for pre in "${pre_combos[@]}"; do
                                     --pre720 $pre720 \
                                     --itr 1"
 
-                                read -u9  # 占用 token
+                                read -u9
                                 gpu_id=$(( job_index % TOTAL_GPUS ))
                                 run_job $gpu_id "$cmd" "$log_file" "$model_id" &
                                 job_index=$((job_index + 1))
@@ -143,4 +137,4 @@ for pre in "${pre_combos[@]}"; do
 done
 
 wait
-exec 9>&-  # 关闭 fd
+exec 9>&-

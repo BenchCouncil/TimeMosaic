@@ -14,15 +14,15 @@ SCRIPT_LIST=(
 # "/root/daye/AGPT/scripts/Duet/ETTm1.sh"
 # "/root/daye/AGPT/scripts/Duet/ETTh2.sh"
 # "/root/daye/AGPT/scripts/Duet/Exchange.sh"
-# "/root/daye/AGPT/scripts/Duet/ETTm2.sh"
-"/root/daye/AGPT/scripts/Duet/Traffic.sh"
+"/root/daye/AGPT/scripts/Duet/ETTm2.sh"
+# "/root/daye/AGPT/scripts/Duet/Traffic.sh"
 # "/root/daye/AGPT/scripts/Duet/PEMS.sh"
-"/root/daye/AGPT/scripts/Duet/Solar.sh"
+# "/root/daye/AGPT/scripts/Duet/Solar.sh"
 "/root/daye/AGPT/scripts/Duet/Weather.sh"
-"/root/daye/AGPT/scripts/Duet/Wind1.sh"
-"/root/daye/AGPT/scripts/Duet/Wind2.sh"
-"/root/daye/AGPT/scripts/Duet/Wind3.sh"
-"/root/daye/AGPT/scripts/Duet/Wind4.sh"
+# "/root/daye/AGPT/scripts/Duet/Wind1.sh"
+# "/root/daye/AGPT/scripts/Duet/Wind2.sh"
+# "/root/daye/AGPT/scripts/Duet/Wind3.sh"
+# "/root/daye/AGPT/scripts/Duet/Wind4.sh"
 )
 
 

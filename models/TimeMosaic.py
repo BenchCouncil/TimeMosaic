@@ -91,60 +91,61 @@ class AdaptivePatchEmbedding(nn.Module):
         assert L == self.region_num * self.max_patch_len, \
             f"Expected seq_len={self.region_num * self.max_patch_len}, but got {L}"
 
-        x = x.reshape(B*C, self.region_num, self.max_patch_len)  # [B*C, R, max_patch_len]
+        x = x.reshape(B * C, self.region_num, self.max_patch_len)  # [B*C, R, max_patch_len]
 
         all_patches = []
         cls_pred_list = []
+        cls_soft_list = []  # 可导 one-hot，参与 loss 监督
+
         for region_idx in range(self.region_num):
             region = x[:, region_idx, :]  # [B*C, max_patch_len]
-            
+
             cls_logits = self.region_cls(region)  # [B*C, num_classes]
-            
-            cls_pred = torch.argmax(cls_logits, dim=-1)  # [B*C]
-            
-            # if self.training:
-            #     cls_soft = F.gumbel_softmax(cls_logits, tau=0.5, hard=True, dim=-1)
-            #     cls_pred = cls_soft.argmax(dim=-1)
-            # else:
-            #     cls_pred = torch.argmax(cls_logits, dim=-1)
-                
+
+            if self.training:
+                cls_soft = F.gumbel_softmax(cls_logits, tau=0.5, hard=True, dim=-1)  # [B*C, num_classes]
+            else:
+                cls_pred = torch.argmax(cls_logits, dim=-1)
+                cls_soft = F.one_hot(cls_pred, num_classes=len(self.patch_len_list)).float()
+
+            cls_soft_list.append(cls_soft)  # 用于 loss 中 ratio 正则
+
+            # 用于 logging 的离散标签
+            cls_pred = cls_soft.argmax(dim=-1)
             cls_pred_list.append(cls_pred)
-            
-            region_patches = []
 
+            # 计算每个粒度的 embedding
+            patch_emb_list = []
             for idx, patch_len in enumerate(self.patch_len_list):
-                selected_idx = (cls_pred == idx).nonzero(as_tuple=True)[0]
-                if selected_idx.numel() == 0:
-                    continue
-                selected_region = region[selected_idx]  # [N, max_patch_len]
-                patches = selected_region.unfold(-1, patch_len, patch_len)  # [N, num_patch, patch_len]
-
+                patches = region.unfold(-1, patch_len, patch_len)  # [B*C, num_patch, patch_len]
                 if self.mode == 'fixed':
                     target_patch_num = self.max_patch_len // self.min_patch_len
                     repeat = target_patch_num - patches.size(1)
                     if repeat > 0:
-                        patches = patches.repeat_interleave(repeat+1, dim=1)[:, :target_patch_num, :]
-                        # patches = F.pad(patches, (0, 0, 0, repeat), mode='constant', value=0.0)
-                patches_emb = self.embeddings[idx](patches)  # [N, num_patch, d_model]
+                        patches = patches.repeat_interleave(repeat + 1, dim=1)[:, :target_patch_num, :]
+                patches_emb = self.embeddings[idx](patches)  # [B*C, num_patch, d_model]
+                patch_emb_list.append(patches_emb)
 
-                tmp = torch.zeros(selected_idx.size(0), patches_emb.size(1), self.d_model, device=x.device)
-                tmp = patches_emb
-                region_patches.append((selected_idx, tmp))
+            # [num_classes, B*C, num_patch, d_model]
+            patch_emb_stack = torch.stack(patch_emb_list, dim=0)
 
-            region_patches_sorted = torch.zeros(B*C, patches_emb.size(1), self.d_model, device=x.device)
-            for idx_group, emb_group in region_patches:
-                region_patches_sorted[idx_group] = emb_group
+            # cls_soft: [B*C, num_classes] → [num_classes, B*C, 1, 1]
+            cls_soft_trans = cls_soft.transpose(0, 1).unsqueeze(-1).unsqueeze(-1)
+
+            # 加权融合（gumbel hard=True: 正向 one-hot，反向有梯度）
+            region_patches_sorted = (patch_emb_stack * cls_soft_trans).sum(dim=0)  # [B*C, num_patch, d_model]
 
             all_patches.append(region_patches_sorted)
 
         x_patch = torch.cat(all_patches, dim=1)  # [B*C, total_num_patch, d_model]
         x_patch += self.position_embedding(x_patch)
-        # x_patch = x_patch + self.position_embedding[:, :x_patch.size(1), :]
         x_patch = self.dropout(x_patch)
 
-        all_cls_pred = torch.cat(cls_pred_list, dim=0)  # List of [B*C] → [B*C*R]
+        all_cls_pred = torch.cat(cls_pred_list, dim=0)  # [B*C*R]
+        self.latest_cls_soft = torch.cat(cls_soft_list, dim=0)
 
         return x_patch, C, all_cls_pred
+
 
 
 class Transpose(nn.Module):

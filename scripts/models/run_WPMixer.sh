@@ -4,25 +4,25 @@
 MAX_JOBS=2
 TOTAL_GPUS=2
 MAX_RETRIES=1
-LOG_DIR="logs_SimpleTM"
+LOG_DIR="logs_WPMixer"
 
 mkdir -p "$LOG_DIR"
 
 SCRIPT_LIST=(
-# "/root/daye/AGPT/scripts/SimpleTM/ECL.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/ETTh1.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/ETTm1.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/ETTh2.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/Exchange.sh"
-"/root/daye/AGPT/scripts/SimpleTM/ETTm2.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/Traffic.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/PEMS.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/Solar.sh"
-"/root/daye/AGPT/scripts/SimpleTM/Weather.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/Wind1.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/Wind2.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/Wind3.sh"
-# "/root/daye/AGPT/scripts/SimpleTM/Wind4.sh"
+# "/root/daye/AGPT/scripts/WPMixer/ETTh1.sh"
+# "/root/daye/AGPT/scripts/WPMixer/ETTm1.sh"
+# "/root/daye/AGPT/scripts/WPMixer/ETTh2.sh"
+# "/root/daye/AGPT/scripts/WPMixer/Exchange.sh"
+# "/root/daye/AGPT/scripts/WPMixer/ETTm2.sh"
+# "/root/daye/AGPT/scripts/WPMixer/PEMS.sh"
+# "/root/daye/AGPT/scripts/WPMixer/Solar.sh"
+"/root/daye/AGPT/scripts/WPMixer/Weather.sh"
+# "/root/daye/AGPT/scripts/WPMixer/Wind1.sh"
+# "/root/daye/AGPT/scripts/WPMixer/Wind2.sh"
+# "/root/daye/AGPT/scripts/WPMixer/Wind3.sh"
+# "/root/daye/AGPT/scripts/WPMixer/Wind4.sh"
+# "/root/daye/AGPT/scripts/WPMixer/Traffic.sh"
+# "/root/daye/AGPT/scripts/WPMixer/ECL.sh"
 )
 
 

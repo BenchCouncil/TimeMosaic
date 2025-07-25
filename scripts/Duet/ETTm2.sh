@@ -9,7 +9,7 @@ python -u run.py \
   --data_path ETTm2.csv \
   --model_id ETTm2_96_96 \
   --model $model_name \
-  --data ETTm2 \
+  --data ETTm2 \ 
   --features M \
   --seq_len 96 \
   --label_len 48 \
