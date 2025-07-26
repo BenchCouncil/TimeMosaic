@@ -16,7 +16,7 @@ class PatchEmbed(nn.Module):
         self.patch_proj = nn.Linear(self.patch_len, dim)
         self.pos = pos
         if self.pos:
-            pos_emb_theta = 10000
+            pos_emb_theta = 100000
             self.pe = PositionalEmbedding(dim, pos_emb_theta)
     
     def forward(self, x):
