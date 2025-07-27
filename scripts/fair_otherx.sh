@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MAX_JOBS=1
+MAX_JOBS=2
 TOTAL_GPUS=2
 MAX_RETRIES=1
 
@@ -8,12 +8,12 @@ mkdir -p logs
 > failures.txt
 
 # declare -a models=("TimeMosaic" "SimpleTM" "TimeFilter" "xPatch" "PatchMLP" "Duet" "PathFormer" "iTransformer" "TimeMixer" "PatchTST" "DLinear")
-declare -a models=("TimeFilter")
+declare -a models=("FreTS" "LightTS")
 
 datasets=(
   "Traffic ./dataset/traffic/ traffic.csv 862 custom"
-  # "Solar ./dataset/Solar/ solar_AL.txt 137 Solar"
-  # "ECL ./dataset/electricity/ electricity.csv 321 custom"
+  "Solar ./dataset/Solar/ solar_AL.txt 137 Solar"
+  "ECL ./dataset/electricity/ electricity.csv 321 custom"
 )
 
 d_model=128
@@ -89,6 +89,7 @@ for model_name in "${models[@]}"; do
           --model $model_name \
           --data $data_flag \
           --features M \
+          --channel CDP \
           --seq_len $seq_len \
           --pred_len $pred_len \
           --e_layers $e_layers \
@@ -101,7 +102,7 @@ for model_name in "${models[@]}"; do
           --n_heads $n_heads \
           --d_model $d_model \
           --d_ff $d_ff \
-          --batch_size 2 \
+          --batch_size 32 \
           --itr 1"
 
         read -u9

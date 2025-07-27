@@ -1,27 +1,26 @@
 #!/bin/bash
 
-MAX_JOBS=1
+MAX_JOBS=2
 TOTAL_GPUS=2
 MAX_RETRIES=1
 
 mkdir -p logs
 > failures.txt
 
-declare -a models=("TimeMosaic" "SimpleTM" "TimeFilter" "xPatch" "PatchMLP" "Duet" "PathFormer" "iTransformer" "TimeMixer" "PatchTST" "DLinear" "FreTS")
+# declare -a models=("TimeMosaic" "SimpleTM" "TimeFilter" "xPatch" "PatchMLP" "Duet" "PathFormer" "iTransformer" "TimeMixer" "PatchTST" "DLinear")
+declare -a models=("TimeMosaic")
 
 datasets=(
-  "ETTh1 ./dataset/ETT-small/ ETTh1.csv 7 ETTh1"
-  "ETTh2 ./dataset/ETT-small/ ETTh2.csv 7 ETTh2"
-  "ETTm1 ./dataset/ETT-small/ ETTm1.csv 7 ETTm1"
-  "ETTm2 ./dataset/ETT-small/ ETTm2.csv 7 ETTm2"
-  "Exchange ./dataset/exchange_rate/ exchange_rate.csv 8 custom"
-  "Weather ./dataset/weather/ weather.csv 21 custom"
+  "Traffic ./dataset/traffic/ traffic.csv 862 custom"
+  "Solar ./dataset/Solar/ solar_AL.txt 137 Solar"
+  "ECL ./dataset/electricity/ electricity.csv 321 custom"
 )
 
-d_model=512
-d_ff=2048
-e_layers=2
-n_heads=8
+d_model=128
+d_ff=256
+
+e_layers=1
+n_heads=2
 seq_lens=(320)
 pred_lens=(96 192 336 720)
 
@@ -90,6 +89,7 @@ for model_name in "${models[@]}"; do
           --model $model_name \
           --data $data_flag \
           --features M \
+          --channel CDP \
           --seq_len $seq_len \
           --pred_len $pred_len \
           --e_layers $e_layers \
@@ -102,6 +102,7 @@ for model_name in "${models[@]}"; do
           --n_heads $n_heads \
           --d_model $d_model \
           --d_ff $d_ff \
+          --batch_size 32 \
           --itr 1"
 
         read -u9

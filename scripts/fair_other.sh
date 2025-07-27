@@ -7,7 +7,7 @@ MAX_RETRIES=1
 mkdir -p logs
 > failures.txt
 
-declare -a models=("TimeMosaic" "SimpleTM" "TimeFilter" "xPatch" "PatchMLP" "Duet" "PathFormer" "iTransformer" "TimeMixer" "PatchTST" "DLinear" "FreTS")
+declare -a models=("FreTS" "LightTS")
 
 datasets=(
   "ETTh1 ./dataset/ETT-small/ ETTh1.csv 7 ETTh1"
