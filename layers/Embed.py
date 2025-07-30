@@ -198,7 +198,12 @@ class EmbLayer(nn.Module):
         self.patch_step = patch_step
 
         patch_num = int((seq_len - patch_len) / patch_step + 1)
-        self.d_model = d_model // patch_num
+        # origin
+        # self.d_model = d_model // patch_num
+
+        # revise
+        self.d_model = max(1, d_model // patch_num)
+
         self.ff = nn.Sequential(
             nn.Linear(patch_len, self.d_model),
         )
@@ -213,7 +218,6 @@ class EmbLayer(nn.Module):
         x = x.unfold(dimension=-1, size=self.patch_len, step=self.patch_step)
         x = self.ff(x)
         x = self.flatten(x)
-
         x = self.ff_1(x)
         return x
 

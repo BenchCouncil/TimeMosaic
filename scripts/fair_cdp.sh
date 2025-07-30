@@ -4,16 +4,17 @@ MAX_JOBS=2
 TOTAL_GPUS=2
 MAX_RETRIES=1
 
-mkdir -p logs
+mkdir -p logs2
 > failures.txt
 
 # declare -a models=("TimeMosaic" "SimpleTM" "TimeFilter" "xPatch" "PatchMLP" "Duet" "PathFormer" "iTransformer" "TimeMixer" "PatchTST" "DLinear")
-declare -a models=("TimeMosaic")
+declare -a models=("Duet")
 
 datasets=(
-  "Traffic ./dataset/traffic/ traffic.csv 862 custom"
+  # "ECL ./dataset/electricity/ electricity.csv 321 custom"
+  # "Traffic ./dataset/traffic/ traffic.csv 862 custom"
   "Solar ./dataset/Solar/ solar_AL.txt 137 Solar"
-  "ECL ./dataset/electricity/ electricity.csv 321 custom"
+  # "Weather ./dataset/weather/ weather.csv 21 custom"
 )
 
 d_model=128
@@ -22,7 +23,7 @@ d_ff=256
 e_layers=1
 n_heads=2
 seq_lens=(320)
-pred_lens=(96 192 336 720)
+pred_lens=(720)
 
 SEMAPHORE=/tmp/gs_semaphore
 mkfifo $SEMAPHORE
@@ -78,7 +79,7 @@ for model_name in "${models[@]}"; do
         fi
 
         model_id="${dataset}_${seq_len}_${pred_len}_${d_model}_${d_ff}_${loss}_e${e_layers}_h${n_heads}_${model_name}"
-        log_file="logs/${model_id}.log"
+        log_file="logs2/${model_id}.log"
 
         cmd="python -u run.py \
           --task_name $task_name \
@@ -102,7 +103,7 @@ for model_name in "${models[@]}"; do
           --n_heads $n_heads \
           --d_model $d_model \
           --d_ff $d_ff \
-          --batch_size 32 \
+          --batch_size 16 \
           --itr 1"
 
         read -u9

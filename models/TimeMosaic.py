@@ -82,7 +82,7 @@ class AdaptivePatchEmbedding(nn.Module):
         ])
 
         self.position_embedding = PositionalEmbedding(d_model)
-        # self.position_embedding = nn.Parameter(torch.ones(1, 12, d_model))  # [1, max_patches, d_model]
+        # self.position_embedding = nn.Parameter(torch.ones(1, 1000, d_model))  # [1, max_patches, d_model]
         # nn.init.trunc_normal_(self.position_embedding, std=0.02)
         self.dropout = nn.Dropout(dropout)
 
@@ -138,7 +138,8 @@ class AdaptivePatchEmbedding(nn.Module):
             all_patches.append(region_patches_sorted)
 
         x_patch = torch.cat(all_patches, dim=1)  # [B*C, total_num_patch, d_model]
-        x_patch += self.position_embedding(x_patch)
+        # x_patch += self.position_embedding(x_patch)
+        # x_patch = x_patch + self.position_embedding[:, :x_patch.size(1), :]
         x_patch = self.dropout(x_patch)
 
         all_cls_pred = torch.cat(cls_pred_list, dim=0)  # [B*C*R]

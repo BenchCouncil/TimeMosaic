@@ -38,28 +38,34 @@ Our benchmark integrates over **20+ state-of-the-art time series forecasting mod
 The following models have been included in our evaluation suite:
 
 - ✅ **TimeMosaic** (Ours): A novel framework combining adaptive patch granularity and segment-wise prompt tuning.
-- ✅ **SimpleTM** (ICLR 2025): A strong baseline using wavelet transform and simplified self-attention.
-- ✅ **TimeFilter** (ICML 2025): Performs fine-grained attention filtering via patch-wise gating.
+- ✅ **SimpleTM** : SimpleTM: A Simple Baseline for Multivariate Time Series Forecasting [[ICLR 2025]](https://openreview.net/pdf?id=oANkBaVci5).
+- ✅ **TimeFilter** : TimeFilter: Patch-Specific Spatial-Temporal Graph Filtration
+for Time Series Forecasting [[ICML 2025]](https://arxiv.org/pdf/2501.13041v2).
 - ✅ **xPatch** : xPatch: Dual-Stream Time Series Forecasting with Exponential Seasonal-Trend Decomposition [[AAAI 2025]](https://arxiv.org/pdf/2412.17323).
-- ✅ **DUET** (KDD 2025): Dual clustering enhanced transformer for modeling global-local structures.
-- ✅ **PathFormer** (ICLR 2024): Utilizes adaptive patch selection guided by importance scores.
-- ✅ **PatchMLP** (AAAI 2025): MLP-based patch modeling with multi-scale representations.
-- ✅ **iTransformer** (ICLR 2024): Inverted attention across variables with strong long-term capacity.
-- ✅ **PatchTST** (ICLR 2023): A pioneering patch-based time series transformer using channel-wise attention.
-- ✅ **TimesNet** (ICLR 2023): Applies 2D variation modeling for general time series tasks.
-- ✅ **DLinear** (AAAI 2023): A lightweight linear model shown to outperform many deep models.
-- ✅ **TimeMixer / TimeMixer++** (ICLR 2024/2025): Decomposable multiscale mixing with multi-resolution attention.
-- ✅ **MICN** (ICLR 2023): Joint modeling of multi-scale global and local context.
-- ✅ **FreTS** (NeurIPS 2023): Frequency-domain MLPs for efficient sequence modeling.
-- ✅ **Crossformer** (ICLR 2023): Captures cross-dimension dependencies across channels.
-- ✅ **TiDE** (arXiv 2023): Dense encoder for long-term forecasting with full receptive field.
-- ✅ **LightTS** (arXiv 2022): Efficient MLP structure tailored for multivariate prediction.
-- ✅ **Autoformer** (NeurIPS 2021): Early decomposition-based forecasting Transformer.
-- ✅ **FEDformer** (ICML 2022): Frequency-enhanced variant of the decomposition family.
-- ✅ **Informer** (AAAI 2021): Utilizes ProbSparse attention for efficient long sequence modeling.
-- ✅ **Pyraformer** (ICLR 2022): Introduces pyramidal structure to model long-range dependencies.
-- ✅ **Reformer** (ICLR 2020): Low-memory attention with locality-sensitive hashing.
-- ✅ **ETSformer** (arXiv 2022): Combines exponential smoothing with Transformer backbones.
+- ✅ **DUET** : DUET: Dual Clustering Enhanced Multivariate Time
+Series Forecasting [[KDD 2025]](https://arxiv.org/pdf/2412.10859).
+- ✅ **PathFormer** : Pathformer: Multi-scale Transformers with Adaptive Pathways for Time Series Forecasting [[ICLR 2024]](https://arxiv.org/pdf/2402.05956).
+- ✅ **PatchMLP** : Unlocking the Power of Patch: Patch-Based MLP for Long-Term Time Series
+Forecasting [[AAAI 2025]](https://arxiv.org/pdf/2405.13575).
+- ✅ **iTransformer** : iTransformer: Inverted Transformers Are Effective for Time Series Forecasting [[ICLR 2024]](https://arxiv.org/pdf/2310.06625).
+- ✅ **PatchTST** : A Time Series is Worth 64 Words: Long-term Forecasting with Transformers [[ICLR 2023]](https://arxiv.org/pdf/2211.14730).
+- ✅ **TimesNet** : TimesNet: Temporal 2D-Variation Modeling for General Time Series Analysis [[ICLR 2023]](https://arxiv.org/pdf/2210.02186).
+- ✅ **DLinear** : Are Transformers Effective for Time Series Forecasting? [[AAAI 2023]](https://arxiv.org/pdf/2205.13504).
+- ✅ **TimeMixer** : TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting [[ICLR 2024]](https://openreview.net/pdf?id=7oLshfEIC2).
+- ✅ **TimeMixer++** : TimeMixer++: A General Time Series Pattern Machine for Universal Predictive Analysis [[ICLR 2025]](https://arxiv.org/pdf/2410.16032).
+- ✅ **MICN** : MICN: Multi-scale Local and Global Context Modeling for Long-term Series Forecasting [[ICLR 2023]](https://openreview.net/pdf?id=zt53IDUR1U).
+- ✅ **FreTS** : Frequency-domain MLPs are More Effective Learners in Time Series Forecasting [[NeurIPS 2023]](https://arxiv.org/pdf/2311.06184).
+- ✅ **Crossformer** : Crossformer: Transformer Utilizing Cross-Dimension Dependency for Multivariate Time Series Forecasting [[ICLR 2023]](https://openreview.net/pdf?id=vSVLM2j9eie).
+- ✅ **TiDE** : Long-term Forecasting with TiDE: Time-series Dense Encoder [[arXiv 2023]](https://arxiv.org/pdf/2304.08424.pdf).
+- ✅ **LightTS** : Less Is More: Fast Multivariate Time Series Forecasting with Light Sampling-oriented MLP Structures [[arXiv 2022]](https://arxiv.org/pdf/2207.01186).
+- ✅ **Autoformer** : Autoformer: Decomposition Transformers with
+Auto-Correlation for Long-Term Series Forecasting [[NeurIPS 2021]](https://arxiv.org/pdf/2106.13008).
+- ✅ **FEDformer** : FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting [[ICML 2022]](https://arxiv.org/pdf/2201.12740).
+- ✅ **Informer** : Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting [[AAAI 2021]](https://ojs.aaai.org/index.php/AAAI/article/view/17325/17132).
+- ✅ **Pyraformer** : Pyraformer: Low-Complexity Pyramidal Attention for Long-Range Time Series Modeling and Forecasting [[ICLR 2022]](https://openreview.net/pdf?id=0EXmFzUn5I).
+- ✅ **Reformer** : Reformer: The Efficient Transformer [[ICLR 2020]](https://arxiv.org/pdf/2001.04451).
+- ✅ **ETSformer** : ETSformer: Exponential Smoothing Transformers for Time-series Forecasting [[arXiv 2022]](https://arxiv.org/pdf/2202.01381).
+
 
 All models are trained under identical lookback lengths and evaluation metrics (MSE/MAE), and the same `drop_last=False` setting to ensure fairness and reproducibility.
 

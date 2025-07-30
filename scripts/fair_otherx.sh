@@ -8,7 +8,7 @@ mkdir -p logs
 > failures.txt
 
 # declare -a models=("TimeMosaic" "SimpleTM" "TimeFilter" "xPatch" "PatchMLP" "Duet" "PathFormer" "iTransformer" "TimeMixer" "PatchTST" "DLinear")
-declare -a models=("FreTS" "LightTS")
+declare -a models=("Duet")
 
 datasets=(
   "Traffic ./dataset/traffic/ traffic.csv 862 custom"
@@ -102,7 +102,7 @@ for model_name in "${models[@]}"; do
           --n_heads $n_heads \
           --d_model $d_model \
           --d_ff $d_ff \
-          --batch_size 32 \
+          --batch_size 16 \
           --itr 1"
 
         read -u9
