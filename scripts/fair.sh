@@ -7,15 +7,14 @@ MAX_RETRIES=1
 mkdir -p logs
 > failures.txt
 
-# declare -a models=("TimeMosaic" "SimpleTM" "TimeFilter" "xPatch" "PatchMLP" "Duet" "PathFormer" "iTransformer" "TimeMixer" "PatchTST" "DLinear" "FreTS")
-declare -a models=("TimeMosaic")
+declare -a models=("TimeMosaic" "SimpleTM" "TimeFilter" "xPatch" "PatchMLP" "Duet" "iTransformer" "TimeMixer" "PatchTST" "DLinear" "FreTS" "LightTS")
 
 datasets=(
   "ETTh1 ./dataset/ETT-small/ ETTh1.csv 7 ETTh1"
   "ETTh2 ./dataset/ETT-small/ ETTh2.csv 7 ETTh2"
   "ETTm1 ./dataset/ETT-small/ ETTm1.csv 7 ETTm1"
   "ETTm2 ./dataset/ETT-small/ ETTm2.csv 7 ETTm2"
-  # "Exchange ./dataset/exchange_rate/ exchange_rate.csv 8 custom"
+  "Exchange ./dataset/exchange_rate/ exchange_rate.csv 8 custom"
   "Weather ./dataset/weather/ weather.csv 21 custom"
 )
 

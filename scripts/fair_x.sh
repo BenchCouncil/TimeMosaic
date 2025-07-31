@@ -7,7 +7,7 @@ MAX_RETRIES=1
 mkdir -p logs
 > failures.txt
 
-declare -a models=("TimeMosaic" "SimpleTM" "TimeFilter" "xPatch" "PatchMLP" "Duet" "PathFormer" "iTransformer" "TimeMixer" "PatchTST" "DLinear")
+declare -a models=("TimeMosaic" "SimpleTM" "TimeFilter" "xPatch" "PatchMLP" "Duet" "PathFormer" "iTransformer" "TimeMixer" "PatchTST" "DLinear" "LightTS")
 
 datasets=(
   "Traffic ./dataset/traffic/ traffic.csv 862 custom"
