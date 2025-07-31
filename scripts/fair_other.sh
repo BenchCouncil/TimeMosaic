@@ -7,15 +7,15 @@ MAX_RETRIES=1
 mkdir -p logs
 > failures.txt
 
-declare -a models=("TimeMixer")
+declare -a models=("FreTS")
 
 datasets=(
   # "ETTh1 ./dataset/ETT-small/ ETTh1.csv 7 ETTh1"
   # "ETTh2 ./dataset/ETT-small/ ETTh2.csv 7 ETTh2"
   # "ETTm1 ./dataset/ETT-small/ ETTm1.csv 7 ETTm1"
   # "ETTm2 ./dataset/ETT-small/ ETTm2.csv 7 ETTm2"
-  # "Exchange ./dataset/exchange_rate/ exchange_rate.csv 8 custom"
-  "Weather ./dataset/weather/ weather.csv 21 custom"
+  "Exchange ./dataset/exchange_rate/ exchange_rate.csv 8 custom"
+  # "Weather ./dataset/weather/ weather.csv 21 custom"
 )
 
 d_model=512
@@ -23,7 +23,7 @@ d_ff=2048
 e_layers=2
 n_heads=8
 seq_lens=(320)
-pred_lens=(96 336)
+pred_lens=(96)
 
 SEMAPHORE=/tmp/gs_semaphore
 mkfifo $SEMAPHORE

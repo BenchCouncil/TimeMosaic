@@ -138,7 +138,7 @@ class AdaptivePatchEmbedding(nn.Module):
             all_patches.append(region_patches_sorted)
 
         x_patch = torch.cat(all_patches, dim=1)  # [B*C, total_num_patch, d_model]
-        # x_patch += self.position_embedding(x_patch)
+        x_patch += self.position_embedding(x_patch)
         # x_patch = x_patch + self.position_embedding[:, :x_patch.size(1), :]
         x_patch = self.dropout(x_patch)
 

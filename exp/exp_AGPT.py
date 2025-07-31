@@ -139,7 +139,7 @@ class Exp_AGPT(Exp_Basic):
                         f_dim = -1 if self.args.features == 'MS' else 0
                         outputs = outputs[:, -self.args.pred_len:, f_dim:]
                         batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
-                        lambda_cls = 0.001
+                        lambda_cls = 0.01
                         if self.args.mask_ratio > 0:
                             loss = criterion(outputs, batch_y) + lambda_cls * criterion(current_ratio, current_ratio.fill_(1/3)) + criterion(batch_x, dec_mask)
                         else:
@@ -163,7 +163,8 @@ class Exp_AGPT(Exp_Basic):
                     outputs = outputs[:, -self.args.pred_len:, f_dim:]
                     batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
 
-                    lambda_cls = 0.01
+                    lambda_cls = 0.001
+                    # lambda_cls = 0
                     if self.args.mask_ratio > 0:
                         loss = criterion(outputs, batch_y) + lambda_cls * loss_reg + lambda_cls * criterion(batch_x[mask], dec_mask[mask])
                     else:

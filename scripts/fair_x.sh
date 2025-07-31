@@ -7,8 +7,7 @@ MAX_RETRIES=1
 mkdir -p logs
 > failures.txt
 
-# declare -a models=("TimeMosaic" "SimpleTM" "TimeFilter" "xPatch" "PatchMLP" "Duet" "PathFormer" "iTransformer" "TimeMixer" "PatchTST" "DLinear")
-declare -a models=("PatchMLP")
+declare -a models=("TimeMosaic" "SimpleTM" "TimeFilter" "xPatch" "PatchMLP" "Duet" "PathFormer" "iTransformer" "TimeMixer" "PatchTST" "DLinear")
 
 datasets=(
   "Traffic ./dataset/traffic/ traffic.csv 862 custom"
@@ -81,7 +80,7 @@ for model_name in "${models[@]}"; do
 
         cmd="python -u run.py \
           --task_name $task_name \
-          --is_training 1 \
+          --is_training 0 \
           --root_path $root_path \
           --data_path $data_path \
           --model_id $model_id \
