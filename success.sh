@@ -57,7 +57,7 @@ run_job() {
 
 job_index=0
 
-pre192_vals=(8 16 32 64 96 192)
+pre192_vals=(8)
 
 for model_name in "${models[@]}"; do
   for dataset_config in "${datasets[@]}"; do

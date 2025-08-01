@@ -80,7 +80,7 @@ for model_name in "${models[@]}"; do
 
         cmd="python -u run.py \
           --task_name $task_name \
-          --is_training 0 \
+          --is_training 1 \
           --root_path $root_path \
           --data_path $data_path \
           --model_id $model_id \

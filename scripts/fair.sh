@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MAX_JOBS=1
+MAX_JOBS=4
 TOTAL_GPUS=2
 MAX_RETRIES=1
 

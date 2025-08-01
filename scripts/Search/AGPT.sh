@@ -5,7 +5,7 @@ TOTAL_GPUS=2
 MAX_RETRIES=1
 
 mkdir -p logs
-> failures.txt  # 清空失败日志
+
 
 declare -a models=("PatchTST" "AGPT_PT" "SimpleTM" "iTransformer" "DLinear" "TimeFilter" "PatchMLP" "Duet")
 

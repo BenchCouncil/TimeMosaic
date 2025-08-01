@@ -11,7 +11,7 @@ python -u run.py \
   --data custom \
   --features M \
   --target Power \
-  --seq_len 96 \
+  --seq_len 320 \
   --label_len 48 \
   --pred_len 96 \
   --e_layers 1 \
