@@ -3,13 +3,14 @@ import torch
 from models import PatchTST, AGPT, SimpleTM, iTransformer, TimeMixer, FreTS, WPMixer, DLinear, TimesNet,\
             Duet, PatchMLP, TimeFilter, xPatch, PathFormer, TimeMixerPP, Autoformer, FEDformer, \
             Informer, LightTS, Reformer, ETSformer, Pyraformer, MICN, Crossformer, TiDE, TSMixer, \
-            SegRNN, SCINet, TimeMosaic
+            SegRNN, SCINet, TimeMosaic, AG
 
 class Exp_Basic(object):
     def __init__(self, args):
         self.args = args
         self.model_dict = {
             'PatchTST': PatchTST,
+            'AG':AG,
             'AGPT': AGPT,
             'SimpleTM': SimpleTM,
             'iTransformer': iTransformer,
