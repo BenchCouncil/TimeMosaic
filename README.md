@@ -9,10 +9,16 @@
 
 ## Usage
 
-1. Install Python 3.8. For convenience, execute the following command.
+1. Install Python 3.10. For convenience, execute the following command.
 
 ```
-pip install -r requirements.txt
+conda create -n time python=3.10
+pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 -i https://pypi.python.org/simple/
+pip install pandas scikit-learn PyWavelets reformer-pytorch==1.4.4
+pip install "numpy<2" "matplotlib<3.8" "scipy<1.14"
+pip install tqdm==4.64.1
+
+
 ```
 
 2. Prepare Data. You can obtain the well pre-processed datasets from Time-Series-Library. [[Google Drive]](https://drive.google.com/drive/folders/13Cg1KYOlzM5C7K8gK8NfC-F3EYxkM3D2?usp=sharing) or [[Baidu Drive]](https://pan.baidu.com/s/1r3KhGd0Q9PJIUZdfEYoymg?pwd=i9iy), Then place the downloaded data in the folder`./dataset`. Here is a summary of supported datasets.

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 MAX_JOBS=8
-TOTAL_GPUS=2
+TOTAL_GPUS=4
 MAX_RETRIES=0
 
 mkdir -p logs
