@@ -1,7 +1,7 @@
 #!/bin/bash
 
 MAX_JOBS=8
-TOTAL_GPUS=4
+TOTAL_GPUS=8
 MAX_RETRIES=0
 
 mkdir -p logs
@@ -22,10 +22,9 @@ seq_lens=(96 192 320 512)
 pred_lens=(96 192 336 720)
 d_model_list=(16 128 512)
 e_layers_list=(1 3 5)
-# epoch_list=(10 50 100)
-epoch_list=(50)
-# lr_list=(1e-5 1e-4 1e-3 1e-2 0.05)
-lr_list=(1e-4 1e-3 1e-2)
+epoch_list=(10 50 100)
+
+lr_list=(1e-5 1e-4 1e-3 1e-2 0.05)
 
 batch_size=32
 n_heads=8

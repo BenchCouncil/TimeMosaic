@@ -1,4 +1,4 @@
-model_name=AGPT
+model_name=TimeMosaic
 seq_len=96
 learning_rate=0.001
 batch_size=32
@@ -9,7 +9,7 @@ root_path=./dataset/Solar/
 data_path=solar_AL.txt
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1 \
@@ -39,7 +39,7 @@ python -u run.py \
   --patience $patience
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1 \
@@ -68,7 +68,7 @@ python -u run.py \
   --patience $patience
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1 \
@@ -98,7 +98,7 @@ python -u run.py \
   --patience $patience
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1 \

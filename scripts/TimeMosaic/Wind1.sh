@@ -1,8 +1,8 @@
 
-model_name=AGPT
+model_name=TimeMosaic
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --root_path ./dataset/wind/ \
   --data_path Location1.csv \
@@ -11,21 +11,21 @@ python -u run.py \
   --data custom \
   --features M \
   --target Power \
-  --seq_len 96 \
+  --seq_len 320 \
   --label_len 48 \
   --pred_len 96 \
   --e_layers 1 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 7 \
-  --dec_in 7 \
-  --c_out 7 \
+  --enc_in 9 \
+  --dec_in 9 \
+  --c_out 9 \
   --des 'Exp' \
   --n_heads 2 \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --root_path ./dataset/wind/ \
   --data_path Location1.csv \
@@ -40,15 +40,15 @@ python -u run.py \
   --e_layers 1 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 7 \
-  --dec_in 7 \
-  --c_out 7 \
+  --enc_in 9 \
+  --dec_in 9 \
+  --c_out 9 \
   --des 'Exp' \
   --n_heads 8 \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --root_path ./dataset/wind/ \
   --data_path Location1.csv \
@@ -63,15 +63,15 @@ python -u run.py \
   --e_layers 1 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 7 \
-  --dec_in 7 \
-  --c_out 7 \
+  --enc_in 9 \
+  --dec_in 9 \
+  --c_out 9 \
   --des 'Exp' \
   --n_heads 8 \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --root_path ./dataset/wind/ \
   --data_path Location1.csv \
@@ -86,9 +86,9 @@ python -u run.py \
   --e_layers 1 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 7 \
-  --dec_in 7 \
-  --c_out 7 \
+  --enc_in 9 \
+  --dec_in 9 \
+  --c_out 9 \
   --des 'Exp' \
   --n_heads 16 \
   --itr 1

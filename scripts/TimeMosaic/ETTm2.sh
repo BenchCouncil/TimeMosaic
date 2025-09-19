@@ -1,7 +1,7 @@
-model_name=AGPT
+model_name=TimeMosaic
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTm2.csv \
@@ -10,7 +10,7 @@ python -u run.py \
   --data ETTm2 \
   --features M \
   --channel CDA \
-  --seq_len 96 \
+  --seq_len 320 \
   --label_len 48 \
   --pred_len 96 \
   --e_layers 2 \
@@ -24,7 +24,7 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTm2.csv \
@@ -33,7 +33,7 @@ python -u run.py \
   --data ETTm2 \
   --features M \
   --channel CDA \
-  --seq_len 96 \
+  --seq_len 320 \
   --label_len 48 \
   --pred_len 192 \
   --e_layers 2 \
@@ -47,7 +47,7 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTm2.csv \
@@ -55,7 +55,7 @@ python -u run.py \
   --model $model_name \
   --data ETTm2 \
   --features M \
-  --seq_len 96 \
+  --seq_len 320 \
   --label_len 48 \
   --pred_len 336 \
   --e_layers 2 \
@@ -69,7 +69,7 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTm2.csv \
@@ -78,7 +78,7 @@ python -u run.py \
   --data ETTm2 \
   --features M \
   --channel CDA \
-  --seq_len 96 \
+  --seq_len 320 \
   --label_len 48 \
   --pred_len 720 \
   --e_layers 1 \

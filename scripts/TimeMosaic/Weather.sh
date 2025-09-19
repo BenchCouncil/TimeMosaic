@@ -1,7 +1,7 @@
-model_name=AGPT
+model_name=TimeMosaic
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --root_path ./dataset/weather/ \
   --data_path weather.csv \
@@ -10,7 +10,7 @@ python -u run.py \
   --data custom \
   --features M \
   --channel CDA \
-  --seq_len 96 \
+  --seq_len 320 \
   --label_len 48 \
   --pred_len 96 \
   --e_layers 3 \
@@ -25,7 +25,7 @@ python -u run.py \
   --train_epochs 10
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --root_path ./dataset/weather/ \
   --data_path weather.csv \
@@ -34,7 +34,7 @@ python -u run.py \
   --data custom \
   --features M \
   --channel CDA \
-  --seq_len 96 \
+  --seq_len 320 \
   --label_len 48 \
   --pred_len 192 \
   --e_layers 3 \
@@ -49,7 +49,7 @@ python -u run.py \
   --train_epochs 10
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --root_path ./dataset/weather/ \
   --data_path weather.csv \
@@ -58,7 +58,7 @@ python -u run.py \
   --data custom \
   --features M \
   --channel CDA \
-  --seq_len 96 \
+  --seq_len 320 \
   --label_len 48 \
   --pred_len 336 \
   --e_layers 2 \
@@ -73,7 +73,7 @@ python -u run.py \
   --train_epochs 10
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1 \
@@ -84,7 +84,7 @@ python -u run.py \
   --data custom \
   --features M \
   --channel CDA \
-  --seq_len 96 \
+  --seq_len 320 \
   --label_len 48 \
   --pred_len 720 \
   --e_layers 2 \

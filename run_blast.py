@@ -3,10 +3,10 @@ import os
 import torch
 import torch.backends
 from exp.exp_long_term_forecasting import Exp_Long_Term_Forecast
-from exp.exp_TimeMosaic import Exp_TimeMosaic
 from exp.exp_TimeFilter import Exp_TimeFilter
 from exp.exp_PathFormer import Exp_PathFormer
 from exp.exp_DUET import Exp_DUET
+from exp.exp_blast import Exp_BLAST
 from utils.print_args import print_args
 import random
 import numpy as np
@@ -21,7 +21,7 @@ if __name__ == '__main__':
     torch.manual_seed(fix_seed)
     np.random.seed(fix_seed)
 
-    parser = argparse.ArgumentParser(description='AGPT')
+    parser = argparse.ArgumentParser(description='Mosaic')
 
     # basic config
     parser.add_argument('--task_name', type=str, default='long_term_forecast')
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     parser.add_argument('--do_predict', action='store_true', help='whether to predict unseen future data')
 
     # optimization
-    parser.add_argument('--num_workers', type=int, default=10, help='data loader num workers')
+    parser.add_argument('--num_workers', type=int, default=1, help='data loader num workers')
     parser.add_argument('--itr', type=int, default=1, help='experiments times')
     parser.add_argument('--train_epochs', type=int, default=10, help='train epochs')
     parser.add_argument('--batch_size', type=int, default=32, help='batch size of train input data')
@@ -96,14 +96,12 @@ if __name__ == '__main__':
 
     # iTransformer
     parser.add_argument('--inverse', action='store_true', help='inverse output data', default=False)
-    # parser.add_argument('--target_root_path', type=str, default='./data/electricity/', help='root path of the data file')
-    # parser.add_argument('--target_data_path', type=str, default='electricity.csv', help='data file')
 
     # AGPT
     parser.add_argument('--fc_dropout', type=float, default=0.1, help='fc_dropout')
     parser.add_argument('--fixed_weight', type=bool, default=False, help='fixed task emb weight')
     parser.add_argument('--adjust_lr', action='store_true', default=True, help='adjust learnring rate')
-    parser.add_argument('--num_latent_token', type=int, default=4, help='Number of prompt tokens')
+    parser.add_argument('--num_latent_token', type=int, default=10, help='Number of prompt tokens')
     parser.add_argument('--scale_rate', type=float, default=0.001, help='emb init scale rate')
     parser.add_argument('--patch_len_list', type=str, default='[8,16,32]',
                     help='List of candidate patch lengths for adaptive splitting')
@@ -158,7 +156,7 @@ if __name__ == '__main__':
     parser.add_argument('--residual_connection', type=int, default=0)
     parser.add_argument('--batch_norm', type=int, default=0)
     parser.add_argument('--pct_start', type=float, default=0.4, help='pct_start')
-    
+
     # TimeFilter
     parser.add_argument('--alpha_TimeFilter', type=float, default=0.1, help='KNN for Graph Construction')
     parser.add_argument('--top_p', type=float, default=0.5, help='Dynamic Routing in MoE')
@@ -170,23 +168,23 @@ if __name__ == '__main__':
     parser.add_argument('--alpha_xPatch', type=float, default=0.3, help='alpha')
     parser.add_argument('--beta', type=float, default=0.3, help='beta')
     parser.add_argument('--padding_patch', default='end', help='None: None; end: padding on the end')
-    
+
     # TimeMxierPP
     parser.add_argument('--channel_mixing', type=int, default=1, help='channel_mixing')
-    
-    # xdeepfm
-    parser.add_argument('--use_linear', type=lambda x: (str(x).lower() == 'true'), default=False, help='是否使用Linear分支 (True/False)')
-    parser.add_argument('--use_dnn', type=lambda x: (str(x).lower() == 'true'), default=True, help='是否使用DNN分支 (True/False)')
-    parser.add_argument('--use_cin', type=lambda x: (str(x).lower() == 'true'), default=True, help='是否使用CIN分支 (True/False)')
-    parser.add_argument('--dnn_hidden_units', type=int, nargs='+', default=[256, 256], help='DNN‘s number of neurons in each hidden layer')
-    parser.add_argument('--cin_layer_size', type=int, nargs='+', default=[512,64], help='The number of feature maps for each hidden layer for CIN')
-    parser.add_argument('--gate_hidden_units', type=int, default=32, help='Dimension size of the hidden layer in the gated network for fusion of CIN and DNN')
-    parser.add_argument('--channel_xpatchfm', type=str, default="CD", help="CI or CD")
     
     # zero-shot
     parser.add_argument('--target_root_path', type=str, default='./dataset/ETT-small/', help='root path of the data file')
     parser.add_argument('--target_data_path', type=str, default='ETTh2.csv', help='data file')
 
+    
+    # BLAST
+    parser.add_argument('--test_root_path', type=str, default='./data/electricity/', help='root path of the data file')
+    parser.add_argument('--test_data_path', type=str, default='electricity.csv', help='data csv file')
+    parser.add_argument('--test_data', type=str, default='custom', help='dataset type')
+    
+    parser.add_argument('--segment', type=int, default=16, help='')
+    
+    parser.add_argument('--test_pred_len', type=int, default=96, help='prediction sequence length')
 
     args = parser.parse_args()
     if torch.cuda.is_available() and args.use_gpu:
@@ -208,53 +206,28 @@ if __name__ == '__main__':
     print('Args in experiment:')
     print_args(args)
 
-    if args.task_name == 'long_term_forecast':
-        Exp = Exp_Long_Term_Forecast
-    elif args.task_name == 'Exp_TimeFilter':
-        Exp = Exp_TimeFilter
-    elif args.task_name == 'Exp_PathFormer':
-        Exp = Exp_PathFormer
-    elif args.task_name == 'Exp_DUET':
-        Exp = Exp_DUET
-    else:
-        Exp = Exp_TimeMosaic
+    Exp = Exp_BLAST
 
     if args.is_training:
         for ii in range(args.itr):
             # setting record of experiments
             exp = Exp(args)  # set experiments
-            setting = '{}_{}_{}_{}_fixed{}_{}_{}_{}'.format(args.task_name, args.model_id, args.model, args.d_ff, args.fixed_weight, args.learning_rate, args.scale_rate, args.channel)
+            setting = '{}_{}_{}_{}_{}_{}'.format(args.task_name, args.model_id, args.model, args.d_model, args.d_ff, args.segment)
             print('>>>>>>>start training : {}>>>>>>>>>>>>>>>>>>>>>>>>>>'.format(setting))
-            # print(args.input_scale_rate)
-            # raise ValueError
+
             exp.train(setting)
 
-            print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
-            exp.test(setting)
             if args.gpu_type == 'mps':
                 torch.backends.mps.empty_cache()
             elif args.gpu_type == 'cuda':
                 torch.cuda.empty_cache()
-    # else:
-    #     ii = 0
-    #     setting = '{}_{}_{}_{}_fixed{}_{}_{}_{}'.format(args.task_name, args.model_id, args.model, args.d_ff, args.fixed_weight, args.learning_rate, args.scale_rate, args.channel)
-    #     exp = Exp(args)  # set experiments
-    #     print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
-    #     exp.test(setting, test=1)
-    #     if args.gpu_type == 'mps':
-    #         torch.backends.mps.empty_cache()
-    #     elif args.gpu_type == 'cuda':
-    #         torch.cuda.empty_cache()
     else:
         ii = 0
-        setting = '{}_{}_{}_{}_fixed{}_{}_{}_{}'.format(args.task_name, args.model_id, args.model,
-                                                        args.d_ff, args.fixed_weight, args.learning_rate,
-                                                        args.scale_rate, args.channel)
-        exp = Exp(args)
-        if args.visualize_attn:
-            print(f'>>>>>>>visualizing attention : {setting}<<<<<<<<<<<<<<<<<<<')
-            exp.visualize_attn(setting)
-        else:
-            print(f'>>>>>>>testing : {setting}<<<<<<<<<<<<<<<<<<<')
-            # setting = 'long_term_forecast_ETTh1_96_96_PatchTST_2048_fixedFalse_0.0001_0.001_CI'
-            exp.test(setting, test=1)
+        setting = '{}_{}_{}_{}_{}_{}'.format(args.task_name, args.model_id, args.model, args.d_model, args.d_ff, args.segment)
+        exp = Exp(args)  # set experiments
+        print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
+        exp.test(setting, test=1)
+        if args.gpu_type == 'mps':
+            torch.backends.mps.empty_cache()
+        elif args.gpu_type == 'cuda':
+            torch.cuda.empty_cache()

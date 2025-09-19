@@ -1,4 +1,4 @@
-model_name=AGPT
+model_name=TimeMosaic
 
 seq_len=96
 pred_len=12
@@ -10,7 +10,7 @@ train_epochs=10
 patience=10
 
 python -u run.py \
- --task_name AGPT_loss \
+ --task_name TimeMosaic \
  --is_training 1 \
  --root_path ./dataset/PEMS/ \
  --data_path PEMS03.npz \
@@ -41,7 +41,7 @@ python -u run.py \
 
 
 python -u run.py \
- --task_name AGPT_loss \
+ --task_name TimeMosaic \
  --is_training 1 \
  --root_path ./dataset/PEMS/ \
  --data_path PEMS04.npz \
@@ -72,7 +72,7 @@ python -u run.py \
 
 
 python -u run.py \
- --task_name AGPT_loss \
+ --task_name TimeMosaic \
  --is_training 1 \
  --use_multi_gpu \
  --devices 0,1 \
@@ -103,7 +103,7 @@ python -u run.py \
 
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --root_path ./dataset/PEMS/ \
   --data_path PEMS08.npz \

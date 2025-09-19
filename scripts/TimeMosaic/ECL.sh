@@ -1,8 +1,8 @@
 
-model_name=AGPT_PT
+model_name=TimeMosaic
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1,2,3 \
@@ -27,7 +27,7 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1,2,3 \
@@ -52,7 +52,7 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1,2,3 \
@@ -77,7 +77,7 @@ python -u run.py \
   --itr 1
 
 python -u run.py \
-  --task_name AGPT_loss \
+  --task_name TimeMosaic \
   --is_training 1 \
   --use_multi_gpu \
   --devices 0,1,2,3 \

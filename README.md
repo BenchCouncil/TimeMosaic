@@ -12,20 +12,39 @@
 1. Install Python 3.10. For convenience, execute the following command.
 
 ```
-conda create -n time python=3.10
-pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 -i https://pypi.python.org/simple/
-pip install pandas scikit-learn PyWavelets reformer-pytorch==1.4.4
-pip install "numpy<2" "matplotlib<3.8" "scipy<1.14"
-pip install tqdm==4.64.1
+pip install torch==2.4.1 torchvision==0.19.1  --index-url https://download.pytorch.org/whl/cu121
 
-
+pip install transformers==4.40.1 accelerate==1.10.1 lightning==2.3.3 \
+    gluonts==0.14.4 numpy==1.26.4 pandas==2.1.4 \
+    -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install scikit-learn -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install reformer-pytorch -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install uni2ts
+pip install chronos-forecasting
+pip install -U "ml_dtypes==0.4.0" "jax[cpu]==0.4.28" "jaxtyping==0.2.28"
+pip install -U "accelerate==0.31.0"
+pip install transformers==4.40.1
 ```
 
 2. Prepare Data. You can obtain the well pre-processed datasets from Time-Series-Library. [[Google Drive]](https://drive.google.com/drive/folders/13Cg1KYOlzM5C7K8gK8NfC-F3EYxkM3D2?usp=sharing) or [[Baidu Drive]](https://pan.baidu.com/s/1r3KhGd0Q9PJIUZdfEYoymg?pwd=i9iy), Then place the downloaded data in the folder`./dataset`. Here is a summary of supported datasets.
 
+Run the following commands from the BasicTS root directory to download BLAST from Hugging Face:
+
+```
+cd /path/to/BasicTS
+huggingface-cli download ZezhiShao/BLAST \
+  --repo-type dataset \
+  --local-dir ./dataset/BLAST
+```
+After the download finishes, the data will be under dataset/BLAST.
+
 3. Train and evaluate model. We provide the experiment scripts for all benchmarks under the folder `./scripts/`. You can reproduce the experiment results as the following examples:
 ```bash
-bash scripts/TimeMosaic/ETTh1.sh
+bash scripts/fair.sh
+bash scripts/fair_x.sh
+bash scripts/search.sh
+
+# bash scripts/TimeMosaic/ETTh1.sh
 ```
 
 
@@ -35,7 +54,6 @@ bash scripts/TimeMosaic/ETTh1.sh
 - **Segment-wise Prompt Tuning**: Model asymmetric forecasting difficulty across time using learnable prompts.
 - **Temporal Coherence**: Ensure each timestep belongs to exactly one patch, avoiding overlap and misalignment.
 - **Unified Benchmark**: Evaluate across **17 real-world datasets** and **20+ baseline models** with consistent settings.
-- **Visualization Tools**: Includes scripts for patch distribution and attention heatmap analysis.
 
 ## Included Models
 
@@ -77,3 +95,9 @@ All models are trained under identical lookback lengths and evaluation metrics (
 
 
 ## Acknowledgements
+
+We appreciate the following resources a lot for their valuable code and datasets:
+
+- Time-Series-Library (https://github.com/thuml/Time-Series-Library)
+- iTransformer (https://github.com/thuml/iTransformer)
+- BasicTS (https://github.com/GestaltCogTeam/BasicTS)

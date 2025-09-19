@@ -18,9 +18,9 @@ os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 warnings.filterwarnings('ignore')
 
 
-class Exp_AGPT(Exp_Basic):
+class Exp_TimeMosaic(Exp_Basic):
     def __init__(self, args):
-        super(Exp_AGPT, self).__init__(args)
+        super(Exp_TimeMosaic, self).__init__(args)
 
     def _build_model(self):
         model = self.model_dict[self.args.model].Model(self.args).float()
