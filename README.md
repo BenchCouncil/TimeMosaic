@@ -1,5 +1,6 @@
 # TimeMosaic
 
+This is the official implementation of our paper:  
 **TimeMosaic: Information-Density Guided Time Series Forecasting via Adaptive Granularity Patch and Segment-wise Decoding**
 
 ![Framework](./figure/framework.png)
