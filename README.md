@@ -31,7 +31,6 @@ pip install transformers==4.40.1
 Run the following commands from the BasicTS root directory to download BLAST from Hugging Face:
 
 ```
-cd /path/to/BasicTS
 huggingface-cli download ZezhiShao/BLAST \
   --repo-type dataset \
   --local-dir ./dataset/BLAST
