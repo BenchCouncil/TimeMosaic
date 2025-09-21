@@ -58,12 +58,20 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                 # decoder input
                 dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
                 dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
+
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        outputs= self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        if self.args.model == 'SimpleTM':
+                            outputs, attn = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        else:
+                            outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
                 else:
-                    outputs= self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                    if self.args.model == 'SimpleTM':
+                        outputs, attn = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                    else:
+                        outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+
                 f_dim = -1 if self.args.features == 'MS' else 0
                 outputs = outputs[:, -self.args.pred_len:, f_dim:]
                 batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
@@ -119,19 +127,32 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
 
                         f_dim = -1 if self.args.features == 'MS' else 0
-                        outputs = outputs[:, -self.args.pred_len:, f_dim:]
-                        batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
-                        loss = criterion(outputs, batch_y)
+                        if self.args.model == 'SimpleTM':
+                            outputs, attn = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        else:
+                            outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+
+                        if self.args.model == 'SimpleTM':
+                            loss = criterion(outputs, batch_y) + self.args.l1_weight * attn[0]
+                        else:
+                            loss = criterion(outputs, batch_y)
                         train_loss.append(loss.item())
                 else:
-                    outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
-
                     f_dim = -1 if self.args.features == 'MS' else 0
+                    
+                    if self.args.model == 'SimpleTM':
+                        outputs, attn = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                    else:
+                        outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
                     outputs = outputs[:, -self.args.pred_len:, f_dim:]
                     batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
+                    if self.args.model == 'SimpleTM':
+                        loss = criterion(outputs, batch_y) + self.args.l1_weight * attn[0]
+                    else:
+                        loss = criterion(outputs, batch_y)
+
                     loss = criterion(outputs, batch_y)
                     # print("loss: ", criterion(outputs, batch_y))
                     # print("reg_loss: ", reg_loss)
@@ -206,9 +227,17 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        # outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        if self.args.model == 'SimpleTM':
+                            outputs, attn = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        else:
+                            outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
                 else:
-                    outputs= self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                    # outputs= self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                    if self.args.model == 'SimpleTM':
+                        outputs, attn = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                    else:
+                        outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
 
                 f_dim = -1 if self.args.features == 'MS' else 0
                 outputs = outputs[:, -self.args.pred_len:, :]

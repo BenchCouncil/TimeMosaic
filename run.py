@@ -117,14 +117,15 @@ if __name__ == '__main__':
     parser.add_argument('--counts', type=int, default=0, help='')
 
 
-    # SimpleTS
+    # SimpleTM
     parser.add_argument('--kernel_size', default=None, help='Specify the length of randomly initialized wavelets (if not None)')
     parser.add_argument('--alpha', type=float, default=1, help='Weight of the inner product score in geometric attention')
     parser.add_argument('--geomattn_dropout', type=float, default=0.5, help='dropout rate of the projection layer in the geometric attention')
     parser.add_argument('--requires_grad', type=bool, default=True, help='Set to True to enable learnable wavelets')
     parser.add_argument('--wv', type=str, default='db1', help='Wavelet filter type. Supports all wavelets available in PyTorch Wavelets')
     parser.add_argument('--m', type=int, default=3, help='Number of levels for the stationary wavelet transform')
-
+    parser.add_argument('--l1_weight', type=float, default=5e-5, help='Weight of L1 loss')
+    
     # TimeMixer
     parser.add_argument('--down_sampling_layers', type=int, default=3, help='num of down sampling layers')
     parser.add_argument('--down_sampling_window', type=int, default=2, help='down sampling window size')
