@@ -40,6 +40,7 @@ After the download finishes, the data will be under dataset/BLAST.  The weights 
 
 3. Train and evaluate model. We provide the experiment scripts for all benchmarks under the folder `./scripts/`. You can reproduce the experiment results as the following examples:
 ```bash
+# Please comment the code for saving weights.
 bash scripts/fair.sh
 bash scripts/fair_x.sh
 bash scripts/search.sh
