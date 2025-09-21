@@ -99,7 +99,7 @@ if __name__ == '__main__':
     # parser.add_argument('--target_root_path', type=str, default='./data/electricity/', help='root path of the data file')
     # parser.add_argument('--target_data_path', type=str, default='electricity.csv', help='data file')
 
-    # AGPT
+    # TimeMosaic
     parser.add_argument('--fc_dropout', type=float, default=0.1, help='fc_dropout')
     parser.add_argument('--fixed_weight', type=bool, default=False, help='fixed task emb weight')
     parser.add_argument('--adjust_lr', action='store_true', default=True, help='adjust learnring rate')
