@@ -21,8 +21,7 @@ class EncoderLayer(nn.Module):
         self.num_latent_token = num_latent_token
 
     def forward(self, x, attn_mask=None, tau=None, delta=None):
-        # print(x.shape)
-        # raise ValueError
+
         q = self.mask_last_tokens(x)
         new_x, attn = self.attention(
             q, x, x,
@@ -95,7 +94,7 @@ class AdaptivePatchEmbedding(nn.Module):
 
         all_patches = []
         cls_pred_list = []
-        cls_soft_list = []  # 可导 one-hot，参与 loss 监督
+        cls_soft_list = []
 
         for region_idx in range(self.region_num):
             region = x[:, region_idx, :]  # [B*C, max_patch_len]
@@ -108,13 +107,11 @@ class AdaptivePatchEmbedding(nn.Module):
                 cls_pred = torch.argmax(cls_logits, dim=-1)
                 cls_soft = F.one_hot(cls_pred, num_classes=len(self.patch_len_list)).float()
 
-            cls_soft_list.append(cls_soft)  # 用于 loss 中 ratio 正则
+            cls_soft_list.append(cls_soft)
 
-            # 用于 logging 的离散标签
             cls_pred = cls_soft.argmax(dim=-1)
             cls_pred_list.append(cls_pred)
 
-            # 计算每个粒度的 embedding
             patch_emb_list = []
             for idx, patch_len in enumerate(self.patch_len_list):
                 patches = region.unfold(-1, patch_len, patch_len)  # [B*C, num_patch, patch_len]
@@ -132,7 +129,6 @@ class AdaptivePatchEmbedding(nn.Module):
             # cls_soft: [B*C, num_classes] → [num_classes, B*C, 1, 1]
             cls_soft_trans = cls_soft.transpose(0, 1).unsqueeze(-1).unsqueeze(-1)
 
-            # 加权融合（gumbel hard=True: 正向 one-hot，反向有梯度）
             region_patches_sorted = (patch_emb_stack * cls_soft_trans).sum(dim=0)  # [B*C, num_patch, d_model]
 
             all_patches.append(region_patches_sorted)
@@ -212,7 +208,9 @@ class Model(nn.Module):
                 configs.d_model,
                 configs.d_ff,
                 dropout=configs.dropout,
-                activation=configs.activation
+                activation=configs.activation,
+                # open mask seq_len
+                # num_latent_token=configs.num_latent_token,
             ) for l in range(configs.e_layers)
         ], norm_layer=nn.Sequential(Transpose(1,2), nn.BatchNorm1d(configs.d_model), Transpose(1,2)))
 
