@@ -35,7 +35,8 @@ huggingface-cli download ZezhiShao/BLAST \
   --repo-type dataset \
   --local-dir ./dataset/BLAST
 ```
-After the download finishes, the data will be under dataset/BLAST.
+After the download finishes, the data will be under dataset/BLAST.  The weights of **TimeMosaic** trained on large-scale datasets can be accessed here: [Google Drive Link](https://drive.google.com/drive/folders/1xPb8em4Q6i-I7uMLlMJUP4p2UnlbuMxH?usp=sharing).
+
 
 3. Train and evaluate model. We provide the experiment scripts for all benchmarks under the folder `./scripts/`. You can reproduce the experiment results as the following examples:
 ```bash
