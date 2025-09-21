@@ -13,7 +13,7 @@ import numpy as np
 import sys
 sys.dont_write_bytecode = True
 
-os.environ['CUDA_VISIBLE_DEVICE']='0,1'
+os.environ['CUDA_VISIBLE_DEVICE']='0,1,2,3,4,5,6,7'
 
 if __name__ == '__main__':
     fix_seed = 2025
@@ -21,7 +21,7 @@ if __name__ == '__main__':
     torch.manual_seed(fix_seed)
     np.random.seed(fix_seed)
 
-    parser = argparse.ArgumentParser(description='AGPT')
+    parser = argparse.ArgumentParser(description='TimeMosaic')
 
     # basic config
     parser.add_argument('--task_name', type=str, default='long_term_forecast')
@@ -174,15 +174,6 @@ if __name__ == '__main__':
     
     # TimeMxierPP
     parser.add_argument('--channel_mixing', type=int, default=1, help='channel_mixing')
-    
-    # xdeepfm
-    parser.add_argument('--use_linear', type=lambda x: (str(x).lower() == 'true'), default=False, help='是否使用Linear分支 (True/False)')
-    parser.add_argument('--use_dnn', type=lambda x: (str(x).lower() == 'true'), default=True, help='是否使用DNN分支 (True/False)')
-    parser.add_argument('--use_cin', type=lambda x: (str(x).lower() == 'true'), default=True, help='是否使用CIN分支 (True/False)')
-    parser.add_argument('--dnn_hidden_units', type=int, nargs='+', default=[256, 256], help='DNN‘s number of neurons in each hidden layer')
-    parser.add_argument('--cin_layer_size', type=int, nargs='+', default=[512,64], help='The number of feature maps for each hidden layer for CIN')
-    parser.add_argument('--gate_hidden_units', type=int, default=32, help='Dimension size of the hidden layer in the gated network for fusion of CIN and DNN')
-    parser.add_argument('--channel_xpatchfm', type=str, default="CD", help="CI or CD")
     
     # zero-shot
     parser.add_argument('--target_root_path', type=str, default='./dataset/ETT-small/', help='root path of the data file')

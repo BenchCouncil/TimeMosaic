@@ -1,6 +1,6 @@
 # TimeMosaic
 
-**TimeMosaic: Information-Density Guided Time Series Forecasting via Adaptive Granularity Patch and Segment-wise Decoding**
+This is the official implementation of our paper:  **TimeMosaic: Information-Density Guided Time Series Forecasting via Adaptive Granularity Patch and Segment-wise Decoding**
 
 ![Framework](./figure/framework.png)
 
@@ -31,7 +31,6 @@ pip install transformers==4.40.1
 Run the following commands from the BasicTS root directory to download BLAST from Hugging Face:
 
 ```
-cd /path/to/BasicTS
 huggingface-cli download ZezhiShao/BLAST \
   --repo-type dataset \
   --local-dir ./dataset/BLAST
