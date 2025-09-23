@@ -1,5 +1,9 @@
 # TimeMosaic
 
+[![preprint](https://img.shields.io/static/v1?label=arXiv&message=2403.07815&color=B31B1B&logo=arXiv)]()
+[![faq](https://img.shields.io/badge/FAQ-Questions%3F-blue)](https://github.com/Day333/TimeMosaic/issues)
+[![License: MIT](https://img.shields.io/badge/License-Apache--2.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
+
 This is the official implementation of our paper:  **TimeMosaic: Information-Density Guided Time Series Forecasting via Adaptive Granularity Patch and Segment-wise Decoding**
 
 ![Framework](./figure/framework.png)
@@ -48,13 +52,19 @@ bash scripts/search.sh
 # bash scripts/TimeMosaic/ETTh1.sh
 ```
 
+## Result
 
-## Features
+Results under the hyperparameter search setting described in Paper Appendix Section I.
 
-- **Adaptive Patch Embedding**: Segment the input based on local information density with variable granularity.
-- **Segment-wise Prompt Tuning**: Model asymmetric forecasting difficulty across time using learnable prompts.
-- **Temporal Coherence**: Ensure each timestep belongs to exactly one patch, avoiding overlap and misalignment.
-- **Unified Benchmark**: Evaluate across **17 real-world datasets** and **20+ baseline models** with consistent settings.
+<div align="center">
+<img src="figure/search.png" width="100%">
+</div>
+
+Zero-shot forecasting results on two datasets.
+
+<div align="center">
+<img src="figure/zero.png" width="100%">
+</div>
 
 ## Included Models
 
@@ -77,7 +87,6 @@ Forecasting [[AAAI 2025]](https://arxiv.org/pdf/2405.13575).
 - ✅ **TimesNet** : TimesNet: Temporal 2D-Variation Modeling for General Time Series Analysis [[ICLR 2023]](https://arxiv.org/pdf/2210.02186).
 - ✅ **DLinear** : Are Transformers Effective for Time Series Forecasting? [[AAAI 2023]](https://arxiv.org/pdf/2205.13504).
 - ✅ **TimeMixer** : TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting [[ICLR 2024]](https://openreview.net/pdf?id=7oLshfEIC2).
-- ✅ **TimeMixer++** : TimeMixer++: A General Time Series Pattern Machine for Universal Predictive Analysis [[ICLR 2025]](https://arxiv.org/pdf/2410.16032).
 - ✅ **MICN** : MICN: Multi-scale Local and Global Context Modeling for Long-term Series Forecasting [[ICLR 2023]](https://openreview.net/pdf?id=zt53IDUR1U).
 - ✅ **FreTS** : Frequency-domain MLPs are More Effective Learners in Time Series Forecasting [[NeurIPS 2023]](https://arxiv.org/pdf/2311.06184).
 - ✅ **Crossformer** : Crossformer: Transformer Utilizing Cross-Dimension Dependency for Multivariate Time Series Forecasting [[ICLR 2023]](https://openreview.net/pdf?id=vSVLM2j9eie).
