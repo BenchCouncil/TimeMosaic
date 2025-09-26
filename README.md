@@ -30,7 +30,7 @@ pip install -U "accelerate==0.31.0"
 pip install transformers==4.40.1
 ```
 
-2. Prepare Data. You can obtain the well pre-processed datasets from Time-Series-Library. [[Google Drive]](https://drive.google.com/drive/folders/13Cg1KYOlzM5C7K8gK8NfC-F3EYxkM3D2?usp=sharing) or [[Baidu Drive]](https://pan.baidu.com/s/1r3KhGd0Q9PJIUZdfEYoymg?pwd=i9iy), Then place the downloaded data in the folder`./dataset`. Here is a summary of supported datasets.
+2. Prepare Data. You can obtain the well pre-processed datasets from Time-Series-Library. [[Google Drive]](https://drive.google.com/file/d/1C89grm0nkDBMZZem4pj6TI8UpKtz9o7p/view?usp=sharing), Then place the downloaded data in the folder`./dataset`. Here is a summary of supported datasets.
 
 Run the following commands from the BasicTS root directory to download BLAST from Hugging Face:
 
