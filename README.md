@@ -1,6 +1,6 @@
 # TimeMosaic
 
-[![preprint](https://img.shields.io/static/v1?label=arXiv&message=2403.07815&color=B31B1B&logo=arXiv)](https://arxiv.org/abs/2509.19406)
+[![preprint](https://img.shields.io/static/v1?label=arXiv&message=2509.19406&color=B31B1B&logo=arXiv)](https://arxiv.org/abs/2509.19406)
 [![faq](https://img.shields.io/badge/FAQ-Questions%3F-blue)](https://github.com/Day333/TimeMosaic/issues)
 [![License: MIT](https://img.shields.io/badge/License-Apache--2.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
