@@ -105,6 +105,17 @@ Auto-Correlation for Long-Term Series Forecasting [[NeurIPS 2021]](https://arxiv
 
 All models are trained under identical lookback lengths and evaluation metrics (MSE/MAE), and the same `drop_last=False` setting to ensure fairness and reproducibility.
 
+# Citation
+If you find our work helpful, please consider citing us:
+
+```bibtex
+@article{ding2025mosaic,
+  title={TimeMosaic: Temporal Heterogeneity Guided Time Series Forecasting via Adaptive Granularity Patch and Segment-wise Decoding}, 
+  author={Kuiye Ding and Fanda Fan and Chunyi Hou and Zheya Wang and Lei Wang and Zhengxin Yang and Jianfeng Zhan},
+  journal={arXiv preprint arXiv:2509.19406},
+  year={2025}
+}
+```
 
 ## Acknowledgements
 
