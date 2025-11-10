@@ -14,7 +14,7 @@ from operator import mul
 class Model(nn.Module):
     def __init__(self, configs):
         super(Model, self).__init__()
-        self.layer_nums = configs.layer_nums  # 设置pathway的层数
+        self.layer_nums = configs.layer_nums
         self.num_nodes = configs.enc_in
         self.pre_len = configs.pred_len
         self.seq_len = configs.seq_len
