@@ -6,7 +6,7 @@ from torch.distributions.normal import Normal
 import numpy as np
 from layers.AMS import AMS
 from layers.Layer import WeightGenerator, CustomLinear
-from layers.RevIN import RevIN
+from layers.revin import RevIN
 from functools import reduce
 from operator import mul
 
