@@ -126,3 +126,4 @@ We appreciate the following resources a lot for their valuable code and datasets
 - Time-Series-Library (https://github.com/thuml/Time-Series-Library)
 - iTransformer (https://github.com/thuml/iTransformer)
 - BasicTS (https://github.com/GestaltCogTeam/BasicTS)
+- TFB (https://github.com/decisionintelligence/TFB)
