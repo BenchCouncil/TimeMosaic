@@ -1,7 +1,7 @@
 from layers.Transformer_EncDec import Encoder
 from layers.SelfAttention_Family import FullAttention, AttentionLayer
 from layers.Embed import DataEmbedding_inverted
-from layers.RevIN import RevIN
+from layers.revin import RevIN
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
