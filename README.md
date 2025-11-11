@@ -22,13 +22,11 @@ This is the official implementation of our paper:  **TimeMosaic: Information-Den
 ```
 pip install torch==2.4.1 torchvision==0.19.1  --index-url https://download.pytorch.org/whl/cu121
 
-pip install transformers==4.40.1 accelerate==1.10.1 lightning==2.3.3 \
+pip install transformers==4.40.1 lightning==2.3.3 \
     gluonts==0.14.4 numpy==1.26.4 pandas==2.1.4 \
     -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install scikit-learn -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install reformer-pytorch -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip install uni2ts
-pip install chronos-forecasting
 pip install -U "ml_dtypes==0.4.0" "jax[cpu]==0.4.28" "jaxtyping==0.2.28"
 pip install -U "accelerate==0.31.0"
 pip install transformers==4.40.1
