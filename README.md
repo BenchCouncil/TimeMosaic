@@ -4,7 +4,9 @@
 [![faq](https://img.shields.io/badge/FAQ-Questions%3F-blue)](https://github.com/Day333/TimeMosaic/issues)
 [![License: MIT](https://img.shields.io/badge/License-Apache--2.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
-**[<a href="https://mp.weixin.qq.com/s/OJSvOxwz9ZAKR5bqZ29-9g">中文解读</a>]**
+**[<a href="https://mp.weixin.qq.com/s/OJSvOxwz9ZAKR5bqZ29-9g">中文解读1</a>]**
+**[<a href="https://mp.weixin.qq.com/s/nFPQ8wL8jrIR_2WAwawpnQ">中文解读2</a>]**
+
 
 > 📢 **Update (Nov 2025)**: Our paper *TimeMosaic: Information-Density Guided Time Series Forecasting via Adaptive Granularity Patch and Segment-wise Decoding* has been **accepted to AAAI 2026 (Main Track)** 🎉
 
