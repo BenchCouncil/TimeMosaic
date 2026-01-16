@@ -6,6 +6,8 @@
 
 **[<a href="https://mp.weixin.qq.com/s/OJSvOxwz9ZAKR5bqZ29-9g">中文解读1</a>]**
 **[<a href="https://mp.weixin.qq.com/s/nFPQ8wL8jrIR_2WAwawpnQ">中文解读2</a>]**
+**[<a href="https://mp.weixin.qq.com/s/S14eWR0LnMb3WEOzJE7BRA">中文解读3</a>]**
+
 
 
 > 📢 **Update (Nov 2025)**: Our paper *TimeMosaic: Information-Density Guided Time Series Forecasting via Adaptive Granularity Patch and Segment-wise Decoding* has been **accepted to AAAI 2026 (Main Track)** 🎉
