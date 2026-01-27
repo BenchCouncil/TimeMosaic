@@ -38,10 +38,10 @@ class Exp_TimeMosaic(Exp_Basic):
         return model_optim
 
     def _select_criterion(self):
-        # if self.args.loss == 'MSE':
-            # criterion = nn.MSELoss()
-        # else:
-        criterion = nn.L1Loss()
+        if self.args.loss == 'MSE':
+            criterion = nn.MSELoss()
+        else:
+            criterion = nn.L1Loss()
         return criterion
  
 
