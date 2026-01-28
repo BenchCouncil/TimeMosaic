@@ -5,7 +5,7 @@ python -u run.py \
   --is_training 1 \
   --root_path ./dataset/exchange_rate/ \
   --data_path exchange_rate.csv \
-  --model_id Exchange_96_96 \
+  --model_id Exchange_320_96 \
   --model $model_name \
   --data custom \
   --features M \
@@ -27,7 +27,7 @@ python -u run.py \
   --is_training 1 \
   --root_path ./dataset/exchange_rate/ \
   --data_path exchange_rate.csv \
-  --model_id Exchange_96_192 \
+  --model_id Exchange_320_192 \
   --model $model_name \
   --data custom \
   --features M \
@@ -50,7 +50,7 @@ python -u run.py \
   --is_training 1 \
   --root_path ./dataset/exchange_rate/ \
   --data_path exchange_rate.csv \
-  --model_id Exchange_96_336 \
+  --model_id Exchange_320_336 \
   --model $model_name \
   --data custom \
   --features M \
@@ -73,7 +73,7 @@ python -u run.py \
   --is_training 1 \
   --root_path ./dataset/exchange_rate/ \
   --data_path exchange_rate.csv \
-  --model_id Exchange_96_720 \
+  --model_id Exchange_320_720 \
   --model $model_name \
   --data custom \
   --features M \
