@@ -6,7 +6,7 @@ python -u run.py \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh1.csv \
-  --model_id ETTh1_96_96 \
+  --model_id ETTh1_320_96 \
   --model $model_name \
   --data ETTh1 \
   --features M \
@@ -29,7 +29,7 @@ python -u run.py \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh1.csv \
-  --model_id ETTh1_96_192 \
+  --model_id ETTh1_320_192 \
   --model $model_name \
   --data ETTh1 \
   --features M \
@@ -51,7 +51,7 @@ python -u run.py \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh1.csv \
-  --model_id ETTh1_96_336 \
+  --model_id ETTh1_320_336 \
   --model $model_name \
   --data ETTh1 \
   --features M \
@@ -74,7 +74,7 @@ python -u run.py \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh1.csv \
-  --model_id ETTh1_96_720 \
+  --model_id ETTh1_320_720 \
   --model $model_name \
   --data ETTh1 \
   --features M \
