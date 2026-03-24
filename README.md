@@ -113,11 +113,17 @@ All models are trained under identical lookback lengths and evaluation metrics (
 If you find our work helpful, please consider citing us:
 
 ```bibtex
-@article{ding2025mosaic,
-  title={TimeMosaic: Temporal Heterogeneity Guided Time Series Forecasting via Adaptive Granularity Patch and Segment-wise Decoding}, 
-  author={Kuiye Ding and Fanda Fan and Chunyi Hou and Zheya Wang and Lei Wang and Zhengxin Yang and Jianfeng Zhan},
-  journal={arXiv preprint arXiv:2509.19406},
-  year={2025}
+@article{2026timemosaic, 
+    title={TimeMosaic: Temporal Heterogeneity Guided Time Series Forecasting via Adaptive Granularity Patch and Segment-wise Decoding},
+    author={Ding, Kuiye and Fan, Fanda and Hou, Chunyi and Wang, Zheya and Wang, Lei and Yang, Zhengxin and Zhan, Jianfeng}, 
+    journal={Proceedings of the AAAI Conference on Artificial Intelligence}, 
+    year={2026}, 
+    month={Mar.}, 
+    volume={40}, 
+    url={https://ojs.aaai.org/index.php/AAAI/article/view/39218}, 
+    DOI={10.1609/aaai.v40i25.39218}, 
+    number={25}, 
+    pages={20790-20798} 
 }
 ```
 
